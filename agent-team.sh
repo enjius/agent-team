@@ -20,7 +20,8 @@
 #   $HOME/rakwan/.claude/agents      (앱 제작 별동대 13명)
 # 환경변수 AGENT_TEAM_SOURCES 로 콜론(:) 구분 재정의 가능.
 # ---------------------------------------------------------------------------
-set -euo pipefail
+# nounset(-u)는 macOS 기본 bash 3.2 에서 빈 배열 확장 시 오작동하므로 제외.
+set -eo pipefail
 
 # ── 스크립트/홈 위치 (git과 무관하게 Mac에서 독립 동작) ──────────────
 # 심링크로 실행돼도 실제 스크립트 폴더를 찾도록 링크를 따라간다.
@@ -515,10 +516,12 @@ cmd_alias() {
 
   # cwd 가 팀 루트($app) 하위일 때만 --add-dir 를 자동으로 붙이는 래퍼 함수.
   # 그 외 위치에서는 평범한 claude 로 동작 → 다른 작업에 영향 없음.
+  # (주의: bash 3.2 는 $(cat <<HEREDOC) 안에 case/;; 가 있으면 파싱 실패하므로
+  #  명령치환 대신 임시파일에 직접 리다이렉트로 생성한다.)
   local marker="# >>> agent-team (auto --add-dir) >>>"
   local endmk="# <<< agent-team (auto --add-dir) <<<"
-  local block
-  block=$(cat <<FUNC
+  local blockfile="${TMPDIR:-/tmp}/agent-team-block.$$"
+  cat > "$blockfile" <<FUNC
 $marker
 # ${app} 하위에서 claude 실행 시 팀(.claude/agents)을 자동 포함
 claude() {
@@ -530,7 +533,6 @@ claude() {
 }
 $endmk
 FUNC
-)
 
   if [ "$install" -eq 1 ]; then
     touch "$rc"
@@ -541,16 +543,17 @@ FUNC
         $0==s {skip=1} skip && $0==e {skip=0; next} !skip {print}
       ' "$rc" > "$tmp" && mv "$tmp" "$rc"
     fi
-    printf "\n%s\n" "$block" >> "$rc"
+    printf "\n" >> "$rc"; cat "$blockfile" >> "$rc"
     ok "zsh 함수 설치: $rc"
     log "   ${C_DIM}적용: source $rc  (또는 새 터미널)${C_RESET}"
     log "   이제 ${C_BOLD}$app${C_RESET} 하위에서 그냥 ${C_BOLD}claude${C_RESET} 만 쳐도 팀이 자동 포함됩니다."
   else
     log "${C_DIM}# 아래를 ~/.zshrc 에 추가하거나, --install 로 자동 설치하세요.${C_RESET}"
-    log "$block"
+    cat "$blockfile"
     log ""
     log "${C_DIM}# 자동 설치: agent-team.sh alias \"$app\" --install${C_RESET}"
   fi
+  rm -f "$blockfile"
 }
 
 # ══════════════════════════════════════════════════════════════════════
