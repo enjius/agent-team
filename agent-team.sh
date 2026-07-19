@@ -1260,9 +1260,9 @@ cmd_board() {
 
   # 부서 → 이모지 / 색상
   _dept_emoji() { case "$1" in
-    리드·총괄) echo 👑;; 기획·PM) echo 📋;; 디자인) echo 🎨;; 개발) echo 💻;;
-    AI·ML) echo 🤖;; 데이터·리서치) echo 📊;; QA·품질) echo 🧪;; 보안·법무) echo 🛡️;;
-    마케팅·사업) echo 📈;; 금융·투자) echo 💰;; 운영·문서) echo 📦;; *) echo ⭐;; esac; }
+    리드·총괄) echo 👑;; 기획·PM) echo 🗂️;; 디자인) echo 🎨;; 개발) echo ⌨️;;
+    AI·ML) echo 🧠;; 데이터·리서치) echo 🔬;; QA·품질) echo 🐞;; 보안·법무) echo 🔒;;
+    마케팅·사업) echo 📣;; 금융·투자) echo 💹;; 운영·문서) echo 🛠️;; *) echo ❓;; esac; }
   _dept_color() { case "$1" in
     리드·총괄) echo '#d2a8ff';; 기획·PM) echo '#79c0ff';; 디자인) echo '#f778ba';; 개발) echo '#58a6ff';;
     AI·ML) echo '#a5d6ff';; 데이터·리서치) echo '#7ee787';; QA·품질) echo '#ffa657';; 보안·법무) echo '#ff7b72';;
@@ -1309,7 +1309,7 @@ h1{font-size:22px;margin:0}
 .room{--dc:#8b949e;background:linear-gradient(180deg,#1b222d,#141922);border:1px solid var(--bd);border-top:3px solid var(--dc);border-radius:16px;padding:12px 12px 14px;box-shadow:0 10px 30px #0005}
 .room.working{box-shadow:0 0 0 1px #3fb95066,0 10px 30px #0006}
 .rh{display:flex;align-items:center;gap:8px;font-weight:800;margin-bottom:12px}
-.re{font-size:20px;filter:drop-shadow(0 0 6px var(--dc))}
+.re{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:#0d1117;border:2px solid var(--dc);font-size:17px;box-shadow:0 0 12px -3px var(--dc)}
 .rc{margin-left:auto;font-size:11px;color:var(--dim);background:#0007;border:1px solid var(--bd);border-radius:20px;padding:1px 9px}
 .agents{display:flex;flex-wrap:wrap;gap:12px}
 .agent{position:relative;width:74px;text-align:center}
