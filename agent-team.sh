@@ -1052,142 +1052,214 @@ PLIST
 }
 
 # ══════════════════════════════════════════════════════════════════════
-# board — 모든 에이전트 상태 + 프로젝트 현황을 HTML 대시보드(본부)로 생성
-#   서버 불필요. 자체완결 HTML 파일을 만들고 macOS 에서 열어준다.
+# ══════════════════════════════════════════════════════════════════════
+# board — 회사 조직도 대시보드(본부)
+#   본부(부서별 대기 팀원) + 프로젝트별 투입 팀원 을 한 화면에.
+#   서버 불필요. 자체완결 HTML 을 만들고 macOS 에서 열어준다.
 # ══════════════════════════════════════════════════════════════════════
 _html_esc() { printf '%s' "$1" | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/"/\&quot;/g'; }
 
+# 에이전트 이름/설명 → 부서 분류 (첫 매치 우선)
+_dept_of() {
+  local n; n=$(printf '%s' "$1" | tr 'A-Z' 'a-z')
+  case "$n" in
+    orchestrator|*coordinator*|cto|pmo|architect|*tech-lead*|ai-lead) echo "리드·총괄" ;;
+    ai-*|ai|*-ai|*mlops*|ml-*|*-ml|*generative*|*llm*)                 echo "AI·ML" ;;
+    *design*|*uiux|*ux-writer*|*visual*|*designer*|*-ux|ux-*)          echo "디자인" ;;
+    *qa*|*test*|*review*)                                              echo "QA·품질" ;;
+    *security*|*privacy*|*legal*|*compliance*|*safety*)                echo "보안·법무" ;;
+    *quant*|*analyst*|*research*|*news*|*trader*|*harvest*|*data*)     echo "데이터·리서치" ;;
+    *pm*|*planner*|*product*|*plan)                                    echo "기획·PM" ;;
+    *market*|*brand*|*growth*|*biz*|*sales*)                           echo "마케팅·사업" ;;
+    *invest*|*asset*|*finance*|*trading*)                              echo "금융·투자" ;;
+    *devops*|*-ops|*ops|*sre*|*release*|*support*|*doc*|*writer*|*l10n*|*localization*) echo "운영·문서" ;;
+    *dev*|*frontend*|*backend*|*server*|*fullstack*|*mobile*|*flutter*|*supabase*|*integrator*|*engineer*|*web*) echo "개발" ;;
+    *) echo "기타" ;;
+  esac
+}
+
+# 부서 표시 순서
+_DEPT_ORDER="리드·총괄|기획·PM|디자인|개발|AI·ML|데이터·리서치|QA·품질|보안·법무|마케팅·사업|금융·투자|운영·문서|기타"
+
 cmd_board() {
   local out="" open=1
-  local -a dirs=()
+  local -a hqdirs=()
   while [ $# -gt 0 ]; do
     case "$1" in
       --out) shift; out="${1:-}" ;;
       --no-open) open=0 ;;
       -*) die "알 수 없는 옵션: $1" ;;
-      *) dirs+=("$1") ;;
+      *) hqdirs+=("$1") ;;
     esac
     shift
   done
   [ -n "$out" ] || out="$AGENT_TEAM_HOME/dashboard.html"
   mkdir -p "$(dirname "$out")"
-
-  # 기본 소스: 사장님 전역 팀 + 라이브러리 (인자로 추가 지정 가능)
-  if [ ${#dirs[@]} -eq 0 ]; then
-    dirs=("$HOME/.claude/agents" "$LIB_DIR")
-  fi
-
-  local now; now=$(date "+%Y-%m-%d %H:%M")
-  local today; today=$(date "+%Y-%m-%d")
-  local total=0 learned=0 notlearned=0
-
-  # 에이전트 카드 조립
-  local cards="$out.cards.tmp"; : > "$cards"
-  local seen="$out.seen.tmp"; : > "$seen"
-  for d in "${dirs[@]}"; do
-    [ -d "$d" ] || continue
-    local label; label=$(_html_esc "$d")
-    printf '<h2 class="src">%s</h2><div class="grid">\n' "$label" >> "$cards"
-    while IFS= read -r f; do
-      [ -n "$f" ] || continue
-      local name model desc kdate
-      name=$(front_field "$f" "name"); [ -n "$name" ] || name=$(basename "$f" .md)
-      # 중복 이름은 표시하되 카운트는 유일 이름 기준
-      model=$(front_field "$f" "model"); [ -n "$model" ] || model="-"
-      desc=$(front_field "$f" "description"); [ -n "$desc" ] || desc="(설명 없음)"
-      kdate=$(grep -m1 -oE '최신 지식 \([0-9]{4}-[0-9]{2}-[0-9]{2}\)' "$f" 2>/dev/null | grep -oE '[0-9]{4}-[0-9]{2}-[0-9]{2}' || true)
-      total=$((total+1))
-      local kstatus kcls
-      if [ -n "$kdate" ]; then
-        learned=$((learned+1))
-        if [ "$kdate" = "$today" ]; then kcls="k-today"; kstatus="오늘 습득 · $kdate"
-        else kcls="k-old"; kstatus="습득 · $kdate"; fi
-      else
-        notlearned=$((notlearned+1)); kcls="k-none"; kstatus="미습득"
-      fi
-      local mcls="m-$model"
-      printf '<div class="card"><div class="row"><span class="name">%s</span><span class="badge %s">%s</span></div><div class="desc">%s</div><div class="k %s">%s</div></div>\n' \
-        "$(_html_esc "$name")" "$(_html_esc "$mcls")" "$(_html_esc "$model")" "$(_html_esc "$desc")" "$kcls" "$(_html_esc "$kstatus")" >> "$cards"
-    done < <(find "$d" -maxdepth 1 -type f -name '*.md' | sort)
-    printf '</div>\n' >> "$cards"
-  done
-
-  # 프로젝트 현황 (본부)
-  local prows="$out.proj.tmp"; : > "$prows"
   local proot="$HOME/Documents/app"
+
+  # 본부 로스터 소스(기본): 전역 팀 + 라이브러리
+  if [ ${#hqdirs[@]} -eq 0 ]; then hqdirs=("$HOME/.claude/agents" "$LIB_DIR"); fi
+
+  local now; now=$(date "+%Y-%m-%d %H:%M"); local today; today=$(date "+%Y-%m-%d")
+  local tmp="$out.tmp.d"; mkdir -p "$tmp"
+  local projmap="$tmp/projmap"; : > "$projmap"   # name<TAB>project
+  local hq="$tmp/hq"; : > "$hq"                   # dept<TAB>name<TAB>model<TAB>kdate<TAB>desc<TAB>deployedProj
+
+  # 1) 프로젝트 → 투입 팀원 맵
   local pcount=0
+  local -a plist=()
   if [ -d "$proot" ]; then
     while IFS= read -r ad; do
       [ -n "$ad" ] || continue
-      local pdir; pdir=$(dirname "$(dirname "$ad")")
-      local n; n=$(find "$ad" -maxdepth 1 -type f -name '*.md' | wc -l | tr -d ' ')
-      local pack="-" last="-"
-      local meta="$pdir/.claude/agent-team.json"
-      [ -f "$meta" ] && {
-        pack=$(grep -o '"team_pack"[^,]*' "$meta" | sed 's/.*: *"//;s/"//' | head -1)
-        last=$(grep -o '"last_run"[^,}]*' "$meta" | sed 's/.*: *//;s/"//g' | head -1)
-      }
-      pcount=$((pcount+1))
-      printf '<tr><td>%s</td><td class="c">%s</td><td class="c">%s</td><td class="c">%s</td></tr>\n' \
-        "$(_html_esc "$(basename "$pdir")")" "$n" "$(_html_esc "$pack")" "$(_html_esc "$last")" >> "$prows"
+      local pdir pbase; pdir=$(dirname "$(dirname "$ad")"); pbase=$(basename "$pdir")
+      plist+=("$pdir"); pcount=$((pcount+1))
+      while IFS= read -r pf; do
+        [ -n "$pf" ] || continue
+        local pn; pn=$(front_field "$pf" "name"); [ -n "$pn" ] || pn=$(basename "$pf" .md)
+        printf '%s\t%s\n' "$pn" "$pbase" >> "$projmap"
+      done < <(find "$ad" -maxdepth 1 -type f -name '*.md' | sort)
     done < <(find "$proot" -maxdepth 3 -type d -path '*/.claude/agents' 2>/dev/null | sort)
   fi
 
-  # HTML 조립 (자체완결, 다크테마)
+  # 2) 본부 로스터 수집 (이름 중복 제거, 지식날짜 있는 쪽 우선)
+  local seen="$tmp/seen"; : > "$seen"
+  local total=0 learned=0 deployed=0
+  for d in "${hqdirs[@]}"; do
+    [ -d "$d" ] || continue
+    while IFS= read -r f; do
+      [ -n "$f" ] || continue
+      local name; name=$(front_field "$f" "name"); [ -n "$name" ] || name=$(basename "$f" .md)
+      grep -qxF "$name" "$seen" && continue
+      echo "$name" >> "$seen"
+      local model desc kdate dept dep
+      model=$(front_field "$f" "model"); [ -n "$model" ] || model="-"
+      desc=$(front_field "$f" "description"); [ -n "$desc" ] || desc="(설명 없음)"
+      desc=$(printf '%s' "$desc" | tr '\t' ' ')
+      kdate=$(grep -m1 -oE '최신 지식 \([0-9]{4}-[0-9]{2}-[0-9]{2}\)' "$f" 2>/dev/null | grep -oE '[0-9]{4}-[0-9]{2}-[0-9]{2}' || true)
+      dept=$(_dept_of "$name")
+      dep=$(grep -F "$(printf '%s\t' "$name")" "$projmap" 2>/dev/null | head -1 | cut -f2 || true)
+      total=$((total+1))
+      [ -n "$kdate" ] && learned=$((learned+1))
+      [ -n "$dep" ] && deployed=$((deployed+1))
+      printf '%s\037%s\037%s\037%s\037%s\037%s\n' "$dept" "$name" "$model" "$kdate" "$desc" "$dep" >> "$hq"
+    done < <(find "$d" -maxdepth 1 -type f -name '*.md' | sort)
+  done
+  local bench=$((total-deployed))
+
+  # 카드 렌더 헬퍼: 인자 name model kdate desc dep
+  _card() {
+    local nm="$1" md="$2" kd="$3" ds="$4" dp="$5"
+    local kcls kstat
+    if [ -n "$kd" ]; then
+      if [ "$kd" = "$today" ]; then kcls="k-today"; kstat="오늘 습득·$kd"; else kcls="k-old"; kstat="습득·$kd"; fi
+    else kcls="k-none"; kstat="미습득"; fi
+    local depbadge=""
+    [ -n "$dp" ] && depbadge="<span class=\"dep\">▶ $(_html_esc "$dp")</span>"
+    printf '<div class="card"><div class="row"><span class="name">%s</span><span class="badge m-%s">%s</span></div><div class="desc">%s</div><div class="foot2"><span class="k %s">%s</span>%s</div></div>\n' \
+      "$(_html_esc "$nm")" "$(_html_esc "$md")" "$(_html_esc "$md")" "$(_html_esc "$ds")" "$kcls" "$kstat" "$depbadge"
+  }
+
+  # 3) HTML 조립
   {
     cat <<HTMLHEAD
 <!doctype html><html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>에이전트 본부 — Agent HQ</title>
+<title>에이전트 본부 — Company HQ</title>
 <style>
 :root{--bg:#0d1117;--card:#161b22;--bd:#30363d;--fg:#e6edf3;--dim:#8b949e;--acc:#58a6ff}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif}
 .wrap{max-width:1200px;margin:0 auto;padding:24px}
 h1{font-size:22px;margin:0 0 4px}.sub{color:var(--dim);margin-bottom:20px}
-.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:28px}
-.tile{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px}
-.tile .n{font-size:28px;font-weight:700}.tile .l{color:var(--dim);font-size:12px}
-.tile.g .n{color:#3fb950}.tile.w .n{color:#d29922}.tile.b .n{color:var(--acc)}
-h2.src{font-size:13px;color:var(--dim);border-bottom:1px solid var(--bd);padding-bottom:6px;margin:22px 0 12px;word-break:break-all}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:12px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:26px}
+.tile{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px}
+.tile .n{font-size:26px;font-weight:700}.tile .l{color:var(--dim);font-size:12px}
+.tile.b .n{color:var(--acc)}.tile.g .n{color:#3fb950}.tile.w .n{color:#d29922}.tile.p .n{color:#d2a8ff}
+.section{margin:26px 0 8px;font-size:16px;font-weight:700}
+.dept{margin:16px 0 8px;font-size:13px;color:var(--dim);border-bottom:1px solid var(--bd);padding-bottom:5px}
+.dept b{color:var(--fg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:11px}
 .row{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.name{font-weight:600}.desc{color:var(--dim);font-size:12px;margin:6px 0;min-height:32px}
+.name{font-weight:600}.desc{color:var(--dim);font-size:12px;margin:6px 0;min-height:30px}
 .badge{font-size:10px;padding:2px 7px;border-radius:20px;border:1px solid var(--bd);white-space:nowrap}
 .m-opus{color:#d2a8ff;border-color:#8957e5}.m-sonnet{color:#79c0ff;border-color:#1f6feb}.m-haiku{color:#7ee787;border-color:#238636}
-.k{font-size:11px;margin-top:6px}.k-today{color:#3fb950}.k-old{color:#d29922}.k-none{color:var(--dim)}
-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--bd);border-radius:10px;overflow:hidden}
-th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--bd)}th{color:var(--dim);font-weight:600;font-size:12px}
-td.c{text-align:center}tr:last-child td{border-bottom:0}
+.foot2{display:flex;justify-content:space-between;align-items:center;gap:6px}
+.k{font-size:11px}.k-today{color:#3fb950}.k-old{color:#d29922}.k-none{color:var(--dim)}
+.dep{font-size:10px;color:#d2a8ff;border:1px solid #8957e5;border-radius:20px;padding:1px 6px}
+.proj{background:var(--card);border:1px solid var(--bd);border-left:3px solid var(--acc);border-radius:10px;padding:14px;margin:12px 0}
+.proj h3{margin:0 0 4px;font-size:15px}.proj .meta{color:var(--dim);font-size:12px;margin-bottom:10px}
+.empty{color:var(--dim);font-size:13px;padding:10px 0}
 .foot{color:var(--dim);font-size:12px;margin-top:28px;text-align:center}
 </style></head><body><div class="wrap">
-<h1>🏛 에이전트 본부</h1><div class="sub">생성: ${now} · 새로고침하려면 <code>agent-team board</code> 재실행</div>
+<h1>🏛 에이전트 본부 <span style="color:var(--dim);font-weight:400;font-size:15px">· Company HQ</span></h1>
+<div class="sub">생성: ${now} · 새로고침: <code>agent-team board</code> 재실행</div>
 <div class="tiles">
-<div class="tile b"><div class="n">${total}</div><div class="l">전체 에이전트</div></div>
-<div class="tile g"><div class="n">${learned}</div><div class="l">지식 습득됨</div></div>
-<div class="tile w"><div class="n">${notlearned}</div><div class="l">미습득</div></div>
-<div class="tile"><div class="n">${pcount}</div><div class="l">프로젝트</div></div>
+<div class="tile b"><div class="n">${total}</div><div class="l">전체 팀원</div></div>
+<div class="tile p"><div class="n">${pcount}</div><div class="l">진행 프로젝트</div></div>
+<div class="tile g"><div class="n">${deployed}</div><div class="l">프로젝트 투입</div></div>
+<div class="tile"><div class="n">${bench}</div><div class="l">본부 대기</div></div>
+<div class="tile w"><div class="n">${learned}</div><div class="l">지식 습득</div></div>
 </div>
+<div class="section">🏢 본부 — 부서별 팀원</div>
 HTMLHEAD
-    cat "$cards"
-    if [ "$pcount" -gt 0 ]; then
-      echo '<h2 class="src">프로젝트 현황</h2><table><tr><th>프로젝트</th><th class="c">팀원</th><th class="c">팀팩</th><th class="c">최근 실행</th></tr>'
-      cat "$prows"
-      echo '</table>'
+
+    # 부서별 렌더
+    OLDIFS="$IFS"; IFS='|'
+    for dept in $_DEPT_ORDER; do
+      IFS="$OLDIFS"
+      local cnt=0
+      while IFS=$'\037' read -r dp _rest; do [ "$dp" = "$dept" ] && cnt=$((cnt+1)); done < "$hq"
+      [ "$cnt" -eq 0 ] && { IFS='|'; continue; }
+      printf '<div class="dept"><b>%s</b> · %s명</div><div class="grid">\n' "$(_html_esc "$dept")" "$cnt"
+      while IFS=$'\037' read -r dp nm md kd ds dep; do
+        [ "$dp" = "$dept" ] || continue
+        _card "$nm" "$md" "$kd" "$ds" "$dep"
+      done < "$hq"
+      printf '</div>\n'
+      IFS='|'
+    done
+    IFS="$OLDIFS"
+
+    # 프로젝트별 투입 팀원
+    echo '<div class="section">📦 프로젝트 — 투입 팀원</div>'
+    if [ "$pcount" -eq 0 ]; then
+      echo '<div class="empty">진행 중인 프로젝트가 없습니다. (agent-team provision 으로 팀 투입)</div>'
+    else
+      local i=0
+      while [ $i -lt ${#plist[@]} ]; do
+        local pdir="${plist[$i]}"; i=$((i+1))
+        local pbase; pbase=$(basename "$pdir")
+        local ad="$pdir/.claude/agents"
+        local pn2; pn2=$(find "$ad" -maxdepth 1 -type f -name '*.md' | wc -l | tr -d ' ')
+        local pack="-" last="-"; local meta="$pdir/.claude/agent-team.json"
+        [ -f "$meta" ] && { pack=$(grep -o '"team_pack"[^,]*' "$meta" | sed 's/.*: *"//;s/"//' | head -1 || true); last=$(grep -o '"last_run"[^,}]*' "$meta" | sed 's/.*: *//;s/"//g' | head -1 || true); }
+        printf '<div class="proj"><h3>%s</h3><div class="meta">팀원 %s명 · 팀팩 %s · 최근 실행 %s</div><div class="grid">\n' \
+          "$(_html_esc "$pbase")" "$pn2" "$(_html_esc "$pack")" "$(_html_esc "$last")"
+        while IFS= read -r pf; do
+          [ -n "$pf" ] || continue
+          local nm md ds kd
+          nm=$(front_field "$pf" "name"); [ -n "$nm" ] || nm=$(basename "$pf" .md)
+          md=$(front_field "$pf" "model"); [ -n "$md" ] || md="-"
+          ds=$(front_field "$pf" "description"); [ -n "$ds" ] || ds=""
+          ds=$(printf '%s' "$ds" | tr '\t' ' ')
+          kd=$(grep -m1 -oE '최신 지식 \([0-9]{4}-[0-9]{2}-[0-9]{2}\)' "$pf" 2>/dev/null | grep -oE '[0-9]{4}-[0-9]{2}-[0-9]{2}' || true)
+          _card "$nm" "$md" "$kd" "$ds" ""
+        done < <(find "$ad" -maxdepth 1 -type f -name '*.md' | sort)
+        printf '</div></div>\n'
+      done
     fi
-    echo '<div class="foot">agent-team board · git 없이 ~/.agent-team 에서 동작</div></div></body></html>'
+    echo '<div class="foot">agent-team board · 회사 조직도(본부→부서→팀원, 프로젝트 투입) · git 없이 ~/.agent-team 에서 동작</div></div></body></html>'
   } > "$out"
-  rm -f "$cards" "$seen" "$prows"
+  rm -rf "$tmp"
 
   ok "본부 대시보드 생성: ${C_BOLD}$out${C_RESET}"
-  ok "에이전트 ${C_BOLD}${total}명${C_RESET} (습득 ${learned} · 미습득 ${notlearned}) · 프로젝트 ${pcount}개"
+  ok "팀원 ${C_BOLD}${total}명${C_RESET} (투입 ${deployed} · 대기 ${bench} · 지식습득 ${learned}) · 프로젝트 ${pcount}개"
   if [ "$open" -eq 1 ] && command -v open >/dev/null 2>&1; then
     open "$out" && log "   ${C_DIM}브라우저로 열었습니다.${C_RESET}"
   else
     log "   ${C_DIM}열기: open \"$out\"${C_RESET}"
   fi
 }
-
 # ══════════════════════════════════════════════════════════════════════
 usage() {
   cat <<USAGE
