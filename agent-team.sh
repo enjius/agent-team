@@ -983,7 +983,7 @@ cmd_learn() {
       continue
     fi
     printf "  ${C_BLUE}▸${C_RESET} %-22s 리서치…" "$name"
-    local out; out=$(cd "$(dirname "$dir")" && claude -p "$prompt" 2>/dev/null || true)
+    local out; out=$(cd "$(dirname "$dir")" && claude ${AGENT_TEAM_LEARN_FLAGS:-} -p "$prompt" 2>/dev/null || true)
     if [ -z "$out" ]; then printf " ${C_YELLOW}건너뜀(응답없음)${C_RESET}\n"; continue; fi
     local arch="$KNOW_DIR/${name}-${date}.md"
     { echo "# ${name} — ${date} 지식 업데이트"; echo; printf "%s\n" "$out"; } > "$arch"

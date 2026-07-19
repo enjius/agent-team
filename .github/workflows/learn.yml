@@ -1,0 +1,58 @@
+name: Daily Agent Knowledge Learn
+
+# 매일(클라우드에서) 라이브러리 에이전트가 최신 지식을 습득하고 리포에 커밋.
+# Mac이 꺼져 있어도 GitHub이 대신 돌린다. Mac은 나중에 git pull 만 하면 됨.
+#
+# 필요: 리포 Settings → Secrets and variables → Actions 에
+#       ANTHROPIC_API_KEY 시크릿 등록.
+
+on:
+  schedule:
+    - cron: '0 20 * * *'   # 매일 20:00 UTC = 05:00 KST
+  workflow_dispatch: {}     # 수동 실행 버튼
+
+permissions:
+  contents: write
+
+concurrency:
+  group: agent-learn
+  cancel-in-progress: false
+
+jobs:
+  learn:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Claude Code CLI
+        run: npm i -g @anthropic-ai/claude-code
+
+      - name: Knowledge learn (library)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          AGENT_TEAM_HOME: ${{ github.workspace }}
+          AGENT_TEAM_LEARN_FLAGS: --dangerously-skip-permissions
+        run: |
+          if [ -z "${ANTHROPIC_API_KEY}" ]; then
+            echo "::error::ANTHROPIC_API_KEY 시크릿이 없습니다. 리포 Settings→Secrets 에 등록하세요."
+            exit 1
+          fi
+          chmod +x agent-team.sh
+          ./agent-team.sh learn        # 대상 없으면 라이브러리 전체
+
+      - name: Commit knowledge updates
+        run: |
+          git config user.name  "agent-team-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add library
+          if git diff --cached --quiet; then
+            echo "변경 없음 — 커밋 생략"
+          else
+            git commit -m "chore(learn): daily knowledge update [skip ci]"
+            git push
+          fi
