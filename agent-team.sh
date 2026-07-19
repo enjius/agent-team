@@ -1145,6 +1145,8 @@ cmd_board() {
     while IFS= read -r ad; do
       [ -n "$ad" ] || continue
       local pdir pbase; pdir=$(dirname "$(dirname "$ad")"); pbase=$(basename "$pdir")
+      # AGENT_TEAM_IGNORE(콜론구분)에 있는 프로젝트는 숨김
+      case ":${AGENT_TEAM_IGNORE:-}:" in *":$pbase:"*) continue ;; esac
       # 같은 이름의 프로젝트가 여러 경로에 있어도 하나만 표시(rakwan 중복 방지)
       grep -qxF "$pbase" "$pseen" && continue
       echo "$pbase" >> "$pseen"
