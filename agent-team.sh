@@ -77,6 +77,25 @@ abspath() {
   fi
 }
 
+# ── 프로젝트 실행 상태 기록/조회 ─────────────────────────────────────
+_proj_status_write() {  # $1=projdir $2=state(running|done) $3=pid
+  printf '{"state":"%s","pid":%s,"ts":"%s"}\n' "$2" "${3:-0}" "$(date +%Y%m%d-%H%M%S)" \
+    > "$1/.claude/status.json" 2>/dev/null || true
+}
+# 프로젝트 상태 → working | done | idle 로 정규화
+_proj_state() {  # $1=projdir
+  local sf="$1/.claude/status.json"
+  [ -f "$sf" ] || { echo idle; return; }
+  local st pid
+  st=$(grep -o '"state"[^,]*' "$sf" 2>/dev/null | sed 's/.*: *"//;s/"//' | head -1)
+  pid=$(grep -o '"pid"[^,}]*' "$sf" 2>/dev/null | sed 's/.*: *//;s/[^0-9]//g' | head -1)
+  if [ "$st" = "running" ]; then
+    if [ -n "$pid" ] && [ "$pid" != "0" ] && kill -0 "$pid" 2>/dev/null; then echo working
+    else echo done; fi   # running 인데 프로세스 죽음 → 완료(중단) 처리
+  elif [ "$st" = "done" ]; then echo done
+  else echo idle; fi
+}
+
 # ── 프론트매터 필드 추출 (name/description/model) ─────────────────────
 # 첫 --- ... --- 블록에서 `key: value` 파싱. BSD/GNU awk 호환.
 front_field() {
@@ -421,6 +440,7 @@ cmd_run() {
     # 대화형: 작업 폴더에서 Claude Code 세션 시작
     info "대화형 세션 시작 (종료: /exit). 작업 지시를 입력하세요."
     [ -n "$task" ] && info "초기 작업: $task"
+    _proj_status_write "$app" running "$$"
     ( cd "$rundir" && exec "${cli[@]}" ${task:+"$task"} )
   else
     [ -n "$task" ] || die "헤드리스 실행에는 작업 지시가 필요합니다: run <APP_DIR> \"<task>\""
@@ -438,7 +458,9 @@ cmd_run() {
       return 0
     fi
     info "헤드리스 오케스트레이션 실행..."
+    _proj_status_write "$app" running "$$"
     ( cd "$rundir" && "${cli[@]}" -p "$prompt" ) 2>&1 | tee "$logf"
+    _proj_status_write "$app" done 0
     ok "실행 종료. 로그: $logf"
   fi
 
@@ -1105,10 +1127,11 @@ cmd_board() {
 
   local now; now=$(date "+%Y-%m-%d %H:%M"); local today; today=$(date "+%Y-%m-%d")
   local tmp="$out.tmp.d"; mkdir -p "$tmp"
-  local projmap="$tmp/projmap"; : > "$projmap"   # name<TAB>project
-  local hq="$tmp/hq"; : > "$hq"                   # dept<TAB>name<TAB>model<TAB>kdate<TAB>desc<TAB>deployedProj
+  local projmap="$tmp/projmap"; : > "$projmap"     # name<TAB>project
+  local projstate="$tmp/projstate"; : > "$projstate" # project<TAB>state
+  local hq="$tmp/hq"; : > "$hq"
 
-  # 1) 프로젝트 → 투입 팀원 맵
+  # 1) 프로젝트 → 투입 팀원 맵 + 실행 상태
   local pcount=0
   local -a plist=()
   if [ -d "$proot" ]; then
@@ -1116,6 +1139,7 @@ cmd_board() {
       [ -n "$ad" ] || continue
       local pdir pbase; pdir=$(dirname "$(dirname "$ad")"); pbase=$(basename "$pdir")
       plist+=("$pdir"); pcount=$((pcount+1))
+      printf '%s\t%s\n' "$pbase" "$(_proj_state "$pdir")" >> "$projstate"
       while IFS= read -r pf; do
         [ -n "$pf" ] || continue
         local pn; pn=$(front_field "$pf" "name"); [ -n "$pn" ] || pn=$(basename "$pf" .md)
@@ -1126,7 +1150,7 @@ cmd_board() {
 
   # 2) 본부 로스터 수집 (이름 중복 제거, 지식날짜 있는 쪽 우선)
   local seen="$tmp/seen"; : > "$seen"
-  local total=0 learned=0 deployed=0
+  local total=0 learned=0 deployed=0 workcnt=0 donecnt=0
   for d in "${hqdirs[@]}"; do
     [ -d "$d" ] || continue
     while IFS= read -r f; do
@@ -1134,30 +1158,45 @@ cmd_board() {
       local name; name=$(front_field "$f" "name"); [ -n "$name" ] || name=$(basename "$f" .md)
       grep -qxF "$name" "$seen" && continue
       echo "$name" >> "$seen"
-      local model desc kdate dept dep
+      local model desc kdate dept dep pstate
       model=$(front_field "$f" "model"); [ -n "$model" ] || model="-"
       desc=$(front_field "$f" "description"); [ -n "$desc" ] || desc="(설명 없음)"
       desc=$(printf '%s' "$desc" | tr '\t' ' ')
       kdate=$(grep -m1 -oE '최신 지식 \([0-9]{4}-[0-9]{2}-[0-9]{2}\)' "$f" 2>/dev/null | grep -oE '[0-9]{4}-[0-9]{2}-[0-9]{2}' || true)
       dept=$(_dept_of "$name")
       dep=$(grep -F "$(printf '%s\t' "$name")" "$projmap" 2>/dev/null | head -1 | cut -f2 || true)
+      pstate=""
+      [ -n "$dep" ] && pstate=$(grep -F "$(printf '%s\t' "$dep")" "$projstate" 2>/dev/null | head -1 | cut -f2 || true)
       total=$((total+1))
       [ -n "$kdate" ] && learned=$((learned+1))
-      [ -n "$dep" ] && deployed=$((deployed+1))
-      printf '%s\037%s\037%s\037%s\037%s\037%s\n' "$dept" "$name" "$model" "$kdate" "$desc" "$dep" >> "$hq"
+      if [ -n "$dep" ]; then
+        deployed=$((deployed+1))
+        if [ "$pstate" = "working" ]; then workcnt=$((workcnt+1))
+        elif [ "$pstate" = "done" ]; then donecnt=$((donecnt+1)); fi
+      fi
+      printf '%s\037%s\037%s\037%s\037%s\037%s\037%s\n' "$dept" "$name" "$model" "$kdate" "$desc" "$dep" "$pstate" >> "$hq"
     done < <(find "$d" -maxdepth 1 -type f -name '*.md' | sort)
   done
   local bench=$((total-deployed))
+  local waitcnt=$((total-workcnt-donecnt))
 
-  # 카드 렌더 헬퍼: 인자 name model kdate desc dep
+  # 카드 렌더 헬퍼: name model kdate desc dep pstate
   _card() {
-    local nm="$1" md="$2" kd="$3" ds="$4" dp="$5"
+    local nm="$1" md="$2" kd="$3" ds="$4" dp="$5" ps="$6"
     local kcls kstat
     if [ -n "$kd" ]; then
       if [ "$kd" = "$today" ]; then kcls="k-today"; kstat="오늘 습득·$kd"; else kcls="k-old"; kstat="습득·$kd"; fi
     else kcls="k-none"; kstat="미습득"; fi
     local depbadge=""
-    [ -n "$dp" ] && depbadge="<span class=\"dep\">▶ $(_html_esc "$dp")</span>"
+    if [ -n "$dp" ]; then
+      local scls slabel
+      if [ "$ps" = "working" ]; then scls="s-work"; slabel="🟢 작업중"
+      elif [ "$ps" = "done" ]; then scls="s-done"; slabel="✔ 완료"
+      else scls="s-wait"; slabel="⏳ 대기"; fi
+      depbadge="<span class=\"dep $scls\">${slabel} · $(_html_esc "$dp")</span>"
+    else
+      depbadge="<span class=\"dep s-bench\">본부 대기</span>"
+    fi
     printf '<div class="card"><div class="row"><span class="name">%s</span><span class="badge m-%s">%s</span></div><div class="desc">%s</div><div class="foot2"><span class="k %s">%s</span>%s</div></div>\n' \
       "$(_html_esc "$nm")" "$(_html_esc "$md")" "$(_html_esc "$md")" "$(_html_esc "$ds")" "$kcls" "$kstat" "$depbadge"
   }
@@ -1189,9 +1228,14 @@ h1{font-size:22px;margin:0 0 4px}.sub{color:var(--dim);margin-bottom:20px}
 .m-opus{color:#d2a8ff;border-color:#8957e5}.m-sonnet{color:#79c0ff;border-color:#1f6feb}.m-haiku{color:#7ee787;border-color:#238636}
 .foot2{display:flex;justify-content:space-between;align-items:center;gap:6px}
 .k{font-size:11px}.k-today{color:#3fb950}.k-old{color:#d29922}.k-none{color:var(--dim)}
-.dep{font-size:10px;color:#d2a8ff;border:1px solid #8957e5;border-radius:20px;padding:1px 6px}
+.dep{font-size:10px;border-radius:20px;padding:1px 7px;border:1px solid var(--bd);white-space:nowrap}
+.s-work{color:#3fb950;border-color:#238636;background:rgba(63,185,80,.12);animation:pulse 1.4s infinite}
+.s-done{color:#79c0ff;border-color:#1f6feb}.s-wait{color:#d29922;border-color:#9e6a03}.s-bench{color:var(--dim)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+.st{font-size:11px;border-radius:20px;padding:1px 8px;margin-left:8px;vertical-align:middle}
 .proj{background:var(--card);border:1px solid var(--bd);border-left:3px solid var(--acc);border-radius:10px;padding:14px;margin:12px 0}
-.proj h3{margin:0 0 4px;font-size:15px}.proj .meta{color:var(--dim);font-size:12px;margin-bottom:10px}
+.proj.working{border-left-color:#3fb950}.proj.done{border-left-color:#79c0ff}
+.proj h3{margin:0 0 4px;font-size:15px;display:inline-block}.proj .meta{color:var(--dim);font-size:12px;margin-bottom:10px}
 .empty{color:var(--dim);font-size:13px;padding:10px 0}
 .foot{color:var(--dim);font-size:12px;margin-top:28px;text-align:center}
 </style></head><body><div class="wrap">
@@ -1199,10 +1243,10 @@ h1{font-size:22px;margin:0 0 4px}.sub{color:var(--dim);margin-bottom:20px}
 <div class="sub">생성: ${now} · 새로고침: <code>agent-team board</code> 재실행</div>
 <div class="tiles">
 <div class="tile b"><div class="n">${total}</div><div class="l">전체 팀원</div></div>
-<div class="tile p"><div class="n">${pcount}</div><div class="l">진행 프로젝트</div></div>
-<div class="tile g"><div class="n">${deployed}</div><div class="l">프로젝트 투입</div></div>
-<div class="tile"><div class="n">${bench}</div><div class="l">본부 대기</div></div>
-<div class="tile w"><div class="n">${learned}</div><div class="l">지식 습득</div></div>
+<div class="tile g"><div class="n">${workcnt}</div><div class="l">🟢 작업 중</div></div>
+<div class="tile"><div class="n">${donecnt}</div><div class="l">✔ 완료</div></div>
+<div class="tile w"><div class="n">${waitcnt}</div><div class="l">⏳ 대기</div></div>
+<div class="tile p"><div class="n">${pcount}</div><div class="l">프로젝트</div></div>
 </div>
 <div class="section">🏢 본부 — 부서별 팀원</div>
 HTMLHEAD
@@ -1215,9 +1259,9 @@ HTMLHEAD
       while IFS=$'\037' read -r dp _rest; do [ "$dp" = "$dept" ] && cnt=$((cnt+1)); done < "$hq"
       [ "$cnt" -eq 0 ] && { IFS='|'; continue; }
       printf '<div class="dept"><b>%s</b> · %s명</div><div class="grid">\n' "$(_html_esc "$dept")" "$cnt"
-      while IFS=$'\037' read -r dp nm md kd ds dep; do
+      while IFS=$'\037' read -r dp nm md kd ds dep ps; do
         [ "$dp" = "$dept" ] || continue
-        _card "$nm" "$md" "$kd" "$ds" "$dep"
+        _card "$nm" "$md" "$kd" "$ds" "$dep" "$ps"
       done < "$hq"
       printf '</div>\n'
       IFS='|'
@@ -1237,8 +1281,13 @@ HTMLHEAD
         local pn2; pn2=$(find "$ad" -maxdepth 1 -type f -name '*.md' | wc -l | tr -d ' ')
         local pack="-" last="-"; local meta="$pdir/.claude/agent-team.json"
         [ -f "$meta" ] && { pack=$(grep -o '"team_pack"[^,]*' "$meta" | sed 's/.*: *"//;s/"//' | head -1 || true); last=$(grep -o '"last_run"[^,}]*' "$meta" | sed 's/.*: *//;s/"//g' | head -1 || true); }
-        printf '<div class="proj"><h3>%s</h3><div class="meta">팀원 %s명 · 팀팩 %s · 최근 실행 %s</div><div class="grid">\n' \
-          "$(_html_esc "$pbase")" "$pn2" "$(_html_esc "$pack")" "$(_html_esc "$last")"
+        local pst; pst=$(_proj_state "$pdir")
+        local pcls="" pstbadge
+        if [ "$pst" = "working" ]; then pcls="working"; pstbadge='<span class="st s-work">🟢 작업 중</span>'
+        elif [ "$pst" = "done" ]; then pcls="done"; pstbadge='<span class="st s-done">✔ 완료</span>'
+        else pstbadge='<span class="st s-wait">⏳ 대기</span>'; fi
+        printf '<div class="proj %s"><h3>%s</h3>%s<div class="meta">팀원 %s명 · 팀팩 %s · 최근 실행 %s</div><div class="grid">\n' \
+          "$pcls" "$(_html_esc "$pbase")" "$pstbadge" "$pn2" "$(_html_esc "$pack")" "$(_html_esc "$last")"
         while IFS= read -r pf; do
           [ -n "$pf" ] || continue
           local nm md ds kd
@@ -1247,7 +1296,7 @@ HTMLHEAD
           ds=$(front_field "$pf" "description"); [ -n "$ds" ] || ds=""
           ds=$(printf '%s' "$ds" | tr '\t' ' ')
           kd=$(grep -m1 -oE '최신 지식 \([0-9]{4}-[0-9]{2}-[0-9]{2}\)' "$pf" 2>/dev/null | grep -oE '[0-9]{4}-[0-9]{2}-[0-9]{2}' || true)
-          _card "$nm" "$md" "$kd" "$ds" ""
+          _card "$nm" "$md" "$kd" "$ds" "$pbase" "$pst"
         done < <(find "$ad" -maxdepth 1 -type f -name '*.md' | sort)
         printf '</div></div>\n'
       done
