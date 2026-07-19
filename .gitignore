@@ -1,0 +1,4 @@
+logs/
+knowledge/*
+!knowledge/.gitkeep
+*.kb.tmp
