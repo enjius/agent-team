@@ -1120,7 +1120,12 @@ cmd_board() {
   [ -n "$refresh" ] && refreshmeta="<meta http-equiv=\"refresh\" content=\"$refresh\">"
   [ -n "$out" ] || out="$AGENT_TEAM_HOME/dashboard.html"
   mkdir -p "$(dirname "$out")"
-  local proot="$HOME/Documents/app"
+  # 프로젝트 스캔 루트: 기본 ~/Documents/app + AGENT_TEAM_PROJECTS(콜론 구분) 추가
+  local -a proots=("$HOME/Documents/app")
+  if [ -n "${AGENT_TEAM_PROJECTS:-}" ]; then
+    local _r; while IFS= read -r _r; do [ -n "$_r" ] && proots+=("$_r"); done \
+      < <(printf '%s\n' "$AGENT_TEAM_PROJECTS" | tr ':' '\n')
+  fi
 
   # 본부 로스터 소스(기본): 전역 팀 + 라이브러리
   if [ ${#hqdirs[@]} -eq 0 ]; then hqdirs=("$HOME/.claude/agents" "$LIB_DIR"); fi
@@ -1134,10 +1139,14 @@ cmd_board() {
   # 1) 프로젝트 → 투입 팀원 맵 + 실행 상태
   local pcount=0
   local -a plist=()
-  if [ -d "$proot" ]; then
+  local pseen="$tmp/pseen"; : > "$pseen"
+  for proot in "${proots[@]}"; do
+    [ -d "$proot" ] || continue
     while IFS= read -r ad; do
       [ -n "$ad" ] || continue
       local pdir pbase; pdir=$(dirname "$(dirname "$ad")"); pbase=$(basename "$pdir")
+      grep -qxF "$pdir" "$pseen" && continue
+      echo "$pdir" >> "$pseen"
       plist+=("$pdir"); pcount=$((pcount+1))
       printf '%s\t%s\n' "$pbase" "$(_proj_state "$pdir")" >> "$projstate"
       while IFS= read -r pf; do
@@ -1146,7 +1155,7 @@ cmd_board() {
         printf '%s\t%s\n' "$pn" "$pbase" >> "$projmap"
       done < <(find "$ad" -maxdepth 1 -type f -name '*.md' | sort)
     done < <(find "$proot" -maxdepth 3 -type d -path '*/.claude/agents' 2>/dev/null | sort)
-  fi
+  done
 
   # 2) 본부 로스터 수집 (이름 중복 제거, 지식날짜 있는 쪽 우선)
   local seen="$tmp/seen"; : > "$seen"
