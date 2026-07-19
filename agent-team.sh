@@ -1205,9 +1205,22 @@ cmd_board() {
     done < <(find "$proot" -maxdepth 3 -type d -path '*/.claude/agents' 2>/dev/null | sort)
   done
 
+  # 이름별 집계 상태 (한 팀원이 여러 프로젝트면 working>done>idle 우선)
+  # → 작업중/완료 카운트와 카드 스피너가 항상 일치하도록 이걸 기준으로 삼는다.
+  local namestate="$tmp/namestate"; : > "$namestate"
+  awk -F'\t' '
+    NR==FNR { st[$1]=$2; next }
+    { n=$1; s=st[$2]
+      if (s=="working") cur[n]="working"
+      else if (s=="done") { if (cur[n]!="working") cur[n]="done" }
+      else { if (!(n in cur)) cur[n]="idle" }
+    }
+    END { for (n in cur) print n "\t" cur[n] }
+  ' "$projstate" "$projmap" > "$namestate" 2>/dev/null || : > "$namestate"
+
   # 2) 본부 로스터 수집 (이름 중복 제거, 지식날짜 있는 쪽 우선)
   local seen="$tmp/seen"; : > "$seen"
-  local total=0 learned=0 deployed=0 workcnt=0 donecnt=0
+  local total=0 learned=0 deployed=0
   for d in "${hqdirs[@]}"; do
     [ -d "$d" ] || continue
     while IFS= read -r f; do
@@ -1222,20 +1235,28 @@ cmd_board() {
       kdate=$(grep -m1 -oE '최신 지식 \([0-9]{4}-[0-9]{2}-[0-9]{2}\)' "$f" 2>/dev/null | grep -oE '[0-9]{4}-[0-9]{2}-[0-9]{2}' || true)
       dept=$(_dept_of "$name")
       dep=$(grep -F "$(printf '%s\t' "$name")" "$projmap" 2>/dev/null | head -1 | cut -f2 || true)
+      # 카드 상태 = 이름 집계 상태 (여러 프로젝트 투입 시 working 우선)
       pstate=""
-      [ -n "$dep" ] && pstate=$(grep -F "$(printf '%s\t' "$dep")" "$projstate" 2>/dev/null | head -1 | cut -f2 || true)
+      [ -n "$dep" ] && pstate=$(grep -F "$(printf '%s\t' "$name")" "$namestate" 2>/dev/null | head -1 | cut -f2 || true)
       total=$((total+1))
       [ -n "$kdate" ] && learned=$((learned+1))
-      if [ -n "$dep" ]; then
-        deployed=$((deployed+1))
-        if [ "$pstate" = "working" ]; then workcnt=$((workcnt+1))
-        elif [ "$pstate" = "done" ]; then donecnt=$((donecnt+1)); fi
-      fi
+      [ -n "$dep" ] && deployed=$((deployed+1))
       printf '%s\037%s\037%s\037%s\037%s\037%s\037%s\n' "$dept" "$name" "$model" "$kdate" "$desc" "$dep" "$pstate" >> "$hq"
     done < <(find "$d" -maxdepth 1 -type f -name '*.md' | sort)
   done
-  local bench=$((total-deployed))
-  local waitcnt=$((total-workcnt-donecnt))
+  # 프로젝트에만 있고 본부 로스터엔 없는 팀원도 전체에 포함
+  local extra=0 _n _s
+  while IFS=$'\t' read -r _n _s; do
+    [ -n "$_n" ] || continue
+    grep -qxF "$_n" "$seen" || extra=$((extra+1))
+  done < "$namestate"
+  total=$((total+extra))
+  # 작업중/완료 = 집계 상태 기준(=실제로 스피너 도는 고유 팀원 수)
+  local workcnt donecnt
+  workcnt=$(awk -F'\t' '$2=="working"' "$namestate" | wc -l | tr -d ' ')
+  donecnt=$(awk -F'\t' '$2=="done"' "$namestate" | wc -l | tr -d ' ')
+  local waitcnt=$((total-workcnt-donecnt)); [ "$waitcnt" -lt 0 ] && waitcnt=0
+  local bench=$((total-workcnt-donecnt))
 
   # 부서 → 이모지 / 색상
   _dept_emoji() { case "$1" in
