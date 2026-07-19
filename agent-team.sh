@@ -1090,10 +1090,10 @@ _dept_of() {
     *design*|*uiux|*ux-writer*|*visual*|*designer*|*-ux|ux-*)          echo "디자인" ;;
     *qa*|*test*|*review*)                                              echo "QA·품질" ;;
     *security*|*privacy*|*legal*|*compliance*|*safety*)                echo "보안·법무" ;;
-    *quant*|*analyst*|*research*|*news*|*trader*|*harvest*|*data*)     echo "데이터·리서치" ;;
+    *fintech*|*trader*|*trading*|*invest*|*asset*|*finance*|*payment*|*broker*|*exchange*|*wallet*|*defi*) echo "금융·투자" ;;
+    *quant*|*math*|*analyst*|*research*|*news*|*harvest*|*data*)      echo "데이터·리서치" ;;
     *pm*|*planner*|*product*|*plan)                                    echo "기획·PM" ;;
     *market*|*brand*|*growth*|*biz*|*sales*)                           echo "마케팅·사업" ;;
-    *invest*|*asset*|*finance*|*trading*)                              echo "금융·투자" ;;
     *devops*|*-ops|*ops|*sre*|*release*|*support*|*doc*|*writer*|*l10n*|*localization*) echo "운영·문서" ;;
     *dev*|*frontend*|*backend*|*server*|*fullstack*|*mobile*|*flutter*|*supabase*|*integrator*|*engineer*|*web*) echo "개발" ;;
     *) echo "기타" ;;
@@ -1145,8 +1145,9 @@ cmd_board() {
     while IFS= read -r ad; do
       [ -n "$ad" ] || continue
       local pdir pbase; pdir=$(dirname "$(dirname "$ad")"); pbase=$(basename "$pdir")
-      grep -qxF "$pdir" "$pseen" && continue
-      echo "$pdir" >> "$pseen"
+      # 같은 이름의 프로젝트가 여러 경로에 있어도 하나만 표시(rakwan 중복 방지)
+      grep -qxF "$pbase" "$pseen" && continue
+      echo "$pbase" >> "$pseen"
       plist+=("$pdir"); pcount=$((pcount+1))
       printf '%s\t%s\n' "$pbase" "$(_proj_state "$pdir")" >> "$projstate"
       while IFS= read -r pf; do
@@ -1189,28 +1190,35 @@ cmd_board() {
   local bench=$((total-deployed))
   local waitcnt=$((total-workcnt-donecnt))
 
-  # 카드 렌더 헬퍼: name model kdate desc dep pstate
-  _card() {
-    local nm="$1" md="$2" kd="$3" ds="$4" dp="$5" ps="$6"
-    local kcls kstat
-    if [ -n "$kd" ]; then
-      if [ "$kd" = "$today" ]; then kcls="k-today"; kstat="오늘 습득·$kd"; else kcls="k-old"; kstat="습득·$kd"; fi
-    else kcls="k-none"; kstat="미습득"; fi
-    local depbadge=""
+  # 부서 → 이모지 / 색상
+  _dept_emoji() { case "$1" in
+    리드·총괄) echo 👑;; 기획·PM) echo 📋;; 디자인) echo 🎨;; 개발) echo 💻;;
+    AI·ML) echo 🤖;; 데이터·리서치) echo 📊;; QA·품질) echo 🧪;; 보안·법무) echo 🛡️;;
+    마케팅·사업) echo 📈;; 금융·투자) echo 💰;; 운영·문서) echo 📦;; *) echo ⭐;; esac; }
+  _dept_color() { case "$1" in
+    리드·총괄) echo '#d2a8ff';; 기획·PM) echo '#79c0ff';; 디자인) echo '#f778ba';; 개발) echo '#58a6ff';;
+    AI·ML) echo '#a5d6ff';; 데이터·리서치) echo '#7ee787';; QA·품질) echo '#ffa657';; 보안·법무) echo '#ff7b72';;
+    마케팅·사업) echo '#ffd33d';; 금융·투자) echo '#3fb950';; 운영·문서) echo '#8b949e';; *) echo '#8b949e';; esac; }
+
+  # 아바타 칩 (마우스오버 툴팁 포함): name model kdate desc dep pstate dept
+  _chip() {
+    local nm="$1" md="$2" kd="$3" ds="$4" dp="$5" ps="$6" dept="$7"
+    local emo; emo=$(_dept_emoji "$dept")
+    local scls slabel
     if [ -n "$dp" ]; then
-      local scls slabel
-      if [ "$ps" = "working" ]; then scls="s-work"; slabel="🟢 작업중"
-      elif [ "$ps" = "done" ]; then scls="s-done"; slabel="✔ 완료"
-      else scls="s-wait"; slabel="⏳ 대기"; fi
-      depbadge="<span class=\"dep $scls\">${slabel} · $(_html_esc "$dp")</span>"
-    else
-      depbadge="<span class=\"dep s-bench\">본부 대기</span>"
-    fi
-    printf '<div class="card"><div class="row"><span class="name">%s</span><span class="badge m-%s">%s</span></div><div class="desc">%s</div><div class="foot2"><span class="k %s">%s</span>%s</div></div>\n' \
-      "$(_html_esc "$nm")" "$(_html_esc "$md")" "$(_html_esc "$md")" "$(_html_esc "$ds")" "$kcls" "$kstat" "$depbadge"
+      if [ "$ps" = "working" ]; then scls="a-work"; slabel="🟢 작업중 · $(_html_esc "$dp")"
+      elif [ "$ps" = "done" ]; then scls="a-done"; slabel="✔ 완료 · $(_html_esc "$dp")"
+      else scls="a-wait"; slabel="⏳ 대기 · $(_html_esc "$dp")"; fi
+    else scls="a-bench"; slabel="🏢 본부 대기"; fi
+    local kstat
+    if [ -n "$kd" ]; then
+      if [ "$kd" = "$today" ]; then kstat="오늘 습득 · $kd"; else kstat="습득 · $kd"; fi
+    else kstat="미습득"; fi
+    printf '<div class="agent %s" tabindex="0"><div class="ava">%s</div><div class="nm">%s</div><div class="tip"><div class="tth"><b>%s</b> <span class="mb m-%s">%s</span></div><div class="ttd">%s</div><div class="ttr">%s %s</div><div class="ttr">%s</div><div class="ttr">📚 %s</div></div></div>\n' \
+      "$scls" "$emo" "$(_html_esc "$nm")" "$(_html_esc "$nm")" "$(_html_esc "$md")" "$(_html_esc "$md")" "$(_html_esc "$ds")" "$emo" "$(_html_esc "$dept")" "$slabel" "$kstat"
   }
 
-  # 3) HTML 조립
+  # 3) HTML 조립 (게임형 조직도 맵)
   {
     cat <<HTMLHEAD
 <!doctype html><html lang="ko"><head><meta charset="utf-8">
@@ -1218,99 +1226,109 @@ cmd_board() {
 ${refreshmeta}
 <title>에이전트 본부 — Company HQ</title>
 <style>
-:root{--bg:#0d1117;--card:#161b22;--bd:#30363d;--fg:#e6edf3;--dim:#8b949e;--acc:#58a6ff}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif}
-.wrap{max-width:1200px;margin:0 auto;padding:24px}
-h1{font-size:22px;margin:0 0 4px}.sub{color:var(--dim);margin-bottom:20px}
-.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:26px}
-.tile{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px}
-.tile .n{font-size:26px;font-weight:700}.tile .l{color:var(--dim);font-size:12px}
-.tile.b .n{color:var(--acc)}.tile.g .n{color:#3fb950}.tile.w .n{color:#d29922}.tile.p .n{color:#d2a8ff}
-.section{margin:26px 0 8px;font-size:16px;font-weight:700}
-.dept{margin:16px 0 8px;font-size:13px;color:var(--dim);border-bottom:1px solid var(--bd);padding-bottom:5px}
-.dept b{color:var(--fg)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:11px}
-.row{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.name{font-weight:600}.desc{color:var(--dim);font-size:12px;margin:6px 0;min-height:30px}
-.badge{font-size:10px;padding:2px 7px;border-radius:20px;border:1px solid var(--bd);white-space:nowrap}
+:root{--bg:#0b0f16;--card:#161b22;--bd:#30363d;--fg:#e6edf3;--dim:#8b949e;--acc:#58a6ff}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1200px 500px at 20% -5%,#1b2a4a55,transparent),radial-gradient(1000px 500px at 90% 0%,#3b1b4a44,transparent),var(--bg);color:var(--fg);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif}
+.wrap{max-width:1280px;margin:0 auto;padding:20px}
+h1{font-size:22px;margin:0}
+.hud{position:sticky;top:0;z-index:30;display:flex;gap:10px;flex-wrap:wrap;align-items:center;background:rgba(11,15,22,.82);backdrop-filter:blur(8px);padding:12px 0;margin-bottom:14px;border-bottom:1px solid #ffffff10}
+.hud h1{margin-right:8px}.sub{color:var(--dim);font-size:12px;width:100%}
+.tile{background:#161b2288;border:1px solid var(--bd);border-radius:12px;padding:8px 14px;min-width:96px}
+.tile .n{font-size:22px;font-weight:800;line-height:1}.tile .l{color:var(--dim);font-size:11px;margin-top:2px}
+.tile.g .n{color:#3fb950}.tile.b .n{color:var(--acc)}.tile.w .n{color:#d29922}.tile.p .n{color:#d2a8ff}
+.section{margin:24px 0 10px;font-size:15px;font-weight:800;letter-spacing:.3px}
+.map{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.room{--dc:#8b949e;background:linear-gradient(180deg,#1b222d,#141922);border:1px solid var(--bd);border-top:3px solid var(--dc);border-radius:16px;padding:12px 12px 14px;box-shadow:0 10px 30px #0005}
+.room.working{box-shadow:0 0 0 1px #3fb95066,0 10px 30px #0006}
+.rh{display:flex;align-items:center;gap:8px;font-weight:800;margin-bottom:12px}
+.re{font-size:20px;filter:drop-shadow(0 0 6px var(--dc))}
+.rc{margin-left:auto;font-size:11px;color:var(--dim);background:#0007;border:1px solid var(--bd);border-radius:20px;padding:1px 9px}
+.agents{display:flex;flex-wrap:wrap;gap:12px}
+.agent{position:relative;width:74px;text-align:center}
+.ava{width:52px;height:52px;margin:0 auto;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:25px;background:#0d1117;border:2px solid var(--bd);transition:transform .1s}
+.agent:hover .ava{transform:translateY(-3px) scale(1.06)}
+.nm{font-size:10.5px;margin-top:5px;color:var(--fg);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.a-work .ava{border-color:#3fb950;box-shadow:0 0 0 3px #3fb95033;animation:glow 1.5s infinite}
+.a-done .ava{border-color:#1f6feb;box-shadow:0 0 0 3px #1f6feb22}
+.a-wait .ava{border-color:#9e6a03}
+.a-bench .ava{opacity:.6}
+@keyframes glow{0%,100%{box-shadow:0 0 0 3px #3fb95022}50%{box-shadow:0 0 0 7px #3fb95044}}
+.tip{display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);width:236px;text-align:left;background:#0f1620;border:1px solid #3a4658;border-radius:12px;padding:11px;z-index:80;box-shadow:0 14px 40px #000a}
+.agent:hover .tip,.agent:focus .tip{display:block}
+.tth{font-size:13px;margin-bottom:5px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.ttd{font-size:11px;color:var(--dim);margin-bottom:7px;line-height:1.45}
+.ttr{font-size:11.5px;margin-top:3px}
+.mb{font-size:9px;padding:1px 6px;border-radius:20px;border:1px solid var(--bd)}
 .m-opus{color:#d2a8ff;border-color:#8957e5}.m-sonnet{color:#79c0ff;border-color:#1f6feb}.m-haiku{color:#7ee787;border-color:#238636}
-.foot2{display:flex;justify-content:space-between;align-items:center;gap:6px}
-.k{font-size:11px}.k-today{color:#3fb950}.k-old{color:#d29922}.k-none{color:var(--dim)}
-.dep{font-size:10px;border-radius:20px;padding:1px 7px;border:1px solid var(--bd);white-space:nowrap}
-.s-work{color:#3fb950;border-color:#238636;background:rgba(63,185,80,.12);animation:pulse 1.4s infinite}
-.s-done{color:#79c0ff;border-color:#1f6feb}.s-wait{color:#d29922;border-color:#9e6a03}.s-bench{color:var(--dim)}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
-.st{font-size:11px;border-radius:20px;padding:1px 8px;margin-left:8px;vertical-align:middle}
-.proj{background:var(--card);border:1px solid var(--bd);border-left:3px solid var(--acc);border-radius:10px;padding:14px;margin:12px 0}
-.proj.working{border-left-color:#3fb950}.proj.done{border-left-color:#79c0ff}
-.proj h3{margin:0 0 4px;font-size:15px;display:inline-block}.proj .meta{color:var(--dim);font-size:12px;margin-bottom:10px}
 .empty{color:var(--dim);font-size:13px;padding:10px 0}
-.foot{color:var(--dim);font-size:12px;margin-top:28px;text-align:center}
+.foot{color:var(--dim);font-size:12px;margin:30px 0 4px;text-align:center}
 </style></head><body><div class="wrap">
-<h1>🏛 에이전트 본부 <span style="color:var(--dim);font-weight:400;font-size:15px">· Company HQ</span></h1>
-<div class="sub">생성: ${now} · 새로고침: <code>agent-team board</code> 재실행</div>
-<div class="tiles">
+<div class="hud">
+<h1>🏛 에이전트 본부</h1>
 <div class="tile b"><div class="n">${total}</div><div class="l">전체 팀원</div></div>
 <div class="tile g"><div class="n">${workcnt}</div><div class="l">🟢 작업 중</div></div>
 <div class="tile"><div class="n">${donecnt}</div><div class="l">✔ 완료</div></div>
 <div class="tile w"><div class="n">${waitcnt}</div><div class="l">⏳ 대기</div></div>
-<div class="tile p"><div class="n">${pcount}</div><div class="l">프로젝트</div></div>
+<div class="tile p"><div class="n">${pcount}</div><div class="l">🎯 프로젝트</div></div>
+<div class="sub">생성 ${now} · 아바타에 마우스를 올리면 상세정보 · 새로고침 자동</div>
 </div>
-<div class="section">🏢 본부 — 부서별 팀원</div>
+<div class="section">🏢 본부 — 부서별 배치도</div>
+<div class="map">
 HTMLHEAD
 
-    # 부서별 렌더
+    # 부서별 방(room) 렌더
     OLDIFS="$IFS"; IFS='|'
     for dept in $_DEPT_ORDER; do
       IFS="$OLDIFS"
       local cnt=0
       while IFS=$'\037' read -r dp _rest; do [ "$dp" = "$dept" ] && cnt=$((cnt+1)); done < "$hq"
       [ "$cnt" -eq 0 ] && { IFS='|'; continue; }
-      printf '<div class="dept"><b>%s</b> · %s명</div><div class="grid">\n' "$(_html_esc "$dept")" "$cnt"
+      printf '<div class="room" style="--dc:%s"><div class="rh"><span class="re">%s</span> %s <span class="rc">%s명</span></div><div class="agents">\n' \
+        "$(_dept_color "$dept")" "$(_dept_emoji "$dept")" "$(_html_esc "$dept")" "$cnt"
       while IFS=$'\037' read -r dp nm md kd ds dep ps; do
         [ "$dp" = "$dept" ] || continue
-        _card "$nm" "$md" "$kd" "$ds" "$dep" "$ps"
+        _chip "$nm" "$md" "$kd" "$ds" "$dep" "$ps" "$dept"
       done < "$hq"
-      printf '</div>\n'
+      printf '</div></div>\n'
       IFS='|'
     done
     IFS="$OLDIFS"
+    echo '</div>'
 
-    # 프로젝트별 투입 팀원
-    echo '<div class="section">📦 프로젝트 — 투입 팀원</div>'
+    # 프로젝트 미션 룸
+    echo '<div class="section">🎯 프로젝트 미션 — 투입 팀원</div>'
     if [ "$pcount" -eq 0 ]; then
       echo '<div class="empty">진행 중인 프로젝트가 없습니다. (agent-team provision 으로 팀 투입)</div>'
     else
+      echo '<div class="map">'
       local i=0
       while [ $i -lt ${#plist[@]} ]; do
         local pdir="${plist[$i]}"; i=$((i+1))
         local pbase; pbase=$(basename "$pdir")
         local ad="$pdir/.claude/agents"
-        local pn2; pn2=$(find "$ad" -maxdepth 1 -type f -name '*.md' | wc -l | tr -d ' ')
-        local pack="-" last="-"; local meta="$pdir/.claude/agent-team.json"
-        [ -f "$meta" ] && { pack=$(grep -o '"team_pack"[^,]*' "$meta" | sed 's/.*: *"//;s/"//' | head -1 || true); last=$(grep -o '"last_run"[^,}]*' "$meta" | sed 's/.*: *//;s/"//g' | head -1 || true); }
         local pst; pst=$(_proj_state "$pdir")
-        local pcls="" pstbadge
-        if [ "$pst" = "working" ]; then pcls="working"; pstbadge='<span class="st s-work">🟢 작업 중</span>'
-        elif [ "$pst" = "done" ]; then pcls="done"; pstbadge='<span class="st s-done">✔ 완료</span>'
-        else pstbadge='<span class="st s-wait">⏳ 대기</span>'; fi
-        printf '<div class="proj %s"><h3>%s</h3>%s<div class="meta">팀원 %s명 · 팀팩 %s · 최근 실행 %s</div><div class="grid">\n' \
-          "$pcls" "$(_html_esc "$pbase")" "$pstbadge" "$pn2" "$(_html_esc "$pack")" "$(_html_esc "$last")"
+        local dc="#8b949e" stlabel rcls=""
+        if [ "$pst" = "working" ]; then dc="#3fb950"; stlabel="🟢 작업 중"; rcls="working"
+        elif [ "$pst" = "done" ]; then dc="#1f6feb"; stlabel="✔ 완료"
+        else dc="#d29922"; stlabel="⏳ 대기"; fi
+        printf '<div class="room %s" style="--dc:%s"><div class="rh"><span class="re">🎯</span> %s <span class="rc">%s</span></div><div class="agents">\n' \
+          "$rcls" "$dc" "$(_html_esc "$pbase")" "$stlabel"
         while IFS= read -r pf; do
           [ -n "$pf" ] || continue
-          local nm md ds kd
+          local nm md ds kd dpt
           nm=$(front_field "$pf" "name"); [ -n "$nm" ] || nm=$(basename "$pf" .md)
           md=$(front_field "$pf" "model"); [ -n "$md" ] || md="-"
           ds=$(front_field "$pf" "description"); [ -n "$ds" ] || ds=""
           ds=$(printf '%s' "$ds" | tr '\t' ' ')
           kd=$(grep -m1 -oE '최신 지식 \([0-9]{4}-[0-9]{2}-[0-9]{2}\)' "$pf" 2>/dev/null | grep -oE '[0-9]{4}-[0-9]{2}-[0-9]{2}' || true)
-          _card "$nm" "$md" "$kd" "$ds" "$pbase" "$pst"
+          dpt=$(_dept_of "$nm")
+          _chip "$nm" "$md" "$kd" "$ds" "$pbase" "$pst" "$dpt"
         done < <(find "$ad" -maxdepth 1 -type f -name '*.md' | sort)
         printf '</div></div>\n'
       done
+      echo '</div>'
     fi
-    echo '<div class="foot">agent-team board · 회사 조직도(본부→부서→팀원, 프로젝트 투입) · git 없이 ~/.agent-team 에서 동작</div></div></body></html>'
+    echo '<div class="foot">agent-team board · 본부→부서→팀원 조직 배치도 · 마우스오버 상세 · git 없이 ~/.agent-team</div></div></body></html>'
   } > "$out"
   rm -rf "$tmp"
 
