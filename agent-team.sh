@@ -1286,6 +1286,24 @@ cmd_serve() {
   [ -z "$py" ] && command -v python >/dev/null 2>&1 && py=python
   [ -n "$py" ] || die "python3 필요 (라이브 서버용). 없으면 'agent-team board' 로 정적 파일 사용."
 
+  # 요청 포트가 이미 사용 중이면(다른 서버가 점유) 빈 포트를 자동 탐색
+  _port_free() {
+    "$py" - "$1" <<'PY' 2>/dev/null
+import socket,sys
+s=socket.socket()
+try:
+    s.bind(("127.0.0.1", int(sys.argv[1]))); s.close()
+except OSError:
+    sys.exit(1)
+PY
+  }
+  local tries=0
+  while ! _port_free "$port"; do
+    warn "포트 ${port} 사용 중(다른 서버 점유) → 다음 포트 시도"
+    port=$((port+1)); tries=$((tries+1))
+    [ "$tries" -ge 30 ] && die "빈 포트를 못 찾음"
+  done
+
   local servedir="$AGENT_TEAM_HOME/hq"
   mkdir -p "$servedir"
 
@@ -1305,7 +1323,7 @@ cmd_serve() {
   ( sleep 1; command -v open >/dev/null 2>&1 && open "http://localhost:${port}" ) >/dev/null 2>&1 &
 
   # 포그라운드: http 서버 (index.html 을 루트로 서빙)
-  ( cd "$servedir" && exec "$py" -m http.server "$port" ) 2>/dev/null
+  ( cd "$servedir" && exec "$py" -m http.server "$port" --bind 127.0.0.1 )
 }
 
 # ══════════════════════════════════════════════════════════════════════
