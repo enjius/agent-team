@@ -1268,10 +1268,13 @@ h1{font-size:22px;margin:0}
 .rc{margin-left:auto;font-size:11px;color:var(--dim);background:#0007;border:1px solid var(--bd);border-radius:20px;padding:1px 9px}
 .agents{display:flex;flex-wrap:wrap;gap:12px}
 .agent{position:relative;width:74px;text-align:center}
-.ava{width:52px;height:52px;margin:0 auto;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:25px;background:#0d1117;border:2px solid var(--bd);transition:transform .1s}
+.ava{position:relative;width:52px;height:52px;margin:0 auto;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:25px;background:#0d1117;border:2px solid var(--bd);transition:transform .1s}
 .agent:hover .ava{transform:translateY(-3px) scale(1.06)}
 .nm{font-size:10.5px;margin-top:5px;color:var(--fg);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.a-work .ava{border-color:#3fb950;box-shadow:0 0 0 3px #3fb95033;animation:glow 1.5s infinite}
+.a-work .ava{border-color:#3fb950;box-shadow:0 0 0 3px #3fb95033}
+.a-work .ava::before{content:"";position:absolute;inset:-6px;border-radius:50%;border:2.5px solid transparent;border-top-color:#3fb950;border-left-color:#3fb95077;animation:spin .8s linear infinite}
+.spnr{display:inline-block;width:12px;height:12px;border-radius:50%;border:2px solid #3fb95055;border-top-color:#3fb950;animation:spin .8s linear infinite;vertical-align:-2px;margin-right:5px}
+@keyframes spin{to{transform:rotate(360deg)}}
 .a-done .ava{border-color:#1f6feb;box-shadow:0 0 0 3px #1f6feb22}
 .a-wait .ava{border-color:#9e6a03}
 .a-bench .ava{opacity:.6}
@@ -1331,7 +1334,7 @@ HTMLHEAD
         local ad="$pdir/.claude/agents"
         local pst; pst=$(_proj_state "$pdir")
         local dc="#8b949e" stlabel rcls=""
-        if [ "$pst" = "working" ]; then dc="#3fb950"; stlabel="🟢 작업 중"; rcls="working"
+        if [ "$pst" = "working" ]; then dc="#3fb950"; stlabel='<span class="spnr"></span>작업 중'; rcls="working"
         elif [ "$pst" = "done" ]; then dc="#1f6feb"; stlabel="✔ 완료"
         else dc="#d29922"; stlabel="⏳ 대기"; fi
         printf '<div class="room %s" style="--dc:%s"><div class="rh"><span class="re">🎯</span> %s <span class="rc">%s</span></div><div class="agents">\n' \
