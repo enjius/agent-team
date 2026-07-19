@@ -93,16 +93,38 @@ _proj_status_write() {  # $1=projdir $2=state(running|done) $3=pid
   printf '{"state":"%s","pid":%s,"ts":"%s"}\n' "$2" "${3:-0}" "$(date +%Y%m%d-%H%M%S)" \
     > "$1/.claude/status.json" 2>/dev/null || true
 }
+# 현재 실행 중인 claude 프로세스들의 작업 디렉터리 목록 (macOS: lsof)
+_claude_cwds() {
+  command -v lsof >/dev/null 2>&1 || return 0
+  command -v pgrep >/dev/null 2>&1 || return 0
+  local pids p; pids=$(pgrep -f 'claude' 2>/dev/null || true)
+  [ -n "$pids" ] || return 0
+  for p in $pids; do
+    lsof -a -p "$p" -d cwd -Fn 2>/dev/null | sed -n 's/^n//p'
+  done
+}
+
 # 프로젝트 상태 → working | done | idle 로 정규화
 _proj_state() {  # $1=projdir
-  local sf="$1/.claude/status.json"
+  local pdir="$1"
+  # 1) 이 프로젝트(하위 포함)에서 claude 가 실제로 돌고 있으면 working
+  #    ( agent-team run 뿐 아니라 그냥 claude 로 시켜도 감지 )
+  if [ -n "${AGENT_TEAM_ACWD:-}" ] && [ -f "${AGENT_TEAM_ACWD}" ]; then
+    local cw
+    while IFS= read -r cw; do
+      [ -n "$cw" ] || continue
+      case "$cw/" in "$pdir"/*) echo working; return ;; esac
+    done < "$AGENT_TEAM_ACWD"
+  fi
+  # 2) status.json (agent-team run 이 남긴 실행 상태)
+  local sf="$pdir/.claude/status.json"
   [ -f "$sf" ] || { echo idle; return; }
   local st pid
   st=$(grep -o '"state"[^,]*' "$sf" 2>/dev/null | sed 's/.*: *"//;s/"//' | head -1)
   pid=$(grep -o '"pid"[^,}]*' "$sf" 2>/dev/null | sed 's/.*: *//;s/[^0-9]//g' | head -1)
   if [ "$st" = "running" ]; then
     if [ -n "$pid" ] && [ "$pid" != "0" ] && kill -0 "$pid" 2>/dev/null; then echo working
-    else echo done; fi   # running 인데 프로세스 죽음 → 완료(중단) 처리
+    else echo done; fi
   elif [ "$st" = "done" ]; then echo done
   else echo idle; fi
 }
@@ -1153,6 +1175,8 @@ cmd_board() {
 
   local now; now=$(date "+%Y-%m-%d %H:%M"); local today; today=$(date "+%Y-%m-%d")
   local tmp="$out.tmp.d"; mkdir -p "$tmp"
+  # 실행 중인 claude 프로세스의 작업 폴더 목록 (작업중 판정용)
+  local AGENT_TEAM_ACWD="$tmp/acwd"; _claude_cwds > "$AGENT_TEAM_ACWD" 2>/dev/null || : > "$AGENT_TEAM_ACWD"
   local projmap="$tmp/projmap"; : > "$projmap"     # name<TAB>project
   local projstate="$tmp/projstate"; : > "$projstate" # project<TAB>state
   local hq="$tmp/hq"; : > "$hq"
