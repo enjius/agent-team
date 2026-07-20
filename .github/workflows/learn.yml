@@ -53,5 +53,10 @@ jobs:
             echo "변경 없음 — 커밋 생략"
           else
             git commit -m "chore(learn): daily knowledge update [skip ci]"
-            git push
+            # 원격이 앞서 있으면(다른 push) rebase 후 재시도
+            for i in 1 2 3; do
+              git pull --rebase origin main || true
+              git push && break
+              echo "push 재시도 $i..."; sleep 3
+            done
           fi
