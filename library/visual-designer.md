@@ -15,6 +15,7 @@ model: sonnet
 
 
 
+
 <!-- KNOWLEDGE:START -->
 ## 최신 지식 (2026-07-20)
 Credit balance is too low
