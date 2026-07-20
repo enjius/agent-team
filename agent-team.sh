@@ -1026,7 +1026,9 @@ cmd_learn() {
       continue
     fi
     printf "  ${C_BLUE}▸${C_RESET} %-22s 리서치…" "$name"
-    local out; out=$(cd "$(dirname "$dir")" && claude ${AGENT_TEAM_LEARN_FLAGS:-} -p "$prompt" 2>/dev/null || true)
+    # --allowedTools WebSearch: 웹 검색 허용(권한 프롬프트로 막히는 것 방지)
+    # </dev/null: claude 가 루프의 stdin(find 목록)을 삼켜 1건 후 중단되는 것 방지
+    local out; out=$(cd "$(dirname "$dir")" && claude -p "$prompt" --allowedTools WebSearch ${AGENT_TEAM_LEARN_FLAGS:-} </dev/null 2>/dev/null || true)
     if [ -z "$out" ]; then printf " ${C_YELLOW}건너뜀(응답없음)${C_RESET}\n"; continue; fi
     local arch="$KNOW_DIR/${name}-${date}.md"
     { echo "# ${name} — ${date} 지식 업데이트"; echo; printf "%s\n" "$out"; } > "$arch"

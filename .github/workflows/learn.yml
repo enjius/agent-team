@@ -36,7 +36,6 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           AGENT_TEAM_HOME: ${{ github.workspace }}
-          AGENT_TEAM_LEARN_FLAGS: --dangerously-skip-permissions
         run: |
           if [ -z "${ANTHROPIC_API_KEY}" ]; then
             echo "::error::ANTHROPIC_API_KEY 시크릿이 없습니다. 리포 Settings→Secrets 에 등록하세요."

@@ -14,3 +14,14 @@ tools: Read, Edit, Write, Bash, Grep, Glob
 - 백테스트와 실거래 괴리(오버피팅·데이터스누핑)를 비판적으로 점검한다.
 
 주의: 분석(quant-analyst)과 협업하되, 이 역할은 전략의 실행·리스크 설계이며 개인 맞춤 투자자문이 아니다.
+
+
+<!-- KNOWLEDGE:START -->
+## 최신 지식 (2026-07-20)
+- SEC가 2026.11 이후 틱사이즈를 반값(0.005달러)으로 세분화하고, 접근수수료 상한은 2026.5.1부터 인하 적용 — 스프레드·수수료 구조가 바뀌므로 리밋가·체결비용 재계산 필요 (sidley.com, katten.com)
+- SEC가 2026.6.11 Reg NMS의 Rule 611(트레이드스루)·Rule 610(e)(락/크로스 금지) 폐지안 발표 — 향후 최선집행 판단이 '규정 준수'에서 '브로커별 라우팅 품질 평가'로 이동할 전망, SOR·TCA 검증 강화 필요 (sidley.com, skadden.com)
+- 오드롯(odd-lot) 정보가 2026.5월부터 SIP로 통합 공시되기 시작 — 소량 주문 유동성/체결 데이터를 전략에 반영할 수 있게 됨 (memx.com)
+- 스마트오더라우팅(SOR)이 AI 기반 실시간 유동성 예측·주문 슬라이싱으로 진화 중이며, TCA(거래비용분석) 내장이 표준화되는 추세 — 슬리피지·레이턴시·체결률을 벤더별로 비교 검증 권장 (finestel.com, techbullion.com)
+- 자연어 기반 전략 백테스트·에이전트 배포 플랫폼(QuantConnect, TrendSpider, Composer 등)이 확산 — 틱 단위 이벤트 기반 백테스트와 수수료·슬리피지 포함 검증이 실전 배포 전 필수 관행으로 자리잡음 (tradezella.com, pragmaticcoders.com)
+- 리스크관리 표준은 거래당 계좌 1% 손실 한도 + 일/주 손실 한도 + 드로다운 단계별 사이즈 축소의 4계층 프레임워크가 재확인됨 (tradezella.com, sifx.com)
+<!-- KNOWLEDGE:END -->
