@@ -1130,15 +1130,17 @@ _dept_of() {
   case "$n" in
     orchestrator|*coordinator*|cto|pmo|architect|*tech-lead*|ai-lead) echo "리드·총괄" ;;
     ai-*|ai|*-ai|*mlops*|ml-*|*-ml|*generative*|*llm*)                 echo "AI·ML" ;;
-    *design*|*uiux|*ux-writer*|*visual*|*designer*|*-ux|ux-*)          echo "디자인" ;;
-    *qa*|*test*|*review*)                                              echo "QA·품질" ;;
-    *security*|*privacy*|*legal*|*compliance*|*safety*)                echo "보안·법무" ;;
-    *fintech*|*trader*|*trading*|*invest*|*asset*|*finance*|*payment*|*broker*|*exchange*|*wallet*|*defi*) echo "금융·투자" ;;
-    *quant*|*math*|*analyst*|*research*|*news*|*harvest*|*data*)      echo "데이터·리서치" ;;
-    *pm*|*planner*|*product*|*plan)                                    echo "기획·PM" ;;
-    *market*|*brand*|*growth*|*biz*|*sales*)                           echo "마케팅·사업" ;;
-    *devops*|*-ops|*ops|*sre*|*release*|*support*|*doc*|*writer*|*l10n*|*localization*) echo "운영·문서" ;;
-    *dev*|*frontend*|*backend*|*server*|*fullstack*|*mobile*|*flutter*|*supabase*|*integrator*|*engineer*|*web*) echo "개발" ;;
+    *design*|*uiux|*ux-writer*|*visual*|*designer*|*-ux|ux-*|*디자인*)  echo "디자인" ;;
+    *security*|*privacy*|*legal*|*compliance*|*safety*|*보안*|*법무*)   echo "보안·법무" ;;
+    *qa*|*test*|*review*|*품질*|*검증*)                                echo "QA·품질" ;;
+    *fintech*|*trader*|*trading*|*invest*|*asset*|*finance*|*payment*|*broker*|*exchange*|*wallet*|*defi*|*핀테크*|*트레이*|*결제*|*금융*|*투자*) echo "금융·투자" ;;
+    *blockchain*|*onchain*|*web3*|*solidity*|*smart*contract*|*블록체인*|*온체인*) echo "개발" ;;
+    *quant*|*math*|*analyst*|*research*|*news*|*harvest*|*data*|*수학*|*데이터*|*빅데이터*|*분석*|*리서치*) echo "데이터·리서치" ;;
+    *pm*|*planner*|*product*|*plan|*기획*)                             echo "기획·PM" ;;
+    *market*|*brand*|*growth*|*biz*|*sales*|*마케팅*|*사업*|*그로스*)   echo "마케팅·사업" ;;
+    *ai-*|ai|*-ai|*mlops*|ml-*|*-ml|*generative*|*llm*|*ai*)          echo "AI·ML" ;;
+    *devops*|*-ops|*ops|*sre*|*release*|*support*|*doc*|*writer*|*l10n*|*localization*|*운영*|*문서*) echo "운영·문서" ;;
+    *dev*|*frontend*|*backend*|*server*|*fullstack*|*mobile*|*flutter*|*supabase*|*integrator*|*engineer*|*web*|*개발*|*엔지니어*) echo "개발" ;;
     *) echo "기타" ;;
   esac
 }
