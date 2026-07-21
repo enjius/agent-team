@@ -1209,7 +1209,7 @@ cmd_board() {
         local pn; pn=$(front_field "$pf" "name"); [ -n "$pn" ] || pn=$(basename "$pf" .md)
         printf '%s\t%s\n' "$pn" "$pbase" >> "$projmap"
       done < <(find "$ad" -maxdepth 1 -type f -name '*.md' | sort)
-    done < <(find "$proot" -maxdepth 3 -type d -path '*/.claude/agents' 2>/dev/null | sort)
+    done < <(find "$proot" -maxdepth 5 -type d -path '*/.claude/agents' 2>/dev/null | sort)
   done
 
   # 이름별 집계 상태 (한 팀원이 여러 프로젝트면 working>done>idle 우선)
