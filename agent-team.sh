@@ -1285,12 +1285,15 @@ cmd_board() {
       elif [ "$ps" = "done" ]; then scls="a-done"; slabel="✔ 완료 · $(_html_esc "$dp")"
       else scls="a-wait"; slabel="⏳ 대기 · $(_html_esc "$dp")"; fi
     else scls="a-bench"; slabel="🏢 본부 대기"; fi
-    local kstat
+    local kstat kn kb
     if [ -n "$kd" ]; then
-      if [ "$kd" = "$today" ]; then kstat="오늘 습득 · $kd"; else kstat="습득 · $kd"; fi
-    else kstat="미습득"; fi
-    printf '<div class="agent %s" tabindex="0"><div class="ava">%s</div><div class="nm">%s</div><div class="tip"><div class="tth"><b>%s</b> <span class="mb m-%s">%s</span></div><div class="ttd">%s</div><div class="ttr">%s %s</div><div class="ttr">%s</div><div class="ttr">📚 %s</div></div></div>\n' \
-      "$scls" "$emo" "$(_html_esc "$nm")" "$(_html_esc "$nm")" "$(_html_esc "$md")" "$(_html_esc "$md")" "$(_html_esc "$ds")" "$emo" "$(_html_esc "$dept")" "$slabel" "$kstat"
+      kn="kn-yes"; kb='<span class="kb kb-yes">📚</span>'
+      if [ "$kd" = "$today" ]; then kstat="✅ 습득함 · $kd"; else kstat="✅ 습득함 · $kd"; fi
+    else
+      kn="kn-no"; kb='<span class="kb kb-no">✕</span>'; kstat="❌ 미습득"
+    fi
+    printf '<div class="agent %s %s" tabindex="0"><div class="ava">%s%s</div><div class="nm">%s</div><div class="tip"><div class="tth"><b>%s</b> <span class="mb m-%s">%s</span></div><div class="ttd">%s</div><div class="ttr">%s %s</div><div class="ttr">%s</div><div class="ttr">%s</div></div></div>\n' \
+      "$scls" "$kn" "$emo" "$kb" "$(_html_esc "$nm")" "$(_html_esc "$nm")" "$(_html_esc "$md")" "$(_html_esc "$md")" "$(_html_esc "$ds")" "$emo" "$(_html_esc "$dept")" "$slabel" "$kstat"
   }
 
   # 3) HTML 조립 (게임형 조직도 맵)
@@ -1330,7 +1333,12 @@ h1{font-size:22px;margin:0}
 @keyframes spin{to{transform:rotate(360deg)}}
 .a-done .ava{border-color:#1f6feb;box-shadow:0 0 0 3px #1f6feb22}
 .a-wait .ava{border-color:#9e6a03}
-.a-bench .ava{opacity:.6}
+.a-bench .ava{opacity:.85}
+.kb{position:absolute;bottom:-4px;right:-4px;width:20px;height:20px;border-radius:50%;font-size:10px;display:flex;align-items:center;justify-content:center;border:2px solid #0b0f16;font-weight:800;z-index:2}
+.kb-yes{background:#238636;color:#fff}
+.kb-no{background:#6e2530;color:#ffb3ba}
+.kn-no .ava{opacity:.45;filter:grayscale(.9)}
+.kn-no .nm{color:#6e7681}
 @keyframes glow{0%,100%{box-shadow:0 0 0 3px #3fb95022}50%{box-shadow:0 0 0 7px #3fb95044}}
 .tip{display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);width:236px;text-align:left;background:#0f1620;border:1px solid #3a4658;border-radius:12px;padding:11px;z-index:80;box-shadow:0 14px 40px #000a}
 .agent:hover .tip,.agent:focus .tip{display:block}
@@ -1349,7 +1357,7 @@ h1{font-size:22px;margin:0}
 <div class="tile"><div class="n">${donecnt}</div><div class="l">✔ 완료</div></div>
 <div class="tile w"><div class="n">${waitcnt}</div><div class="l">⏳ 대기</div></div>
 <div class="tile p"><div class="n">${pcount}</div><div class="l">🎯 프로젝트</div></div>
-<div class="sub">🖥 ${muser}@${machine} · 생성 ${now} · 아바타에 마우스 올리면 상세 · 자동 새로고침</div>
+<div class="sub">🖥 ${muser}@${machine} · 생성 ${now} · <span style="color:#3fb950">📚 습득함</span> / <span style="color:#8b949e">✕ 미습득(흐릿)</span> · 마우스 올리면 상세</div>
 </div>
 <div class="section">🏢 본부 — 부서별 배치도</div>
 <div class="map">
