@@ -6,10 +6,13 @@ name: Daily Agent Knowledge Learn
 # 필요: 리포 Settings → Secrets and variables → Actions 에
 #       ANTHROPIC_API_KEY 시크릿 등록.
 
+# ⚠️ 매일 자동습득(cron) 비활성화됨 — 크레딧 사용 안 함.
+#    수동으로 돌리고 싶을 때만 Actions 탭에서 "Run workflow" 클릭.
+#    다시 매일 자동으로 돌리려면 아래 schedule 블록의 주석을 해제하세요.
 on:
-  schedule:
-    - cron: '0 20 * * *'   # 매일 20:00 UTC = 05:00 KST
-  workflow_dispatch: {}     # 수동 실행 버튼
+  # schedule:
+  #   - cron: '0 20 * * *'   # 매일 20:00 UTC = 05:00 KST
+  workflow_dispatch: {}     # 수동 실행 버튼 (직접 눌러야만 실행 = 크레딧 안 씀)
 
 permissions:
   contents: write
