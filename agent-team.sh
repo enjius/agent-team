@@ -1191,8 +1191,9 @@ cmd_board() {
       < <(printf '%s\n' "$AGENT_TEAM_PROJECTS" | tr ':' '\n')
   fi
 
-  # 본부 로스터 소스(기본): 전역 팀 + 라이브러리
-  if [ ${#hqdirs[@]} -eq 0 ]; then hqdirs=("$HOME/.claude/agents" "$LIB_DIR"); fi
+  # 본부 로스터 소스(기본): 라이브러리(학습됨) 먼저 → 전역 팀.
+  # 같은 이름이 양쪽에 있으면 먼저 스캔된 라이브러리(지식 보유)가 채택된다(학습본 우선).
+  if [ ${#hqdirs[@]} -eq 0 ]; then hqdirs=("$LIB_DIR" "$HOME/.claude/agents"); fi
 
   local now; now=$(date "+%Y-%m-%d %H:%M"); local today; today=$(date "+%Y-%m-%d")
   # 이 Mac 식별 (컴퓨터 이름 우선, 없으면 hostname). AGENT_TEAM_MACHINE 로 재정의 가능
@@ -1352,10 +1353,10 @@ h1{font-size:22px;margin:0}
 .a-wait .ava{border-color:#9e6a03}
 .a-bench .ava{opacity:.85}
 .kb{position:absolute;bottom:-4px;right:-4px;width:20px;height:20px;border-radius:50%;font-size:10px;display:flex;align-items:center;justify-content:center;border:2px solid #0b0f16;font-weight:800;z-index:2}
-.kb-yes{background:#238636;color:#fff}
-.kb-no{background:#6e2530;color:#ffb3ba}
-.kn-no .ava{opacity:.45;filter:grayscale(.9)}
-.kn-no .nm{color:#6e7681}
+.kb-yes{background:#238636;color:#fff;box-shadow:0 0 8px -1px #3fb950}
+.kb-no{background:#30363d;color:#8b949e}
+.kn-no .ava{opacity:1;filter:none}
+.kn-no .nm{color:var(--dim)}
 @keyframes glow{0%,100%{box-shadow:0 0 0 3px #3fb95022}50%{box-shadow:0 0 0 7px #3fb95044}}
 .tip{display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);width:236px;text-align:left;background:#0f1620;border:1px solid #3a4658;border-radius:12px;padding:11px;z-index:80;box-shadow:0 14px 40px #000a}
 .agent:hover .tip,.agent:focus .tip{display:block}

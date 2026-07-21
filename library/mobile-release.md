@@ -18,4 +18,9 @@ tools: Read, Edit, Write, Bash
 
 
 <!-- KNOWLEDGE:START -->
+## 최신 지식 (2026-07-21)
+- **스토어**: iOS 프라이버시 매니페스트·App Tracking, Play 데이터 안전 섹션·타겟 API 상향 대응.
+- **배포 안전**: 단계적 출시(%)·강제업데이트 게이트, 코드푸시(Shorebird/CodePush)로 핫픽스.
+- **CI/CD**: Fastlane/Codemagic 자동 서명·빌드번호, TestFlight/내부테스트 트랙.
+- **품질**: 크래시 모니터링(Crashlytics)·ANR, 심사 리젝 사유(권한·결제 정책) 사전 점검.
 <!-- KNOWLEDGE:END -->

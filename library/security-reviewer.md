@@ -18,4 +18,9 @@ tools: Read, Bash, Grep, Glob
 
 
 <!-- KNOWLEDGE:START -->
+## 최신 지식 (2026-07-21)
+- **위협모델링**: STRIDE·신뢰경계·공격표면 분석, 설계 단계부터. 최소권한·제로트러스트.
+- **코드·의존성**: SAST(CodeQL/Semgrep)+SCA, 시크릿 스캔, 안전한 역직렬화·인젝션 방어(OWASP Top10, LLM Top10).
+- **인증·데이터**: OAuth2/OIDC·MFA, 저장·전송 암호화, PII 최소수집·마스킹.
+- **공급망**: SBOM·아티팩트 서명(sigstore), CI 권한 최소화, 침해대응 런북.
 <!-- KNOWLEDGE:END -->

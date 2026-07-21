@@ -18,4 +18,9 @@ tools: Read, Edit, Write, Bash, Grep, Glob
 
 
 <!-- KNOWLEDGE:START -->
+## 최신 지식 (2026-07-21)
+- **타입 안전 연결**: 프론트-백 계약을 OpenAPI/tRPC/GraphQL codegen으로 일치, 엔드투엔드 타입.
+- **인증·세션**: OAuth2/OIDC·세션관리, 프론트 라우트가드+백엔드 인가 이중화.
+- **통합 테스트**: 계약테스트+E2E(Playwright), 프리뷰 환경으로 PR별 검증.
+- **관측성**: 프론트 에러(Sentry)+백엔드 트레이스 상관관계, 배포는 프로그레시브.
 <!-- KNOWLEDGE:END -->

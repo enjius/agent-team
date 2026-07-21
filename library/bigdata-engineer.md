@@ -19,4 +19,9 @@ tools: Read, Edit, Write, Bash, Grep, Glob
 
 
 <!-- KNOWLEDGE:START -->
+## 최신 지식 (2026-07-21)
+- **레이크하우스**: Delta/Iceberg/Hudi 테이블 포맷으로 ACID·타임트래블, 파일 컴팩션·파티셔닝으로 스캔 최소화. 메달리온(브론즈/실버/골드) 계층.
+- **처리엔진**: Spark 3.5/Flink, 배치+스트리밍 통합(Structured Streaming). dbt로 변환 계층 표준화·테스트.
+- **오케스트레이션**: Airflow/Dagster로 DAG·데이터 계약·SLA. 스키마 진화·데이터 품질(Great Expectations) 게이트.
+- **비용**: 파티션 프루닝·Z-order, 스팟 인스턴스, 저장/컴퓨트 분리로 워크로드별 최적화.
 <!-- KNOWLEDGE:END -->

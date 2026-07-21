@@ -18,4 +18,9 @@ tools: Read, Edit, Write, Bash, Grep, Glob
 
 
 <!-- KNOWLEDGE:START -->
+## 최신 지식 (2026-07-21)
+- **프레임워크**: React 19(서버컴포넌트·Actions)/Next 15, Svelte 5 runes. 서버우선 렌더링+선택적 하이드레이션.
+- **상태·데이터**: 서버상태는 TanStack Query, 폼은 스키마검증(zod). 전역상태 최소화.
+- **성능·품질**: Core Web Vitals(INP 중심), 코드분할·이미지 최적화, 접근성(WCAG)·타입안전(TS strict).
+- **툴링**: Vite/Turbopack, Tailwind, 컴포넌트 테스트(Testing Library)+E2E(Playwright).
 <!-- KNOWLEDGE:END -->

@@ -18,4 +18,9 @@ tools: Read, Edit, Write, Bash
 
 
 <!-- KNOWLEDGE:START -->
+## 최신 지식 (2026-07-21)
+- **CI/CD**: GitHub Actions/ArgoCD, 트렁크기반+프리뷰환경, 프로그레시브 딜리버리(카나리·블루그린). 배포는 작고 자주.
+- **IaC·K8s**: Terraform/OpenTofu·Helm, GitOps로 선언적 운영. 오토스케일(HPA/KEDA)·리소스 리밋.
+- **관측성**: 메트릭·로그·트레이스 통합(OpenTelemetry), SLO·알람·런북. 장애는 무비난 회고.
+- **보안**: 공급망(SBOM·서명 sigstore), 시크릿 매니저, 최소권한 IAM, 이미지 스캔.
 <!-- KNOWLEDGE:END -->

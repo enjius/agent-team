@@ -19,4 +19,9 @@ tools: Read, Edit, Write, Bash, Grep, Glob
 
 
 <!-- KNOWLEDGE:START -->
+## 최신 지식 (2026-07-21)
+- **결제·정산**: PG·오픈뱅킹·간편결제 연동, 멱등성·재시도·정산 대사(reconciliation) 필수. 이중지불 방지·원장 불변.
+- **규제(한국)**: 전자금융거래법·가상자산이용자보호법 시행, 마이데이터·오픈API 표준, ISMS·PCI-DSS 준수.
+- **리스크**: 이상거래탐지(FDS)·AML/KYC, 한도·속도제한. 자금흐름은 감사추적 가능하게.
+- **정밀도**: 금액은 정수/Decimal, 통화·반올림 규칙 통일, 타임존 UTC 저장.
 <!-- KNOWLEDGE:END -->
