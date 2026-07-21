@@ -1153,6 +1153,7 @@ _dept_of() {
     *security*|*privacy*|*legal*|*compliance*|*safety*|*보안*|*법무*)   echo "보안·법무" ;;
     *qa*|*test*|*review*|*품질*|*검증*)                                echo "QA·품질" ;;
     *fintech*|*trader*|*trading*|*invest*|*asset*|*finance*|*payment*|*broker*|*exchange*|*wallet*|*defi*|*핀테크*|*트레이*|*결제*|*금융*|*투자*) echo "금융·투자" ;;
+    *fundrais*|*business-plan*|*pitch*|*proposal*|*ir-deck*|ir-*|*-ir|*투자유치*) echo "금융·투자" ;;
     *blockchain*|*onchain*|*web3*|*solidity*|*smart*contract*|*블록체인*|*온체인*) echo "개발" ;;
     *quant*|*math*|*analyst*|*research*|*news*|*harvest*|*data*|*수학*|*데이터*|*빅데이터*|*분석*|*리서치*) echo "데이터·리서치" ;;
     *pm*|*planner*|*product*|*plan|*기획*)                             echo "기획·PM" ;;

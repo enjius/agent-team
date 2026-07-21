@@ -14,6 +14,10 @@ supabase-backend
 investment-expert
 asset-manager
 data-analyst
+# 투자유치 사업부 (IR·제안서·사업계획서)
+investment-ir-lead
+business-plan-writer
+pitch-deck-writer
 # 성장·운영
 marketing-lead
 support-ops
