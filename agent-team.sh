@@ -957,6 +957,22 @@ cmd_install() {
   log "   ${C_DIM}예: agent-team provision ~/Documents/app/proj1 --team webapp${C_RESET}"
 }
 
+# 응답이 실제 지식이 아니라 API 오류/실패 메시지인지 판별 (지식 오염 방지)
+#   크레딧 부족·권한·레이트리밋·인증오류·너무 짧은 응답 → 실패로 간주하고 저장 안 함
+_is_error_out() {
+  case "$1" in
+    *"Credit balance is too low"*|*"credit balance"*|*"Credit balance"*) return 0 ;;
+    *"rate limit"*|*"Rate limit"*|*"overloaded"*|*"Overloaded"*) return 0 ;;
+    *"permission"*|*"Permission"*|*"not allowed"*|*"denied"*|*"Denied"*) return 0 ;;
+    *"invalid"*"key"*|*"Invalid"*"key"*|*"authentication"*|*"Authentication"*) return 0 ;;
+    *"API Error"*|*"api error"*|*"error:"*|*"Error:"*|*"usage limit"*) return 0 ;;
+  esac
+  # 공백 제거 후 40자 미만이면 실질 지식이 아님 (에러 한 줄 등)
+  local n; n=$(printf '%s' "$1" | tr -d ' \n\t\r' | wc -c | tr -d ' ')
+  [ "${n:-0}" -lt 40 ] && return 0
+  return 1
+}
+
 # 지식 블록 교체 (마커 사이를 새 내용으로) — $1=md파일 $2=내용파일
 _set_knowledge_block() {
   local md="$1" cfile="$2"
@@ -1030,6 +1046,7 @@ cmd_learn() {
     # </dev/null: claude 가 루프의 stdin(find 목록)을 삼켜 1건 후 중단되는 것 방지
     local out; out=$(cd "$(dirname "$dir")" && claude -p "$prompt" --allowedTools WebSearch ${AGENT_TEAM_LEARN_FLAGS:-} </dev/null 2>/dev/null || true)
     if [ -z "$out" ]; then printf " ${C_YELLOW}건너뜀(응답없음)${C_RESET}\n"; continue; fi
+    if _is_error_out "$out"; then printf " ${C_YELLOW}건너뜀(API오류/크레딧부족)${C_RESET}\n"; continue; fi
     local arch="$KNOW_DIR/${name}-${date}.md"
     { echo "# ${name} — ${date} 지식 업데이트"; echo; printf "%s\n" "$out"; } > "$arch"
     local cfile="$arch.block"

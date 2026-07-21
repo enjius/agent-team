@@ -1,11 +1,20 @@
-# RAKWAN 팀 — AI · 서버 · 기획 · 마케팅 · 법무 · 사업
-orchestrator
+# RAKWAN 팀 — Flutter + Supabase 핀테크/투자 앱 별동대
+# 리드
+tech-lead
+# 기획·디자인
 product-planner
-ai-engineer
-ml-ops
-backend-dev
-data-engineer
-growth-marketer
-brand-marketer
-biz-strategist
-legal-compliance
+rakwan-designer
+# 앱 개발 (Flutter)
+flutter-builder
+flutter-tester
+flutter-code-reviewer
+# 백엔드 (Supabase)
+supabase-backend
+# 도메인 (금융·투자)
+investment-expert
+asset-manager
+data-analyst
+# 성장·운영
+marketing-lead
+support-ops
+l10n-specialist

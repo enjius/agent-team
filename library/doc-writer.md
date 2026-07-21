@@ -18,6 +18,4 @@ tools: Read, Edit, Write, Grep, Glob
 
 
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-20)
-Credit balance is too low
 <!-- KNOWLEDGE:END -->
