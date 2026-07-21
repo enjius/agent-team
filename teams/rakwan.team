@@ -10,9 +10,12 @@ flutter-tester
 flutter-code-reviewer
 # 백엔드 (Supabase)
 supabase-backend
-# AI (핵심 IP)
+# AI·ML 팀 (핵심 IP)
+ai-lead
 ai-generative-engineer
-ml-ops
+ai-ml-engineer
+mlops-engineer
+ai-safety
 # 보안·법무 (규제 산업)
 legal-compliance
 security-privacy
