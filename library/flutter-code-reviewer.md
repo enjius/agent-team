@@ -16,6 +16,12 @@ tools: Read, Grep, Glob, Bash
 
 <!-- KNOWLEDGE:START -->
 ## 최신 지식 (2026-07-21)
+**🔎 오늘 웹리서치 (2026-07-21):**
+- **supabase_flutter 2.7.0(2026.4.20)**: PostgREST **자동 재시도** 내장, 타 SDK 동반 업데이트로 신뢰성 개선 (apparencekit.dev)
+- **Supabase 패스키(Passkey) 인증 BETA** — 대시보드 Authentication>Passkeys 활성화, 비밀번호리스 인증 도입 (supabase.com)
+- Flutter+Supabase 통합 템플릿(인증·알림·DB·스토리지·애널리틱스 선구성) 확산 (fluttergems.dev)
+
+**📚 기본 지식:**
 - **정적분석**: `very_good_analysis`/`flutter_lints` 최신 룰셋 + `dart analyze --fatal-infos`. `custom_lint`+`riverpod_lint`로 Riverpod 오용(누락된 autoDispose, 잘못된 ref 사용) 자동 검출.
 - **널·타입 안정성**: Dart 3 sound null-safety 전제 — `!` 강제언랩·`late` 남용·`as` 다운캐스트를 레드플래그로. `sealed`/`switch` 완전성 검사 활용.
 - **비동기·리소스**: `Future` 미await, `StreamSubscription`/`Timer`/`TextEditingController` dispose 누락, `BuildContext` async-gap 사용(`if (!mounted) return`) 점검.

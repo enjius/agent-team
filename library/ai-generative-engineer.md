@@ -17,6 +17,12 @@ tools: Read, Edit, Write, Bash, Grep, Glob, WebSearch
 
 <!-- KNOWLEDGE:START -->
 ## 최신 지식 (2026-07-21)
+**🔎 오늘 웹리서치 (2026-07-21):**
+- 오픈웨이트 리더보드: **GLM-5.2**가 에이전틱 코딩·추론 최상위, 코딩 에이전트는 **Kimi K2.7 Code**, 노트북급은 Gemma 4 12B. 모델 500+·월 334+ 릴리스로 폭증 (llm-stats.com, acecloud.ai)
+- 에이전트 프레임워크: **CrewAI 1.14대** 안정화 — 메모리·지식·RAG·플로우 플러그블 백엔드, Chat API, 동시실행 상태격리 추가. LangGraph·AutoGen·Semantic Kernel 비교 심화 (alicelabs.ai)
+- 서버측 장기 에이전트=GLM-5.2, 소프트웨어 에이전트=Kimi K2.7 Code, 감사가능 멀티에이전트=Nemotron 3, IDE/코딩=Qwen3-Coder-Next 권장 (buildfastwithai.com)
+
+**📚 기본 지식:**
 - **이미지 생성 스택**: 확산 트랜스포머(DiT) 계열이 주류 — 텍스트 정합·해상도 향상. ControlNet/IP-Adapter로 포즈·레퍼런스·구도 제어, 인페인팅/아웃페인팅으로 부분편집. 실서비스는 LCM/Turbo·distillation으로 수 스텝 추론.
 - **개인화·일관성**: LoRA/DreamBooth·텍스추얼 인버전으로 스타일·인물 일관성, IP-Adapter로 참조이미지 컨디셔닝. 캐릭터/브랜드 일관성이 제품 차별점.
 - **멀티모달 이해(VLM)**: 이미지 분석·태깅·품질판정에 VLM 활용(시술 부위·유형 자동 분류 등). 생성+이해를 결합한 파이프라인이 핵심 IP화.

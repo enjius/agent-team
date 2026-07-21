@@ -19,6 +19,12 @@ model: opus
 
 <!-- KNOWLEDGE:START -->
 ## 최신 지식 (2026-07-21)
+**🔎 오늘 웹리서치 (2026-07-21):**
+- 오픈웨이트 리더보드: **GLM-5.2**가 에이전틱 코딩·추론 최상위, 코딩 에이전트는 **Kimi K2.7 Code**, 노트북급은 Gemma 4 12B. 모델 500+·월 334+ 릴리스로 폭증 (llm-stats.com, acecloud.ai)
+- 에이전트 프레임워크: **CrewAI 1.14대** 안정화 — 메모리·지식·RAG·플로우 플러그블 백엔드, Chat API, 동시실행 상태격리 추가. LangGraph·AutoGen·Semantic Kernel 비교 심화 (alicelabs.ai)
+- 서버측 장기 에이전트=GLM-5.2, 소프트웨어 에이전트=Kimi K2.7 Code, 감사가능 멀티에이전트=Nemotron 3, IDE/코딩=Qwen3-Coder-Next 권장 (buildfastwithai.com)
+
+**📚 기본 지식:**
 - **다중 에이전트**: 계획-실행-검증 루프, 역할 분해·병렬화·결과 종합. 컨텍스트 예산 관리가 핵심.
 - **신뢰성**: 각 단계 구조화 출력·검증(adversarial), 실패 격리·재시도. 툴 권한 최소화.
 - **비용·지연**: 태스크별 모델 라우팅(대·소), 프롬프트 캐싱, 불필요한 팬아웃 억제.

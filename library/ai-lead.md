@@ -16,6 +16,12 @@ tools: Read, Edit, Write, Bash, Grep, Glob, WebSearch
 
 <!-- KNOWLEDGE:START -->
 ## 최신 지식 (2026-07-21)
+**🔎 오늘 웹리서치 (2026-07-21):**
+- 오픈웨이트 리더보드: **GLM-5.2**가 에이전틱 코딩·추론 최상위, 코딩 에이전트는 **Kimi K2.7 Code**, 노트북급은 Gemma 4 12B. 모델 500+·월 334+ 릴리스로 폭증 (llm-stats.com, acecloud.ai)
+- 에이전트 프레임워크: **CrewAI 1.14대** 안정화 — 메모리·지식·RAG·플로우 플러그블 백엔드, Chat API, 동시실행 상태격리 추가. LangGraph·AutoGen·Semantic Kernel 비교 심화 (alicelabs.ai)
+- 서버측 장기 에이전트=GLM-5.2, 소프트웨어 에이전트=Kimi K2.7 Code, 감사가능 멀티에이전트=Nemotron 3, IDE/코딩=Qwen3-Coder-Next 권장 (buildfastwithai.com)
+
+**📚 기본 지식:**
 - **빌드 판단**: 파운데이션 모델 API + 자사 데이터/워크플로 해자가 기본. 파인튜닝은 프롬프트·RAG로 한계일 때, 온디바이스/소형모델은 비용·지연·프라이버시 요구 시.
 - **평가 우선 문화**: 골든셋+LLM-as-judge 회귀를 CI에 두고, 오프라인 지표와 온라인(리텐션·전환) 연결. '평가 없는 배포 금지'.
 - **비용·지연 거버넌스**: 태스크별 대·소 모델 라우팅, 프롬프트 캐싱·배치, 추론원가를 유닛이코노믹스에 반영. 사용량 급증 대비 폴백.

@@ -16,6 +16,12 @@ tools: Read, Edit, Write, Grep, Glob, WebSearch
 
 <!-- KNOWLEDGE:START -->
 ## 최신 지식 (2026-07-21)
+**🔎 오늘 웹리서치 (2026-07-21):**
+- 오픈웨이트 리더보드: **GLM-5.2**가 에이전틱 코딩·추론 최상위, 코딩 에이전트는 **Kimi K2.7 Code**, 노트북급은 Gemma 4 12B. 모델 500+·월 334+ 릴리스로 폭증 (llm-stats.com, acecloud.ai)
+- 에이전트 프레임워크: **CrewAI 1.14대** 안정화 — 메모리·지식·RAG·플로우 플러그블 백엔드, Chat API, 동시실행 상태격리 추가. LangGraph·AutoGen·Semantic Kernel 비교 심화 (alicelabs.ai)
+- 서버측 장기 에이전트=GLM-5.2, 소프트웨어 에이전트=Kimi K2.7 Code, 감사가능 멀티에이전트=Nemotron 3, IDE/코딩=Qwen3-Coder-Next 권장 (buildfastwithai.com)
+
+**📚 기본 지식:**
 - **위협 프레임**: OWASP LLM Top10(프롬프트 인젝션·불안전 출력·데이터 유출·과도한 에이전시) 기준 위협모델링. 툴/에이전트 권한 최소화·인간승인 게이트.
 - **가드레일**: 입력분류+출력필터(유해·PII·저작권·유명인), 시스템프롬프트 격리, 검색/툴 결과 신뢰경계 설정. 정책은 코드화·버전관리.
 - **레드팀·평가**: 자동+수동 적대적 테스트, 탈옥 프롬프트 회귀셋, 안전지표(거부율·오탐/미탐) 추적. 릴리즈 전 세이프티 게이트.

@@ -16,6 +16,12 @@ tools: Read, Edit, Write, Bash, Grep, Glob
 
 <!-- KNOWLEDGE:START -->
 ## 최신 지식 (2026-07-21)
+**🔎 오늘 웹리서치 (2026-07-21):**
+- **supabase_flutter 2.7.0(2026.4.20)**: PostgREST **자동 재시도** 내장, 타 SDK 동반 업데이트로 신뢰성 개선 (apparencekit.dev)
+- **Supabase 패스키(Passkey) 인증 BETA** — 대시보드 Authentication>Passkeys 활성화, 비밀번호리스 인증 도입 (supabase.com)
+- Flutter+Supabase 통합 템플릿(인증·알림·DB·스토리지·애널리틱스 선구성) 확산 (fluttergems.dev)
+
+**📚 기본 지식:**
 - **RLS 우선 설계**: 모든 테이블 `enable row level security` 기본, `auth.uid()` 기반 정책. 정책 성능은 `(select auth.uid())` 래핑으로 initplan 캐싱 — 대량행 쿼리 속도 개선 권장 패턴.
 - **마이그레이션**: Supabase CLI `db diff`/`migration`로 버전관리, `supabase start`(로컬 Docker)로 브랜치별 검증. 선언형 스키마(declarative schema) 기능 확대.
 - **Edge Functions**: Deno 런타임, 배경작업(`EdgeRuntime.waitUntil`), 웹훅 서명검증. 결제·정산 등 신뢰 필요한 로직은 여기서. 시크릿은 `supabase secrets`.

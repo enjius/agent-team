@@ -16,6 +16,12 @@ tools: Read, Edit, Write, Bash, Grep, Glob
 
 <!-- KNOWLEDGE:START -->
 ## 최신 지식 (2026-07-21)
+**🔎 오늘 웹리서치 (2026-07-21):**
+- **supabase_flutter 2.7.0(2026.4.20)**: PostgREST **자동 재시도** 내장, 타 SDK 동반 업데이트로 신뢰성 개선 (apparencekit.dev)
+- **Supabase 패스키(Passkey) 인증 BETA** — 대시보드 Authentication>Passkeys 활성화, 비밀번호리스 인증 도입 (supabase.com)
+- Flutter+Supabase 통합 템플릿(인증·알림·DB·스토리지·애널리틱스 선구성) 확산 (fluttergems.dev)
+
+**📚 기본 지식:**
 - **테스트 스택**: `flutter_test` + `mocktail`(널세이프 목킹, `mockito` codegen 대체 추세) + `patrol`(네이티브 UI·권한·딥링크까지 다루는 통합테스트)이 부상.
 - **골든테스트**: `alchemist` 또는 `golden_toolkit` 후속으로 폰트·플랫폼 편차 제어. CI에서 `--update-goldens`는 금지, 실패 diff 아티팩트 업로드.
 - **Riverpod 테스트**: `ProviderContainer(overrides: [...])`로 의존성 주입, `container.listen`으로 상태 전이 검증. `AsyncValue` 로딩/에러/데이터 3상태 모두 커버.

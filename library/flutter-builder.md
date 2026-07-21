@@ -16,6 +16,12 @@ tools: Read, Edit, Write, Bash, Grep, Glob
 
 <!-- KNOWLEDGE:START -->
 ## 최신 지식 (2026-07-21)
+**🔎 오늘 웹리서치 (2026-07-21):**
+- **supabase_flutter 2.7.0(2026.4.20)**: PostgREST **자동 재시도** 내장, 타 SDK 동반 업데이트로 신뢰성 개선 (apparencekit.dev)
+- **Supabase 패스키(Passkey) 인증 BETA** — 대시보드 Authentication>Passkeys 활성화, 비밀번호리스 인증 도입 (supabase.com)
+- Flutter+Supabase 통합 템플릿(인증·알림·DB·스토리지·애널리틱스 선구성) 확산 (fluttergems.dev)
+
+**📚 기본 지식:**
 - **상태관리**: Riverpod 2.6 codegen(`@riverpod`, `Notifier`/`AsyncNotifier`)이 표준. `ref.watch` 셀렉터·`.autoDispose`로 메모리·리빌드 최소화. Provider(구버전) → Riverpod 마이그레이션 지속.
 - **네비게이션**: `go_router` 14+ 선언형 라우팅 + typed routes(codegen)으로 딥링크·리다이렉트(인증가드) 처리가 정석.
 - **성능**: impeller 기본화로 셰이더 재깅 감소. `const` 위젯·`RepaintBoundary`·리스트 `itemExtent` 지정, DevTools의 rebuild/timeline으로 병목 프로파일.
