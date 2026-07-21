@@ -1178,6 +1178,9 @@ cmd_board() {
   if [ ${#hqdirs[@]} -eq 0 ]; then hqdirs=("$HOME/.claude/agents" "$LIB_DIR"); fi
 
   local now; now=$(date "+%Y-%m-%d %H:%M"); local today; today=$(date "+%Y-%m-%d")
+  # 이 Mac 식별 (컴퓨터 이름 우선, 없으면 hostname). AGENT_TEAM_MACHINE 로 재정의 가능
+  local machine; machine="${AGENT_TEAM_MACHINE:-$(scutil --get ComputerName 2>/dev/null || hostname -s 2>/dev/null || hostname 2>/dev/null || echo Mac)}"
+  local muser; muser="$(id -un 2>/dev/null || echo "$USER")"
   local tmp="$out.tmp.d"; mkdir -p "$tmp"
   # 실행 중인 claude 프로세스의 작업 폴더 목록 (작업중 판정용)
   local AGENT_TEAM_ACWD="$tmp/acwd"; _claude_cwds > "$AGENT_TEAM_ACWD" 2>/dev/null || : > "$AGENT_TEAM_ACWD"
@@ -1305,6 +1308,7 @@ body{margin:0;background:radial-gradient(1200px 500px at 20% -5%,#1b2a4a55,trans
 h1{font-size:22px;margin:0}
 .hud{position:sticky;top:0;z-index:30;display:flex;gap:10px;flex-wrap:wrap;align-items:center;background:rgba(11,15,22,.82);backdrop-filter:blur(8px);padding:12px 0;margin-bottom:14px;border-bottom:1px solid #ffffff10}
 .hud h1{margin-right:8px}.sub{color:var(--dim);font-size:12px;width:100%}
+.mac{font-size:12px;font-weight:600;color:#58a6ff;background:#1f6feb22;border:1px solid #1f6feb55;border-radius:20px;padding:2px 10px;vertical-align:middle}
 .tile{background:#161b2288;border:1px solid var(--bd);border-radius:12px;padding:8px 14px;min-width:96px}
 .tile .n{font-size:22px;font-weight:800;line-height:1}.tile .l{color:var(--dim);font-size:11px;margin-top:2px}
 .tile.g .n{color:#3fb950}.tile.b .n{color:var(--acc)}.tile.w .n{color:#d29922}.tile.p .n{color:#d2a8ff}
@@ -1339,13 +1343,13 @@ h1{font-size:22px;margin:0}
 .foot{color:var(--dim);font-size:12px;margin:30px 0 4px;text-align:center}
 </style></head><body><div class="wrap">
 <div class="hud">
-<h1>🏛 에이전트 본부</h1>
+<h1>🏛 에이전트 본부 <span class="mac">💻 ${machine}</span></h1>
 <div class="tile b"><div class="n">${total}</div><div class="l">전체 팀원</div></div>
 <div class="tile g"><div class="n">${workcnt}</div><div class="l">🟢 작업 중</div></div>
 <div class="tile"><div class="n">${donecnt}</div><div class="l">✔ 완료</div></div>
 <div class="tile w"><div class="n">${waitcnt}</div><div class="l">⏳ 대기</div></div>
 <div class="tile p"><div class="n">${pcount}</div><div class="l">🎯 프로젝트</div></div>
-<div class="sub">생성 ${now} · 아바타에 마우스를 올리면 상세정보 · 새로고침 자동</div>
+<div class="sub">🖥 ${muser}@${machine} · 생성 ${now} · 아바타에 마우스 올리면 상세 · 자동 새로고침</div>
 </div>
 <div class="section">🏢 본부 — 부서별 배치도</div>
 <div class="map">
