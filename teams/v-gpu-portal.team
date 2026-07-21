@@ -1,0 +1,15 @@
+# V-GPU-PORTAL 팀 — 파인튜닝/GPU 포털 (내부전용 → 제품화)
+# 분석·설계 워크플로
+explore
+analyst
+architect
+critic
+# 구현
+backend-dev
+ml-ops
+# UI (Training 페이지 개선 시)
+ui-ux-designer
+# 품질·리뷰 (커밋 전 게이트)
+qa-engineer
+code-reviewer
+security-reviewer
