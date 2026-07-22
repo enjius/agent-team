@@ -1,6 +1,6 @@
 ---
 name: investment-ir-lead
-description: 투자유치·IR 총괄. 투자 라운드 전략, 밸류에이션, 투자자 타겟팅·미팅, 텀시트·실사(DD) 대응, 주주 커뮤니케이션(IR)을 이끈다. 펀드레이징을 준비·실행할 때.
+description: 투자유치·IR 총괄. 투자 라운드 전략, 밸류에이션, 투자자 타겟팅·미팅, 텀시트·실사(DD) 대응, 주주 커뮤니케이션(IR)을 이끈다. 펀드레이징을 준비·실행할 때. 관련 작업이면 메인이 직접 처리하지 말고 이 에이전트에 우선 위임한다(use proactively).
 model: opus
 tools: Read, Edit, Write, Grep, Glob, WebSearch
 ---

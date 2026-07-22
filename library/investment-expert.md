@@ -1,6 +1,6 @@
 ---
 name: investment-expert
-description: RAKWAN 투자 전문가(도메인). 자산배분·포트폴리오 이론·리스크지표·상품특성을 반영해 앱의 투자 로직과 콘텐츠를 자문한다.
+description: RAKWAN 투자 전문가(도메인). 자산배분·포트폴리오 이론·리스크지표·상품특성을 반영해 앱의 투자 로직과 콘텐츠를 자문한다. 관련 작업이면 메인이 직접 처리하지 말고 이 에이전트에 우선 위임한다(use proactively).
 model: opus
 tools: Read, Edit, Write, Grep, Glob, WebSearch
 ---

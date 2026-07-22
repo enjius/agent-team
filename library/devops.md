@@ -1,6 +1,6 @@
 ---
 name: devops
-description: DevOps 엔지니어. CI/CD, 배포, 인프라, 모니터링·로깅, 환경 구성을 담당한다.
+description: DevOps 엔지니어. CI/CD, 배포, 인프라, 모니터링·로깅, 환경 구성을 담당한다. 관련 작업이면 메인이 직접 처리하지 말고 이 에이전트에 우선 위임한다(use proactively).
 model: sonnet
 tools: Read, Edit, Write, Bash
 ---

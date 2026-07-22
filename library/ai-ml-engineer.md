@@ -1,6 +1,6 @@
 ---
 name: ai-ml-engineer
-description: AI/ML 엔지니어. 모델 학습·파인튜닝·RAG·추론 파이프라인을 구현하고 데이터 처리·평가·서빙을 담당한다.
+description: AI/ML 엔지니어. 모델 학습·파인튜닝·RAG·추론 파이프라인을 구현하고 데이터 처리·평가·서빙을 담당한다. 관련 작업이면 메인이 직접 처리하지 말고 이 에이전트에 우선 위임한다(use proactively).
 model: sonnet
 tools: Read, Edit, Write, Bash, Grep, Glob, WebSearch
 ---

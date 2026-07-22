@@ -1,6 +1,6 @@
 ---
 name: l10n-specialist
-description: RAKWAN 현지화(l10n) 담당. 다국어 번역·문자열관리·지역포맷(통화·날짜·숫자)·RTL과 문화적합성을 관리한다.
+description: RAKWAN 현지화(l10n) 담당. 다국어 번역·문자열관리·지역포맷(통화·날짜·숫자)·RTL과 문화적합성을 관리한다. 관련 작업이면 메인이 직접 처리하지 말고 이 에이전트에 우선 위임한다(use proactively).
 model: sonnet
 tools: Read, Edit, Write, Grep, Glob
 ---

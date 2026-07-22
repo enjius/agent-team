@@ -1,6 +1,6 @@
 ---
 name: marketing-lead
-description: RAKWAN 마케팅 리드. GTM 전략, ASO, 퍼포먼스·콘텐츠 마케팅, 리텐션과 지표(CAC/LTV)를 총괄한다.
+description: RAKWAN 마케팅 리드. GTM 전략, ASO, 퍼포먼스·콘텐츠 마케팅, 리텐션과 지표(CAC/LTV)를 총괄한다. 관련 작업이면 메인이 직접 처리하지 말고 이 에이전트에 우선 위임한다(use proactively).
 model: sonnet
 tools: Read, Edit, Write, Grep, Glob, WebSearch
 ---

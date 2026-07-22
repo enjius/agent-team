@@ -1,6 +1,6 @@
 ---
 name: supabase-backend
-description: RAKWAN 백엔드(Supabase) 담당. Postgres 스키마·RLS·Edge Functions·인증·실시간·스토리지를 설계·구현한다.
+description: RAKWAN 백엔드(Supabase) 담당. Postgres 스키마·RLS·Edge Functions·인증·실시간·스토리지를 설계·구현한다. 관련 작업이면 메인이 직접 처리하지 말고 이 에이전트에 우선 위임한다(use proactively).
 model: sonnet
 tools: Read, Edit, Write, Bash, Grep, Glob
 ---

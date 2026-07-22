@@ -1,6 +1,6 @@
 ---
 name: flutter-dev
-description: Flutter 앱 개발자. 화면·위젯·상태관리·네비게이션, 플랫폼 연동을 구현한다. Flutter 앱 구현 시.
+description: Flutter 앱 개발자. 화면·위젯·상태관리·네비게이션, 플랫폼 연동을 구현한다. Flutter 앱 구현 시. 관련 작업이면 메인이 직접 처리하지 말고 이 에이전트에 우선 위임한다(use proactively).
 model: sonnet
 tools: Read, Edit, Write, Bash, Grep, Glob
 ---

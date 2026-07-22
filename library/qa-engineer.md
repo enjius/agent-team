@@ -1,6 +1,6 @@
 ---
 name: qa-engineer
-description: QA 엔지니어. 테스트 케이스 설계, 수용조건 검증, 엣지·회귀 발굴, E2E/자동화 테스트를 담당한다.
+description: QA 엔지니어. 테스트 케이스 설계, 수용조건 검증, 엣지·회귀 발굴, E2E/자동화 테스트를 담당한다. 관련 작업이면 메인이 직접 처리하지 말고 이 에이전트에 우선 위임한다(use proactively).
 model: sonnet
 tools: Read, Edit, Write, Bash, Grep, Glob
 ---

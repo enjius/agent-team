@@ -1,6 +1,6 @@
 ---
 name: pitch-deck-writer
-description: 제안서·IR 피치덱·원페이저 작성 담당. 투자자 대상 피치덱(10~15장), 사업 제안서(RFP 대응·파트너십), 원페이저·티저를 스토리라인과 슬라이드 단위로 설계한다.
+description: 제안서·IR 피치덱·원페이저 작성 담당. 투자자 대상 피치덱(10~15장), 사업 제안서(RFP 대응·파트너십), 원페이저·티저를 스토리라인과 슬라이드 단위로 설계한다. 관련 작업이면 메인이 직접 처리하지 말고 이 에이전트에 우선 위임한다(use proactively).
 model: sonnet
 tools: Read, Edit, Write, Grep, Glob, WebSearch
 ---

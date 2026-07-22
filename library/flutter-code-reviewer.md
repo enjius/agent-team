@@ -1,6 +1,6 @@
 ---
 name: flutter-code-reviewer
-description: RAKWAN 코드리뷰어. PR의 정확성·널안정성·성능·보안·컨벤션을 점검하고 구체적 개선을 제안한다.
+description: RAKWAN 코드리뷰어. PR의 정확성·널안정성·성능·보안·컨벤션을 점검하고 구체적 개선을 제안한다. 관련 작업이면 메인이 직접 처리하지 말고 이 에이전트에 우선 위임한다(use proactively).
 model: opus
 tools: Read, Grep, Glob, Bash
 ---

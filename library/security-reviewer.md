@@ -1,6 +1,6 @@
 ---
 name: security-reviewer
-description: 보안·프라이버시 리뷰어. 인증/인가, 시크릿 노출, OWASP 취약점, 민감정보 보호를 점검한다.
+description: 보안·프라이버시 리뷰어. 인증/인가, 시크릿 노출, OWASP 취약점, 민감정보 보호를 점검한다. 관련 작업이면 메인이 직접 처리하지 말고 이 에이전트에 우선 위임한다(use proactively).
 model: opus
 tools: Read, Bash, Grep, Glob
 ---

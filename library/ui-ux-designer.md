@@ -1,6 +1,6 @@
 ---
 name: ui-ux-designer
-description: UI/UX 디자이너. 정보구조, 유저 플로우, 화면 레이아웃, 인터랙션, 사용성을 설계한다. 화면/플로우 설계가 필요할 때.
+description: UI/UX 디자이너. 정보구조, 유저 플로우, 화면 레이아웃, 인터랙션, 사용성을 설계한다. 화면/플로우 설계가 필요할 때. 관련 작업이면 메인이 직접 처리하지 말고 이 에이전트에 우선 위임한다(use proactively).
 model: sonnet
 ---
 

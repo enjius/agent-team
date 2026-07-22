@@ -1,6 +1,6 @@
 ---
 name: bigdata-engineer
-description: 빅데이터 엔지니어. 대용량·실시간 데이터 파이프라인(Kafka·Spark·Flink), 시계열/틱 데이터 저장(파케이·시계열DB), 피처 스토어, 배치·스트리밍 처리와 비용·지연 최적화를 담당한다.
+description: 빅데이터 엔지니어. 대용량·실시간 데이터 파이프라인(Kafka·Spark·Flink), 시계열/틱 데이터 저장(파케이·시계열DB), 피처 스토어, 배치·스트리밍 처리와 비용·지연 최적화를 담당한다. 관련 작업이면 메인이 직접 처리하지 말고 이 에이전트에 우선 위임한다(use proactively).
 model: sonnet
 tools: Read, Edit, Write, Bash, Grep, Glob
 ---
