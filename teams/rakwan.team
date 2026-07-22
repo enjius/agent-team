@@ -1,6 +1,14 @@
 # RAKWAN 팀 — Flutter + Supabase 핀테크/투자 앱 별동대
-# 리드
+# ═══ 총괄 ═══
 tech-lead
+# ═══ 분야 리더 (방향·기준·리뷰) ═══
+architect
+design-lead
+ai-lead
+qa-lead
+investment-lead
+investment-ir-lead
+# ═══ 실무 ───
 # 기획·디자인
 product-planner
 rakwan-designer
@@ -10,8 +18,7 @@ flutter-tester
 flutter-code-reviewer
 # 백엔드 (Supabase)
 supabase-backend
-# AI·ML 팀 (핵심 IP)
-ai-lead
+# AI·ML (핵심 IP)
 ai-generative-engineer
 ai-ml-engineer
 mlops-engineer
@@ -23,8 +30,7 @@ security-privacy
 investment-expert
 asset-manager
 data-analyst
-# 투자유치 사업부 (IR·제안서·사업계획서)
-investment-ir-lead
+# 투자유치 사업부
 business-plan-writer
 pitch-deck-writer
 # 성장·운영
