@@ -19,6 +19,12 @@ model: opus
 
 <!-- KNOWLEDGE:START -->
 ## 최신 지식 (2026-07-21)
+**🔎 오늘 웹리서치 (2026-07-21):**
+- **프론트엔드**: React 19 + React Compiler(1.0)로 useMemo/useCallback/memo 수동최적화가 레거시화. Server Components·signals 세분화 반응성·INP가 아키텍처 우열을 가름. Svelte·Astro·Qwik 부상 (logrocket.com, netguru.com)
+- **백엔드·런타임**: Bun이 Node 런타임 지위 위협, NestJS·HTTP/3, 이벤트드리븐 마이크로서비스(Kafka·EventBridge)+관측성+AI 모니터링 통합 (medium.com, nucamp.co)
+- **공통**: 코드의 29%가 이미 AI 생성, TypeScript 40% 단독채택, Vite가 Webpack 대체(만족도 98%) (blog.logrocket.com)
+
+**📚 기본 지식:**
 - **아키텍처 결정**: ADR(Architecture Decision Record)로 트레이드오프 문서화, C4 모델로 시스템 다이어그램. 모듈러 모놀리스가 조기 마이크로서비스보다 실용적이라는 합의 강화.
 - **확장성**: 무상태 서비스+수평확장, 캐시 계층, 비동기 큐로 부하 분리. 데이터는 읽기/쓰기 분리·CQRS를 필요 시에만.
 - **신뢰성**: SLO/에러버짓, 서킷브레이커·타임아웃·재시도(지수백오프+지터), 관측성(메트릭·로그·트레이스) 기본 내장.

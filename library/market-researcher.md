@@ -19,6 +19,12 @@ tools: Read, Write, WebSearch, WebFetch, Grep, Glob
 
 <!-- KNOWLEDGE:START -->
 ## 최신 지식 (2026-07-21)
+**🔎 오늘 웹리서치 (2026-07-21):**
+- **모던 데이터스택**: Snowflake/Databricks + dbt(변환 표준) + Airflow + Fivetran/dlt + Great Expectations/Monte Carlo가 2026 기본 (proinsightsportal.com, uvik.net)
+- **레이크하우스·오픈포맷**: 저장/컴퓨트 분리, Iceberg가 신규 레이크하우스 기본 오픈테이블 포맷, Unity Catalog·Polaris 부상 (dev.to, lucentinnovation.com)
+- **AI 운영**: AI가 파이프라인 모니터링·디버깅·최적화에 투입돼 실패↓·디버깅속도↑ (refontelearning.com)
+
+**📚 기본 지식:**
 - **방법론**: 정성(인터뷰·JTBD)+정량(설문·컨조인트) 삼각검증, 표본 편향·설문 설계 오류 주의.
 - **시장 규모화**: 톱다운(TAM)·보텀업(수요기반) 교차검증, 경쟁·대체재 매핑.
 - **신호 수집**: 검색트렌드·리뷰·소셜리스닝·커뮤니티, AI로 대량 텍스트 주제분석.

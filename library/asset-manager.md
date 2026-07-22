@@ -16,6 +16,12 @@ tools: Read, Edit, Write, Grep, Glob
 
 <!-- KNOWLEDGE:START -->
 ## 최신 지식 (2026-07-21)
+**🔎 오늘 웹리서치 (2026-07-21):**
+- **기관 편입·BTC 전망**: JPMorgan $170K·Standard Chartered $150K·Fundstrat $150~200K(연말 $250K) 전망 분분, 글로벌 투자자 76%가 디지털자산 확대 계획, 172개+ 상장사가 ~100만 BTC 보유 (blockchain-council.org, coinbase.com)
+- **규제 명확화**: 스테이블코인 프레임워크·과세 조율·DeFi 통제 강화가 2026 최대 변수. TradFi-DeFi 융합 가속 (sumsub.com, finextra.com)
+- **AI 운용**: 포트폴리오 관리·알고리즘 트레이딩(자동 리밸런싱·전략 최적화)에 AI 확대, 크로스체인 유동성·상호운용성 강화 (blog.kraken.com)
+
+**📚 기본 지식:**
 - **수익률 방법론**: 자금유출입 왜곡 없는 성과는 시간가중수익률(TWR), 실제 투자자 경험은 금액가중(MWR/IRR). 대시보드는 둘을 구분·병기하고 계산기준을 각주로.
 - **금액 정밀도**: 부동소수점 금지 — 정수(최소단위/사토시·원) 또는 Decimal로 계산, 통화별 소수자릿수·반올림규칙(ROUND_HALF_UP) 통일. 표시와 저장 정밀도 분리.
 - **원장·정합성**: append-only 거래원장 + 파생 잔고는 재계산 가능하게(이벤트소싱형). 대사(reconciliation) 배치로 외부 잔고와 일치 검증, 불일치는 감사로그로 추적.

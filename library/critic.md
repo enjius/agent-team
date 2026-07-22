@@ -16,6 +16,12 @@ tools: Read, Grep, Glob, Bash, WebSearch
 
 <!-- KNOWLEDGE:START -->
 ## 최신 지식 (2026-07-21)
+**🔎 오늘 웹리서치 (2026-07-21):**
+- **프론트엔드**: React 19 + React Compiler(1.0)로 useMemo/useCallback/memo 수동최적화가 레거시화. Server Components·signals 세분화 반응성·INP가 아키텍처 우열을 가름. Svelte·Astro·Qwik 부상 (logrocket.com, netguru.com)
+- **백엔드·런타임**: Bun이 Node 런타임 지위 위협, NestJS·HTTP/3, 이벤트드리븐 마이크로서비스(Kafka·EventBridge)+관측성+AI 모니터링 통합 (medium.com, nucamp.co)
+- **공통**: 코드의 29%가 이미 AI 생성, TypeScript 40% 단독채택, Vite가 Webpack 대체(만족도 98%) (blog.logrocket.com)
+
+**📚 기본 지식:**
 - **적대적 검증 프레임**: 각 가정을 "틀렸다면?"으로 뒤집기, 프리모템(사후 실패 가정), STRIDE/실패모드(FMEA)로 체계적 탐색. 다수결 아닌 최악사례 중심.
 - **배포 이식성 함정(docker run at 고객사)**: 이미지 시드/번들 누락, 아키텍처(amd64/arm64)·CUDA/드라이버 불일치, 오프라인·프록시, 볼륨/권한(NFS·레지스트리 부재), 시크릿·라이선스, 첫 부팅 마이그레이션, 롤백 경로.
 - **분산·동시성**: 경쟁상태·부분성공·멱등성 부재·타임아웃/재시도 폭주·백프레셔 부재, 대용량 데이터셋·장기 학습잡의 중단/재개.

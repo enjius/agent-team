@@ -20,6 +20,12 @@ tools: Read, Edit, Write, Bash, Grep, Glob
 
 <!-- KNOWLEDGE:START -->
 ## 최신 지식 (2026-07-21)
+**🔎 오늘 웹리서치 (2026-07-21):**
+- **모던 데이터스택**: Snowflake/Databricks + dbt(변환 표준) + Airflow + Fivetran/dlt + Great Expectations/Monte Carlo가 2026 기본 (proinsightsportal.com, uvik.net)
+- **레이크하우스·오픈포맷**: 저장/컴퓨트 분리, Iceberg가 신규 레이크하우스 기본 오픈테이블 포맷, Unity Catalog·Polaris 부상 (dev.to, lucentinnovation.com)
+- **AI 운영**: AI가 파이프라인 모니터링·디버깅·최적화에 투입돼 실패↓·디버깅속도↑ (refontelearning.com)
+
+**📚 기본 지식:**
 - **최적화**: 볼록/비볼록 구분, LP/MILP(OR-Tools)·경사기반, 제약·목적함수 명시. 수치 안정성·스케일링.
 - **확률·통계**: 베이지안 추론(MCMC/변분), 불확실성 정량화, 과적합 방지(정규화·교차검증).
 - **시뮬레이션**: 몬테카를로·민감도 분석, 시드 고정으로 재현성. 시계열은 정상성·계절성 처리.

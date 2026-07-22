@@ -19,6 +19,12 @@ tools: Read, Edit, Write, Bash, Grep, Glob
 
 <!-- KNOWLEDGE:START -->
 ## 최신 지식 (2026-07-21)
+**🔎 오늘 웹리서치 (2026-07-21):**
+- **프론트엔드**: React 19 + React Compiler(1.0)로 useMemo/useCallback/memo 수동최적화가 레거시화. Server Components·signals 세분화 반응성·INP가 아키텍처 우열을 가름. Svelte·Astro·Qwik 부상 (logrocket.com, netguru.com)
+- **백엔드·런타임**: Bun이 Node 런타임 지위 위협, NestJS·HTTP/3, 이벤트드리븐 마이크로서비스(Kafka·EventBridge)+관측성+AI 모니터링 통합 (medium.com, nucamp.co)
+- **공통**: 코드의 29%가 이미 AI 생성, TypeScript 40% 단독채택, Vite가 Webpack 대체(만족도 98%) (blog.logrocket.com)
+
+**📚 기본 지식:**
 - **타입 안전 연결**: 프론트-백 계약을 OpenAPI/tRPC/GraphQL codegen으로 일치, 엔드투엔드 타입.
 - **인증·세션**: OAuth2/OIDC·세션관리, 프론트 라우트가드+백엔드 인가 이중화.
 - **통합 테스트**: 계약테스트+E2E(Playwright), 프리뷰 환경으로 PR별 검증.

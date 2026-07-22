@@ -19,6 +19,12 @@ tools: Read, Edit, Write, Bash, Grep, Glob
 
 <!-- KNOWLEDGE:START -->
 ## 최신 지식 (2026-07-21)
+**🔎 오늘 웹리서치 (2026-07-21):**
+- **모던 데이터스택**: Snowflake/Databricks + dbt(변환 표준) + Airflow + Fivetran/dlt + Great Expectations/Monte Carlo가 2026 기본 (proinsightsportal.com, uvik.net)
+- **레이크하우스·오픈포맷**: 저장/컴퓨트 분리, Iceberg가 신규 레이크하우스 기본 오픈테이블 포맷, Unity Catalog·Polaris 부상 (dev.to, lucentinnovation.com)
+- **AI 운영**: AI가 파이프라인 모니터링·디버깅·최적화에 투입돼 실패↓·디버깅속도↑ (refontelearning.com)
+
+**📚 기본 지식:**
 - **파이프라인**: ELT(웨어하우스 내 변환)+dbt 표준, 증분 모델·스냅샷·테스트. 오케스트레이션은 Airflow/Dagster.
 - **품질·계약**: 데이터 계약(스키마·SLA), 이상탐지·프레시니스 모니터링. 잘못된 데이터는 상류에서 차단.
 - **웨어하우스**: BigQuery/Snowflake 파티셔닝·클러스터링·머티리얼라이즈드뷰로 비용·속도 최적화.

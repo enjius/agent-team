@@ -19,6 +19,12 @@ tools: Read, Bash, Grep, Glob
 
 <!-- KNOWLEDGE:START -->
 ## 최신 지식 (2026-07-21)
+**🔎 오늘 웹리서치 (2026-07-21):**
+- **프론트엔드**: React 19 + React Compiler(1.0)로 useMemo/useCallback/memo 수동최적화가 레거시화. Server Components·signals 세분화 반응성·INP가 아키텍처 우열을 가름. Svelte·Astro·Qwik 부상 (logrocket.com, netguru.com)
+- **백엔드·런타임**: Bun이 Node 런타임 지위 위협, NestJS·HTTP/3, 이벤트드리븐 마이크로서비스(Kafka·EventBridge)+관측성+AI 모니터링 통합 (medium.com, nucamp.co)
+- **공통**: 코드의 29%가 이미 AI 생성, TypeScript 40% 단독채택, Vite가 Webpack 대체(만족도 98%) (blog.logrocket.com)
+
+**📚 기본 지식:**
 - **리뷰 초점**: 정확성·경계조건·동시성·리소스 누수·보안(입력검증·권한)을 스타일보다 우선. 파일:라인 단위, 근거+수정예시 제시.
 - **자동화**: 린터·타입체커·SAST(Semgrep/CodeQL)를 CI 게이트로, 사람은 설계·의도에 집중. LLM 1차 스캔 보조.
 - **품질 신호**: 테스트 커버리지·변경 크기(작은 PR)·복잡도. 큰 PR은 분할 요청.

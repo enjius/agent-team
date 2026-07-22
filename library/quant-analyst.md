@@ -19,6 +19,12 @@ tools: Read, Edit, Write, Bash, Grep, Glob
 
 <!-- KNOWLEDGE:START -->
 ## 최신 지식 (2026-07-21)
+**🔎 오늘 웹리서치 (2026-07-21):**
+- **모던 데이터스택**: Snowflake/Databricks + dbt(변환 표준) + Airflow + Fivetran/dlt + Great Expectations/Monte Carlo가 2026 기본 (proinsightsportal.com, uvik.net)
+- **레이크하우스·오픈포맷**: 저장/컴퓨트 분리, Iceberg가 신규 레이크하우스 기본 오픈테이블 포맷, Unity Catalog·Polaris 부상 (dev.to, lucentinnovation.com)
+- **AI 운영**: AI가 파이프라인 모니터링·디버깅·최적화에 투입돼 실패↓·디버깅속도↑ (refontelearning.com)
+
+**📚 기본 지식:**
 - **팩터·리스크**: 팩터 노출·공분산 추정(수축추정), 리스크패리티·MVO의 한계 인지. 거래비용 모델 포함.
 - **백테스트 규율**: 룩어헤드·생존편향·과최적화 방지, 워크포워드·아웃오브샘플, 다중검정 보정.
 - **실행**: 슬리피지·시장충격 모델, 체결 알고리즘. 지표는 샤프·소르티노·MDD·턴오버.

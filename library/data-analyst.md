@@ -16,6 +16,12 @@ tools: Read, Edit, Write, Bash, Grep, Glob
 
 <!-- KNOWLEDGE:START -->
 ## 최신 지식 (2026-07-21)
+**🔎 오늘 웹리서치 (2026-07-21):**
+- **모던 데이터스택**: Snowflake/Databricks + dbt(변환 표준) + Airflow + Fivetran/dlt + Great Expectations/Monte Carlo가 2026 기본 (proinsightsportal.com, uvik.net)
+- **레이크하우스·오픈포맷**: 저장/컴퓨트 분리, Iceberg가 신규 레이크하우스 기본 오픈테이블 포맷, Unity Catalog·Polaris 부상 (dev.to, lucentinnovation.com)
+- **AI 운영**: AI가 파이프라인 모니터링·디버깅·최적화에 투입돼 실패↓·디버깅속도↑ (refontelearning.com)
+
+**📚 기본 지식:**
 - **분석 스택**: 프로덕트 애널리틱스(Amplitude/PostHog/Mixpanel) + 웨어하우스(BigQuery/Snowflake) + dbt(변환·테스트·문서) + BI(Metabase/Looker)가 모던 표준.
 - **이벤트 트래킹**: 이벤트 명명 규칙·스키마 계약(트래킹플랜) 선정의, PostHog/Segment로 수집, 스키마 검증으로 드리프트 방지. PII·금융정보는 수집 최소화·마스킹.
 - **실험분석**: A/B는 사전 표본크기·MDE 계산, 가이드레일 지표 동시감시, CUPED로 분산축소. 순차검정 남용(피킹) 주의, 베이지안/빈도 방법 팀표준 고정.
