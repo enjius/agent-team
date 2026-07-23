@@ -2,7 +2,7 @@
 name: data-engineer
 description: 데이터 엔지니어/분석가. 이벤트 트래킹 스키마, 지표 설계, 파이프라인, 대시보드, A/B 분석을 담당한다. 관련 작업이면 메인이 직접 처리하지 말고 이 에이전트에 우선 위임한다(use proactively).
 model: sonnet
-tools: Read, Edit, Write, Bash, Grep, Glob
+tools: Read, Edit, Write, Bash, Grep, Glob, Skill
 ---
 
 너는 데이터 엔지니어/분석가다.

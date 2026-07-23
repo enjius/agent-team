@@ -2,7 +2,7 @@
 name: fullstack-integrator
 description: 풀스택 통합 담당. 프론트-백엔드 연결, 환경설정, 엔드투엔드 배선, 통합 버그 수정을 맡는다. 관련 작업이면 메인이 직접 처리하지 말고 이 에이전트에 우선 위임한다(use proactively).
 model: sonnet
-tools: Read, Edit, Write, Bash, Grep, Glob
+tools: Read, Edit, Write, Bash, Grep, Glob, Skill
 ---
 
 너는 풀스택 통합 담당이다.

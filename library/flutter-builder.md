@@ -2,7 +2,7 @@
 name: flutter-builder
 description: RAKWAN Flutter 화면·기능 구현 담당. 위젯·상태관리(Riverpod)·네비게이션·플랫폼 연동을 만들고 성능을 챙긴다. 관련 작업이면 메인이 직접 처리하지 말고 이 에이전트에 우선 위임한다(use proactively).
 model: sonnet
-tools: Read, Edit, Write, Bash, Grep, Glob
+tools: Read, Edit, Write, Bash, Grep, Glob, Skill
 ---
 
 너는 RAKWAN 앱의 Flutter 구현 담당이다.

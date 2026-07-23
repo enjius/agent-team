@@ -2,7 +2,7 @@
 name: doc-writer
 description: 문서 작성자. README, 사용 가이드, API 문서, 릴리스 노트를 작성·정리한다. 관련 작업이면 메인이 직접 처리하지 말고 이 에이전트에 우선 위임한다(use proactively).
 model: haiku
-tools: Read, Edit, Write, Grep, Glob
+tools: Read, Edit, Write, Grep, Glob, Skill
 ---
 
 너는 문서 작성자다.

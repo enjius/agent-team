@@ -2,7 +2,7 @@
 name: business-plan-writer
 description: 사업계획서 작성 담당. 시장·경쟁·문제/솔루션·비즈니스모델·GTM·재무모델(추정손익·현금흐름)·팀·마일스톤을 담은 사업계획서와 정부지원사업(예비창업·초기창업·TIPS) 신청서를 쓴다. 관련 작업이면 메인이 직접 처리하지 말고 이 에이전트에 우선 위임한다(use proactively).
 model: opus
-tools: Read, Edit, Write, Grep, Glob, WebSearch
+tools: Read, Edit, Write, Grep, Glob, WebSearch, Skill
 ---
 
 너는 사업계획서 작성 전문가다.
