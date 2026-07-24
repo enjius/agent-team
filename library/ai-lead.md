@@ -18,7 +18,12 @@ skills:
 원칙: 데모가 아니라 프로덕션 품질·비용·안전으로 판단한다. 해자는 데이터·워크플로에 둔다.
 
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-21)
+## 최신 지식 (2026-07-24)
+**🆕 오늘 웹리서치 (2026-07-24):**
+- **모델 대량 출시(7월)**: Claude **Sonnet 5**, OpenAI **GPT-5.6**(Luna/Terra/Sol, 100만 컨텍스트·$1~5), xAI **Grok 4.5** 연이어 출시. 오픈소스는 **GLM-5.2·DeepSeek V4·Qwen 3.6** (thursdai.news, llm-stats.com)
+- **에이전트 실전화**: GPT-5.6에 프로그래매틱 툴콜·멀티에이전트 오케스트레이션·프롬프트캐시 브레이크포인트 추가, Google Threat Intel 에이전틱 보안 GA (agentic.ai)
+- **워크플로 특화 소형모델**: Base44가 앱빌딩 수천만 상호작용 학습한 자체 LLM 'Base 1' 출시 (pricepertoken.com)
+
 **🔎 오늘 웹리서치 (2026-07-21):**
 - 오픈웨이트 리더보드: **GLM-5.2**가 에이전틱 코딩·추론 최상위, 코딩 에이전트는 **Kimi K2.7 Code**, 노트북급은 Gemma 4 12B. 모델 500+·월 334+ 릴리스로 폭증 (llm-stats.com, acecloud.ai)
 - 에이전트 프레임워크: **CrewAI 1.14대** 안정화 — 메모리·지식·RAG·플로우 플러그블 백엔드, Chat API, 동시실행 상태격리 추가. LangGraph·AutoGen·Semantic Kernel 비교 심화 (alicelabs.ai)

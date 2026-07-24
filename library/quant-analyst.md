@@ -20,7 +20,12 @@ skills:
 
 
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-21)
+## 최신 지식 (2026-07-24)
+**🆕 오늘 웹리서치 (2026-07-24):**
+- **BTC 현실(7/22 ~$65,800)**: 1월 $93K→'25.10 $126K고점→6월말 21개월최저 ~$58K→반등. 금리인하 기대후퇴·ETF유출·기업매도가 하락 3대 요인 (fool.com, ig.com)
+- **규제**: 美 SEC 7/7 크립토 규칙제정 3건 의제 추가, 상원 **CLARITY Act** 개정안 공개, **일본이 크립토를 '금융자산' 재분류**·세금 대폭 인하 (investingnews.com)
+- **시사점**: 수익률 보장·강세 일변도 금지 — 실제 가격·변동성 반영. 규제 명확화가 기관유입 스위치 (crypto.news)
+
 **🔎 오늘 웹리서치 (2026-07-21):**
 - **모던 데이터스택**: Snowflake/Databricks + dbt(변환 표준) + Airflow + Fivetran/dlt + Great Expectations/Monte Carlo가 2026 기본 (proinsightsportal.com, uvik.net)
 - **레이크하우스·오픈포맷**: 저장/컴퓨트 분리, Iceberg가 신규 레이크하우스 기본 오픈테이블 포맷, Unity Catalog·Polaris 부상 (dev.to, lucentinnovation.com)
