@@ -15,7 +15,12 @@ tools: Read, Edit, Write, Bash, Grep, Glob, Skill
 원칙: 결함마다 실패하는 테스트를 먼저 만든다. 느린 통합보다 빠른 유닛/위젯을 두껍게.
 
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-21)
+## 최신 지식 (2026-07-24)
+**🆕 오늘 웹리서치 (2026-07-24):**
+- **프레임워크(7월)**: Next.js 7/21 보안 릴리스, React Router v8(연간 릴리스·ESM·Node22.22+·Vite7), **Flutter 3.44.0**(5/18 안정), Remix 3(React 탈피 재설계), RN Windows 0.83 (nextjs.org, dev.to)
+- **지형**: 서버우선 아키텍처·AI 보조 툴링·성능 기본값화가 대세, 코드 29% AI 생성 지속 (nucamp.co)
+- **AI 코딩**: GPT-5.6·Claude Sonnet 5·GLM-5.2 등 신규 모델로 에이전틱 코딩 급진전 (thursdai.news)
+
 **🔎 오늘 웹리서치 (2026-07-21):**
 - **supabase_flutter 2.7.0(2026.4.20)**: PostgREST **자동 재시도** 내장, 타 SDK 동반 업데이트로 신뢰성 개선 (apparencekit.dev)
 - **Supabase 패스키(Passkey) 인증 BETA** — 대시보드 Authentication>Passkeys 활성화, 비밀번호리스 인증 도입 (supabase.com)

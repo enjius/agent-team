@@ -21,7 +21,12 @@ skills:
 
 
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-21)
+## 최신 지식 (2026-07-24)
+**🆕 오늘 웹리서치 (2026-07-24):**
+- **프레임워크(7월)**: Next.js 7/21 보안 릴리스, React Router v8(연간 릴리스·ESM·Node22.22+·Vite7), **Flutter 3.44.0**(5/18 안정), Remix 3(React 탈피 재설계), RN Windows 0.83 (nextjs.org, dev.to)
+- **지형**: 서버우선 아키텍처·AI 보조 툴링·성능 기본값화가 대세, 코드 29% AI 생성 지속 (nucamp.co)
+- **AI 코딩**: GPT-5.6·Claude Sonnet 5·GLM-5.2 등 신규 모델로 에이전틱 코딩 급진전 (thursdai.news)
+
 **🔎 오늘 웹리서치 (2026-07-21):**
 - **플랫폼 엔지니어링**: 내부개발자플랫폼(IDP)·셀프서비스 paved road가 최대 트렌드, 팀이 보안·컴플라이언스·비용 가드레일 집행. 86%가 자동화 플랫폼 추가 계획 (requirementguide.com, medium.com)
 - **GitOps·K8s**: GitOps가 배포 단일소스(표준), K8s 84% 프로덕션 사용/평가·기본기화, 정책기반·관측가능 CI/CD (ksolves.com)

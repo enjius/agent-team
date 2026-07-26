@@ -18,7 +18,12 @@ skills:
 원칙: 지표 정의를 문서화하고 한 지표엔 한 정의. 상관과 인과를 구분한다.
 
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-21)
+## 최신 지식 (2026-07-24)
+**🆕 오늘 웹리서치 (2026-07-24):**
+- **ASO=전략(2026)**: 최적화 아닌 전략. **평점 4.0+ 필수**(featured 앱 90%가 4.0↑, 3.5미만 상위노출 희박), 스토어페이지 커스터마이징이 핵심 (mobileaction.co, promodo.com)
+- **웹투앱 급증**: 딥링크 여정이 표준 대비 전환율 ~2배, AppsFlyer 웹투앱 +77% (searchlab.nl)
+- **AI ASO**: 키워드·메타데이터·크리에이티브 현지화를 수일로 압축, ASO+UA+크리에이티브 통합이 최강 (cas.ai)
+
 **🔎 오늘 웹리서치 (2026-07-21):**
 - **모던 데이터스택**: Snowflake/Databricks + dbt(변환 표준) + Airflow + Fivetran/dlt + Great Expectations/Monte Carlo가 2026 기본 (proinsightsportal.com, uvik.net)
 - **레이크하우스·오픈포맷**: 저장/컴퓨트 분리, Iceberg가 신규 레이크하우스 기본 오픈테이블 포맷, Unity Catalog·Polaris 부상 (dev.to, lucentinnovation.com)
