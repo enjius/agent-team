@@ -1086,6 +1086,17 @@ cmd_skill_install() {
     n=$((n+1)); printf "  ${C_GREEN}▪${C_RESET} %s\n" "$nm"
   done < <(find "$SKILLS_DIR" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | sort)
   ok "스킬 ${C_BOLD}${n}개${C_RESET} 설치 → $dest"
+
+  # 슬래시 명령(commands/*.md)도 함께 설치 (있으면)
+  local cmds_src="$AGENT_TEAM_HOME/commands"
+  if [ -d "$cmds_src" ] && [ -n "$(find "$cmds_src" -maxdepth 1 -name '*.md' 2>/dev/null | head -1)" ]; then
+    local cdest
+    if [ "$install_to" = "project" ]; then cdest="$(abspath "$proj")/.claude/commands"; else cdest="$HOME/.claude/commands"; fi
+    mkdir -p "$cdest"; local cn=0
+    while IFS= read -r cf; do [ -n "$cf" ] || continue; cp "$cf" "$cdest/"; cn=$((cn+1)); printf "  ${C_BLUE}/${C_RESET}%s\n" "$(basename "$cf" .md)"; done \
+      < <(find "$cmds_src" -maxdepth 1 -type f -name '*.md' | sort)
+    ok "슬래시 명령 ${C_BOLD}${cn}개${C_RESET} 설치 → $cdest"
+  fi
 }
 
 # 응답이 실제 지식이 아니라 API 오류/실패 메시지인지 판별 (지식 오염 방지)
