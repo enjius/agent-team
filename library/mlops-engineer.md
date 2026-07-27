@@ -15,8 +15,13 @@ tools: Read, Edit, Write, Bash, Grep, Glob, WebSearch, Skill
 원칙: 모든 배포는 되돌릴 수 있게. 데이터·모델·코드 삼중 버전관리로 재현성 확보.
 
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
+## 최신 지식 (2026-07-27)
+**🆕 오늘 웹리서치 (2026-07-27):**
+- **모델 러시**: Anthropic **Claude Opus 5**(7/24) 출시 — Intelligence Index 61·Agentic 55.3 1위, $5/$25(1M토큰). 2개월 내 4번째 모델(Mythos·Fable·Sonnet 5) (llm-stats.com, felloai.com)
+- **경쟁 구도**: OpenAI **GPT-5.6**(Sol/Terra/Luna) 7/9 GA·ChatGPT 기본, LiveBench 수학/추론·ARC-AGI-2 1위. xAI Grok 4.5($2/$6 코딩), Moonshot Kimi K3(2.8T·1M컨텍스트·상시추론) (tldl.io)
+- **에이전트 하니스**: 모든 랩이 모델+에이전트 하니스(툴·권한·병렬워커·영속성)를 짝으로 출시 — 모델은 판단, 하니스가 실행 (claude-world.com)
+
+**🗓 웹리서치 (2026-07-24):**
 - **모델 대량 출시(7월)**: Claude **Sonnet 5**, OpenAI **GPT-5.6**(Luna/Terra/Sol, 100만 컨텍스트·$1~5), xAI **Grok 4.5** 연이어 출시. 오픈소스는 **GLM-5.2·DeepSeek V4·Qwen 3.6** (thursdai.news, llm-stats.com)
 - **에이전트 실전화**: GPT-5.6에 프로그래매틱 툴콜·멀티에이전트 오케스트레이션·프롬프트캐시 브레이크포인트 추가, Google Threat Intel 에이전틱 보안 GA (agentic.ai)
 - **워크플로 특화 소형모델**: Base44가 앱빌딩 수천만 상호작용 학습한 자체 LLM 'Base 1' 출시 (pricepertoken.com)

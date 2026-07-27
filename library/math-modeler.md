@@ -21,8 +21,13 @@ skills:
 
 
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
+## 최신 지식 (2026-07-27)
+**🆕 오늘 웹리서치 (2026-07-27):**
+- **시세(7/27)**: BTC $65,000 방어·ETH +4%($1,953), 총 시총 ~$2.4조. FOMC 대기·美 이란 공습 중단으로 상승 (cryptotimes.io, finance.yahoo.com)
+- **자금흐름**: 스팟 BTC ETF 순유입 $33.79M·연속 유입, 기관이 회복 견인. 7월초 저점 $57,750~58,000 반등했으나 $66,800~67,000 돌파는 실패 (finance.yahoo.com)
+- **연말 전망**: Polymarket 기준 BTC $70k~75k·ETH $2,000~2,250, 2Q 급락 후 취약한 회복 국면 (finance.yahoo.com)
+
+**🗓 웹리서치 (2026-07-24):**
 - **프레임워크(7월)**: Next.js 7/21 보안 릴리스, React Router v8(연간 릴리스·ESM·Node22.22+·Vite7), **Flutter 3.44.0**(5/18 안정), Remix 3(React 탈피 재설계), RN Windows 0.83 (nextjs.org, dev.to)
 - **지형**: 서버우선 아키텍처·AI 보조 툴링·성능 기본값화가 대세, 코드 29% AI 생성 지속 (nucamp.co)
 - **AI 코딩**: GPT-5.6·Claude Sonnet 5·GLM-5.2 등 신규 모델로 에이전틱 코딩 급진전 (thursdai.news)

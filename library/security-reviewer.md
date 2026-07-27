@@ -18,8 +18,13 @@ tools: Read, Bash, Grep, Glob, Skill
 
 
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
+## 최신 지식 (2026-07-27)
+**🆕 오늘 웹리서치 (2026-07-27):**
+- **AI 주도 위협**: Five Eyes 경고 — AI가 취약점 발견→악용 시간 단축, 정교한 피싱·프롬프트 인젝션. PwC, 크리덴셜·세션토큰 노린 AI 신원공격 급증 (esecurityplanet.com)
+- **주요 유출(7월)**: Aflac Japan·KDDI(1,420만 계정)·AssuranceAmerica(~700만)·Moody(230만, ShinyHunters) — 보험·3rd파티 취약점 표적화 (sharkstriker.com)
+- **긴급 패치**: CISA, Adobe ColdFusion CVE-2026-48282 실사용 악용 경고 즉시 패치. TrojPix 에어갭 영상케이블 유출(208m) 시연 (esecurityplanet.com)
+
+**🗓 웹리서치 (2026-07-24):**
 - **개인정보 2026 방향**: 사후제재→**사전예방·위험기반·전주기 관리** 전환. AI채용솔루션 자동화결정 투명성(설명의무·평가기준 공개) 점검, **'AI 원본활용 특례'**(안전조치 전제 개인정보 활용) 추진 (korea.kr, pipc.go.kr)
 - **하반기 스타트업 정책='성장 연결'**: 벤처투자 규제완화·기술사업화 금융지원 신설, AI기업 **공공조달 문턱 완화**, 창업지원 확대 (venturesquare.net)
 - **R&D 사업화 보증(7월~)**: 최근5년 정부R&D 완료/공공기술 이전 사업화 기업 **최대 100억·보증료 0.5%감면** (venturesquare.net)

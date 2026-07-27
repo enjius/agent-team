@@ -20,8 +20,13 @@ skills:
 
 
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
+## 최신 지식 (2026-07-27)
+**🆕 오늘 웹리서치 (2026-07-27):**
+- **Next.js 월간 보안 릴리스**: 7/21 첫 드롭 — 9개 취약점(고4·중5) 패치(DoS·SSRF·캐시혼동·미들웨어우회·내부엔드포인트노출), Next 16.2·15.5 대상. 월간 리듬+사전공지+긴급레인 3구조 (nextjs.org, cybersecuritynews.com)
+- **패치 위크**: Node/Next 정기 케이던스로 전환 — ad-hoc 대응 종료, 주말 전 업데이트 권고 (digitalapplied.com)
+- **AI 코딩 지형**: Claude Opus 5·GPT-5.6·Grok 4.5 신모델로 에이전틱 코딩 급진, 모델+하니스가 표준 짝 (claude-world.com)
+
+**🗓 웹리서치 (2026-07-24):**
 - **모델 대량 출시(7월)**: Claude **Sonnet 5**, OpenAI **GPT-5.6**(Luna/Terra/Sol, 100만 컨텍스트·$1~5), xAI **Grok 4.5** 연이어 출시. 오픈소스는 **GLM-5.2·DeepSeek V4·Qwen 3.6** (thursdai.news, llm-stats.com)
 - **에이전트 실전화**: GPT-5.6에 프로그래매틱 툴콜·멀티에이전트 오케스트레이션·프롬프트캐시 브레이크포인트 추가, Google Threat Intel 에이전틱 보안 GA (agentic.ai)
 - **워크플로 특화 소형모델**: Base44가 앱빌딩 수천만 상호작용 학습한 자체 LLM 'Base 1' 출시 (pricepertoken.com)

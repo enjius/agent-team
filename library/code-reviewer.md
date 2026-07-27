@@ -18,8 +18,13 @@ tools: Read, Bash, Grep, Glob, Skill
 
 
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
+## 최신 지식 (2026-07-27)
+**🆕 오늘 웹리서치 (2026-07-27):**
+- **Next.js 월간 보안 릴리스**: 7/21 첫 드롭 — 9개 취약점(고4·중5) 패치(DoS·SSRF·캐시혼동·미들웨어우회·내부엔드포인트노출), Next 16.2·15.5 대상. 월간 리듬+사전공지+긴급레인 3구조 (nextjs.org, cybersecuritynews.com)
+- **패치 위크**: Node/Next 정기 케이던스로 전환 — ad-hoc 대응 종료, 주말 전 업데이트 권고 (digitalapplied.com)
+- **AI 코딩 지형**: Claude Opus 5·GPT-5.6·Grok 4.5 신모델로 에이전틱 코딩 급진, 모델+하니스가 표준 짝 (claude-world.com)
+
+**🗓 웹리서치 (2026-07-24):**
 - **프레임워크(7월)**: Next.js 7/21 보안 릴리스, React Router v8(연간 릴리스·ESM·Node22.22+·Vite7), **Flutter 3.44.0**(5/18 안정), Remix 3(React 탈피 재설계), RN Windows 0.83 (nextjs.org, dev.to)
 - **지형**: 서버우선 아키텍처·AI 보조 툴링·성능 기본값화가 대세, 코드 29% AI 생성 지속 (nucamp.co)
 - **AI 코딩**: GPT-5.6·Claude Sonnet 5·GLM-5.2 등 신규 모델로 에이전틱 코딩 급진전 (thursdai.news)
