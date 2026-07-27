@@ -756,6 +756,34 @@ MD
 # provision — 어떤 프로젝트든 팀을 보장:
 #   있는 에이전트는 배정, 없는 역할은 자동 생성·습득 후 배정
 # ══════════════════════════════════════════════════════════════════════
+# 프로젝트 CLAUDE.md 에 팀 자동라우팅 규칙(관리 블록)을 심는다 — 자연어 요청을 알맞은 에이전트로 위임.
+_write_routing() {
+  local proj="$1" cm="$1/CLAUDE.md"
+  local S='<!-- AGENT-TEAM:ROUTING START -->' E='<!-- AGENT-TEAM:ROUTING END -->'
+  local tmp="$proj/.claude/routing.tmp"
+  cat > "$tmp" <<'ROUTING'
+<!-- AGENT-TEAM:ROUTING START -->
+## 팀 자동 라우팅 규칙 (agent-team — 자동 생성)
+사용자가 목표만 말하면 메인이 직접 처리하지 말고 알맞은 팀원에게 **자동 위임**한다. 사용자는 에이전트 이름을 몰라도 된다.
+- **화면/UI/디자인 요청**("~ 디자인해줘", "화면 만들어줘") → **design-lead**(또는 ui-ux-designer/rakwan-designer)에게 위임. 이 에이전트는 **design-inspiration 스킬로 Pinterest(kr.pinterest.com)를 먼저 조사**해 레퍼런스·무드보드를 제시한 뒤 시안을 만든다.
+- 기획/PRD → product-planner · 요구사항/화면설계서 → analyst
+- 사업계획서 → business-plan-writer · 투자 피치덱 → pitch-deck-writer · 시장리서치 → market-researcher
+- 구현 → flutter-builder/supabase-backend/ai-generative-engineer · 검증 → flutter-tester/flutter-code-reviewer/security-privacy
+- 여러 단계가 필요하면 **tech-lead**가 총괄해 위 팀원들에게 분배한다.
+문서 산출물은 해당 스킬(docx/pptx/xlsx)로 실제 파일까지 생성한다.
+<!-- AGENT-TEAM:ROUTING END -->
+ROUTING
+  if [ -f "$cm" ] && grep -qF "$S" "$cm"; then
+    # 기존 블록 교체
+    awk -v s="$S" -v e="$E" 'BEGIN{sk=0} $0==s{sk=1} sk&&$0==e{sk=0;next} !sk{print}' "$cm" > "$cm.n" && mv "$cm.n" "$cm"
+    { cat "$cm"; echo; cat "$tmp"; } > "$cm.n" && mv "$cm.n" "$cm"
+  else
+    { [ -f "$cm" ] && cat "$cm"; [ -f "$cm" ] && echo; cat "$tmp"; } > "$cm.n" && mv "$cm.n" "$cm"
+  fi
+  rm -f "$tmp"
+  ok "라우팅 규칙 심음 → $cm  ${C_DIM}(\"디자인해줘\" 하면 디자이너가 Pinterest 자동 참고)${C_RESET}"
+}
+
 cmd_provision() {
   local proj="" team="" force=0 prune=0
   local -a needs=()
@@ -849,6 +877,7 @@ cmd_provision() {
   "last_run": null
 }
 JSON
+  _write_routing "$proj"
   log ""
   local prunemsg=""; [ "$prune" -eq 1 ] && prunemsg=" · 정리 $pruned"
   ok "배정 ${C_GREEN}$assigned${C_RESET} · 신규습득 ${C_YELLOW}$created${C_RESET} · 기존유지 $kept${prunemsg}"
