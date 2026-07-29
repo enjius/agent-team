@@ -130,31 +130,49 @@ _proj_state() {  # $1=projdir
   else echo idle; fi
 }
 
-# 프로젝트 → 그 프로젝트의 최신 Claude Code 세션 트랜스크립트(.jsonl) 파일 경로.
-# 폴더명 인코딩 규칙에 의존하지 않고, 각 트랜스크립트의 "cwd" 필드로 매칭(가장 확실).
-_proj_transcript_file() {  # $1=projdir → 최신 jsonl 경로(없으면 무출력)
-  local p="$1" pdir enc d base f
-  pdir="$HOME/.claude/projects"
-  [ -d "$pdir" ] || return 0
-  # 1) 인코딩 추정 폴더 (빠른 경로)
-  enc=$(printf '%s' "$p" | sed 's#[/.]#-#g')
-  if [ -d "$pdir/$enc" ]; then
-    f=$(ls -t "$pdir/$enc"/*.jsonl 2>/dev/null | head -1)
-    [ -n "$f" ] && { echo "$f"; return; }
-  fi
-  # 2) 폴백: 모든 세션의 최신 jsonl 을 훑어 cwd 가 이 프로젝트인 것 중 가장 최근 파일
-  #    (인코딩 규칙이 달라도 정확히 매칭됨)
-  while IFS= read -r f; do
-    [ -n "$f" ] || continue
-    # 파일 앞부분에서 cwd 확인 (세션 내내 동일)
-    if head -n 40 "$f" 2>/dev/null | grep -qF "\"cwd\":\"$p\""; then
-      echo "$f"; return
+# Claude Code 트랜스크립트 projects 루트들. CLAUDE_CONFIG_DIR 분리(.claude-work 등)를
+# 쓰는 환경도 모두 커버하려고 ~/.claude* 를 전부 자동 탐색한다.
+#   AGENT_TEAM_CLAUDE_DIRS(콜론구분)로 추가 지정 가능.
+_claude_project_roots() {
+  { [ -n "${CLAUDE_CONFIG_DIR:-}" ] && printf '%s\n' "$CLAUDE_CONFIG_DIR/projects"
+    if [ -n "${AGENT_TEAM_CLAUDE_DIRS:-}" ]; then
+      printf '%s\n' "$AGENT_TEAM_CLAUDE_DIRS" | tr ':' '\n' | sed 's#$#/projects#'
     fi
-  done < <(ls -t "$pdir"/*/*.jsonl 2>/dev/null)
+    printf '%s\n' "$HOME/.claude/projects"
+    local d; for d in "$HOME"/.claude*/projects; do [ -d "$d" ] && printf '%s\n' "$d"; done
+  } 2>/dev/null | awk 'NF && !seen[$0]++'
+}
+
+# 프로젝트 → 그 프로젝트의 최신 Claude Code 세션 트랜스크립트(.jsonl) 파일 경로.
+# 여러 config 루트를 다 뒤지고, 폴더명 인코딩(추정)이 어긋나도 "cwd" 필드로 매칭.
+_proj_transcript_file() {  # $1=projdir → 최신 jsonl 경로(없으면 무출력)
+  local p="$1" enc root d base f best="" bestm=0 m
+  # Claude Code 인코딩: 경로의 '/'·'.'·'_' 를 '-' 로 치환 (예: tradinview_app → -...-tradinview-app)
+  enc=$(printf '%s' "$p" | sed 's#[/._]#-#g')
+  # 1) 인코딩 추정 폴더 (빠른 경로) — 모든 루트에서 가장 최근 jsonl 채택
+  while IFS= read -r root; do
+    [ -d "$root/$enc" ] || continue
+    for f in "$root/$enc"/*.jsonl; do
+      [ -f "$f" ] || continue
+      m=$(stat -c %Y "$f" 2>/dev/null) || m=$(stat -f %m "$f" 2>/dev/null) || m=0
+      [ "${m:-0}" -gt "$bestm" ] && { bestm=$m; best=$f; }
+    done
+  done < <(_claude_project_roots)
+  [ -n "$best" ] && { echo "$best"; return; }
+  # 2) 폴백: 모든 루트의 세션을 훑어 cwd 가 이 프로젝트인 최신 파일
+  while IFS= read -r root; do
+    [ -d "$root" ] || continue
+    while IFS= read -r f; do
+      [ -n "$f" ] || continue
+      if head -n 40 "$f" 2>/dev/null | grep -qF "\"cwd\":\"$p\""; then echo "$f"; return; fi
+    done < <(ls -t "$root"/*/*.jsonl 2>/dev/null)
+  done < <(_claude_project_roots)
   # 3) 마지막 폴백: basename 으로 끝나는 폴더의 최신 jsonl
   base=$(basename "$p")
-  d=$(ls -dt "$pdir/"*"-$base" 2>/dev/null | head -1)
-  [ -n "$d" ] && [ -d "$d" ] && ls -t "$d"/*.jsonl 2>/dev/null | head -1
+  while IFS= read -r root; do
+    d=$(ls -dt "$root/"*"-$base" 2>/dev/null | head -1)
+    [ -n "$d" ] && [ -d "$d" ] && { ls -t "$d"/*.jsonl 2>/dev/null | head -1; return; }
+  done < <(_claude_project_roots)
 }
 
 # 프로젝트에서 "지금 실행 중"인 서브에이전트 이름들.
