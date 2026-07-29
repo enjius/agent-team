@@ -237,6 +237,22 @@ _active_agents_for_proj() {  # $1=projdir → 활성 서브에이전트 이름(�
   } | sort -u
 }
 
+# 프로젝트에서 "최근 실제로 일한" 서브에이전트 이름들 (끝났어도 포함).
+#   최근 세션(AGENT_TEAM_RECENT_WIN, 기본 6시간)에 등장한 subagent_type 전부.
+#   → '지금 실행중'은 아니지만 최근 이 프로젝트에서 활동한 팀원을 은은히 표시하는 용도.
+_recent_agents_for_proj() {  # $1=projdir → 최근 활동 서브에이전트 이름(줄단위)
+  local pdir="$1" now win f m
+  now=$(date +%s); win=${AGENT_TEAM_RECENT_WIN:-21600}
+  {
+    while IFS= read -r f; do
+      [ -f "$f" ] || continue
+      m=$(stat -c %Y "$f" 2>/dev/null) || m=$(stat -f %m "$f" 2>/dev/null) || m=0
+      [ $((now - ${m:-0})) -le "$win" ] || continue
+      grep -oE '"subagent_type":"[^"]+"' "$f" 2>/dev/null | sed 's/.*:"//;s/"$//'
+    done < <(_proj_transcript_files "$pdir")
+  } | sort -u
+}
+
 # ── 프론트매터 필드 추출 (name/description/model) ─────────────────────
 # 첫 --- ... --- 블록에서 `key: value` 파싱. BSD/GNU awk 호환.
 front_field() {
@@ -1485,6 +1501,7 @@ cmd_board() {
   local projstate="$tmp/projstate"; : > "$projstate" # project<TAB>state
   local hq="$tmp/hq"; : > "$hq"
   local agentactive="$tmp/agentactive"; : > "$agentactive"  # name<TAB>project (진짜 호출된 팀원)
+  local agentrecent="$tmp/agentrecent"; : > "$agentrecent"  # name<TAB>project (최근 활동 팀원)
 
   # 1) 프로젝트 → 투입 팀원 맵 + 실행 상태 + 진짜 활성 팀원
   local pcount=0
@@ -1511,6 +1528,13 @@ cmd_board() {
           [ -n "$an" ] && printf '%s\t%s\n' "$an" "$pbase" >> "$agentactive"
         done < <(_active_agents_for_proj "$pdir")
       fi
+      # 최근 활동(끝났어도) 팀원 — 모든 프로젝트 대상, 은은한 표시용
+      if [ "${AGENT_TEAM_SPIN_ALL:-0}" != "1" ]; then
+        local rn
+        while IFS= read -r rn; do
+          [ -n "$rn" ] && printf '%s\t%s\n' "$rn" "$pbase" >> "$agentrecent"
+        done < <(_recent_agents_for_proj "$pdir")
+      fi
       while IFS= read -r pf; do
         [ -n "$pf" ] || continue
         local pn; pn=$(front_field "$pf" "name"); [ -n "$pn" ] || pn=$(basename "$pf" .md)
@@ -1526,17 +1550,21 @@ cmd_board() {
   # working 은 "그 프로젝트에서 실제로 호출된(활성)" 경우만. 투입만 된 팀원은 wait.
   # → 작업중 카운트와 카드 스피너가 "진짜 사용중"과 항상 일치.
   local namestate="$tmp/namestate"; : > "$namestate"
-  awk -F'\t' -v f_ps="$projstate" -v f_aa="$agentactive" -v f_pm="$projmap" '
+  awk -F'\t' -v f_ps="$projstate" -v f_aa="$agentactive" -v f_ar="$agentrecent" -v f_pm="$projmap" '
     FILENAME==f_ps { st[$1]=$2; next }
     FILENAME==f_aa { act[$1 SUBSEP $2]=1; next }
+    FILENAME==f_ar { rec[$1 SUBSEP $2]=1; next }
     FILENAME==f_pm {
       n=$1; p=$2; s=st[p]
-      if (s=="working" && !((n SUBSEP p) in act)) s="wait"   # 투입됐지만 미호출 → 대기
-      r=(s=="working"?3:(s=="done"?2:(s=="wait"?1:0)))
+      # working 이지만 실제 실행중 아님 → 최근 활동했으면 recent, 아니면 wait
+      if (s=="working" && !((n SUBSEP p) in act)) s=(((n SUBSEP p) in rec)?"recent":"wait")
+      # 프로젝트가 idle/done 이어도 최근 활동했으면 recent 로 표시
+      else if (s!="working" && ((n SUBSEP p) in rec)) s="recent"
+      r=(s=="working"?4:(s=="recent"?3:(s=="done"?2:(s=="wait"?1:0))))
       if (!(n in cur) || r>rk[n]) { cur[n]=s; rk[n]=r }
     }
     END { for (n in cur) print n "\t" cur[n] }
-  ' "$projstate" "$agentactive" "$projmap" > "$namestate" 2>/dev/null || : > "$namestate"
+  ' "$projstate" "$agentactive" "$agentrecent" "$projmap" > "$namestate" 2>/dev/null || : > "$namestate"
 
   # 2) 본부 로스터 수집 (이름 중복 제거, 지식날짜 있는 쪽 우선)
   local seen="$tmp/seen"; : > "$seen"
@@ -1571,12 +1599,13 @@ cmd_board() {
     grep -qxF "$_n" "$seen" || extra=$((extra+1))
   done < "$namestate"
   total=$((total+extra))
-  # 작업중/완료 = 집계 상태 기준(=실제로 스피너 도는 고유 팀원 수)
-  local workcnt donecnt
+  # 작업중/최근/완료 = 집계 상태 기준(=실제로 스피너 도는 고유 팀원 수)
+  local workcnt donecnt recentcnt
   workcnt=$(awk -F'\t' '$2=="working"' "$namestate" | wc -l | tr -d ' ')
+  recentcnt=$(awk -F'\t' '$2=="recent"' "$namestate" | wc -l | tr -d ' ')
   donecnt=$(awk -F'\t' '$2=="done"' "$namestate" | wc -l | tr -d ' ')
-  local waitcnt=$((total-workcnt-donecnt)); [ "$waitcnt" -lt 0 ] && waitcnt=0
-  local bench=$((total-workcnt-donecnt))
+  local waitcnt=$((total-workcnt-donecnt-recentcnt)); [ "$waitcnt" -lt 0 ] && waitcnt=0
+  local bench=$waitcnt
 
   # 부서 → 이모지 / 색상
   _dept_emoji() { case "$1" in
@@ -1595,6 +1624,7 @@ cmd_board() {
     local scls slabel
     if [ -n "$dp" ]; then
       if [ "$ps" = "working" ]; then scls="a-work"; slabel="🟢 작업중 · $(_html_esc "$dp")"
+      elif [ "$ps" = "recent" ]; then scls="a-recent"; slabel="🟡 최근 활동 · $(_html_esc "$dp")"
       elif [ "$ps" = "done" ]; then scls="a-done"; slabel="✔ 완료 · $(_html_esc "$dp")"
       else scls="a-wait"; slabel="⏳ 대기 · $(_html_esc "$dp")"; fi
     else scls="a-bench"; slabel="🏢 본부 대기"; fi
@@ -1627,7 +1657,7 @@ h1{font-size:22px;margin:0}
 .mac{font-size:12px;font-weight:600;color:#58a6ff;background:#1f6feb22;border:1px solid #1f6feb55;border-radius:20px;padding:2px 10px;vertical-align:middle}
 .tile{background:#161b2288;border:1px solid var(--bd);border-radius:12px;padding:8px 14px;min-width:96px}
 .tile .n{font-size:22px;font-weight:800;line-height:1}.tile .l{color:var(--dim);font-size:11px;margin-top:2px}
-.tile.g .n{color:#3fb950}.tile.b .n{color:var(--acc)}.tile.w .n{color:#d29922}.tile.p .n{color:#d2a8ff}
+.tile.g .n{color:#3fb950}.tile.b .n{color:var(--acc)}.tile.w .n{color:#d29922}.tile.p .n{color:#d2a8ff}.tile.y .n{color:#e3b341}
 .section{margin:24px 0 10px;font-size:15px;font-weight:800;letter-spacing:.3px}
 .map{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
 .room{--dc:#8b949e;background:linear-gradient(180deg,#1b222d,#141922);border:1px solid var(--bd);border-top:3px solid var(--dc);border-radius:16px;padding:12px 12px 14px;box-shadow:0 10px 30px #0005}
@@ -1645,6 +1675,8 @@ h1{font-size:22px;margin:0}
 .spnr{display:inline-block;width:12px;height:12px;border-radius:50%;border:2px solid #3fb95055;border-top-color:#3fb950;animation:spin .8s linear infinite;vertical-align:-2px;margin-right:5px}
 @keyframes spin{to{transform:rotate(360deg)}}
 .a-done .ava{border-color:#1f6feb;box-shadow:0 0 0 3px #1f6feb22}
+.a-recent .ava{border-color:#e3b341;animation:glowY 2.2s ease-in-out infinite}
+@keyframes glowY{0%,100%{box-shadow:0 0 0 3px #e3b34122}50%{box-shadow:0 0 0 6px #e3b34144}}
 .a-wait .ava{border-color:#9e6a03}
 .a-bench .ava{opacity:.85}
 .kb{position:absolute;bottom:-4px;right:-4px;width:20px;height:20px;border-radius:50%;font-size:10px;display:flex;align-items:center;justify-content:center;border:2px solid #0b0f16;font-weight:800;z-index:2}
@@ -1667,7 +1699,7 @@ h1{font-size:22px;margin:0}
 <h1>🏛 에이전트 본부 <span class="mac">💻 ${machine}</span></h1>
 <div class="tile b"><div class="n">${total}</div><div class="l">전체 팀원</div></div>
 <div class="tile g"><div class="n">${workcnt}</div><div class="l">🟢 작업 중</div></div>
-<div class="tile"><div class="n">${donecnt}</div><div class="l">✔ 완료</div></div>
+<div class="tile y"><div class="n">${recentcnt}</div><div class="l">🟡 최근 활동</div></div>
 <div class="tile w"><div class="n">${waitcnt}</div><div class="l">⏳ 대기</div></div>
 <div class="tile p"><div class="n">${pcount}</div><div class="l">🎯 프로젝트</div></div>
 <div class="sub">🖥 ${muser}@${machine} · 생성 ${now} · <span style="color:#3fb950">📚 습득함</span> / <span style="color:#8b949e">✕ 미습득(흐릿)</span> · 마우스 올리면 상세</div>
@@ -1727,11 +1759,12 @@ HTMLHEAD
           ds=$(printf '%s' "$ds" | tr '\t' ' ')
           kd=$(grep -m1 -oE '최신 지식 \([0-9]{4}-[0-9]{2}-[0-9]{2}\)' "$pf" 2>/dev/null | grep -oE '[0-9]{4}-[0-9]{2}-[0-9]{2}' || true)
           dpt=$(_dept_of "$nm")
-          # 카드 상태: 프로젝트가 working 이어도 "실제 호출된" 팀원만 working(스피너).
-          eps="$pst"
-          if [ "$pst" = "working" ] && ! grep -qF "$(printf '%s\t%s' "$nm" "$pbase")" "$agentactive"; then
-            eps="wait"
-          fi
+          # 카드 상태: 실제 실행중이면 working(스피너), 아니면 최근 활동이면 recent(글로우),
+          #            그 외엔 프로젝트 상태(대기/완료).
+          if grep -qF "$(printf '%s\t%s' "$nm" "$pbase")" "$agentactive"; then eps="working"
+          elif grep -qF "$(printf '%s\t%s' "$nm" "$pbase")" "$agentrecent"; then eps="recent"
+          elif [ "$pst" = "done" ]; then eps="done"
+          else eps="wait"; fi
           _chip "$nm" "$md" "$kd" "$ds" "$pbase" "$eps" "$dpt"
         done < <(find "$ad" -maxdepth 1 -type f -name '*.md' | sort)
         printf '</div></div>\n'
