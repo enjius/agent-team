@@ -130,47 +130,71 @@ _proj_state() {  # $1=projdir
   else echo idle; fi
 }
 
-# 프로젝트 → Claude Code 세션 트랜스크립트 폴더 (~/.claude/projects/<인코딩된 경로>)
-# Claude Code 는 프로젝트 절대경로의 '/'·'.' 를 '-' 로 바꿔 폴더명으로 쓴다.
-_proj_transcript_dir() {  # $1=projdir → 트랜스크립트 폴더 경로 출력(없으면 무출력)
-  local p="$1" enc d base
+# 프로젝트 → 그 프로젝트의 최신 Claude Code 세션 트랜스크립트(.jsonl) 파일 경로.
+# 폴더명 인코딩 규칙에 의존하지 않고, 각 트랜스크립트의 "cwd" 필드로 매칭(가장 확실).
+_proj_transcript_file() {  # $1=projdir → 최신 jsonl 경로(없으면 무출력)
+  local p="$1" pdir enc d base f
+  pdir="$HOME/.claude/projects"
+  [ -d "$pdir" ] || return 0
+  # 1) 인코딩 추정 폴더 (빠른 경로)
   enc=$(printf '%s' "$p" | sed 's#[/.]#-#g')
-  d="$HOME/.claude/projects/$enc"
-  [ -d "$d" ] && { echo "$d"; return; }
-  # 폴백: basename 으로 끝나는 폴더 중 최신 (인코딩 규칙이 달라도 매칭)
+  if [ -d "$pdir/$enc" ]; then
+    f=$(ls -t "$pdir/$enc"/*.jsonl 2>/dev/null | head -1)
+    [ -n "$f" ] && { echo "$f"; return; }
+  fi
+  # 2) 폴백: 모든 세션의 최신 jsonl 을 훑어 cwd 가 이 프로젝트인 것 중 가장 최근 파일
+  #    (인코딩 규칙이 달라도 정확히 매칭됨)
+  while IFS= read -r f; do
+    [ -n "$f" ] || continue
+    # 파일 앞부분에서 cwd 확인 (세션 내내 동일)
+    if head -n 40 "$f" 2>/dev/null | grep -qF "\"cwd\":\"$p\""; then
+      echo "$f"; return
+    fi
+  done < <(ls -t "$pdir"/*/*.jsonl 2>/dev/null)
+  # 3) 마지막 폴백: basename 으로 끝나는 폴더의 최신 jsonl
   base=$(basename "$p")
-  d=$(ls -dt "$HOME/.claude/projects/"*"-$base" 2>/dev/null | head -1)
-  [ -n "$d" ] && [ -d "$d" ] && echo "$d"
+  d=$(ls -dt "$pdir/"*"-$base" 2>/dev/null | head -1)
+  [ -n "$d" ] && [ -d "$d" ] && ls -t "$d"/*.jsonl 2>/dev/null | head -1
 }
 
-# 프로젝트에서 "진짜 사용 중"인 서브에이전트 이름들 (실제 호출된 것만)
-#   트랜스크립트 tail 에서 최근(window) 안에 호출된 subagent_type 만 활성으로 본다.
-#   → 프로젝트에 투입만 되고 호출 안 된 팀원은 활성 아님(스피너 X).
-#   AGENT_TEAM_ACTIVE_WIN(초, 기본 180)로 최근 판정 창 조절.
+# 프로젝트에서 "지금 실행 중"인 서브에이전트 이름들.
+#   판정: Task 호출(tool_use)에 대응하는 결과(tool_result)가 아직 없으면 = 실행 중.
+#   → 실행하는 동안 내내 스피너 유지, 끝나면(tool_result 도착) 자동 정지.
+#   → 투입만 되고 호출 안 된 팀원은 활성 아님(스피너 X).
+#   AGENT_TEAM_ACTIVE_WIN(초, 기본 1800): 이보다 오래 안 움직인 세션은 무시(좀비 방지).
 _active_agents_for_proj() {  # $1=projdir → 활성 서브에이전트 이름(줄단위)
-  local pdir="$1" tdir latest now win mtime cutoff
-  tdir=$(_proj_transcript_dir "$pdir"); [ -n "$tdir" ] || return 0
-  latest=$(ls -t "$tdir"/*.jsonl 2>/dev/null | head -1); [ -n "$latest" ] || return 0
-  now=$(date +%s); win=${AGENT_TEAM_ACTIVE_WIN:-180}
-  # mtime: GNU(stat -c) 먼저 시도 → 실패 시 BSD/macOS(stat -f). 순서 중요(GNU는 -f 가 딴뜻).
+  local pdir="$1" latest now win mtime
+  latest=$(_proj_transcript_file "$pdir"); [ -n "$latest" ] || return 0
+  now=$(date +%s); win=${AGENT_TEAM_ACTIVE_WIN:-1800}
   mtime=$(stat -c %Y "$latest" 2>/dev/null) || mtime=$(stat -f %m "$latest" 2>/dev/null) || mtime=0
   [ -n "$mtime" ] || mtime=0
-  # 세션 자체가 최근에 안 움직였으면(대화 안 함) 활성 없음
-  [ $((now - mtime)) -le "$win" ] || return 0
-  cutoff=$(date -u -r $((now-win)) +%Y-%m-%dT%H:%M:%S 2>/dev/null \
-        || date -u -d "@$((now-win))" +%Y-%m-%dT%H:%M:%S 2>/dev/null || echo "")
-  tail -n 1200 "$latest" 2>/dev/null | awk -v cut="$cutoff" '
+  [ $((now - mtime)) -le "$win" ] || return 0   # 좀비 세션(오래 정지) 무시
+  # 끝나지 않은 Task 의 subagent_type 추출 (id ↔ subagent_type 짝, tool_result 없는 id만)
+  awk '
     {
-      ts=""
-      if (match($0,/"timestamp":"[0-9T:.-]+/)) ts=substr($0,RSTART+13,19)
-      if (cut!="" && ts!="" && ts < cut) next
-      s=$0
-      while (match(s,/"subagent_type":"[^"]+"/)) {
-        seg=substr(s,RSTART+17,RLENGTH-18)
-        print seg
-        s=substr(s,RSTART+RLENGTH)
+      line=$0
+      # (a) 이 줄의 Task tool_use 들: "id":"toolu_..","name":"Task" + 뒤의 subagent_type 짝짓기
+      s=line
+      while (match(s,/"id":"toolu_[^"]+","name":"Task"/)) {
+        seg=substr(s,RSTART,RLENGTH); id=seg
+        sub(/^"id":"/,"",id); sub(/","name":"Task"$/,"",id)
+        rest=substr(s,RSTART+RLENGTH)
+        if (match(rest,/"subagent_type":"[^"]+"/)) {
+          st=substr(rest,RSTART,RLENGTH); sub(/^"subagent_type":"/,"",st); sub(/"$/,"",st)
+          task[id]=st
+        }
+        s=rest
       }
-    }' | sort -u
+      # (b) 이 줄의 tool_result 들: 해당 tool_use_id 는 완료 처리
+      t=line
+      while (match(t,/"tool_use_id":"toolu_[^"]+"/)) {
+        rid=substr(t,RSTART,RLENGTH); sub(/^"tool_use_id":"/,"",rid); sub(/"$/,"",rid)
+        done_[rid]=1
+        t=substr(t,RSTART+RLENGTH)
+      }
+    }
+    END { for (id in task) if (!(id in done_)) print task[id] }
+  ' "$latest" 2>/dev/null | sort -u
 }
 
 # ── 프론트매터 필드 추출 (name/description/model) ─────────────────────
