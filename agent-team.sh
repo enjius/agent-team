@@ -175,44 +175,66 @@ _proj_transcript_file() {  # $1=projdir → 최신 jsonl 경로(없으면 무출
   done < <(_claude_project_roots)
 }
 
+# 프로젝트의 모든 세션 트랜스크립트(.jsonl) 파일 나열 (동시에 여러 세션 실행 대비).
+_proj_transcript_files() {  # $1=projdir → jsonl 경로들(줄단위)
+  local p="$1" enc root got=0 f
+  enc=$(printf '%s' "$p" | sed 's#[/._]#-#g')
+  # 1) 인코딩 추정 폴더의 모든 세션
+  while IFS= read -r root; do
+    [ -d "$root/$enc" ] || continue
+    for f in "$root/$enc"/*.jsonl; do [ -f "$f" ] && { echo "$f"; got=1; }; done
+  done < <(_claude_project_roots)
+  [ "$got" = 1 ] && return 0
+  # 2) 폴백: cwd 로 매칭되는 파일 (인코딩 규칙이 다를 때)
+  while IFS= read -r root; do
+    [ -d "$root" ] || continue
+    while IFS= read -r f; do
+      [ -n "$f" ] || continue
+      head -n 40 "$f" 2>/dev/null | grep -qF "\"cwd\":\"$p\"" && echo "$f"
+    done < <(ls -t "$root"/*/*.jsonl 2>/dev/null)
+  done < <(_claude_project_roots)
+}
+
 # 프로젝트에서 "지금 실행 중"인 서브에이전트 이름들.
 #   판정: Task 호출(tool_use)에 대응하는 결과(tool_result)가 아직 없으면 = 실행 중.
 #   → 실행하는 동안 내내 스피너 유지, 끝나면(tool_result 도착) 자동 정지.
 #   → 투입만 되고 호출 안 된 팀원은 활성 아님(스피너 X).
+#   같은 프로젝트에서 세션을 여러 개 띄워도(동시 병렬) 모든 live 세션을 합산한다.
 #   AGENT_TEAM_ACTIVE_WIN(초, 기본 1800): 이보다 오래 안 움직인 세션은 무시(좀비 방지).
 _active_agents_for_proj() {  # $1=projdir → 활성 서브에이전트 이름(줄단위)
-  local pdir="$1" latest now win mtime
-  latest=$(_proj_transcript_file "$pdir"); [ -n "$latest" ] || return 0
+  local pdir="$1" now win f m
   now=$(date +%s); win=${AGENT_TEAM_ACTIVE_WIN:-1800}
-  mtime=$(stat -c %Y "$latest" 2>/dev/null) || mtime=$(stat -f %m "$latest" 2>/dev/null) || mtime=0
-  [ -n "$mtime" ] || mtime=0
-  [ $((now - mtime)) -le "$win" ] || return 0   # 좀비 세션(오래 정지) 무시
-  # 끝나지 않은 Task 의 subagent_type 추출 (id ↔ subagent_type 짝, tool_result 없는 id만)
-  awk '
-    {
-      line=$0
-      # (a) 이 줄의 Task tool_use 들: "id":"toolu_..","name":"Task" + 뒤의 subagent_type 짝짓기
-      s=line
-      while (match(s,/"id":"toolu_[^"]+","name":"Task"/)) {
-        seg=substr(s,RSTART,RLENGTH); id=seg
-        sub(/^"id":"/,"",id); sub(/","name":"Task"$/,"",id)
-        rest=substr(s,RSTART+RLENGTH)
-        if (match(rest,/"subagent_type":"[^"]+"/)) {
-          st=substr(rest,RSTART,RLENGTH); sub(/^"subagent_type":"/,"",st); sub(/"$/,"",st)
-          task[id]=st
+  {
+    while IFS= read -r f; do
+      [ -f "$f" ] || continue
+      m=$(stat -c %Y "$f" 2>/dev/null) || m=$(stat -f %m "$f" 2>/dev/null) || m=0
+      [ $((now - ${m:-0})) -le "$win" ] || continue   # 최근에 안 움직인 세션은 스킵
+      # 끝나지 않은 Task 의 subagent_type 추출 (id ↔ subagent_type 짝, tool_result 없는 id만)
+      awk '
+        {
+          line=$0
+          s=line
+          while (match(s,/"id":"toolu_[^"]+","name":"Task"/)) {
+            seg=substr(s,RSTART,RLENGTH); id=seg
+            sub(/^"id":"/,"",id); sub(/","name":"Task"$/,"",id)
+            rest=substr(s,RSTART+RLENGTH)
+            if (match(rest,/"subagent_type":"[^"]+"/)) {
+              st=substr(rest,RSTART,RLENGTH); sub(/^"subagent_type":"/,"",st); sub(/"$/,"",st)
+              task[id]=st
+            }
+            s=rest
+          }
+          t=line
+          while (match(t,/"tool_use_id":"toolu_[^"]+"/)) {
+            rid=substr(t,RSTART,RLENGTH); sub(/^"tool_use_id":"/,"",rid); sub(/"$/,"",rid)
+            done_[rid]=1
+            t=substr(t,RSTART+RLENGTH)
+          }
         }
-        s=rest
-      }
-      # (b) 이 줄의 tool_result 들: 해당 tool_use_id 는 완료 처리
-      t=line
-      while (match(t,/"tool_use_id":"toolu_[^"]+"/)) {
-        rid=substr(t,RSTART,RLENGTH); sub(/^"tool_use_id":"/,"",rid); sub(/"$/,"",rid)
-        done_[rid]=1
-        t=substr(t,RSTART+RLENGTH)
-      }
-    }
-    END { for (id in task) if (!(id in done_)) print task[id] }
-  ' "$latest" 2>/dev/null | sort -u
+        END { for (id in task) if (!(id in done_)) print task[id] }
+      ' "$f" 2>/dev/null
+    done < <(_proj_transcript_files "$pdir")
+  } | sort -u
 }
 
 # ── 프론트매터 필드 추출 (name/description/model) ─────────────────────
