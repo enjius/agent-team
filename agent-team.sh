@@ -130,6 +130,129 @@ _proj_state() {  # $1=projdir
   else echo idle; fi
 }
 
+# Claude Code 트랜스크립트 projects 루트들. CLAUDE_CONFIG_DIR 분리(.claude-work 등)를
+# 쓰는 환경도 모두 커버하려고 ~/.claude* 를 전부 자동 탐색한다.
+#   AGENT_TEAM_CLAUDE_DIRS(콜론구분)로 추가 지정 가능.
+_claude_project_roots() {
+  { [ -n "${CLAUDE_CONFIG_DIR:-}" ] && printf '%s\n' "$CLAUDE_CONFIG_DIR/projects"
+    if [ -n "${AGENT_TEAM_CLAUDE_DIRS:-}" ]; then
+      printf '%s\n' "$AGENT_TEAM_CLAUDE_DIRS" | tr ':' '\n' | sed 's#$#/projects#'
+    fi
+    printf '%s\n' "$HOME/.claude/projects"
+    local d; for d in "$HOME"/.claude*/projects; do [ -d "$d" ] && printf '%s\n' "$d"; done
+  } 2>/dev/null | awk 'NF && !seen[$0]++'
+}
+
+# 프로젝트 → 그 프로젝트의 최신 Claude Code 세션 트랜스크립트(.jsonl) 파일 경로.
+# 여러 config 루트를 다 뒤지고, 폴더명 인코딩(추정)이 어긋나도 "cwd" 필드로 매칭.
+_proj_transcript_file() {  # $1=projdir → 최신 jsonl 경로(없으면 무출력)
+  local p="$1" enc root d base f best="" bestm=0 m
+  # Claude Code 인코딩: 경로의 '/'·'.'·'_' 를 '-' 로 치환 (예: tradinview_app → -...-tradinview-app)
+  enc=$(printf '%s' "$p" | sed 's#[/._]#-#g')
+  # 1) 인코딩 추정 폴더 (빠른 경로) — 모든 루트에서 가장 최근 jsonl 채택
+  while IFS= read -r root; do
+    [ -d "$root/$enc" ] || continue
+    for f in "$root/$enc"/*.jsonl; do
+      [ -f "$f" ] || continue
+      m=$(stat -c %Y "$f" 2>/dev/null) || m=$(stat -f %m "$f" 2>/dev/null) || m=0
+      [ "${m:-0}" -gt "$bestm" ] && { bestm=$m; best=$f; }
+    done
+  done < <(_claude_project_roots)
+  [ -n "$best" ] && { echo "$best"; return; }
+  # 2) 폴백: 모든 루트의 세션을 훑어 cwd 가 이 프로젝트인 최신 파일
+  while IFS= read -r root; do
+    [ -d "$root" ] || continue
+    while IFS= read -r f; do
+      [ -n "$f" ] || continue
+      if head -n 40 "$f" 2>/dev/null | grep -qF "\"cwd\":\"$p\""; then echo "$f"; return; fi
+    done < <(ls -t "$root"/*/*.jsonl 2>/dev/null)
+  done < <(_claude_project_roots)
+  # 3) 마지막 폴백: basename 으로 끝나는 폴더의 최신 jsonl
+  base=$(basename "$p")
+  while IFS= read -r root; do
+    d=$(ls -dt "$root/"*"-$base" 2>/dev/null | head -1)
+    [ -n "$d" ] && [ -d "$d" ] && { ls -t "$d"/*.jsonl 2>/dev/null | head -1; return; }
+  done < <(_claude_project_roots)
+}
+
+# 프로젝트의 모든 세션 트랜스크립트(.jsonl) 파일 나열 (동시에 여러 세션 실행 대비).
+_proj_transcript_files() {  # $1=projdir → jsonl 경로들(줄단위)
+  local p="$1" enc root got=0 f
+  enc=$(printf '%s' "$p" | sed 's#[/._]#-#g')
+  # 1) 인코딩 추정 폴더의 모든 세션
+  while IFS= read -r root; do
+    [ -d "$root/$enc" ] || continue
+    for f in "$root/$enc"/*.jsonl; do [ -f "$f" ] && { echo "$f"; got=1; }; done
+  done < <(_claude_project_roots)
+  [ "$got" = 1 ] && return 0
+  # 2) 폴백: cwd 로 매칭되는 파일 (인코딩 규칙이 다를 때)
+  while IFS= read -r root; do
+    [ -d "$root" ] || continue
+    while IFS= read -r f; do
+      [ -n "$f" ] || continue
+      head -n 40 "$f" 2>/dev/null | grep -qF "\"cwd\":\"$p\"" && echo "$f"
+    done < <(ls -t "$root"/*/*.jsonl 2>/dev/null)
+  done < <(_claude_project_roots)
+}
+
+# 프로젝트에서 "지금 실행 중"인 서브에이전트 이름들.
+#   판정: Task 호출(tool_use)에 대응하는 결과(tool_result)가 아직 없으면 = 실행 중.
+#   → 실행하는 동안 내내 스피너 유지, 끝나면(tool_result 도착) 자동 정지.
+#   → 투입만 되고 호출 안 된 팀원은 활성 아님(스피너 X).
+#   같은 프로젝트에서 세션을 여러 개 띄워도(동시 병렬) 모든 live 세션을 합산한다.
+#   AGENT_TEAM_ACTIVE_WIN(초, 기본 1800): 이보다 오래 안 움직인 세션은 무시(좀비 방지).
+_active_agents_for_proj() {  # $1=projdir → 활성 서브에이전트 이름(줄단위)
+  local pdir="$1" now win f m
+  now=$(date +%s); win=${AGENT_TEAM_ACTIVE_WIN:-1800}
+  {
+    while IFS= read -r f; do
+      [ -f "$f" ] || continue
+      m=$(stat -c %Y "$f" 2>/dev/null) || m=$(stat -f %m "$f" 2>/dev/null) || m=0
+      [ $((now - ${m:-0})) -le "$win" ] || continue   # 최근에 안 움직인 세션은 스킵
+      # 끝나지 않은 Task 의 subagent_type 추출 (id ↔ subagent_type 짝, tool_result 없는 id만)
+      awk '
+        {
+          line=$0
+          s=line
+          while (match(s,/"id":"toolu_[^"]+","name":"Task"/)) {
+            seg=substr(s,RSTART,RLENGTH); id=seg
+            sub(/^"id":"/,"",id); sub(/","name":"Task"$/,"",id)
+            rest=substr(s,RSTART+RLENGTH)
+            if (match(rest,/"subagent_type":"[^"]+"/)) {
+              st=substr(rest,RSTART,RLENGTH); sub(/^"subagent_type":"/,"",st); sub(/"$/,"",st)
+              task[id]=st
+            }
+            s=rest
+          }
+          t=line
+          while (match(t,/"tool_use_id":"toolu_[^"]+"/)) {
+            rid=substr(t,RSTART,RLENGTH); sub(/^"tool_use_id":"/,"",rid); sub(/"$/,"",rid)
+            done_[rid]=1
+            t=substr(t,RSTART+RLENGTH)
+          }
+        }
+        END { for (id in task) if (!(id in done_)) print task[id] }
+      ' "$f" 2>/dev/null
+    done < <(_proj_transcript_files "$pdir")
+  } | sort -u
+}
+
+# 프로젝트에서 "최근 실제로 일한" 서브에이전트 이름들 (끝났어도 포함).
+#   최근 세션(AGENT_TEAM_RECENT_WIN, 기본 6시간)에 등장한 subagent_type 전부.
+#   → '지금 실행중'은 아니지만 최근 이 프로젝트에서 활동한 팀원을 은은히 표시하는 용도.
+_recent_agents_for_proj() {  # $1=projdir → 최근 활동 서브에이전트 이름(줄단위)
+  local pdir="$1" now win f m
+  now=$(date +%s); win=${AGENT_TEAM_RECENT_WIN:-21600}
+  {
+    while IFS= read -r f; do
+      [ -f "$f" ] || continue
+      m=$(stat -c %Y "$f" 2>/dev/null) || m=$(stat -f %m "$f" 2>/dev/null) || m=0
+      [ $((now - ${m:-0})) -le "$win" ] || continue
+      grep -oE '"subagent_type":"[^"]+"' "$f" 2>/dev/null | sed 's/.*:"//;s/"$//'
+    done < <(_proj_transcript_files "$pdir")
+  } | sort -u
+}
+
 # ── 프론트매터 필드 추출 (name/description/model) ─────────────────────
 # 첫 --- ... --- 블록에서 `key: value` 파싱. BSD/GNU awk 호환.
 front_field() {
@@ -1390,8 +1513,10 @@ cmd_board() {
   local projmap="$tmp/projmap"; : > "$projmap"     # name<TAB>project
   local projstate="$tmp/projstate"; : > "$projstate" # project<TAB>state
   local hq="$tmp/hq"; : > "$hq"
+  local agentactive="$tmp/agentactive"; : > "$agentactive"  # name<TAB>project (진짜 호출된 팀원)
+  local agentrecent="$tmp/agentrecent"; : > "$agentrecent"  # name<TAB>project (최근 활동 팀원)
 
-  # 1) 프로젝트 → 투입 팀원 맵 + 실행 상태
+  # 1) 프로젝트 → 투입 팀원 맵 + 실행 상태 + 진짜 활성 팀원
   local pcount=0
   local -a plist=()
   local pseen="$tmp/pseen"; : > "$pseen"
@@ -1406,27 +1531,53 @@ cmd_board() {
       grep -qxF "$pbase" "$pseen" && continue
       echo "$pbase" >> "$pseen"
       plist+=("$pdir"); pcount=$((pcount+1))
-      printf '%s\t%s\n' "$pbase" "$(_proj_state "$pdir")" >> "$projstate"
+      local pstate1; pstate1=$(_proj_state "$pdir")
+      printf '%s\t%s\n' "$pbase" "$pstate1" >> "$projstate"
+      # working 프로젝트만 트랜스크립트에서 실제 호출된 서브에이전트 추출
+      #   (SPIN_ALL=1 이면 옛 동작: 투입 전원 활성 취급)
+      if [ "$pstate1" = "working" ] && [ "${AGENT_TEAM_SPIN_ALL:-0}" != "1" ]; then
+        local an
+        while IFS= read -r an; do
+          [ -n "$an" ] && printf '%s\t%s\n' "$an" "$pbase" >> "$agentactive"
+        done < <(_active_agents_for_proj "$pdir")
+      fi
+      # 최근 활동(끝났어도) 팀원 — 모든 프로젝트 대상, 은은한 표시용
+      if [ "${AGENT_TEAM_SPIN_ALL:-0}" != "1" ]; then
+        local rn
+        while IFS= read -r rn; do
+          [ -n "$rn" ] && printf '%s\t%s\n' "$rn" "$pbase" >> "$agentrecent"
+        done < <(_recent_agents_for_proj "$pdir")
+      fi
       while IFS= read -r pf; do
         [ -n "$pf" ] || continue
         local pn; pn=$(front_field "$pf" "name"); [ -n "$pn" ] || pn=$(basename "$pf" .md)
         printf '%s\t%s\n' "$pn" "$pbase" >> "$projmap"
+        # SPIN_ALL 모드: 투입 전원을 활성으로 (구버전 호환)
+        [ "$pstate1" = "working" ] && [ "${AGENT_TEAM_SPIN_ALL:-0}" = "1" ] \
+          && printf '%s\t%s\n' "$pn" "$pbase" >> "$agentactive"
       done < <(find "$ad" -maxdepth 1 -type f -name '*.md' | sort)
     done < <(find "$proot" -maxdepth 5 -type d -path '*/.claude/agents' 2>/dev/null | sort)
   done
 
-  # 이름별 집계 상태 (한 팀원이 여러 프로젝트면 working>done>idle 우선)
-  # → 작업중/완료 카운트와 카드 스피너가 항상 일치하도록 이걸 기준으로 삼는다.
+  # 이름별 집계 상태 (한 팀원이 여러 프로젝트면 working>done>wait>idle 우선)
+  # working 은 "그 프로젝트에서 실제로 호출된(활성)" 경우만. 투입만 된 팀원은 wait.
+  # → 작업중 카운트와 카드 스피너가 "진짜 사용중"과 항상 일치.
   local namestate="$tmp/namestate"; : > "$namestate"
-  awk -F'\t' '
-    NR==FNR { st[$1]=$2; next }
-    { n=$1; s=st[$2]
-      if (s=="working") cur[n]="working"
-      else if (s=="done") { if (cur[n]!="working") cur[n]="done" }
-      else { if (!(n in cur)) cur[n]="idle" }
+  awk -F'\t' -v f_ps="$projstate" -v f_aa="$agentactive" -v f_ar="$agentrecent" -v f_pm="$projmap" '
+    FILENAME==f_ps { st[$1]=$2; next }
+    FILENAME==f_aa { act[$1 SUBSEP $2]=1; next }
+    FILENAME==f_ar { rec[$1 SUBSEP $2]=1; next }
+    FILENAME==f_pm {
+      n=$1; p=$2; s=st[p]
+      # working 이지만 실제 실행중 아님 → 최근 활동했으면 recent, 아니면 wait
+      if (s=="working" && !((n SUBSEP p) in act)) s=(((n SUBSEP p) in rec)?"recent":"wait")
+      # 프로젝트가 idle/done 이어도 최근 활동했으면 recent 로 표시
+      else if (s!="working" && ((n SUBSEP p) in rec)) s="recent"
+      r=(s=="working"?4:(s=="recent"?3:(s=="done"?2:(s=="wait"?1:0))))
+      if (!(n in cur) || r>rk[n]) { cur[n]=s; rk[n]=r }
     }
     END { for (n in cur) print n "\t" cur[n] }
-  ' "$projstate" "$projmap" > "$namestate" 2>/dev/null || : > "$namestate"
+  ' "$projstate" "$agentactive" "$agentrecent" "$projmap" > "$namestate" 2>/dev/null || : > "$namestate"
 
   # 2) 본부 로스터 수집 (이름 중복 제거, 지식날짜 있는 쪽 우선)
   local seen="$tmp/seen"; : > "$seen"
@@ -1461,12 +1612,13 @@ cmd_board() {
     grep -qxF "$_n" "$seen" || extra=$((extra+1))
   done < "$namestate"
   total=$((total+extra))
-  # 작업중/완료 = 집계 상태 기준(=실제로 스피너 도는 고유 팀원 수)
-  local workcnt donecnt
+  # 작업중/최근/완료 = 집계 상태 기준(=실제로 스피너 도는 고유 팀원 수)
+  local workcnt donecnt recentcnt
   workcnt=$(awk -F'\t' '$2=="working"' "$namestate" | wc -l | tr -d ' ')
+  recentcnt=$(awk -F'\t' '$2=="recent"' "$namestate" | wc -l | tr -d ' ')
   donecnt=$(awk -F'\t' '$2=="done"' "$namestate" | wc -l | tr -d ' ')
-  local waitcnt=$((total-workcnt-donecnt)); [ "$waitcnt" -lt 0 ] && waitcnt=0
-  local bench=$((total-workcnt-donecnt))
+  local waitcnt=$((total-workcnt-donecnt-recentcnt)); [ "$waitcnt" -lt 0 ] && waitcnt=0
+  local bench=$waitcnt
 
   # 부서 → 이모지 / 색상
   _dept_emoji() { case "$1" in
@@ -1485,6 +1637,7 @@ cmd_board() {
     local scls slabel
     if [ -n "$dp" ]; then
       if [ "$ps" = "working" ]; then scls="a-work"; slabel="🟢 작업중 · $(_html_esc "$dp")"
+      elif [ "$ps" = "recent" ]; then scls="a-recent"; slabel="🟡 최근 활동 · $(_html_esc "$dp")"
       elif [ "$ps" = "done" ]; then scls="a-done"; slabel="✔ 완료 · $(_html_esc "$dp")"
       else scls="a-wait"; slabel="⏳ 대기 · $(_html_esc "$dp")"; fi
     else scls="a-bench"; slabel="🏢 본부 대기"; fi
@@ -1517,7 +1670,7 @@ h1{font-size:22px;margin:0}
 .mac{font-size:12px;font-weight:600;color:#58a6ff;background:#1f6feb22;border:1px solid #1f6feb55;border-radius:20px;padding:2px 10px;vertical-align:middle}
 .tile{background:#161b2288;border:1px solid var(--bd);border-radius:12px;padding:8px 14px;min-width:96px}
 .tile .n{font-size:22px;font-weight:800;line-height:1}.tile .l{color:var(--dim);font-size:11px;margin-top:2px}
-.tile.g .n{color:#3fb950}.tile.b .n{color:var(--acc)}.tile.w .n{color:#d29922}.tile.p .n{color:#d2a8ff}
+.tile.g .n{color:#3fb950}.tile.b .n{color:var(--acc)}.tile.w .n{color:#d29922}.tile.p .n{color:#d2a8ff}.tile.y .n{color:#e3b341}
 .section{margin:24px 0 10px;font-size:15px;font-weight:800;letter-spacing:.3px}
 .map{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
 .room{--dc:#8b949e;background:linear-gradient(180deg,#1b222d,#141922);border:1px solid var(--bd);border-top:3px solid var(--dc);border-radius:16px;padding:12px 12px 14px;box-shadow:0 10px 30px #0005}
@@ -1535,6 +1688,8 @@ h1{font-size:22px;margin:0}
 .spnr{display:inline-block;width:12px;height:12px;border-radius:50%;border:2px solid #3fb95055;border-top-color:#3fb950;animation:spin .8s linear infinite;vertical-align:-2px;margin-right:5px}
 @keyframes spin{to{transform:rotate(360deg)}}
 .a-done .ava{border-color:#1f6feb;box-shadow:0 0 0 3px #1f6feb22}
+.a-recent .ava{border-color:#e3b341;animation:glowY 2.2s ease-in-out infinite}
+@keyframes glowY{0%,100%{box-shadow:0 0 0 3px #e3b34122}50%{box-shadow:0 0 0 6px #e3b34144}}
 .a-wait .ava{border-color:#9e6a03}
 .a-bench .ava{opacity:.85}
 .kb{position:absolute;bottom:-4px;right:-4px;width:20px;height:20px;border-radius:50%;font-size:10px;display:flex;align-items:center;justify-content:center;border:2px solid #0b0f16;font-weight:800;z-index:2}
@@ -1557,7 +1712,7 @@ h1{font-size:22px;margin:0}
 <h1>🏛 에이전트 본부 <span class="mac">💻 ${machine}</span></h1>
 <div class="tile b"><div class="n">${total}</div><div class="l">전체 팀원</div></div>
 <div class="tile g"><div class="n">${workcnt}</div><div class="l">🟢 작업 중</div></div>
-<div class="tile"><div class="n">${donecnt}</div><div class="l">✔ 완료</div></div>
+<div class="tile y"><div class="n">${recentcnt}</div><div class="l">🟡 최근 활동</div></div>
 <div class="tile w"><div class="n">${waitcnt}</div><div class="l">⏳ 대기</div></div>
 <div class="tile p"><div class="n">${pcount}</div><div class="l">🎯 프로젝트</div></div>
 <div class="sub">🖥 ${muser}@${machine} · 생성 ${now} · <span style="color:#3fb950">📚 습득함</span> / <span style="color:#8b949e">✕ 미습득(흐릿)</span> · 마우스 올리면 상세</div>
@@ -1597,22 +1752,33 @@ HTMLHEAD
         local pbase; pbase=$(basename "$pdir")
         local ad="$pdir/.claude/agents"
         local pst; pst=$(_proj_state "$pdir")
+        # 이 프로젝트에서 진짜 활성(호출된) 팀원 수
+        local pactive; pactive=$(awk -F'\t' -v p="$pbase" '$2==p' "$agentactive" 2>/dev/null | wc -l | tr -d ' ')
         local dc="#8b949e" stlabel rcls=""
-        if [ "$pst" = "working" ]; then dc="#3fb950"; stlabel='<span class="spnr"></span>작업 중'; rcls="working"
+        if [ "$pst" = "working" ]; then
+          dc="#3fb950"; rcls="working"
+          if [ "${pactive:-0}" -gt 0 ]; then stlabel="<span class=\"spnr\"></span>작업 중 · ${pactive}명 실행"
+          else stlabel='<span class="spnr"></span>세션 활성'; fi
         elif [ "$pst" = "done" ]; then dc="#1f6feb"; stlabel="✔ 완료"
         else dc="#d29922"; stlabel="⏳ 대기"; fi
         printf '<div class="room %s" style="--dc:%s"><div class="rh"><span class="re">🎯</span> %s <span class="rc">%s</span></div><div class="agents">\n' \
           "$rcls" "$dc" "$(_html_esc "$pbase")" "$stlabel"
         while IFS= read -r pf; do
           [ -n "$pf" ] || continue
-          local nm md ds kd dpt
+          local nm md ds kd dpt eps
           nm=$(front_field "$pf" "name"); [ -n "$nm" ] || nm=$(basename "$pf" .md)
           md=$(front_field "$pf" "model"); [ -n "$md" ] || md="-"
           ds=$(front_field "$pf" "description"); [ -n "$ds" ] || ds=""
           ds=$(printf '%s' "$ds" | tr '\t' ' ')
           kd=$(grep -m1 -oE '최신 지식 \([0-9]{4}-[0-9]{2}-[0-9]{2}\)' "$pf" 2>/dev/null | grep -oE '[0-9]{4}-[0-9]{2}-[0-9]{2}' || true)
           dpt=$(_dept_of "$nm")
-          _chip "$nm" "$md" "$kd" "$ds" "$pbase" "$pst" "$dpt"
+          # 카드 상태: 실제 실행중이면 working(스피너), 아니면 최근 활동이면 recent(글로우),
+          #            그 외엔 프로젝트 상태(대기/완료).
+          if grep -qF "$(printf '%s\t%s' "$nm" "$pbase")" "$agentactive"; then eps="working"
+          elif grep -qF "$(printf '%s\t%s' "$nm" "$pbase")" "$agentrecent"; then eps="recent"
+          elif [ "$pst" = "done" ]; then eps="done"
+          else eps="wait"; fi
+          _chip "$nm" "$md" "$kd" "$ds" "$pbase" "$eps" "$dpt"
         done < <(find "$ad" -maxdepth 1 -type f -name '*.md' | sort)
         printf '</div></div>\n'
       done
