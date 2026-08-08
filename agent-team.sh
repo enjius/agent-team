@@ -85,7 +85,13 @@ _autopush() {  # $1=commit message
     git add library teams 2>/dev/null || exit 0
     git diff --cached --quiet 2>/dev/null && exit 0
     git commit -q -m "${1:-chore: update agents}" 2>/dev/null || exit 0
-    git push -q 2>/dev/null || true
+    # push 전 원격 변경을 먼저 rebase — 다른 기기와 갈라져도 자동 수렴.
+    # 충돌 시 rebase를 취소하고 push를 건너뛴다(로컬 커밋은 유지, 레포를 깨진 상태로 두지 않음).
+    if git pull --rebase -q 2>/dev/null; then
+      git push -q 2>/dev/null || true
+    else
+      git rebase --abort 2>/dev/null || true
+    fi
   ) || true
 }
 
@@ -1875,6 +1881,12 @@ cmd_sync() {
       ok "변경 없음 (push 생략)"
     else
       git commit -q -m "chore: sync agents ($(date +%Y-%m-%d))"
+      # push 전 원격 변경을 먼저 rebase (여러 기기 사용 시 대형 충돌 예방)
+      if ! git pull --rebase 2>/dev/null; then
+        git rebase --abort 2>/dev/null || true
+        err "원격과 갈라져 자동 rebase 실패 — 수동으로 'git pull --rebase' 후 충돌 해결하고 다시 sync 하세요"
+        exit 1
+      fi
       if git push; then ok "리포에 push 완료"; else err "push 실패 (원격/권한 확인)"; exit 1; fi
     fi )
 }
