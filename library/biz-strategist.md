@@ -22,21 +22,15 @@ skills:
 
 
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **BTC 현실(7/22 ~$65,800)**: 1월 $93K→'25.10 $126K고점→6월말 21개월최저 ~$58K→반등. 금리인하 기대후퇴·ETF유출·기업매도가 하락 3대 요인 (fool.com, ig.com)
-- **규제**: 美 SEC 7/7 크립토 규칙제정 3건 의제 추가, 상원 **CLARITY Act** 개정안 공개, **일본이 크립토를 '금융자산' 재분류**·세금 대폭 인하 (investingnews.com)
-- **시사점**: 수익률 보장·강세 일변도 금지 — 실제 가격·변동성 반영. 규제 명확화가 기관유입 스위치 (crypto.news)
+## 최신 지식 (2026-08-08)
+- AI 제품 과금이 순수 구독제(42%→37% 전망)에서 구독+사용량 혼합형으로 이동 중이며, 클라우드·추론 비용이 마진을 잠식(70%가 수익성 악화 호소)해 신규 수익모델 설계가 필수 과제로 부상 (revenera.com, growthunhinged.com)
+- 하이브리드 프라이싱(기본료+사용량/성과 변동분)이 SaaS의 43%→2026년 말 61%로 확산 전망, 성과 기반 요금제(예: 티켓 해결당 $0.99)는 리텐션 31%↑ 효과 — 단, 성과 귀속(attribution)이 명확한 워크플로에만 적용 권장 (digitalapplied.com, getmonetizely.com)
+- 정기적으로 가격 실험을 하는 기업이 그렇지 않은 기업보다 25% 빠르게 성장하지만 실제 실행 기업은 24%에 불과 — 가격 최적화를 일회성이 아닌 상시 프로세스로 운영하는 것이 베스트프랙티스 (zylos.ai)
+- 에이전틱 AI의 경쟁우위는 조기 도입이 아니라 조직 설계(업무 구조화, 의사결정 거버넌스, 인간-AI 역할 정의)와 소수 고가치 유스케이스의 산업화 능력에서 발생 — POC 반복 단계에 머무는 조직과 격차 확대 (sloanreview.mit.edu, mckinsey.com)
+- AI 에이전트 도입률은 ~80%지만 프로덕션 운영은 9곳 중 1곳에 그치는 대규모 배포 백로그 존재 — 이 갭을 빨리 좁히는 기업이 불균형적 우위를 확보한다는 진단 (bcg.com, digitalapplied.com)
+- 전략 리서치 툴링은 범용 추론 워크스페이스(Claude·ChatGPT)와 시장 인텔리전스 전문 툴(AlphaSense·Similarweb·Crayon·Statista)의 2계층 조합이 표준으로 정착 — 프레이밍·메모 작성과 데이터 검증을 분리 운용 (buildmvpfast.com, thedigitalelevator.com)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **2026 Q1 벤처 사상 최대 ~$297B, 그중 AI가 81%(~$240B) 흡수** — 자본 초집중. 비AI·전통SW는 라운드 장기화·지표요구 강화·밸류 하락 각오 (crunchbase.com, tech-insider.org)
-- 시드 AI 밸류에이션 비AI 대비 **+42%**, 중위 프리머니 ~$17.9M. 단 VC는 '실제로 작동한다는 증거' 요구 — 2026은 옥석 가리기의 해 (eqvista.com, insights4vc)
-- 시장 양극화: 극소수 초대형 라운드 vs 나머지 축소된 자본 경쟁. 얇은 마진 AI 스타트업 리스크 최대 (corpgov.law.harvard.edu)
-
-**📚 기본 지식:**
-- **전략 프레임**: 조너선 무어식 JTBD·가치제안 캔버스, 유닛이코노믹스(LTV/CAC·기여이익)로 사업성 검증. 시장은 TAM/SAM/SOM.
-- **성장 모델**: PLG(제품주도성장) vs 세일즈주도 선택, 프라이싱(가치기반·티어·사용량과금) 실험이 수익성 좌우.
-- **AI 시대 전략**: 자사 데이터·워크플로 해자, AI 기능의 원가(추론비용)를 프라이싱에 반영. 규제·신뢰가 핀테크/헬스 차별화 요소.
-- **실행**: OKR로 전략-실행 정렬, 분기 리뷰로 피벗 판단. 경쟁은 대체재까지 넓게 본다.
+Sources: [Revenera – Software Monetization 2026 Outlook](https://www.revenera.com/blog/software-monetization/software-monetization-models-strategies/), [Growth Unhinged – 2026 State of B2B SaaS and AI Monetization](https://www.growthunhinged.com/p/the-state-of-b2b-monetization-in-2026), [Digital Applied – Usage-Based Pricing Decision Matrix 2026](https://www.digitalapplied.com/blog/saas-usage-based-pricing-models-decision-matrix-2026), [Monetizely – 2026 Guide to SaaS, AI, and Agentic Pricing](https://www.getmonetizely.com/blogs/the-2026-guide-to-saas-ai-and-agentic-pricing-models), [Zylos – SaaS Pricing Strategy 2026](https://zylos.ai/research/2026-02-14-saas-pricing-strategy/), [MIT Sloan Management Review × BCG – The Emerging Agentic Enterprise](https://sloanreview.mit.edu/projects/the-emerging-agentic-enterprise-how-leaders-must-navigate-a-new-age-of-ai/), [McKinsey – Seizing the Agentic AI Advantage](https://www.mckinsey.com/capabilities/quantumblack/our-insights/seizing-the-agentic-ai-advantage), [Digital Applied – Agentic AI Statistics 2026](https://www.digitalapplied.com/blog/agentic-ai-statistics-2026-definitive-collection-150-data-points), [BuildMVPFast – Best AI for Business Strategy 2026](https://www.buildmvpfast.com/articles/best-llms-2026-guide/business-strategy-ai), [Digital Elevator – Best Competitive Intelligence Tools 2026](https://thedigitalelevator.com/blog/best-competitive-intelligence-tools/)
 <!-- KNOWLEDGE:END -->

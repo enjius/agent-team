@@ -21,21 +21,15 @@ skills:
 
 
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **2026 전환**: 화려함 걷어내고 **단순·차분(calm)** 흐름으로. **Generative UI(GenUI)**가 실시간 인터페이스 재구성, **Spatial UI**(3D·MR/AR) 부상 (codewave.com, tubikstudio.com)
-- **AI=코파일럿**: 올노잉 autopilot 아닌 '존중하는 copilot', 상태 전달용 **기능적 마이크로인터랙션** 강조 (uxdesign.cc)
-- **접근성·멀티모달** 기본, AI 개인화가 UX 베이스라인 (index.dev)
+## 최신 지식 (2026-08-08)
+- **모션 퍼스트 아이덴티티**: 정적 로고 대신 키네틱 로고·반응형 비주얼 시스템이 표준이 되어, 브랜드 자산을 처음부터 화면·맥락별 가변형으로 설계하는 흐름 (thebrandingjournal.com, threerooms.com)
+- **"휴먼 임퍼펙션" 반동**: 획일화된 AI 결과물 피로감으로 그레인·질감·콜라주·수작업 느낌 등 의도된 불완전함이 브랜드 차별화 요소로 부상 (topright.co.uk, digitalsynopsis.com)
+- **유연한 컬러 시스템**: 고정 팔레트 대신 '컬러 무드'를 정의하고 테마가 가변적으로 전환되는 방식이 확산 — 디자인 토큰의 시맨틱 레이어와 결합해 운용 (thebrandingjournal.com)
+- **디자인 토큰 표준화 성숙**: W3C Design Tokens 스펙 첫 안정판(2025.10) 이후 Primitive→Semantic→Component 3계층 토큰 + 코드 싱크 파이프라인 + 지정된 거버넌스 오너가 베스트프랙티스로 정착 (designsystemscollective.com, atomize.tools)
+- **Figma Config 2026**: 타임라인 기반 모션 툴(CSS/JSON/React/MP4 내보내기), Code Layers(디자인 레이어→편집 가능한 코드), AI 에이전트 정식 출시 및 Weave 이미지 생성 통합 (figma.com, alternativeto.net)
+- **지속가능성의 비주얼 내재화**: 지속가능성이 메시지가 아니라 폐기물 절감·자산 수명 연장을 고려한 디자인 의사결정 자체로 아이덴티티에 반영되는 추세 (threerooms.com)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **AI 네이티브·차분한 UI**: 투명한 AI·적응형 인터페이스·인지부하 감소(calm UI)·모션주도 상호작용이 핵심. 런타임 AI 생성 콘텐츠를 흡수하는 토큰기반 디자인시스템 필수 (index.dev, envato.com)
-- **접근성=인프라**: 컴플라이언스 아닌 기본 설계표준 — 고대비·키보드·리듀스모션·쉬운언어 내장. 매출·조달·신뢰에 영향 (uxdesigninstitute.com)
-- **개인화·멀티모달**: AI 개인화가 UX 베이스라인, 음성·터치·제스처 결합 멀티모달 부상 (sanjaydey.com)
-
-**📚 기본 지식:**
-- **비주얼 시스템**: 그리드·타이포 스케일·컬러(대비 검증)·아이콘 세트 일관화. 브랜드 자산 재사용.
-- **모션**: 목적 있는 마이크로인터랙션, 성능 고려(60fps·GPU). 과한 장식 배제.
-- **생성형 활용**: 이미지·배경·변주를 AI로 가속하되 저작권·라이선스·브랜드 가이드 준수.
-- **핸드오프**: 익스포트 규격·에셋 최적화(SVG/WebP), 다크모드·반응형 대응.
+Sources: [The Branding Journal](https://www.thebrandingjournal.com/2026/01/top-branding-design-trends-2026/), [topright design](https://topright.co.uk/visual-identity-trends-2026/), [Three Rooms](https://www.threerooms.com/blog/8-design-trends-shaping-brand-identity-in-2026), [Digital Synopsis](https://digitalsynopsis.com/design/graphic-design-trends-2026/), [Design Systems Collective](https://www.designsystemscollective.com/design-tokens-in-2026-beyond-colors-and-spacing-d2fd632029e1), [atomize.tools](https://atomize.tools/blog/figma-design-system-best-practices/), [Figma Config 2026 recap](https://www.figma.com/blog/config-2026-recap/), [AlternativeTo](https://alternativeto.net/news/2026/6/figma-launches-a-new-integrated-motion-design-tool-alongside-code-layers-and-new-ai-features/)
 <!-- KNOWLEDGE:END -->

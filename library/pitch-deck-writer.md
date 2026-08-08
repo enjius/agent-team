@@ -19,23 +19,15 @@ skills:
 
 원칙: 한 슬라이드 한 메시지. 텍스트보다 숫자·차트·데모. 30초 안에 "왜 지금, 왜 당신들"이 전달되게. 서사와 재무의 정합.
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **BTC 현실(7/22 ~$65,800)**: 1월 $93K→'25.10 $126K고점→6월말 21개월최저 ~$58K→반등. 금리인하 기대후퇴·ETF유출·기업매도가 하락 3대 요인 (fool.com, ig.com)
-- **규제**: 美 SEC 7/7 크립토 규칙제정 3건 의제 추가, 상원 **CLARITY Act** 개정안 공개, **일본이 크립토를 '금융자산' 재분류**·세금 대폭 인하 (investingnews.com)
-- **시사점**: 수익률 보장·강세 일변도 금지 — 실제 가격·변동성 반영. 규제 명확화가 기관유입 스위치 (crypto.news)
+## 최신 지식 (2026-08-08)
+- 2026년 투자자들은 유닛이코노믹스(CAC 회수기간·총마진·NRR)를 부록이 아닌 본문 한 장에 요구하며, AI 인접 기업의 경우 '해자(moat) 슬라이드'의 심사 비중이 15%→30~40%로 급등해 가장 다시 읽는 슬라이드가 됐다 (getdecko.com, ogscapital.com)
+- ARR $1M+ 스타트업은 고전적 '문제 우선' 오프닝 대신 트랙션 슬라이드를 덱 앞부분으로 당기는 '트랙션 퍼스트' 스토리라인이 표준화되는 추세 (getdecko.com, waveup.com)
+- AI 덱 도구는 역할 분화가 뚜렷: Gamma(60초 내 초안 구조화), Beautiful.ai(그리드 고정형 디자인 가드레일), Pitch(투자자 대상 협업·공유 추적)로 용도별 조합 사용이 베스트프랙티스 (presentations.ai, thetoolsverse.com)
+- AI 생성 덱이 범람하면서 투자자들이 "AI가 흉내 못 내는 창업자 고유의 목소리·근거"를 차별화 요소로 명시적으로 평가하기 시작 — 템플릿 문구·범용 시장 서사는 감점 요인 (getdecko.com, gritt.io)
+- RFP 대응 분야는 제너레이티브 AI 도입률이 1년 새 34%→68%로 배증, 과거 수주 사례 학습으로 80~95% 정확도의 초안을 자동 생성하는 에이전트형 도구(Steerlab·DeepRFP 등)가 완성 시간을 50~80% 단축 (inventive.ai, steerlab.ai)
+- RFP 물량 증가로 go/no-go 의사결정 프레임워크를 앞단에 두어 승률 높은 제안만 선별 대응하는 운영 방식이 표준으로 자리잡는 중 (inventive.ai, loopio.com)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **2026 Q1 벤처 사상 최대 ~$297B, 그중 AI가 81%(~$240B) 흡수** — 자본 초집중. 비AI·전통SW는 라운드 장기화·지표요구 강화·밸류 하락 각오 (crunchbase.com, tech-insider.org)
-- 시드 AI 밸류에이션 비AI 대비 **+42%**, 중위 프리머니 ~$17.9M. 단 VC는 '실제로 작동한다는 증거' 요구 — 2026은 옥석 가리기의 해 (eqvista.com, insights4vc)
-- 시장 양극화: 극소수 초대형 라운드 vs 나머지 축소된 자본 경쟁. 얇은 마진 AI 스타트업 리스크 최대 (corpgov.law.harvard.edu)
-
-**📚 기본 지식:**
-- **표준 덱 구조**: 10~15장 — 문제/솔루션/왜지금(Why now)/시장/제품·데모/트랙션/비즈니스모델/GTM/경쟁·해자/팀/재무·마일스톤/Ask(금액·용도). 트랙션이 강하면 앞으로 당긴다.
-- **트랙션 우선 서사**: 2025~2026 투자심사는 성장'가능성'보다 **증거(리텐션·매출성장·코호트·파이프라인)** 중심. 지표는 정직하게, 정의(활성·MRR)를 명시.
-- **Why now**: 기술(AI 비용 급락)·규제·행동변화 등 **시점 정당화**가 핵심 설득 포인트로 부상. 없는 덱은 탈락률 높음.
-- **디자인**: 슬라이드당 1메시지, 헤드라인이 결론(액션타이틀), 차트는 축·단위 명확·군더더기 제거. 다크/라이트 일관, 데모 GIF·영상 링크.
-- **제안서(RFP·B2B)**: 상대 평가기준 역매핑 → 요구사항 대응표, 차별점·레퍼런스·도입효과(ROI)·리스크대응·가격을 구조화. 결정권자 관점의 요약(Executive Summary) 1장.
-- **AI 활용**: 초안·카피 변주·차트 초안을 LLM으로 가속하되 수치·주장 근거는 검증, 기밀(데이터룸 지표) 취급 주의. 버전관리로 투자자별 맞춤덱 관리.
+Sources: [DECKO](https://www.getdecko.com/blog/what-investors-want-in-a-pitch-deck-in-2026-and-whats-changed), [OGSCapital](https://ogscapital.com/article/pitch-deck-design-best-practices-2026/), [Waveup](https://waveup.com/blog/top-vc-pitch-deck-examples/), [Presentations.ai](https://www.presentations.ai/blog/ai-pitch-deck-generators), [TheToolsVerse](https://thetoolsverse.com/blog/gamma-vs-beautiful-ai), [Inventive.ai](https://www.inventive.ai/blog-posts/rfp-response-trends-benchmarks), [Loopio](https://loopio.com/blog/best-ai-software-rfp-responses/)
 <!-- KNOWLEDGE:END -->

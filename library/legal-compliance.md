@@ -20,23 +20,15 @@ skills:
 - 규제는 최신 기준을 웹으로 확인하고 출처를 남긴다.
 - 이 검토는 참고용이며 최종 법적 판단은 변호사 자문이 필요함을 명시한다.
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **개인정보 2026 방향**: 사후제재→**사전예방·위험기반·전주기 관리** 전환. AI채용솔루션 자동화결정 투명성(설명의무·평가기준 공개) 점검, **'AI 원본활용 특례'**(안전조치 전제 개인정보 활용) 추진 (korea.kr, pipc.go.kr)
-- **하반기 스타트업 정책='성장 연결'**: 벤처투자 규제완화·기술사업화 금융지원 신설, AI기업 **공공조달 문턱 완화**, 창업지원 확대 (venturesquare.net)
-- **R&D 사업화 보증(7월~)**: 최근5년 정부R&D 완료/공공기술 이전 사업화 기업 **최대 100억·보증료 0.5%감면** (venturesquare.net)
+## 최신 지식 (2026-08-08)
+- **개인정보보호법 개정법 2026-09-11 시행 임박**: CEO를 개인정보 보호 최종책임자로 명시하고 CPO에 전문인력·예산·이사회 보고 의무 부과 — 시행 전 내부 거버넌스 체계 정비 필요 (kimchang.com, exosp.com)
+- **AI기본법(2026-01-22 시행) 집행 본격화**: 채용·대출심사·의료 등 '고영향 AI'는 위험·영향평가와 문서화, 생성형 AI는 표시 의무 대상이며 시정명령 불이행 시 과태료 최대 3천만 원 (shinkim.com, help-me.kr)
+- **EU AI Act 고위험 의무(8/2 기점) 유예 확정 흐름**: 2026-06 유럽의회가 Digital Omnibus로 고위험 AI 의무를 12~16개월 연기 승인했으나 법제 마무리 전까지는 8월 기한 기준으로 대비하라는 게 로펌 컨센서스 (hklaw.com, dlapiper.com, deloitte.com)
+- **다크패턴 규제 집행 강화 국면**: 개정 전자상거래법의 6대 기만설계 금지(숨은 갱신·취소 방해 등)와 정기결제 증액·유료전환 30일 전 사전동의 의무 위반 제재가 늘고, 공정위가 2026년 과징금 상향 개정안 발의 예고 (lawtimes.co.kr, kimchang.com)
+- **가상자산 2단계 입법·원화 스테이블코인 규제 진행 중**: 지급결제형·증권형·유틸리티형 분류 체계 도입과 스테이블코인 발행 인가 요건이 핵심으로, 핀테크·결제 서비스는 입법 방향 모니터링 필수 (lawtimes.co.kr, sedaily.com)
+- **AI 학습데이터 저작권 리스크 기준 구체화**: 미국 판례상 합법 구매 자료 학습은 공정이용 인정, 불법 복제물 학습은 불인정으로 갈려 학습데이터 출처 증빙·라이선스 계약 체계가 실무 베스트프랙티스로 정착 (weekly.khan.co.kr, hwawoo.com)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **정보통신망법 전면개정안 2026.3.12 국회 통과·3.24 국무회의 의결**: CISO 임원급 격상·이사회 보고 의무화, 정보보호위원회 설치 의무, 정부 **사전 직권조사권** 신설 (lawtimes.co.kr)
-- 핀테크: 신용정보법상 **마이데이터 허가제**, AI·클라우드 수용 위한 **망분리 정책 개편**이 핵심 (law.asia, fsc.go.kr)
-- 글로벌 140개국+ 개인정보법 시행, 美·EU·호주·인도 연내 새 규정 발효 — 국내기업 선제 대비 필요 (koreaiin.com)
-
-**📚 기본 지식:**
-- **개인정보보호법**: 2026년 2월 개정안 국회 통과로 유출사고 관련 기업 책임·거버넌스 강화, AI 합성콘텐츠(딥페이크) 삭제요구권·사업자 조치의무 신설, 신기술 기획단계 사전적정성 검토제 확대, 3월 31일 「가명정보 처리 가이드라인」 개정 발표 (kimchang.com, lawtimes.co.kr)
-- **전자상거래법**: 2025년 12월 전부개정 후속으로 2026년 3~4월 시행령·시행규칙 입법예고(개인판매자 신원확인 범위 축소, 국내대리인 지정기준 구체화), 계도기간 종료로 매출액 기준 과징금 집행 강화 예상 (lexology.com, lawtimes.co.kr)
-- **온라인플랫폼 규제**: 온플법 중 독점규제법 대신 '거래공정화법(하도급형 갑을관계 규율)' 우선 추진, 배달앱 수수료 상한제 입법 병행 추진 (etnews.com)
-- **가상자산**: 「가상자산이용자보호법」 시행(예치금 은행 분리보관·이자 지급, 사업자 자산 분리보관 의무) 안착 단계, 금융위가 규제샌드박스 적용 대상을 가상자산업권까지 확대 검토 (fsc.go.kr, jipyong.com)
-- **AI·저작권**: 문체부·저작권위, 2026년 2월 26일 「생성형AI 학습 공정이용 안내서」 발간(4대 판단요소 제시); 국내는 지상파 3사 대 네이버 하이퍼클로바 학습 관련 소송 진행 중, 미국은 계류 중인 AI 저작권 소송 80건 이상으로 급증 (lawtimes.co.kr, ohmynews.com)
-- **AI 콘텐츠 라이선싱 실무 시사점**: 음원 AI(Suno-Warner) 사례처럼 학습데이터·생성물에 대한 개별 라이선스 계약 체결이 리스크 회피 트렌드로 자리잡는 중 — 자사 서비스의 AI 학습데이터 출처·이용약관 재점검 필요 (mixing.co.kr)
+Sources: [Kim & Chang — 2026 개인정보위 업무계획](https://www.kimchang.com/ko/insights/detail.kc?sch_section=4&idx=33715), [Exosphere — 2026 개인정보보호법 개정](https://exosp.com/blog/2026-personal-information-protection-act), [Shin & Kim — AI기본법 시행 시사점](https://www.shinkim.com/kor/media/newsletter/3114), [헬프미 — AI기본법 사업자 의무](https://www.help-me.kr/blog/article/korea-ai-act-2026-compliance-guide/), [Holland & Knight — EU AI Act 2026-08 기한](https://www.hklaw.com/en/insights/publications/2026/04/us-companies-face-eu-ai-acts-possible-august-2026-compliance-deadline), [DLA Piper — Digital AI Omnibus 유예](https://knowledge.dlapiper.com/dlapiperknowledge/globalemploymentlatestdevelopments/2026/The-Digital-AI-Omnibus-Proposed-deferral-of-high-risk-AI-obligations-under-the-AI-Act), [법률신문 — 전자상거래법 집행 전망](https://www.lawtimes.co.kr/news/articleView.html?idxno=215573), [Kim & Chang — 다크패턴 전자상거래법 개정](https://www.kimchang.com/ko/insights/detail.kc?sch_section=4&idx=29766), [법률신문 — 2026 가상자산 10대 이슈](https://www.lawtimes.co.kr/news/articleView.html?idxno=215219), [서울경제 — 스테이블코인 2단계 입법](https://www.sedaily.com/article/20015028), [주간경향 — AI 학습 저작권 판결](https://weekly.khan.co.kr/article/202507140600031), [화우 — AI 해외 기업 이슈 뉴스레터](https://www.hwawoo.com/kor/insights/newsletter/14664)
 <!-- KNOWLEDGE:END -->

@@ -17,22 +17,15 @@ skills:
 
 원칙: 지표 정의를 문서화하고 한 지표엔 한 정의. 상관과 인과를 구분한다.
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **ASO=전략(2026)**: 최적화 아닌 전략. **평점 4.0+ 필수**(featured 앱 90%가 4.0↑, 3.5미만 상위노출 희박), 스토어페이지 커스터마이징이 핵심 (mobileaction.co, promodo.com)
-- **웹투앱 급증**: 딥링크 여정이 표준 대비 전환율 ~2배, AppsFlyer 웹투앱 +77% (searchlab.nl)
-- **AI ASO**: 키워드·메타데이터·크리에이티브 현지화를 수일로 압축, ASO+UA+크리에이티브 통합이 최강 (cas.ai)
+## 최신 지식 (2026-08-08)
+- 세만틱 레이어가 AI 에이전트 BI의 필수 인프라로 부상 — AI 분석 실패 대부분이 환각이 아닌 "잘못된 테이블·조인·집계" 같은 시맨틱 오류라서, 거버넌스된 지표 정의 계층을 먼저 세우는 것이 2026년 표준 (cube.dev, atlan.com, strategy.com)
+- dbt Core v2.0 알파(Rust 기반 고속 런타임)와 내장 SQL 린터 dbt lint 베타 출시 — dbt+DuckDB 조합으로 로컬 개발 후 Snowflake/BigQuery 배포하는 재현 가능한 파이프라인 패턴이 확산 (docs.getdbt.com, medium.com)
+- 2026 State of Analytics Engineering: 데이터 "신뢰" 중시 응답 66%→83%, "속도" 50%→71%로 급등 — 지표 정합성 검증과 데이터 품질 테스트가 분석팀 최우선 과제 (getdbt.com)
+- 실험 플랫폼은 웹·기능 플래그·개인화·AI 프롬프트 실험을 단일 플랫폼에서 통합 운영하는 방향으로 진화 — Statsig, GrowthBook, Amplitude, LaunchDarkly 중심의 "실험 주도 개발(experimentation-driven development)"이 제품팀 전반의 표준으로 (growthbook.io, convert.com, amplitude.com)
+- 프로덕트 분석은 warehouse-native(Mitzu, Kubit, Netspring 등)로 이동 — 이벤트 데이터를 웨어하우스 밖으로 복제하지 않고 SQL 투명성을 유지해야 AI 분석 에이전트 연동도 안정적 (mitzu.io)
+- AI 에이전트가 "인사이트의 첫 접점"이 되는 Agentic BI 확산 — ThoughtSpot Spotter, Sigma 등 자연어 질의·자동 이상탐지·내러티브 설명 기능이 대시보드를 보완하며, 에이전트가 호출할 수 있는 지표 API 노출 여부가 툴 선택 기준으로 부상 (mitzu.io, kyvosinsights.com)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **모던 데이터스택**: Snowflake/Databricks + dbt(변환 표준) + Airflow + Fivetran/dlt + Great Expectations/Monte Carlo가 2026 기본 (proinsightsportal.com, uvik.net)
-- **레이크하우스·오픈포맷**: 저장/컴퓨트 분리, Iceberg가 신규 레이크하우스 기본 오픈테이블 포맷, Unity Catalog·Polaris 부상 (dev.to, lucentinnovation.com)
-- **AI 운영**: AI가 파이프라인 모니터링·디버깅·최적화에 투입돼 실패↓·디버깅속도↑ (refontelearning.com)
-
-**📚 기본 지식:**
-- **분석 스택**: 프로덕트 애널리틱스(Amplitude/PostHog/Mixpanel) + 웨어하우스(BigQuery/Snowflake) + dbt(변환·테스트·문서) + BI(Metabase/Looker)가 모던 표준.
-- **이벤트 트래킹**: 이벤트 명명 규칙·스키마 계약(트래킹플랜) 선정의, PostHog/Segment로 수집, 스키마 검증으로 드리프트 방지. PII·금융정보는 수집 최소화·마스킹.
-- **실험분석**: A/B는 사전 표본크기·MDE 계산, 가이드레일 지표 동시감시, CUPED로 분산축소. 순차검정 남용(피킹) 주의, 베이지안/빈도 방법 팀표준 고정.
-- **리텐션·코호트**: N-day/unbounded 리텐션·코호트 히트맵, 금융앱은 예치잔액·활성투자자 코호트가 핵심. LTV는 생존모델/코호트 누적으로 추정.
-- **신뢰성**: dbt 테스트·데이터 계약·이상탐지로 대시보드 신뢰 확보. '지표 사전(metric layer)'으로 정의 단일화 — 마케팅/재무 숫자 불일치 방지.
+Sources: [Cube — Semantic Layer for AI Agents 2026](https://cube.dev/articles/semantic-layer-for-ai-agents-2026), [Atlan — Semantic Layer for AI Agents Guide](https://atlan.com/know/ai-agent/semantic-layer-for-ai-agents/), [dbt Labs — State of Analytics Engineering 2026](https://www.getdbt.com/resources/state-of-analytics-engineering-2026), [dbt release notes](https://docs.getdbt.com/docs/dbt-versions/release-notes), [GrowthBook — Best A/B Testing Platforms 2026](https://www.growthbook.io/blog/best-a-b-testing-platforms), [Convert — How to Run A/B Tests in 2026](https://www.convert.com/blog/a-b-testing/how-to-run-ab-tests-guide-for-experimenters/), [Mitzu — Best Warehouse-Native Analytics Tools 2026](https://mitzu.io/post/best-warehouse-native-analytics-tools-in-2026/), [Mitzu — Best AI Data Analyst Tools 2026](https://mitzu.io/post/best-ai-data-analyst-tools-for-product-teams-2026/)
 <!-- KNOWLEDGE:END -->

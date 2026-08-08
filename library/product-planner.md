@@ -20,22 +20,15 @@ skills:
 
 
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **ASO=전략(2026)**: 최적화 아닌 전략. **평점 4.0+ 필수**(featured 앱 90%가 4.0↑, 3.5미만 상위노출 희박), 스토어페이지 커스터마이징이 핵심 (mobileaction.co, promodo.com)
-- **웹투앱 급증**: 딥링크 여정이 표준 대비 전환율 ~2배, AppsFlyer 웹투앱 +77% (searchlab.nl)
-- **AI ASO**: 키워드·메타데이터·크리에이티브 현지화를 수일로 압축, ASO+UA+크리에이티브 통합이 최강 (cas.ai)
+## 최신 지식 (2026-08-08)
+- **"Eval이 곧 수용조건"** — AI 기능의 AC는 이제 큐레이션된 데이터셋+채점 기준+목표 점수로 정의하며, PM이 eval을 직접 소유하는 것이 2026년 표준 (rickpollick.com, productboard.com, lovelaice.com)
+- **PRD 주 독자가 AI 에이전트로 이동** — Devin·Cursor Cloud Agents 등이 PRD에서 직접 구현하는 "PRD-driven development"가 확산, 유저스토리를 에이전트가 무감독 실행 가능한 수준의 end-to-end 명확성으로 작성해야 함 (chatprd.ai, blakecrosley.com)
+- **디스커버리의 상시화·민주화** — 분기별 대형 리서치 대신 AI 모더레이션(리크루팅·후속질문·합성 자동화) 기반의 주간 경량 터치포인트가 로드맵에 인사이트를 상시 공급하는 모델로 전환 (getperspective.ai, productschool.com)
+- **확률적 제품 사고** — 동일 입력이 다른 출력을 내는 AI 기능은 결정론적 스펙 대신 목표 분포·SLA·회귀 방지 기준으로 기획하고, 모델 교체·프롬프트 수정마다 재검증하는 프로세스를 요구사항에 포함 (ainna.ai, buttondown.com)
+- **"제품 설명가능성(Product Explainability)"이 신규 요구사항 항목** — 제품이 인간보다 AI 에이전트에게 먼저 발견·평가되는 시대라 제품의 목적·가치·한계를 기계가 읽을 수 있게 명세하는 것이 우선순위화 대상 (airtable.com)
+- **회의→티켓 자동화 파이프라인** — 미팅 녹취에서 유저스토리·개발 티켓까지 에이전틱 워크플로로 생성하고 PM은 판단·전략·우선순위 결정에 집중하는 역할 재편이 진행 중 (mistral.ai, figr.design)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **PM 역할 분화**: 2026 PM 역할이 세분화(AI PM 등장), AI가 리서치·스펙 작성 가속. 에이전틱 AI가 '생성→실행(행동)'으로 이동 (userpilot.com, institutepm.com)
-- **문서=지식레이어**: 문서가 서포트 자동화·인앱 어시스턴트·AI 에이전트가 읽는 지식층. 멀티모달(코드·영상·음성) 콘텐츠 기본화 (document360.com)
-- **지속적 현지화**: UI·인앱헬프·KB·마케팅·법무·서포트 매크로가 하나의 지속 현지화 모델로. AI는 오케스트레이션 층, 사람 감독 필수 (rws.com, csa-research.com)
-
-**📚 기본 지식:**
-- **AI 네이티브 기획**: PRD·유저스토리 초안을 LLM으로 가속하되 문제정의·우선순위는 사람이. `linear`/`notion` + AI로 스펙-태스크 자동분해가 확산.
-- **디스커버리**: 지속적 디스커버리(Teresa Torres) — 주간 사용자인터뷰 + 기회-솔루션 트리로 아웃풋 아닌 아웃컴 중심 우선순위.
-- **지표·목표**: 노스스타 + 인풋지표 트리, 분기 OKR. 금융앱은 활성투자자·예치잔액·신뢰(NPS)가 핵심.
-- **실험 기반**: 기능은 가설-실험-지표로 검증, 페이터게이트/피처플래그로 점진 출시. RICE/기회점수로 백로그 정렬.
-- **규제 협업**: 핀테크는 기획 단계부터 법무·컴플라이언스와 병렬 검토(사전적정성) — 출시 지연 리스크 선제 제거.
+Sources: [rickpollick.com](https://rickpollick.com/blog/evals-are-the-new-acceptance-criteria), [productboard.com](https://www.productboard.com/blog/ai-evals-for-product-managers/), [lovelaice.com](https://www.lovelaice.com/resources/ai-evals-for-product-managers-complete-guide-2026), [chatprd.ai](https://www.chatprd.ai/learn/prd-for-ai-codegen), [blakecrosley.com](https://blakecrosley.com/blog/prd-driven-development), [getperspective.ai](https://getperspective.ai/blog/2026-product-discovery-trends-what-300-teams-changed), [productschool.com](https://productschool.com/blog/product-fundamentals/product-management-trends), [ainna.ai](https://ainna.ai/resources/faq/ai-prd-guide-faq), [buttondown.com](https://buttondown.com/critical-path/archive/if-you-cant-write-the-eval-you-cant-ship-the-ai/), [airtable.com](https://www.airtable.com/articles/product-management-trends), [mistral.ai](https://mistral.ai/fr/news/agentic-workflows-from-meetings-to-dev-tickets), [figr.design](https://figr.design/blog/ai-in-product-management)
 <!-- KNOWLEDGE:END -->

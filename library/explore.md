@@ -14,21 +14,15 @@ tools: Read, Grep, Glob, Bash, Skill
 
 원칙: 수정하지 않는다(읽기 전용). 넓게 훑고 핵심만 간결히. 추측 대신 파일 근거를 남긴다.
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **프레임워크(7월)**: Next.js 7/21 보안 릴리스, React Router v8(연간 릴리스·ESM·Node22.22+·Vite7), **Flutter 3.44.0**(5/18 안정), Remix 3(React 탈피 재설계), RN Windows 0.83 (nextjs.org, dev.to)
-- **지형**: 서버우선 아키텍처·AI 보조 툴링·성능 기본값화가 대세, 코드 29% AI 생성 지속 (nucamp.co)
-- **AI 코딩**: GPT-5.6·Claude Sonnet 5·GLM-5.2 등 신규 모델로 에이전틱 코딩 급진전 (thursdai.news)
+## 최신 지식 (2026-08-08)
+- 2026년 AI 코딩의 병목은 코드 생성이 아니라 "대형 저장소 이해"로 이동 — 벡터 임베딩·AST 그래프·사전계산 컨텍스트 파일·멀티에이전트 지식추출이 핵심 기법으로 정리됨 (zylos.ai, buildmvpfast.com)
+- 로컬 우선 코드 지식그래프가 대세: CodeGraph(SQLite+tree-sitter, 47k★)·GitNexus(42k★)가 온디바이스로 구조를 사전계산해 MCP로 서빙, 클라우드·임베딩 API 없이 코드 유출 제로 (pharaoh.so, tokenade.net)
+- LSP 연동 시 코드 탐색이 텍스트 검색 대비 극적으로 빨라지고(45초→50ms), tree-sitter 기반 지식그래프를 MCP로 노출하면 에이전트 토큰 사용 약 10배·툴 호출 2.1배 절감 보고 (anthonywest.co.uk, zylos.ai)
+- 엔터프라이즈는 SCIP식 시맨틱 인덱싱·히스토리 인지 검색·중앙 코드그래프 서비스로 수렴 — "구조를 사전계산해 툴로 노출"이 탐색 아키텍처의 표준 패턴 (rywalker.com)
+- probe 같은 ripgrep 속도+tree-sitter AST 결합형 시맨틱 검색 CLI가 에이전트용 탐색 도구로 부상, "CLI의 귀환" 흐름 (github.com/probelabs, cocoindexio.substack.com)
+- 탐색 결과물인 AGENTS.md는 150줄 이하로 짧게, 규칙 나열 대신 코드 예시 1개+상세 문서로의 브레드크럼(점진적 공개)이 베스트프랙티스 — 2,500개 저장소 분석에서 장문 파일은 비용만 20~23% 증가 (augmentcode.com, agents.md)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **프론트엔드**: React 19 + React Compiler(1.0)로 useMemo/useCallback/memo 수동최적화가 레거시화. Server Components·signals 세분화 반응성·INP가 아키텍처 우열을 가름. Svelte·Astro·Qwik 부상 (logrocket.com, netguru.com)
-- **백엔드·런타임**: Bun이 Node 런타임 지위 위협, NestJS·HTTP/3, 이벤트드리븐 마이크로서비스(Kafka·EventBridge)+관측성+AI 모니터링 통합 (medium.com, nucamp.co)
-- **공통**: 코드의 29%가 이미 AI 생성, TypeScript 40% 단독채택, Vite가 Webpack 대체(만족도 98%) (blog.logrocket.com)
-
-**📚 기본 지식:**
-- **탐색 순서**: 진입점(main·app·router)→설정(env·config)→도메인 모델→서비스/유스케이스→I/O(DB·API·큐) 순으로 훑어 전체 지도를 먼저 그린다.
-- **도구**: ripgrep(내용)·glob(구조)·의존성 그래프. 심볼 정의/참조로 호출관계 추적, TODO/FIXME·죽은 코드·중복 구현 표시.
-- **현황 맵핑 산출**: "구현됨/부분/미구현" 3분류 + 파일:라인 근거, 리스크·미지수 목록. 다음 단계 에이전트(analyst·architect)가 바로 쓰게 구조화.
-- **경량 원칙**: 전체를 다 읽지 말고 대표 파일·경계만. 큰 파일은 헤더·시그니처·목차부터. 결과는 짧게, 근거는 링크로.
+Sources: [Zylos Research](https://zylos.ai/research/2026-04-19-codebase-intelligence-repository-understanding-ai-agents/), [Pharaoh](https://pharaoh.so/blog/codebase-intelligence-tool-comparison-2026/), [Anthony West](https://anthonywest.co.uk/research/code-intelligence-indexing-2026-openai), [Ry Walker](https://rywalker.com/research/code-intelligence-tools), [probe](https://github.com/probelabs/probe), [CocoIndex](https://cocoindexio.substack.com/p/we-launched-a-code-search-cli-for), [Augment Code](https://www.augmentcode.com/guides/how-to-build-agents-md), [agents.md](https://agents.md/)
 <!-- KNOWLEDGE:END -->

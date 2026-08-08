@@ -17,21 +17,15 @@ tools: Read, Bash, Grep, Glob, Skill
 
 
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **프레임워크(7월)**: Next.js 7/21 보안 릴리스, React Router v8(연간 릴리스·ESM·Node22.22+·Vite7), **Flutter 3.44.0**(5/18 안정), Remix 3(React 탈피 재설계), RN Windows 0.83 (nextjs.org, dev.to)
-- **지형**: 서버우선 아키텍처·AI 보조 툴링·성능 기본값화가 대세, 코드 29% AI 생성 지속 (nucamp.co)
-- **AI 코딩**: GPT-5.6·Claude Sonnet 5·GLM-5.2 등 신규 모델로 에이전틱 코딩 급진전 (thursdai.news)
+## 최신 지식 (2026-08-08)
+- AI 코드리뷰가 "코멘트 게시 도구"에서 "행동하는 에이전트"로 전환 — 누락 테스트를 직접 작성하고 후속 PR을 열어 CI까지 돌리는 에이전틱 아키텍처가 2026년 핵심 흐름 (critique.sh)
+- 전체 커밋의 41%가 AI 보조 생성이며, AI 고도입 팀은 PR 병합이 98% 늘지만 리뷰 시간도 91% 증가 — 리뷰가 새 병목이 되어 자동화 리뷰가 필수 인프라화 (dev.to, greptile.com)
+- 조직 81%가 AI 생성 코드발 프로덕션 이슈 증가를 보고, AI 코드는 라인당 취약점이 15~18% 더 많음 — AI 생성 코드에는 생성 모델과 독립된 리뷰어를 두는 것이 베스트프랙티스 (codeant.ai, sourcegraph.com)
+- 정적 분석 + AI 리뷰를 한 패스로 결합한 하이브리드가 정확도·노이즈 면에서 우세하며, 기본 설정보다 팀 코딩 표준·아키텍처 규칙 기반 커스텀 리뷰 룰이 훨씬 유용한 피드백 생성 (deepsource.com, greptile.com)
+- 이슈 발견에서 그치지 않고 패치를 생성해 원클릭으로 PR에 적용하는 "능동적 수정(active remediation)"이 주류화 — 발견→수정→검증 루프가 리뷰 도구 안으로 통합 (critique.sh, sourcegraph.com)
+- 주요 도구는 Greptile, CodeRabbit, Cursor BugBot, Qodo, Graphite, SonarQube, Semgrep 등이며, 저장소 전체 컨텍스트 인지와 사용량 기반 과금이 선택 기준으로 부상 (greptile.com, kodus.io)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **프론트엔드**: React 19 + React Compiler(1.0)로 useMemo/useCallback/memo 수동최적화가 레거시화. Server Components·signals 세분화 반응성·INP가 아키텍처 우열을 가름. Svelte·Astro·Qwik 부상 (logrocket.com, netguru.com)
-- **백엔드·런타임**: Bun이 Node 런타임 지위 위협, NestJS·HTTP/3, 이벤트드리븐 마이크로서비스(Kafka·EventBridge)+관측성+AI 모니터링 통합 (medium.com, nucamp.co)
-- **공통**: 코드의 29%가 이미 AI 생성, TypeScript 40% 단독채택, Vite가 Webpack 대체(만족도 98%) (blog.logrocket.com)
-
-**📚 기본 지식:**
-- **리뷰 초점**: 정확성·경계조건·동시성·리소스 누수·보안(입력검증·권한)을 스타일보다 우선. 파일:라인 단위, 근거+수정예시 제시.
-- **자동화**: 린터·타입체커·SAST(Semgrep/CodeQL)를 CI 게이트로, 사람은 설계·의도에 집중. LLM 1차 스캔 보조.
-- **품질 신호**: 테스트 커버리지·변경 크기(작은 PR)·복잡도. 큰 PR은 분할 요청.
-- **보안**: 시크릿 하드코딩, 의존성 취약점(SCA), 인젝션·SSRF·역직렬화 위험 점검.
+Sources: [Greptile](https://www.greptile.com/content-library/best-ai-code-review-tools) · [DeepSource](https://deepsource.com/resources/ai-code-review-tools) · [Critique](https://www.critique.sh/ai-code-review-trends-2026) · [Sourcegraph](https://sourcegraph.com/blog/ai-code-review) · [CodeAnt](https://codeant.ai/blogs/how-to-review-ai-generated-code) · [DEV Community](https://dev.to/rahulxsingh/the-state-of-ai-code-review-in-2026-trends-tools-and-whats-next-2gfh) · [Kodus](https://kodus.io/en/ai-code-review-tools/)
 <!-- KNOWLEDGE:END -->

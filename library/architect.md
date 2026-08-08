@@ -19,21 +19,15 @@ skills:
 
 
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **프레임워크(7월)**: Next.js 7/21 보안 릴리스, React Router v8(연간 릴리스·ESM·Node22.22+·Vite7), **Flutter 3.44.0**(5/18 안정), Remix 3(React 탈피 재설계), RN Windows 0.83 (nextjs.org, dev.to)
-- **지형**: 서버우선 아키텍처·AI 보조 툴링·성능 기본값화가 대세, 코드 29% AI 생성 지속 (nucamp.co)
-- **AI 코딩**: GPT-5.6·Claude Sonnet 5·GLM-5.2 등 신규 모델로 에이전틱 코딩 급진전 (thursdai.news)
+## 최신 지식 (2026-08-08)
+- AI 코딩 에이전트가 코드 변경 비용 구조를 바꾸면서 모듈러 모놀리스 회귀가 본격화 — 조직 42%가 마이크로서비스를 더 큰 단위로 재통합, 에이전트가 단일 컨텍스트로 추론 가능한 도메인 정렬 모듈 경계가 새 설계 기준 (medium.com, ancient.global, rational.partners)
+- MCP 2026-07-28 스펙이 스테이트리스 아키텍처로 전환 — 엔터프라이즈 에이전틱 워크플로우를 수평 확장 가능하게 만들었으므로 AI 연동 계층 설계 시 세션 상태 가정 제거 필요 (blog.modelcontextprotocol.io)
+- 엔터프라이즈 에이전트 아키텍처는 "MCP(수직 도구 통합) + A2A(수평 에이전트 조율)" 2계층 스택이 사실상 기본값으로 정착, 양쪽 모두 Linux Foundation 거버넌스 (zylos.ai, arxiv.org)
+- 이벤트 드리븐 아키텍처가 니치에서 주류로 — 실시간성이 기본 요구가 되면서 분산 시스템의 표준 통신 패턴으로 채택 확대, 설계 초기부터 옵저버빌리티 우선 원칙과 결합 권장 (upcloud.com, codewave.com)
+- 플랫폼 엔지니어링이 사실상 필수화 — 대형 조직 80%가 플랫폼팀 운영, 프로비저닝 시점에 FinOps 가드레일·보안을 내장하고 모놀리식 IDP 대신 컴포저블 플랫폼으로 이동 (platformengineering.org, leanopstech.com)
+- "AI-네이티브 시스템 설계" 프레임 부상 — LLM 지능을 부가 기능이 아닌 핵심 구조 제약으로 두고 스택·모듈 경계를 설계하는 접근이 시스템 디자인 가이드의 표준 챕터로 편입 (dev.to, grokkingthesystemdesign.com)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **프론트엔드**: React 19 + React Compiler(1.0)로 useMemo/useCallback/memo 수동최적화가 레거시화. Server Components·signals 세분화 반응성·INP가 아키텍처 우열을 가름. Svelte·Astro·Qwik 부상 (logrocket.com, netguru.com)
-- **백엔드·런타임**: Bun이 Node 런타임 지위 위협, NestJS·HTTP/3, 이벤트드리븐 마이크로서비스(Kafka·EventBridge)+관측성+AI 모니터링 통합 (medium.com, nucamp.co)
-- **공통**: 코드의 29%가 이미 AI 생성, TypeScript 40% 단독채택, Vite가 Webpack 대체(만족도 98%) (blog.logrocket.com)
-
-**📚 기본 지식:**
-- **아키텍처 결정**: ADR(Architecture Decision Record)로 트레이드오프 문서화, C4 모델로 시스템 다이어그램. 모듈러 모놀리스가 조기 마이크로서비스보다 실용적이라는 합의 강화.
-- **확장성**: 무상태 서비스+수평확장, 캐시 계층, 비동기 큐로 부하 분리. 데이터는 읽기/쓰기 분리·CQRS를 필요 시에만.
-- **신뢰성**: SLO/에러버짓, 서킷브레이커·타임아웃·재시도(지수백오프+지터), 관측성(메트릭·로그·트레이스) 기본 내장.
-- **비용·보안**: 클라우드 비용 가시화(FinOps), 최소권한·제로트러스트, IaC로 재현가능 인프라.
+Sources: [rational.partners](https://rational.partners/insights/microservices-vs-monoliths-in-the-agentic-age), [ancient.global](https://www.ancient.global/en/blogs-ancient/microservices-vs-modular-monolith-2026), [blog.modelcontextprotocol.io](https://blog.modelcontextprotocol.io/posts/2026-07-28/), [zylos.ai](https://zylos.ai/research/2026-03-26-agent-interoperability-protocols-mcp-a2a-acp-convergence/), [upcloud.com](https://upcloud.com/blog/modern-software-architecture-patterns-2026-scales-production/), [platformengineering.org](https://platformengineering.org/blog/10-platform-engineering-predictions-for-2026), [leanopstech.com](https://leanopstech.com/blog/platform-engineering-trends-2026/), [dev.to](https://dev.to/devin-rosario/the-complete-guide-to-system-design-in-2026-ai-native-and-serverless-1kpb)
 <!-- KNOWLEDGE:END -->

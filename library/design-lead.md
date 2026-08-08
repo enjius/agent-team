@@ -20,21 +20,15 @@ skills:
 원칙: 나는 방향과 기준을 정하는 사람이다. 세부 목업은 실무 디자이너에게 맡기고 나는 결정·리뷰·일관성을 책임진다. 화려함보다 명료함.
 - **디자인 전 반드시 Pinterest(kr.pinterest.com) 레퍼런스를 조사**해 무드보드·패턴을 잡고 시작한다(design-inspiration 스킬).
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **2026 전환**: 화려함 걷어내고 **단순·차분(calm)** 흐름으로. **Generative UI(GenUI)**가 실시간 인터페이스 재구성, **Spatial UI**(3D·MR/AR) 부상 (codewave.com, tubikstudio.com)
-- **AI=코파일럿**: 올노잉 autopilot 아닌 '존중하는 copilot', 상태 전달용 **기능적 마이크로인터랙션** 강조 (uxdesign.cc)
-- **접근성·멀티모달** 기본, AI 개인화가 UX 베이스라인 (index.dev)
+## 최신 지식 (2026-08-08)
+- 프로덕션 실무는 AI가 압축되고, 디자인 리더의 핵심 역량은 방향 설정·거버넌스·크로스펑셔널 리더십으로 이동 — 문서화·반복작업 자동화에 AI 활용 기대가 가장 높음 (report.zeroheight.com)
+- 디자인 토큰은 DTCG 표준 채택 + Style Dictionary 등 트랜스파일러 파이프라인이 베스트프랙티스로 정착, 단일 소스에서 멀티플랫폼 출력이 기본 (supernova.io, timgraf.com)
+- 에이전틱 AI가 Figma·Jira·GitHub를 넘나들며 디자인 드리프트를 프로덕션 도달 전에 감지하고 브랜드·접근성 준수를 자동 검사하는 거버넌스 자동화가 확산 (supernova.io)
+- Figma Config 2026에서 AI 에이전트·코드 네이티브 디자인·플러그인 생성 자동화 공개, 8월엔 동시 다중 AI 이미지 편집 지원 — 디자인 툴이 AI 제품 제작 생태계로 진화 (help.figma.com, releasebot.io)
+- "바이브 디자이닝"(프롬프트-to-UI)으로 프로토타입이 기본 산출물화(응답자 43%), 매니저 46.6%가 직접 바이브 코딩 — 병목은 툴이 아니라 팀 학습 시간 (survey.uxtools.co)
+- 디자이너-디자인 엔지니어 역할 경계가 흐려지며, 성능·접근성·전환·브랜드가 교차하는 지점의 판단이 인간 고유 업무로 부상 — AI 산출물은 Stark·axe 등으로 접근성 검수 필수 (peerlist.io, stateofaidesign.com)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **AI 네이티브·차분한 UI**: 투명한 AI·적응형 인터페이스·인지부하 감소(calm UI)·모션주도 상호작용이 핵심. 런타임 AI 생성 콘텐츠를 흡수하는 토큰기반 디자인시스템 필수 (index.dev, envato.com)
-- **접근성=인프라**: 컴플라이언스 아닌 기본 설계표준 — 고대비·키보드·리듀스모션·쉬운언어 내장. 매출·조달·신뢰에 영향 (uxdesigninstitute.com)
-- **개인화·멀티모달**: AI 개인화가 UX 베이스라인, 음성·터치·제스처 결합 멀티모달 부상 (sanjaydey.com)
-
-**📚 기본 지식:**
-- **디자인시스템 소유**: Figma Variables(모드·브랜드)→코드 토큰(ThemeExtension) 매핑을 리더가 관리, 컴포넌트·상태·에러/빈화면 표준을 정의.
-- **방향 결정**: 핵심 플로우의 정보위계·우선순위를 리더가 확정하고 실무자에게 위임. 결정에는 근거를 남긴다.
-- **품질 게이트**: 접근성(대비 4.5:1·터치타깃·키보드)·일관성·브랜드 정합을 리뷰 기준으로 집행.
-- **핸드오프**: Dev Mode 스펙·모션·간격 규격, 마이크로카피는 UX라이터와 협업. 개발이 그대로 구현 가능하게.
+Sources: [zeroheight Design Systems Report 2026](https://report.zeroheight.com/), [Supernova — Enterprise Design Systems 2026](https://www.supernova.io/blog/the-future-of-enterprise-design-systems-2026-trends-and-tools-for-success), [Tim Graf — Design Token Architecture 2026](https://timgraf.com/ui/design-token-architecture-2026-the-strategic-blueprint-for-scalable-design-systems/), [Figma — What's new from Config 2026](https://help.figma.com/hc/en-us/articles/39582753756695-What-s-new-from-Config-2026), [Releasebot — Figma August 2026](https://releasebot.io/updates/figma), [UX Tools — State of Prototyping Spring 2026](https://survey.uxtools.co/spring-2026), [Peerlist — Rise of the Design Engineer 2026](https://peerlist.io/shuvrojit/articles/the-rise-of-the-design-engineer-in-2026), [AI in Design Report 2026](https://stateofaidesign.com/chapters/craft)
 <!-- KNOWLEDGE:END -->

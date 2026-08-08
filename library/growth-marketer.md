@@ -20,21 +20,13 @@ skills:
 
 
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **ASO=전략(2026)**: 최적화 아닌 전략. **평점 4.0+ 필수**(featured 앱 90%가 4.0↑, 3.5미만 상위노출 희박), 스토어페이지 커스터마이징이 핵심 (mobileaction.co, promodo.com)
-- **웹투앱 급증**: 딥링크 여정이 표준 대비 전환율 ~2배, AppsFlyer 웹투앱 +77% (searchlab.nl)
-- **AI ASO**: 키워드·메타데이터·크리에이티브 현지화를 수일로 압축, ASO+UA+크리에이티브 통합이 최강 (cas.ai)
-
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **ASO와 유료 UA가 단일 성장시스템으로 융합** — 스토어 알고리즘 품질중심·애플 광고면 확대로 오가닉 단독 약화. 설치의 65~75%는 여전히 스토어 검색 (cas.ai, businessofapps.com)
-- 2026 평균 **CPI iOS $2.24 / Android $1.12**(유럽 $3.40/$1.85), CPM 상승·크리에이티브 피로로 획득비 증가 → **리텐션·LTV 중심** 전환 (searchlab.nl, admiral.media)
-- AI ASO 툴이 키워드·메타데이터·크리에이티브 현지화를 수개월→수일로 압축. 프라이버시 우선·웹투앱 여정이 핵심 (promodo.com, phiture.com)
-
-**📚 기본 지식:**
-- **실험 기반**: 노스스타+인풋지표 트리, A/B는 표본크기·MDE 사전계산·가이드레일 감시. 성장 루프 설계.
-- **획득·활성**: 어트리뷰션 프라이버시화(SKAN/Privacy Sandbox)로 인크리멘탈리티·MMM 병행. 온보딩 aha 단축.
-- **리텐션·수익화**: 라이프사이클 CRM, 프라이싱·페이월 실험, 리퍼럴 루프. LTV/CAC로 채널 검증.
-- **AI 활용**: 크리에이티브 대량 생성·개인화, 예측 LTV·이탈 스코어링.
+## 최신 지식 (2026-08-08)
+- AI 답변엔진(ChatGPT·Perplexity·AI Overviews)발 유입이 전년 대비 800% 급증 — SEO를 GEO/AEO로 확장해 인용·추천 최적화를 획득 채널에 편입해야 함 (securityboulevard.com, lumar.io)
+- 에이전틱 커머스가 신규 획득 채널로 부상: AI 챗 경유 쇼핑객 전환율이 일반 트래픽 대비 54% 높고, ChatGPT 광고는 출시 2개월 내 연환산 매출 1억 달러 돌파 — 콘텐츠보다 실시간 상품 피드 정비가 우선 (forbes.com, searchengineland.com)
+- 측정 체계는 MMM(포트폴리오)+인크리멘탈리티 테스트(인과 검증)+플랫폼 어트리뷰션(전술 신호)의 삼각측량이 표준화 — 미국 마케터 46.9%가 MMM 투자 확대 계획 (emarketer.com, houseofmartech.com)
+- CAC는 전 업종에서 +1~16% 상승(iOS 프라이버시·CPC +19%·인건비 +11% 영향) — LTV:CAC 3:1, 페이백 3개월의 '3-3-3 룰'로 유닛 이코노믹스 방어 권장 (focus-digital.co, saashero.net)
+- 규칙 기반 자동화에서 에이전틱 AI 워크플로로 전환: 목표·가드레일만 설정하면 AI가 오디언스 선정·크리에이티브 생성·채널·타이밍 최적화까지 자율 실행 (guptadeepak.com)
+- 채널 ROI는 SEO/오가닉 748%, 이메일 261%(전년比 +11%)가 최상위, B2B SaaS는 PLG로 CAC 40~60% 절감·크리에이터 파트너십으로 리드당 비용 30~40% 절감 (blog.aigrowthagent.co, data-mania.com)
 <!-- KNOWLEDGE:END -->

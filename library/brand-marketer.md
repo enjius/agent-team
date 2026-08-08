@@ -20,21 +20,15 @@ skills:
 
 
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **ASO=전략(2026)**: 최적화 아닌 전략. **평점 4.0+ 필수**(featured 앱 90%가 4.0↑, 3.5미만 상위노출 희박), 스토어페이지 커스터마이징이 핵심 (mobileaction.co, promodo.com)
-- **웹투앱 급증**: 딥링크 여정이 표준 대비 전환율 ~2배, AppsFlyer 웹투앱 +77% (searchlab.nl)
-- **AI ASO**: 키워드·메타데이터·크리에이티브 현지화를 수일로 압축, ASO+UA+크리에이티브 통합이 최강 (cas.ai)
+## 최신 지식 (2026-08-08)
+- AI 검색 인용 최적화(GEO/AEO)가 브랜드 가시성의 핵심 과제로 부상 — 구글 상위 링크와 AI 인용 소스 중복률이 20% 이하로 떨어져 SEO와 별도 전략 필요, 통계·인용 삽입 시 인용 가시성 최대 40%↑ (writer.com, searchengineland.com, techtimes.com)
+- 콘텐츠 전략의 축이 '트러스트 에코시스템'으로 이동 — 물량 대신 진정성 있는 자산을 연결해 신뢰를 쌓는 접근이 2026 콘텐츠 마케팅의 중심 (contentmarketinginstitute.com)
+- 멀티모달 AI로 하나의 전략 브리프에서 텍스트·이미지·영상·오디오 캠페인을 동시 제작하는 워크플로우가 표준화, 단 인간이 크리에이티브 판단을 유지하는 브랜드가 성과 우위 (improvado.io, buffer.com)
+- SNS는 '볼륨→의도' 전환이 최대 화두 — 포스트당 하나의 측정 가능한 목표, 숏폼 영상이 정적 포스트 대비 3~5배 오가닉 도달, 24시간 내 개인화 응답이 베스트프랙티스 (topropemedia.com, buffer.com)
+- 크리에이터 파트너십은 단발 광고에서 미디어 기업형 장기 협업으로 진화 — 성과 스위트스팟은 10만~50만 구독 미드티어 크리에이터, 런치 스토리도 캠페인이 아닌 내러티브 단위로 설계 (adage.com, neoreach.com, thoughtleaders.io)
+- Gen Alpha가 $28B+ 직접 소비를 움직이는 핵심 타깃으로 부상해 'Alpha-first' 런치 전략 등장, EU AI Act 고위험 AI 의무조항이 2026년 8월 전면 발효되어 AI 생성 콘텐츠 컴플라이언스 점검 필요 (neoreach.com, thegutenberg.com)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **ASO와 유료 UA가 단일 성장시스템으로 융합** — 스토어 알고리즘 품질중심·애플 광고면 확대로 오가닉 단독 약화. 설치의 65~75%는 여전히 스토어 검색 (cas.ai, businessofapps.com)
-- 2026 평균 **CPI iOS $2.24 / Android $1.12**(유럽 $3.40/$1.85), CPM 상승·크리에이티브 피로로 획득비 증가 → **리텐션·LTV 중심** 전환 (searchlab.nl, admiral.media)
-- AI ASO 툴이 키워드·메타데이터·크리에이티브 현지화를 수개월→수일로 압축. 프라이버시 우선·웹투앱 여정이 핵심 (promodo.com, phiture.com)
-
-**📚 기본 지식:**
-- **브랜드 전략**: 포지셔닝·메시지 하우스·톤앤매너 일관성, 카테고리 디자인으로 차별화. 브랜드 자산(로고·컬러·보이스)을 시스템화.
-- **측정**: 브랜드 리프트·비보조 인지·검색량·NPS. 퍼포먼스와 브랜드의 예산 균형(장기 60/단기 40 논쟁).
-- **콘텐츠·PR**: 오리지널 리서치·POV 콘텐츠로 신뢰, 크리에이터·커뮤니티 협업. 숏폼·UGC가 도달의 중심.
-- **AI 활용**: 생성형으로 크리에이티브 변주·현지화 가속하되 브랜드 가이드·법적 표기 준수.
+Sources: [WRITER — GEO/AEO 2026](https://writer.com/blog/geo-aeo-optimization/), [Search Engine Land — GEO metrics](https://searchengineland.com/geo-metrics-to-track-476642), [TechTimes — GEO 2026](https://www.techtimes.com/articles/318359/20260614/generative-engine-optimization-geo-2026-how-get-your-content-cited-chatgpt-ai-overviews.htm), [CMI — 2026 content trends](https://contentmarketinginstitute.com/strategy-planning/trends-content-marketing), [Improvado — AI marketing trends](https://improvado.io/blog/ai-marketing-trends), [Buffer — social media tools 2026](https://buffer.com/resources/social-media-marketing-tools/), [Top Rope Media — SNS best practices](https://topropemedia.com/blog/2026/03/10/social-media-best-practices/), [Ad Age — creator partnerships](https://adage.com/influencers-creators/aa-trends-creators-cmos-2026-lowes-duolingo-southwest/), [NeoReach — creator economy 2026](https://neoreach.com/creator-economy-trends-2026/), [ThoughtLeaders — creator trends](https://www.thoughtleaders.io/blog/creator-economy-trends-2026), [Gutenberg — AI in marketing 2026](https://www.thegutenberg.com/blog/ai-in-marketing-trends-2026-what-comes-next-for-marketing-teams/)
 <!-- KNOWLEDGE:END -->

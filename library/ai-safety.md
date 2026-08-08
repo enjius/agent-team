@@ -14,22 +14,15 @@ tools: Read, Edit, Write, Grep, Glob, WebSearch, Skill
 
 원칙: 안전은 기능이 아니라 게이트다. 실패를 가정하고 다층 방어를 둔다.
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **모델 대량 출시(7월)**: Claude **Sonnet 5**, OpenAI **GPT-5.6**(Luna/Terra/Sol, 100만 컨텍스트·$1~5), xAI **Grok 4.5** 연이어 출시. 오픈소스는 **GLM-5.2·DeepSeek V4·Qwen 3.6** (thursdai.news, llm-stats.com)
-- **에이전트 실전화**: GPT-5.6에 프로그래매틱 툴콜·멀티에이전트 오케스트레이션·프롬프트캐시 브레이크포인트 추가, Google Threat Intel 에이전틱 보안 GA (agentic.ai)
-- **워크플로 특화 소형모델**: Base44가 앱빌딩 수천만 상호작용 학습한 자체 LLM 'Base 1' 출시 (pricepertoken.com)
+## 최신 지식 (2026-08-08)
+- EU AI Act GPAI 집행이 2026-08-02부로 발효 — AI Office가 기술문서 제출·모델 접근·리스크 완화를 강제할 수 있고 최대 글로벌 매출 3%/€1,500만 벌금, Code of Practice 서명사는 감경 고려 (helpnetsecurity.com, artificialintelligenceact.eu)
+- 프롬프트 인젝션이 여전히 에이전틱 AI 보안 사고의 최다 원인 — 테스트된 에이전트 시스템의 84%가 뚫렸고 "완전 패치 불가" 전제하에 OpenAI Lockdown Mode 같은 권한 축소 모드가 표준화되는 추세 (helpnetsecurity.com, adversa.ai)
+- 새 공격 클래스 부상: Agent Data Injection(신뢰된 메타데이터로 위장한 간접 인젝션)과 MCP 서버 취약점(Anthropic Git MCP CVE-2025-68143~45) — 레드팀 범위에 도구·RAG·MCP 공급망 포함 필수 (adversa.ai, zylos.ai)
+- 멀티턴 제일브레이크 평가가 표준으로 이동 — MultiBreak(멀티턴 벤치마크), Jailbreak Distillation(자동 갱신형 "renewable" 벤치마크) 등 단일턴 벤치마크의 한계를 보완하는 도구 등장 (arxiv.org, techxplore.com)
+- 가드레일 운영 베스트프랙티스는 5계층 방어(입력 검증→프롬프트 격리→모델 가드레일→출력 필터→상시 모니터링) + Garak/PyRIT/HarmBench로 배포 후 지속 레드팀 (generalanalysis.com, confident-ai.com)
+- 조달·감사 기준은 OWASP LLM Top 10과 NIST AI RMF로 수렴 — 방어 문서화를 갖춘 조직은 34.7%에 불과해 정책·증적 체계가 차별화 포인트 (confident-ai.com, helpnetsecurity.com)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- 오픈웨이트 리더보드: **GLM-5.2**가 에이전틱 코딩·추론 최상위, 코딩 에이전트는 **Kimi K2.7 Code**, 노트북급은 Gemma 4 12B. 모델 500+·월 334+ 릴리스로 폭증 (llm-stats.com, acecloud.ai)
-- 에이전트 프레임워크: **CrewAI 1.14대** 안정화 — 메모리·지식·RAG·플로우 플러그블 백엔드, Chat API, 동시실행 상태격리 추가. LangGraph·AutoGen·Semantic Kernel 비교 심화 (alicelabs.ai)
-- 서버측 장기 에이전트=GLM-5.2, 소프트웨어 에이전트=Kimi K2.7 Code, 감사가능 멀티에이전트=Nemotron 3, IDE/코딩=Qwen3-Coder-Next 권장 (buildfastwithai.com)
-
-**📚 기본 지식:**
-- **위협 프레임**: OWASP LLM Top10(프롬프트 인젝션·불안전 출력·데이터 유출·과도한 에이전시) 기준 위협모델링. 툴/에이전트 권한 최소화·인간승인 게이트.
-- **가드레일**: 입력분류+출력필터(유해·PII·저작권·유명인), 시스템프롬프트 격리, 검색/툴 결과 신뢰경계 설정. 정책은 코드화·버전관리.
-- **레드팀·평가**: 자동+수동 적대적 테스트, 탈옥 프롬프트 회귀셋, 안전지표(거부율·오탐/미탐) 추적. 릴리즈 전 세이프티 게이트.
-- **생성물 안전**: NSFW·미성년·폭력 필터, 워터마킹/콘텐츠 자격증명(C2PA), 삭제요구·신고 대응. 민감도메인(의료·금융)은 자문 경계 명시.
-- **거버넌스**: 사고 로그·모니터링·롤백, 편향 감사, 개인정보·규제(법무 협업) 정합.
+Sources: [Help Net Security — EU AI Act enforcement](https://www.helpnetsecurity.com/2026/08/04/eu-ai-act-enforcement-ai-models/), [Help Net Security — OWASP prompt injection](https://www.helpnetsecurity.com/2026/06/11/owasp-prompt-injection-ai-security-failures/), [artificialintelligenceact.eu](https://artificialintelligenceact.eu/enforcement-of-chapter-v-under-the-eu-ai-act/), [Adversa AI](https://adversa.ai/blog/top-agentic-ai-security-resources-august-2026/), [Zylos Research](https://zylos.ai/research/2026-05-16-agentic-ai-security-prompt-injection-defense-stack/), [MultiBreak (arXiv)](https://arxiv.org/html/2605.01687v1), [TechXplore](https://techxplore.com/news/2026-03-renewable-benchmark-llm-jailbreak-safety.html), [General Analysis](https://generalanalysis.com/guides/best-ai-guardrails), [Confident AI](https://www.confident-ai.com/knowledge-base/compare/best-ai-red-teaming-tools-2026)
 <!-- KNOWLEDGE:END -->

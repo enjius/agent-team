@@ -21,21 +21,15 @@ skills:
 
 
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **ASO=전략(2026)**: 최적화 아닌 전략. **평점 4.0+ 필수**(featured 앱 90%가 4.0↑, 3.5미만 상위노출 희박), 스토어페이지 커스터마이징이 핵심 (mobileaction.co, promodo.com)
-- **웹투앱 급증**: 딥링크 여정이 표준 대비 전환율 ~2배, AppsFlyer 웹투앱 +77% (searchlab.nl)
-- **AI ASO**: 키워드·메타데이터·크리에이티브 현지화를 수일로 압축, ASO+UA+크리에이티브 통합이 최강 (cas.ai)
+## 최신 지식 (2026-08-08)
+- AI 딥리서치 에이전트(Perplexity Deep Research 등)가 경쟁 지형·트렌드 보고서를 수 분 내 생성하는 수준으로 정착, 애널리스트는 검증·해석 역할로 이동 (pragmaticcoders.com, segwise.ai)
+- 2026년 자금흐름은 에너지·산업재 등 '올드 이코노미'로의 로테이션이 뚜렷하고, 동일가중 S&P500이 시총가중을 앞서는 등 시장 폭 확대가 핵심 신호 (fxcm.com, lpl.com)
+- 국제·신흥국 주식으로의 자금 유입이 2023년 이후 처음 미국을 추월, EM ETF에 연초 이후 350억 달러 이상 유입 — 지역 배분 리서치 중요도 상승 (ishares.com, blackrock.com)
+- 대체데이터 채택률이 90%에 도달하며 트렌드가 '데이터 확보'에서 '평가·통합'으로 이동 — 여러 소스 결합과 의미 해석이 새 병목 (kadoa.com, lowenstein.com)
+- AI 프로덕션 전환에 따라 데이터 중앙화(인간+에이전트 모두 접근 가능한 표준화 웨어하우스)와 거버넌스·출처 추적(provenance)이 베스트프랙티스로 부상 (kadoa.com, datazn.ai)
+- 소셜리스닝·검색트렌드·리뷰를 결합한 소비자 신호 조기 감지 도구(Glimpse, Brandwatch, GWI Spark)가 섹터·테마 리서치의 표준 스택으로 자리잡음 (kimi.com, nodesure.com)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **모던 데이터스택**: Snowflake/Databricks + dbt(변환 표준) + Airflow + Fivetran/dlt + Great Expectations/Monte Carlo가 2026 기본 (proinsightsportal.com, uvik.net)
-- **레이크하우스·오픈포맷**: 저장/컴퓨트 분리, Iceberg가 신규 레이크하우스 기본 오픈테이블 포맷, Unity Catalog·Polaris 부상 (dev.to, lucentinnovation.com)
-- **AI 운영**: AI가 파이프라인 모니터링·디버깅·최적화에 투입돼 실패↓·디버깅속도↑ (refontelearning.com)
-
-**📚 기본 지식:**
-- **방법론**: 정성(인터뷰·JTBD)+정량(설문·컨조인트) 삼각검증, 표본 편향·설문 설계 오류 주의.
-- **시장 규모화**: 톱다운(TAM)·보텀업(수요기반) 교차검증, 경쟁·대체재 매핑.
-- **신호 수집**: 검색트렌드·리뷰·소셜리스닝·커뮤니티, AI로 대량 텍스트 주제분석.
-- **산출**: 페르소나·기회영역·가격 민감도, 의사결정 가능한 인사이트로 정제.
+Sources: [Pragmatic Coders](https://www.pragmaticcoders.com/blog/top-ai-market-research-tools), [Segwise](https://segwise.ai/blog/best-ai-market-research-tools-2026), [FXCM](https://www.fxcm.com/markets/insights/the-2026-market-rotation-suggests-a-quiet-shift-with-loud-implications/), [LPL Research](https://www.lpl.com/research/blog/risk-on-appetite-strong-in-2026-fund-flows-recap.html), [iShares](https://www.ishares.com/us/insights/inside-the-market/2026-etf-market-trends-and-flows), [Kadoa](https://www.kadoa.com/blog/alternative-data-trends-2026), [Lowenstein Sandler](https://www.lowenstein.com/media/jujd45bp/alt-data-report-2025_final.pdf), [Datazn](https://www.datazn.ai/blog/alternative-data-providers-2026)
 <!-- KNOWLEDGE:END -->

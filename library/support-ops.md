@@ -20,22 +20,15 @@ skills:
 
 
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **ASO=전략(2026)**: 최적화 아닌 전략. **평점 4.0+ 필수**(featured 앱 90%가 4.0↑, 3.5미만 상위노출 희박), 스토어페이지 커스터마이징이 핵심 (mobileaction.co, promodo.com)
-- **웹투앱 급증**: 딥링크 여정이 표준 대비 전환율 ~2배, AppsFlyer 웹투앱 +77% (searchlab.nl)
-- **AI ASO**: 키워드·메타데이터·크리에이티브 현지화를 수일로 압축, ASO+UA+크리에이티브 통합이 최강 (cas.ai)
+## 최신 지식 (2026-08-08)
+- AI 에이전트가 티어1 문의를 자율 해결하고 인간 상담원은 복잡·공감형 케이스에 집중하는 하이브리드 운영이 2026년 표준 — 세션 간 맥락을 기억하는 "메모리형 AI"와 감정분석·자동 요약이 기본기로 자리잡음 (freshworks.com, zendesk.com, crescendo.ai)
+- 해결 건당 과금(Intercom Fin $0.99/resolution 등) 성과 기반 프라이싱이 확산 — AI 상담 도구 도입 시 좌석 수가 아닌 "해결률(~51% 벤치마크)" 기준으로 ROI를 산정하는 것이 베스트프랙티스 (fin.ai, myaskai.com)
+- 지식베이스는 AI 학습 소스로 격상 — 티켓 데이터 기반 콘텐츠 갭 자동 감지(Zendesk content cues), FAQ를 AI가 읽기 좋은 구조로 유지하고 민감 질의는 고신뢰 스크립트 답변(Custom Answers)으로 분리하는 운영이 권장됨 (zendesk.com, usefini.com)
+- 장애 대응 플레이북은 "무엇을 평가하라"가 아니라 "어느 대시보드를 열어 어떤 값을 채널에 붙여라" 수준의 구체성 + 조사 담당/인시던트 지휘 역할 분리 + 마지막 사용·리뷰 일자 추적이 2026년 핵심 원칙 (oneuptime.com, clickup.com)
+- 플레이북은 문서가 아니라 훈련 대상 — 실전 압박 상황에서 연습하지 않은 플랜은 실패하며, AI 시대 위협 시나리오를 반영해 사후 리뷰(post-incident review) 때마다 갱신하는 주기적 테스트가 필수 (cm-alliance.com, ir-os.com)
+- 고객 데이터 프라이버시가 지원 운영의 차별화 요소 — LLM이 민감 데이터를 보존하지 않도록 하는 프로그램, 자체 인프라에 데이터를 두는 도메인 특화 모델 운영이 선도 조직의 표준 (text.com, salesforce.com)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **PM 역할 분화**: 2026 PM 역할이 세분화(AI PM 등장), AI가 리서치·스펙 작성 가속. 에이전틱 AI가 '생성→실행(행동)'으로 이동 (userpilot.com, institutepm.com)
-- **문서=지식레이어**: 문서가 서포트 자동화·인앱 어시스턴트·AI 에이전트가 읽는 지식층. 멀티모달(코드·영상·음성) 콘텐츠 기본화 (document360.com)
-- **지속적 현지화**: UI·인앱헬프·KB·마케팅·법무·서포트 매크로가 하나의 지속 현지화 모델로. AI는 오케스트레이션 층, 사람 감독 필수 (rws.com, csa-research.com)
-
-**📚 기본 지식:**
-- **AI 상담**: LLM 기반 1차 응대(RAG로 자사 FAQ·약관 근거) + 사람 에스컬레이션. 헬프데스크(Intercom/Zendesk) AI 어시스트로 응답시간 단축.
-- **셀프서비스**: 인앱 헬프센터·챗봇으로 티켓 디플렉션, 상위 문의 유형을 프로덕트 백로그로 환류.
-- **금융앱 운영**: 입출금·정산 문의는 SLA 엄격·감사추적 필수, 계정보안(피싱·명의도용) 대응 플레이북 상비.
-- **지표**: CSAT·첫응답/해결시간·티켓백로그·디플렉션율. 반복문의는 근본원인(버그·UX) 티켓으로 연결.
-- **컴플라이언스**: 상담 로그 보존·PII 마스킹, 민원은 규제기관 보고 기준(기한·양식) 준수.
+Sources: [Freshworks](https://www.freshworks.com/customer-service/trends/), [Zendesk](https://www.zendesk.com/blog/ai/productivity/ai-customer-service-statistics/), [Crescendo](https://www.crescendo.ai/blog/emerging-trends-in-customer-service), [Fin.ai](https://fin.ai/learn/ai-knowledge-base), [MyAskAI](https://myaskai.com/blog/intercom-fin-ai-agent-complete-guide-2026), [Fini Labs](https://www.usefini.com/guides/ai-knowledge-base-self-service-agent-support), [OneUptime](https://oneuptime.com/blog/post/2026-01-27-incident-response-playbooks/view), [ClickUp](https://clickup.com/blog/how-to-build-an-incident-response-playbook/), [CM Alliance](https://www.cm-alliance.com/cybersecurity-blog/cyber-incident-response-playbook-examples-for-2026), [IR-OS](https://ir-os.com/articles/incident-response-playbook), [Text.com](https://www.text.com/blog/future-of-ai-in-customer-support/), [Salesforce](https://www.salesforce.com/service/customer-service-trends/)
 <!-- KNOWLEDGE:END -->

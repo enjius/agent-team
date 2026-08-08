@@ -19,21 +19,15 @@ skills:
 
 
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **모델 대량 출시(7월)**: Claude **Sonnet 5**, OpenAI **GPT-5.6**(Luna/Terra/Sol, 100만 컨텍스트·$1~5), xAI **Grok 4.5** 연이어 출시. 오픈소스는 **GLM-5.2·DeepSeek V4·Qwen 3.6** (thursdai.news, llm-stats.com)
-- **에이전트 실전화**: GPT-5.6에 프로그래매틱 툴콜·멀티에이전트 오케스트레이션·프롬프트캐시 브레이크포인트 추가, Google Threat Intel 에이전틱 보안 GA (agentic.ai)
-- **워크플로 특화 소형모델**: Base44가 앱빌딩 수천만 상호작용 학습한 자체 LLM 'Base 1' 출시 (pricepertoken.com)
+## 최신 지식 (2026-08-08)
+- **오케스트레이션 패턴 표준화**: 프로덕션에서는 supervisor/worker(계층 위임), fan-out(병렬 산개-수집), pipeline(순차), debate(다관점 비평), swarm(동적 피어) 5~6개 패턴이 정착 — "가장 정교한 패턴"이 아니라 문제에 맞는 최경량 패턴 선택이 베스트프랙티스 (beam.ai, digitalapplied.com)
+- **실패 원인 1위는 컨텍스트 비일관성**: 멀티에이전트 실패의 주범은 패턴 선택이 아니라 공유 컨텍스트/상태 관리 부재 — 파이프라인 단계 간 영속 상태 저장소(shared context layer) 설계가 핵심 (atlan.com)
+- **비용-정확도 트레이드오프 정량화**: 멀티에이전트는 단일 대비 약 2배 비용에 정확도 +2.1%p 수준 — 복잡한 크로스도메인 작업에만 병렬 위임을 쓰고 단순 작업은 직접 처리하는 라우팅 판단이 오케스트레이터의 역할 (beam.ai)
+- **Claude Code Agent Teams 부상**: 서브에이전트(결과만 필요할 때, 저비용)와 Agent Teams(팀원별 독립 컨텍스트 + 공유 태스크 리스트 + 상호 메시징)의 사용처 구분이 2026년 오케스트레이션의 핵심 설계 결정 (tembo.io, cloudzero.com)
+- **A2A v1.0 + MCP 2계층 스택이 사실상 표준**: 2026년 4월 A2A v1.0 출시 후 150+ 조직 지원, MCP는 월 9,700만 SDK 다운로드 — "수직 도구 연결은 MCP, 수평 에이전트 간 조율은 A2A" 구조가 엔터프라이즈 기본 아키텍처화 (glukhov.org, zylos.ai)
+- **거버넌스 통합**: MCP·A2A 모두 Linux Foundation 산하 Agentic AI Foundation(2025년 12월 출범, OpenAI·Anthropic·Google·Microsoft·AWS·Block 공동 창립)으로 이관 — 프로토콜 수렴 가속 (zylos.ai)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- 오픈웨이트 리더보드: **GLM-5.2**가 에이전틱 코딩·추론 최상위, 코딩 에이전트는 **Kimi K2.7 Code**, 노트북급은 Gemma 4 12B. 모델 500+·월 334+ 릴리스로 폭증 (llm-stats.com, acecloud.ai)
-- 에이전트 프레임워크: **CrewAI 1.14대** 안정화 — 메모리·지식·RAG·플로우 플러그블 백엔드, Chat API, 동시실행 상태격리 추가. LangGraph·AutoGen·Semantic Kernel 비교 심화 (alicelabs.ai)
-- 서버측 장기 에이전트=GLM-5.2, 소프트웨어 에이전트=Kimi K2.7 Code, 감사가능 멀티에이전트=Nemotron 3, IDE/코딩=Qwen3-Coder-Next 권장 (buildfastwithai.com)
-
-**📚 기본 지식:**
-- **다중 에이전트**: 계획-실행-검증 루프, 역할 분해·병렬화·결과 종합. 컨텍스트 예산 관리가 핵심.
-- **신뢰성**: 각 단계 구조화 출력·검증(adversarial), 실패 격리·재시도. 툴 권한 최소화.
-- **비용·지연**: 태스크별 모델 라우팅(대·소), 프롬프트 캐싱, 불필요한 팬아웃 억제.
-- **관측**: 단계별 트레이싱·토큰·성공률 로깅으로 병목·품질 추적.
+Sources: [beam.ai](https://beam.ai/agentic-insights/multi-agent-orchestration-patterns-production) · [atlan.com](https://atlan.com/know/multi-agent-system-orchestration/) · [digitalapplied.com](https://www.digitalapplied.com/blog/multi-agent-orchestration-5-patterns-that-work) · [tembo.io](https://www.tembo.io/blog/claude-code-multi-agent-orchestration) · [cloudzero.com](https://www.cloudzero.com/blog/claude-code-agents/) · [glukhov.org](https://www.glukhov.org/ai-systems/comparisons/a2a-protocol-2026-adoption/) · [zylos.ai](https://zylos.ai/research/2026-03-26-agent-interoperability-protocols-mcp-a2a-acp-convergence/)
 <!-- KNOWLEDGE:END -->

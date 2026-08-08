@@ -16,22 +16,15 @@ skills:
 
 원칙: 돈 계산은 반올림·통화단위·타임존까지 정확하게. 원장은 불변, 재계산은 재현가능하게.
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **BTC 현실(7/22 ~$65,800)**: 1월 $93K→'25.10 $126K고점→6월말 21개월최저 ~$58K→반등. 금리인하 기대후퇴·ETF유출·기업매도가 하락 3대 요인 (fool.com, ig.com)
-- **규제**: 美 SEC 7/7 크립토 규칙제정 3건 의제 추가, 상원 **CLARITY Act** 개정안 공개, **일본이 크립토를 '금융자산' 재분류**·세금 대폭 인하 (investingnews.com)
-- **시사점**: 수익률 보장·강세 일변도 금지 — 실제 가격·변동성 반영. 규제 명확화가 기관유입 스위치 (crypto.news)
+## 최신 지식 (2026-08-08)
+- 마이데이터 2.0이 2025-06부터 27개 사업자 대상 시행 — 전송요구·동의 절차가 1회로 일원화되고 수집 범위가 의료·공공·통신으로 확대되어, 자산 집계 파이프라인의 동의 관리·데이터 스키마를 2.0 기준으로 재점검할 필요 (fsc.go.kr, kdi.re.kr)
+- 거래내역 정합성 검증은 규칙 기반 매칭 엔진 + AI 예외처리 자동화가 표준으로 자리잡는 중 — 핵심 계좌부터 단계적 자동화, 예외 건별 소유자(owner) 지정, 전체 감사 추적(audit trail) 확보가 베스트프랙티스 (greshamtech.com, highradius.com, optimus.tech)
+- 개인 자산앱 수익률 표기는 TWR(투자전략 평가용)과 MWR/IRR(실제 내 돈 수익 평가용) 병기가 업계 관행으로 정착 — JP모건 등 주요 서비스가 두 지표를 함께 제공하므로 대시보드도 이중 표기 검토 권장 (personalinvesting.jpmorgan.com, chase.com)
+- 정산·잔액 원장은 범용 DB 테이블 대신 복식부기 전용 원장 설계가 강조되는 추세 — 고volume 환경에선 TigerBeetle 같은 debit/credit 네이티브 스키마의 전용 트랜잭션 DB를 원장에 쓰고 일반 데이터는 기존 DB에 두는 분리 패턴이 권장됨 (tigerbeetle.com, interledger.org)
+- 자산 집계 API는 증권·연금·크립토 거래소까지 커버리지가 확대(Plaid Investments 기준 약 20개 계좌 유형) — 집계 후 순자산·자산배분 산출을 API 레이어에서 지원하는 흐름이므로 커버리지 갭(연금·ISA·크립토) 점검 필요 (plaid.com)
+- 포트폴리오 회계 소프트웨어 선택 기준으로 "accounting-grade 데이터 리니지 + 성과보고와 원장 시스템 간 정합(reconcile to system of record)"이 2026년 핵심 평가축으로 부상 — 대시보드 수치와 원장 수치의 단일 진실원(SoR) 정렬을 우선순위로 (fundcount.com, solvexia.com)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **기관 편입·BTC 전망**: JPMorgan $170K·Standard Chartered $150K·Fundstrat $150~200K(연말 $250K) 전망 분분, 글로벌 투자자 76%가 디지털자산 확대 계획, 172개+ 상장사가 ~100만 BTC 보유 (blockchain-council.org, coinbase.com)
-- **규제 명확화**: 스테이블코인 프레임워크·과세 조율·DeFi 통제 강화가 2026 최대 변수. TradFi-DeFi 융합 가속 (sumsub.com, finextra.com)
-- **AI 운용**: 포트폴리오 관리·알고리즘 트레이딩(자동 리밸런싱·전략 최적화)에 AI 확대, 크로스체인 유동성·상호운용성 강화 (blog.kraken.com)
-
-**📚 기본 지식:**
-- **수익률 방법론**: 자금유출입 왜곡 없는 성과는 시간가중수익률(TWR), 실제 투자자 경험은 금액가중(MWR/IRR). 대시보드는 둘을 구분·병기하고 계산기준을 각주로.
-- **금액 정밀도**: 부동소수점 금지 — 정수(최소단위/사토시·원) 또는 Decimal로 계산, 통화별 소수자릿수·반올림규칙(ROUND_HALF_UP) 통일. 표시와 저장 정밀도 분리.
-- **원장·정합성**: append-only 거래원장 + 파생 잔고는 재계산 가능하게(이벤트소싱형). 대사(reconciliation) 배치로 외부 잔고와 일치 검증, 불일치는 감사로그로 추적.
-- **평가·정산**: 평가금액=수량×기준가(가격소스·시점 명시), 미실현손익=평가-평단, 실현손익=매도-평단(선입선출/이동평균 정책 고정). 수수료·세금·펀딩비 반영 위치 일관.
-- **시간·환율**: 모든 시점은 UTC 저장·로컬 표시, 일별 스냅샷은 거래소/시장 마감기준 통일. 다통화는 환율소스·환산시점을 기록해 재현성 확보.
+Sources: [금융위 마이데이터 2.0](https://www.fsc.go.kr/no010101/84780), [KDI 오픈파이낸스 동향](https://eiec.kdi.re.kr/policy/domesticView.do?ac=0000180446), [Gresham reconciliation 2026](https://www.greshamtech.com/blog/best-reconciliation-software-for-financial-institutions-in-2026), [HighRadius reconciliation tools](https://www.highradius.com/resources/Blog/best-account-reconciliation-tools/), [Optimus AI reconciliation](https://optimus.tech/blog/best-ai-reconciliation-tools-for-finance-teams-2026), [J.P. Morgan 수익률 계산](https://support.personalinvesting.jpmorgan.com/?article=360018853471-How-does-JPMorgan-Personal-Investing-calculate-returns), [Chase TWR](https://www.chase.com/personal/investments/learning-and-insights/article/time-weighted-rate-of-return-explained), [TigerBeetle Docs](https://docs.tigerbeetle.com/single-page/), [Interledger×TigerBeetle](https://interledger.org/developers/blog/rafiki-tigerbeetle-integration/), [Plaid Investments](https://plaid.com/docs/api/products/investments/), [FundCount 2026](https://fundcount.com/best-portfolio-accounting-software/), [Solvexia portfolio reconciliation](https://www.solvexia.com/glossary/portfolio-reconciliation)
 <!-- KNOWLEDGE:END -->

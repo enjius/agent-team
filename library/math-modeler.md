@@ -20,21 +20,15 @@ skills:
 
 
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **프레임워크(7월)**: Next.js 7/21 보안 릴리스, React Router v8(연간 릴리스·ESM·Node22.22+·Vite7), **Flutter 3.44.0**(5/18 안정), Remix 3(React 탈피 재설계), RN Windows 0.83 (nextjs.org, dev.to)
-- **지형**: 서버우선 아키텍처·AI 보조 툴링·성능 기본값화가 대세, 코드 29% AI 생성 지속 (nucamp.co)
-- **AI 코딩**: GPT-5.6·Claude Sonnet 5·GLM-5.2 등 신규 모델로 에이전틱 코딩 급진전 (thursdai.news)
+## 최신 지식 (2026-08-08)
+-신경망 SDE(드리프트·변동성을 NN으로 학습)가 Black-Scholes·Heston·Dupire 대비 실제 S&P500/100 옵션 데이터 캘리브레이션에서 우위를 보이며, 앙상블·하이브리드 ML 가격결정 모델이 2024~2026 사이 주류로 이동 (tandfonline.com, arxiv.org)
+- EU FRTB 시행이 2027년 1월로 재연기되고 미국은 2026년 3월 Basel Endgame 재제안 — 97.5% ES 대체, 데스크 단위 IMA 승인·PLA 테스트·NMRF 애드온 대응이 리스크 수리 실무의 최우선 과제 (bloomberg.com, sifma.org)
+- 시계열 파운데이션 모델(TimesFM-2.5, Chronos-2, MOIRAI-2)이 제로샷 예측 도구로 확산 중이나, 일간 초과수익률 예측에서는 CatBoost·LightGBM 앙상블에 밀린다는 벤치마크 결과가 나와 금융 적용 시 선별 사용 권장 (machinelearningmastery.com, arxiv.org)
+- 대형 시간스텝 몬테카를로(Seven-League Scheme)의 GPU 가속과 fBM 기반 SDE의 딥러닝 시뮬레이션 등, NN으로 확률적 콜로케이션 포인트를 학습해 MC 경로 생성 비용을 줄이는 기법이 실용 단계 진입 (arxiv.org, sciencedirect.com)
+- 양자 진폭 추정(QAE) 기반 몬테카를로 가격결정이 오라클 없이 동작하는 알고리즘·확률변동성 모델 확장으로 발전, 고전 MC 대비 이차 스피드업을 확률변동성·조기행사 파생상품까지 확대하는 연구가 활발 (arxiv.org)
+- 최적 정지(아메리칸 옵션) 문제에 딥 primal-dual BSDE 방법이 제안되어, 조기행사 경계·조건부 기대값 계산이라는 파생 가격결정의 전통적 난제를 심층학습으로 우회하는 흐름이 강화 (arxiv.org)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **모던 데이터스택**: Snowflake/Databricks + dbt(변환 표준) + Airflow + Fivetran/dlt + Great Expectations/Monte Carlo가 2026 기본 (proinsightsportal.com, uvik.net)
-- **레이크하우스·오픈포맷**: 저장/컴퓨트 분리, Iceberg가 신규 레이크하우스 기본 오픈테이블 포맷, Unity Catalog·Polaris 부상 (dev.to, lucentinnovation.com)
-- **AI 운영**: AI가 파이프라인 모니터링·디버깅·최적화에 투입돼 실패↓·디버깅속도↑ (refontelearning.com)
-
-**📚 기본 지식:**
-- **최적화**: 볼록/비볼록 구분, LP/MILP(OR-Tools)·경사기반, 제약·목적함수 명시. 수치 안정성·스케일링.
-- **확률·통계**: 베이지안 추론(MCMC/변분), 불확실성 정량화, 과적합 방지(정규화·교차검증).
-- **시뮬레이션**: 몬테카를로·민감도 분석, 시드 고정으로 재현성. 시계열은 정상성·계절성 처리.
-- **검증**: 백테스트 편향(룩어헤드·생존편향) 제거, 아웃오브샘플 평가.
+Sources: [Machine learning methods for pricing financial derivatives (Quantitative Finance)](https://www.tandfonline.com/doi/full/10.1080/14697688.2026.2623901), [ML/DL in Computational Finance: Systematic Review](https://arxiv.org/pdf/2511.21588), [Bloomberg — U.S. Basel III Endgame](https://www.bloomberg.com/professional/insights/financial-services/the-u-s-basel-iii-endgame-enters-a-new-phase/), [SIFMA — FRTB Guide](https://www.sifma.org/news/blog/the-fundamental-review-of-the-trading-book-frtb-an-introductory-guide), [2026 Time Series Toolkit](https://machinelearningmastery.com/the-2026-time-series-toolkit-5-foundation-models-for-autonomous-forecasting/), [Pretrained TSFMs for Financial Return Forecasting](https://arxiv.org/abs/2606.27100), [GPU Seven-League Scheme](https://arxiv.org/pdf/2302.05170), [DL-based MC for fBM SDEs](https://www.sciencedirect.com/science/article/abs/pii/S092523122400016X), [Monte-Carlo Option Pricing in Quantum Parallel](https://arxiv.org/html/2505.09459v1), [Deep primal-dual BSDE for optimal stopping](https://arxiv.org/pdf/2409.06937)
 <!-- KNOWLEDGE:END -->

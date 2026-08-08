@@ -18,23 +18,15 @@ skills:
 
 원칙: 재현가능(시드·버전·데이터 스냅샷). 평가셋 없이는 개선을 주장하지 않는다.
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **모델 대량 출시(7월)**: Claude **Sonnet 5**, OpenAI **GPT-5.6**(Luna/Terra/Sol, 100만 컨텍스트·$1~5), xAI **Grok 4.5** 연이어 출시. 오픈소스는 **GLM-5.2·DeepSeek V4·Qwen 3.6** (thursdai.news, llm-stats.com)
-- **에이전트 실전화**: GPT-5.6에 프로그래매틱 툴콜·멀티에이전트 오케스트레이션·프롬프트캐시 브레이크포인트 추가, Google Threat Intel 에이전틱 보안 GA (agentic.ai)
-- **워크플로 특화 소형모델**: Base44가 앱빌딩 수천만 상호작용 학습한 자체 LLM 'Base 1' 출시 (pricepertoken.com)
+## 최신 지식 (2026-08-08)
+- MCP 2026-07-28 스펙이 initialize 핸드셰이크·세션ID를 제거한 완전 스테이트리스 구조로 전환, OAuth mix-up 방어 강화와 MCP Apps·비동기 장기실행 태스크 확장이 공식화됨 (venturebeat.com, developers.googleblog.com)
+- 파인튜닝 실무 표준은 "Prompt → RAG → LoRA/QLoRA 파인튜닝 → 증류" 순서로 수렴, 파인튜닝은 지식 주입이 아닌 행동·형식 교정용이며 비용·지연 절감용 증류가 최고 ROI로 부상 (winder.ai, bigdataboutique.com)
+- 추론 서빙은 대량 배치·처리량 중심이면 vLLM, 반복 프리픽스가 많은 에이전트·대화형 워크로드면 RadixAttention 기반 SGLang을 쓰고 게이트웨이 뒤에 병행 운영하는 이원화가 정착 (yottalabs.ai, sandbase.ai)
+- 에이전트 평가는 end-to-end·트래젝터리(툴콜·재시도·핸드오프)·컴포넌트 3계층으로 나누고, 프로덕션에서는 휴리스틱 100% + LLM-judge 5~10% 샘플링으로 트레이스 기반 상시 평가하는 게 베스트프랙티스 (confident-ai.com, braintrust.dev)
+- 평가-관측 통합이 핵심 트렌드: 점수를 프롬프트·모델·데이터셋 버전에 역추적 가능하게 연결하고, 프로덕션 엣지케이스를 평가셋으로 자동 환류시켜 품질 드리프트를 사전 감지 (adaline.ai, future_agi/medium.com)
+- 에이전트 간 통신 표준 A2A v1.0이 프로덕션 표준으로 정식 릴리스되고 MCP 서버 구현 200+ 돌파, 멀티에이전트 상호운용성이 프레임워크 선택의 주요 기준이 됨 (ruh.ai, aaif.io)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- 오픈웨이트 리더보드: **GLM-5.2**가 에이전틱 코딩·추론 최상위, 코딩 에이전트는 **Kimi K2.7 Code**, 노트북급은 Gemma 4 12B. 모델 500+·월 334+ 릴리스로 폭증 (llm-stats.com, acecloud.ai)
-- 에이전트 프레임워크: **CrewAI 1.14대** 안정화 — 메모리·지식·RAG·플로우 플러그블 백엔드, Chat API, 동시실행 상태격리 추가. LangGraph·AutoGen·Semantic Kernel 비교 심화 (alicelabs.ai)
-- 서버측 장기 에이전트=GLM-5.2, 소프트웨어 에이전트=Kimi K2.7 Code, 감사가능 멀티에이전트=Nemotron 3, IDE/코딩=Qwen3-Coder-Next 권장 (buildfastwithai.com)
-
-**📚 기본 지식:**
-- **LLM 앱 스택**: 에이전트는 툴콜+계획-실행 루프, 컨텍스트 관리가 핵심. 태스크별 대·소 모델 라우팅(비용/지연), 구조화 출력(JSON schema)·프롬프트 캐싱 활용.
-- **RAG 표준**: 하이브리드 검색(BM25+임베딩)+리랭커, 청킹·메타데이터 필터, 근거인용 강제. 평가는 RAGAS/충실도·문맥적합.
-- **파인튜닝**: PEFT/LoRA·양자화(QLoRA)로 저비용 적응, 지시튜닝·선호최적화(DPO). 데이터 품질이 규모보다 중요.
-- **서빙·최적화**: vLLM/TGI, KV캐시·연속배치·양자화(INT8/FP8)로 처리량↑. 임베딩/리랭커는 배치·캐시.
-- **평가·관측**: 골든셋+LLM-judge, 트레이싱(토큰·지연·비용), 프롬프트/모델 버전관리. A/B로 온라인 검증.
-- **안전**: 프롬프트 인젝션·PII 유출 방어, 툴권한 최소화, 유해출력 필터.
+Sources: [VentureBeat](https://venturebeat.com/infrastructure/mcp-just-got-its-biggest-update-ever-heres-what-changes-for-ai-agents), [Google Developers Blog](https://developers.googleblog.com/scaling-ai-agent-infrastructure-with-the-mcp-stateless-updates/), [Winder.AI](https://winder.ai/rag-vs-fine-tuning-2026-decision-framework/), [BigData Boutique](https://bigdataboutique.com/blog/fine-tuning-llms-when-rag-isnt-enough), [Yotta Labs](https://www.yottalabs.ai/post/vllm-vs-sglang-which-inference-engine-should-you-use-in-2026), [SandBase](https://www.sandbase.ai/blog/vllm-vs-sglang-2026/), [Confident AI](https://www.confident-ai.com/blog/llm-agent-evaluation-complete-guide), [Braintrust](https://www.braintrust.dev/articles/agent-observability-complete-guide-2026), [Adaline](https://www.adaline.ai/blog/complete-guide-llm-ai-agent-evaluation-2026), [ruh.ai](https://www.ruh.ai/blogs/ai-agent-protocols-2026-complete-guide), [AAIF](https://aaif.io/blog/mcp-is-growing-up)
 <!-- KNOWLEDGE:END -->

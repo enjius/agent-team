@@ -16,22 +16,15 @@ skills:
 
 원칙: 해결책이 아니라 문제·조건을 먼저 확정한다. 모호함은 질문으로 드러낸다. 수용조건 없는 요구는 미완성이다.
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **프레임워크(7월)**: Next.js 7/21 보안 릴리스, React Router v8(연간 릴리스·ESM·Node22.22+·Vite7), **Flutter 3.44.0**(5/18 안정), Remix 3(React 탈피 재설계), RN Windows 0.83 (nextjs.org, dev.to)
-- **지형**: 서버우선 아키텍처·AI 보조 툴링·성능 기본값화가 대세, 코드 29% AI 생성 지속 (nucamp.co)
-- **AI 코딩**: GPT-5.6·Claude Sonnet 5·GLM-5.2 등 신규 모델로 에이전틱 코딩 급진전 (thursdai.news)
+## 최신 지식 (2026-08-08)
+- **스펙 주도 개발(SDD)이 사실상 표준화** — 버전 관리되는 스펙(요구사항→계획→태스크→코드)이 단일 진실 원천이 되고, GitHub Spec Kit 등 도구가 Claude Code·Copilot·Cursor 등 주요 AI 코딩 에이전트와 통합됨 (github.blog, dev.to)
+- **EARS 구문이 AI 에이전트용 수용조건의 사실상 표준** — 5개 패턴이 트리거·범위·응답을 모호성 없이 명세해 테스트 케이스와 거의 1:1 매핑, 에이전트가 추측 없이 구현·검증 가능 (thebcms.com, augmentcode.com)
+- **수용조건은 "체크 가능"하게: 형용사를 숫자로** — 'fast'가 아니라 'p95 200ms 미만'처럼 측정 가능한 임계값 필수; AI 에이전트는 사람과 달리 즉시 추측해 커밋하므로 모호한 AC가 곧바로 프로덕션 버그로 직결 (earezki.com, telos-ai.org)
+- **AI 기반 요구사항 관리 도구가 실무 정착** — 작성 워크플로우 안에서 모호성·검증불가 요구사항 실시간 플래깅, 상류 변경 시 영향받는 테스트·설계·리스크 항목까지 추적 링크 자동 갱신 (jamasoftware.com, getxray.app)
+- **AI 생성 요구사항의 QA 게이트 필수화** — LLM이 뽑은 요구사항은 그럴듯하지만 엣지케이스 누락·도메인 규칙 오류가 흔해, INVEST 린트·갭 분석·경계값/보안 시나리오 자동 보강 등 검증 단계가 베스트프랙티스로 부상 (henix-blog.medium.com, ones.com)
+- **분석가 역할이 '요구사항 수집가'에서 전략 파트너로 이동** — AI 거버넌스·윤리 보드 참여, 측정 가능한 비즈니스 성과 정의가 핵심 역량으로 부상하고 BA 자격 커리큘럼에 거버넌스·규제 모듈이 표준 포함 (iiba.org)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **프론트엔드**: React 19 + React Compiler(1.0)로 useMemo/useCallback/memo 수동최적화가 레거시화. Server Components·signals 세분화 반응성·INP가 아키텍처 우열을 가름. Svelte·Astro·Qwik 부상 (logrocket.com, netguru.com)
-- **백엔드·런타임**: Bun이 Node 런타임 지위 위협, NestJS·HTTP/3, 이벤트드리븐 마이크로서비스(Kafka·EventBridge)+관측성+AI 모니터링 통합 (medium.com, nucamp.co)
-- **공통**: 코드의 29%가 이미 AI 생성, TypeScript 40% 단독채택, Vite가 Webpack 대체(만족도 98%) (blog.logrocket.com)
-
-**📚 기본 지식:**
-- **요구사항 규율**: 기능요구 + 비기능(성능·가용성·보안·운영·비용)을 분리, 각 요구에 검증가능한 수용조건(AC)을 붙인다. INVEST 기준 유저스토리, 예시기반(BDD Given-When-Then).
-- **내부→제품 전환 체크리스트**: 하드코딩 제거·설정화(env/config), 단일→멀티테넌시·격리, 배포 이식성(docker run 재현성·오프라인 번들), 인증/권한, 관측성·에러처리, 라이선스·의존성 경계, 과금/한도.
-- **엣지케이스 발굴**: 고객 환경 차이(오프라인·프록시·GPU 유무·NFS/레지스트리 부재), 실패·부분성공·롤백, 대용량·동시성, 버전·호환.
-- **산출물**: 요구사항표(우선순위·AC·리스크), 오픈퀘스천, 범위/비범위 명시. 상관·인과, must/should/could(MoSCoW)로 우선순위.
-- **AI 활용**: 문서·코드에서 암묵 요구를 LLM으로 추출하되 이해관계자 확인으로 검증. 스펙과 구현 드리프트를 주기적 점검.
+Sources: [GitHub Blog — Spec Kit](https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/) · [SDD 2026 Guide](https://www.thebcms.com/blog/spec-driven-development/) · [dev.to — SDD in 2026](https://dev.to/krlz/spec-driven-development-in-2026-what-it-is-the-tooling-and-how-teams-actually-use-it-2fk2) · [Augment Code — SDD/EARS](https://www.augmentcode.com/guides/what-is-spec-driven-development) · [Jama — AI Requirements Management](https://www.jamasoftware.com/blog/ai-requirements-management/) · [Xray — AI in RE](https://www.getxray.app/blog/ai-in-requirements-engineering) · [Checkable AC for AI Agents](https://earezki.com/ai-news/2026-06-03-i-changed-how-i-write-acceptance-criteria-and-my-ai-agent-stopped-building-the-wrong-thing/) · [Henix — AI-Generated Requirements QA](https://henix-blog.medium.com/ai-generated-requirements-are-dangerous-without-qa-8a8c6b9dbf91) · [IIBA — BA Trends 2026](https://www.iiba.org/business-analysis-blogs/top-6-business-analysis-trends-to-monitor-in-2026/)
 <!-- KNOWLEDGE:END -->

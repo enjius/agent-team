@@ -21,21 +21,15 @@ skills:
 
 
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **BTC 현실(7/22 ~$65,800)**: 1월 $93K→'25.10 $126K고점→6월말 21개월최저 ~$58K→반등. 금리인하 기대후퇴·ETF유출·기업매도가 하락 3대 요인 (fool.com, ig.com)
-- **규제**: 美 SEC 7/7 크립토 규칙제정 3건 의제 추가, 상원 **CLARITY Act** 개정안 공개, **일본이 크립토를 '금융자산' 재분류**·세금 대폭 인하 (investingnews.com)
-- **시사점**: 수익률 보장·강세 일변도 금지 — 실제 가격·변동성 반영. 규제 명확화가 기관유입 스위치 (crypto.news)
+## 최신 지식 (2026-08-08)
+- 미 GENIUS법 하위규정 본격화 — OCC가 2026년 3월 결제 스테이블코인 발행 규칙안(NPRM)과 발행사 보고 양식을 내놓으며 1:1 준비금·감독 체계가 실무 단계로 진입, 은행·핀테크의 스테이블코인 결제 도입 판단이 올해의 전략 과제 (occ.gov, brookings.edu)
+- 한국은 '디지털자산기본법' 연내 제정 드라이브 — 원화 스테이블코인 인가제·준비자산·상환청구권을 담은 당정 통합안이 9월 발의 예정으로, 발행 주체(은행 vs 비은행)가 최대 쟁점 (etnews.com, blockmedia.co.kr)
+- 에이전틱 결제가 표준화 국면 — Google AP2·Mastercard Verifiable Intent가 FIDO Alliance에 이관(2026-05)되고 Visa Intelligent Commerce가 ChatGPT에 통합(2026-06), 실서비스는 카드 레일(TAP/AP2), M2M은 스테이블코인(x402)으로 이원화 추세 (eco.com, agenticplug.ai)
+- 오픈뱅킹→오픈파이낸스 확장 — EU FiDA가 2026–27년 모기지·연금·투자·보험까지 데이터 공유를 확대하고, 미국은 연방 1033 규제 재부상과 주(州) 단위 입법이 병행되며 Plaid류 애그리게이터 미들웨어 모델이 사실상 표준 (spark.money, consumerfinancemonitor.com)
+- FRAML(사기+AML 통합) 구조 전환 — 실시간 결제에서 사기 위험이 기존 이체 대비 10배(EBA 경고)로 커지며 탐지 창이 초 단위로 압축, KYC의 83%·거래모니터링의 78%가 AI 에이전트 도입 중이나 설명가능성·편향이 감독 이슈 (liminal.co, feedzai.com)
+- FinCEN 대규모 AML 개편 — 2026년 4월 제안에서 "혁신 기술 실험에 추가 제재 리스크 없음"을 명시하고 형식적 점검에서 실효성 중심 감독으로 전환, 핀테크는 프로그램 효과성 입증 체계 재설계 필요 (fluxforce.ai, alessa.com)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **정보통신망법 전면개정안 2026.3.12 국회 통과·3.24 국무회의 의결**: CISO 임원급 격상·이사회 보고 의무화, 정보보호위원회 설치 의무, 정부 **사전 직권조사권** 신설 (lawtimes.co.kr)
-- 핀테크: 신용정보법상 **마이데이터 허가제**, AI·클라우드 수용 위한 **망분리 정책 개편**이 핵심 (law.asia, fsc.go.kr)
-- 글로벌 140개국+ 개인정보법 시행, 美·EU·호주·인도 연내 새 규정 발효 — 국내기업 선제 대비 필요 (koreaiin.com)
-
-**📚 기본 지식:**
-- **결제·정산**: PG·오픈뱅킹·간편결제 연동, 멱등성·재시도·정산 대사(reconciliation) 필수. 이중지불 방지·원장 불변.
-- **규제(한국)**: 전자금융거래법·가상자산이용자보호법 시행, 마이데이터·오픈API 표준, ISMS·PCI-DSS 준수.
-- **리스크**: 이상거래탐지(FDS)·AML/KYC, 한도·속도제한. 자금흐름은 감사추적 가능하게.
-- **정밀도**: 금액은 정수/Decimal, 통화·반올림 규칙 통일, 타임존 UTC 저장.
+Sources: [OCC Bulletin 2026-3](https://www.occ.gov/news-issuances/bulletins/2026/bulletin-2026-3.html), [Brookings](https://www.brookings.edu/articles/next-steps-for-genius-payment-stablecoins/), [전자신문](https://www.etnews.com/20251228000090), [블록미디어](https://www.blockmedia.co.kr/archives/1116640), [eco.com AP2](https://eco.com/support/en/articles/15192002-ap2-protocol-explained-google-s-agentic-commerce-standard-2026), [agenticplug.ai](https://agenticplug.ai/current-state-of-agentic-commerce), [Spark](https://www.spark.money/research/open-banking-global-state), [Consumer Finance Monitor](https://www.consumerfinancemonitor.com/2026/06/26/open-banking-regulation-in-2026-federal-regulation-resurfaces-as-states-bring-data-sharing-into-focus/), [Liminal](https://liminal.co/articles/insights/the-state-of-aml-compliance-in-2026), [Feedzai](https://www.feedzai.com/blog/future-aml-compliance-predictions/), [FluxForce](https://www.fluxforce.ai/blog/guide-to-aml-compliance-for-fintechs), [Alessa](https://alessa.com/blog/emerging-risks-in-aml-compliance-for-2026/)
 <!-- KNOWLEDGE:END -->

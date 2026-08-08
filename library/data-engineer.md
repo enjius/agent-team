@@ -17,21 +17,15 @@ tools: Read, Edit, Write, Bash, Grep, Glob, Skill
 
 
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **프레임워크(7월)**: Next.js 7/21 보안 릴리스, React Router v8(연간 릴리스·ESM·Node22.22+·Vite7), **Flutter 3.44.0**(5/18 안정), Remix 3(React 탈피 재설계), RN Windows 0.83 (nextjs.org, dev.to)
-- **지형**: 서버우선 아키텍처·AI 보조 툴링·성능 기본값화가 대세, 코드 29% AI 생성 지속 (nucamp.co)
-- **AI 코딩**: GPT-5.6·Claude Sonnet 5·GLM-5.2 등 신규 모델로 에이전틱 코딩 급진전 (thursdai.news)
+## 최신 지식 (2026-08-08)
+- **dbt Core v2.0 + Fusion 엔진 오픈소스화, Fivetran-dbt 합병 완료(2026.6)** — Rust 기반 Fusion이 Snowflake/BigQuery/Databricks Preview, DuckDB Beta 지원으로 로컬·CI에서 웨어하우스 비용 없이 dbt 실행 가능 (getdbt.com, kestra.io)
+- **Apache Iceberg가 레이크하우스 테이블 포맷 사실상 표준으로 정착** — 주요 클라우드·플랫폼이 Iceberg 중심으로 수렴, dbt v2.0도 Iceberg 카탈로그 스펙 간소화 지원 (datalakehousehub.com, getdbt.com)
+- **실시간 파이프라인이 기본값화** — 신규 파이프라인의 약 60%가 실시간/준실시간 요건 포함, Debezium·Flink 기반 CDC→Iceberg/Delta 직접 커밋 패턴이 표준 아키텍처로 부상 (dataverses.io, inveritasoft.com)
+- **데이터 옵저버빌리티가 데이터 컨트랙트의 강제(enforcement) 계층으로 진화** — 스키마·신선도·품질 SLA를 계약화하고, 자율 에이전트가 이상 감지·원인 설명·해결까지 수행하는 방향(예: Actian Data Observability Agents) (siffletdata.com, atlan.com, dqlabs.ai)
+- **AI 에이전트용 데이터 품질이 2026년 최우선 과제** — AI 도입 기업 51%가 부정적 결과 경험, 원인 1/3이 AI 부정확성(McKinsey 인용); 카탈로그·품질·옵저버빌리티를 단일 플랫폼으로 통합하고 MCP/API로 메타데이터를 에이전트에 노출하는 흐름 (sombrainc.com, atlan.com)
+- **실험(A/B) 설계에서 쿠키리스 트래킹과 지표 소스 오브 트루스 정합성이 핵심 체크포인트** — 분석툴·실험플랫폼·CRM 간 이벤트 집계 불일치 사전 검증, 평균 회귀 오판 방지, 홀드아웃 기반 딥 텔레메트리 분석이 베스트프랙티스로 강조 (convert.com)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **모던 데이터스택**: Snowflake/Databricks + dbt(변환 표준) + Airflow + Fivetran/dlt + Great Expectations/Monte Carlo가 2026 기본 (proinsightsportal.com, uvik.net)
-- **레이크하우스·오픈포맷**: 저장/컴퓨트 분리, Iceberg가 신규 레이크하우스 기본 오픈테이블 포맷, Unity Catalog·Polaris 부상 (dev.to, lucentinnovation.com)
-- **AI 운영**: AI가 파이프라인 모니터링·디버깅·최적화에 투입돼 실패↓·디버깅속도↑ (refontelearning.com)
-
-**📚 기본 지식:**
-- **파이프라인**: ELT(웨어하우스 내 변환)+dbt 표준, 증분 모델·스냅샷·테스트. 오케스트레이션은 Airflow/Dagster.
-- **품질·계약**: 데이터 계약(스키마·SLA), 이상탐지·프레시니스 모니터링. 잘못된 데이터는 상류에서 차단.
-- **웨어하우스**: BigQuery/Snowflake 파티셔닝·클러스터링·머티리얼라이즈드뷰로 비용·속도 최적화.
-- **거버넌스**: 카탈로그·리니지, PII 마스킹·접근제어, 저장/컴퓨트 분리.
+Sources: [getdbt.com](https://www.getdbt.com/blog/what-s-shipped-in-dbt-may-2026), [kestra.io](https://kestra.io/resources/data/fivetran-dbt-merger-fusion-engine), [datalakehousehub.com](https://datalakehousehub.com/blog/2025-09-2026-guide-to-data-lakehouses/), [dataverses.io](https://dataverses.io/resources/blog/data-engineering-trend-2026), [siffletdata.com](https://www.siffletdata.com/blog/7-data-ai-predictions-for-2026), [atlan.com](https://atlan.com/know/ai-agent/data-for-ai/data-contracts-for-ai/), [sombrainc.com](https://sombrainc.com/blog/ai-data-quality), [convert.com](https://www.convert.com/blog/a-b-testing/how-to-run-ab-tests-guide-for-experimenters/)
 <!-- KNOWLEDGE:END -->

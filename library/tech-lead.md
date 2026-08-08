@@ -18,22 +18,15 @@ skills:
 
 원칙: 결정에는 근거와 트레이드오프를 남긴다. 완벽보다 배포 가능한 증분을 우선한다.
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **프레임워크(7월)**: Next.js 7/21 보안 릴리스, React Router v8(연간 릴리스·ESM·Node22.22+·Vite7), **Flutter 3.44.0**(5/18 안정), Remix 3(React 탈피 재설계), RN Windows 0.83 (nextjs.org, dev.to)
-- **지형**: 서버우선 아키텍처·AI 보조 툴링·성능 기본값화가 대세, 코드 29% AI 생성 지속 (nucamp.co)
-- **AI 코딩**: GPT-5.6·Claude Sonnet 5·GLM-5.2 등 신규 모델로 에이전틱 코딩 급진전 (thursdai.news)
+## 최신 지식 (2026-08-08)
+- 에이전틱 코딩 재편: 상위 팀들은 대형 피처팀 대신 2~4인 '팟'으로 재구성하고, 개발자는 목표 정의→에이전트 산출물 리뷰→결과 책임의 '지휘자(conductor)' 역할로 이동 — 1인이 다수 에이전트/태스크를 병렬 감독 (dev.to, pragmaticengineer.com)
+- Planner→Architect→Implementer→Tester→Reviewer 식 역할 분담형 멀티에이전트 파이프라인이 실험 단계를 지나 팀 워크플로 표준으로 정착 중 — 체크포인트·소유권·감사로그를 갖춘 구조화된 워크플로가 성패를 가름 (cio.com, blueprism.com)
+- 코드리뷰 기준: PR 400라인 상한을 CI 게이트로 강제하고 스택드 PR + 머지 큐로 분해 — 큰 PR은 AI 리뷰 정확도 하락과 머지 후 재작업 증가로 직결 (codeant.ai)
+- AI 리뷰 도구는 모델보다 통합 품질이 관건: CI에서 안정적으로 돌고, 라인 단위 인용·고신호 findings·필터링이 되는지가 채택 기준 — 린터/포맷터/SAST(Semgrep·Snyk)는 휴먼 리뷰 이전 단계로 전진 배치 (collinwilkins.com, blog.exceeds.ai)
+- 릴리즈 게이트: 크리티컬 이슈 시 머지 차단하는 품질 게이트 + main 머지마다 스테이징 자동 배포·스모크 테스트를 기본값으로 — IDC는 2026년 중반까지 DevOps 일상 업무의 약 1/3을 에이전트가 처리할 것으로 추정 (codeant.ai, cio.com)
+- AI 투자 ROI 검증 압박 강화: 사이클타임 단축·리텐션·마진 등 측정 가능한 지표로 AI 도입 효과를 입증하는 체계가 테크리드의 새 책무로 부상 (blog.mean.ceo, waydev.co)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **프론트엔드**: React 19 + React Compiler(1.0)로 useMemo/useCallback/memo 수동최적화가 레거시화. Server Components·signals 세분화 반응성·INP가 아키텍처 우열을 가름. Svelte·Astro·Qwik 부상 (logrocket.com, netguru.com)
-- **백엔드·런타임**: Bun이 Node 런타임 지위 위협, NestJS·HTTP/3, 이벤트드리븐 마이크로서비스(Kafka·EventBridge)+관측성+AI 모니터링 통합 (medium.com, nucamp.co)
-- **공통**: 코드의 29%가 이미 AI 생성, TypeScript 40% 단독채택, Vite가 Webpack 대체(만족도 98%) (blog.logrocket.com)
-
-**📚 기본 지식:**
-- **Flutter 3.32+ / Dart 3.9**: 안정 채널에서 impeller 기본 활성(iOS·Android), `dart format`·`dart fix` 강화. Web은 WasmGC 렌더링 프리뷰 확대 — 신규 프로젝트는 impeller 전제 성능 프로파일링 권장.
-- **모노레포·모듈화**: `melos` 기반 멀티패키지 + feature-first 폴더 구조가 팀 단위 표준으로 자리. 도메인/데이터/프레젠테이션 3계층 + Riverpod 2.x codegen(`@riverpod`)이 상태관리 주류.
-- **CI/CD**: GitHub Actions + Fastlane, 또는 Codemagic/Shorebird(코드푸시로 앱스토어 심사 없이 Dart 패치 배포)가 핫픽스 채널로 부상.
-- **릴리즈 게이트**: PR당 `flutter analyze`·`flutter test --coverage`(≥70%)·골든테스트 통과를 필수화. `very_good_analysis` 린트룰셋이 팀 표준으로 채택 증가.
-- **AI 페어프로그래밍**: 코드리뷰에 LLM 1차 스캔(보안·널안정성)을 붙이되, 사람 승인 게이트는 유지 — 리뷰 스루풋보다 회귀 방지 우선.
+Sources: [dev.to — Agentic Coding in 2026](https://dev.to/ailoitte_sk/agentic-coding-in-2026-how-top-engineering-teams-are-restructuring-around-ai-agents-3ne1), [Pragmatic Engineer — AI Tooling 2026](https://newsletter.pragmaticengineer.com/p/ai-tooling-2026), [CIO — Agentic AI reshaping engineering workflows](https://www.cio.com/article/4134741/how-agentic-ai-will-reshape-engineering-workflows-in-2026.html), [CodeAnt — Code Review Best Practices 2026](https://codeant.ai/blogs/code-review-process-guide), [Collin Wilkins — AI Code Review 2026](https://collinwilkins.com/articles/ai-code-review-best-practices-approaches-tools), [Exceeds — AI Code Review Hybrid Workflows](https://blog.exceeds.ai/ai-code-review-best-practices/), [Waydev — 2026 Tech Trends for Engineering Leaders](https://waydev.co/2026-tech-trends-a-guide-for-engineering-leaders/)
 <!-- KNOWLEDGE:END -->

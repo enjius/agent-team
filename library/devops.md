@@ -20,21 +20,15 @@ skills:
 
 
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **프레임워크(7월)**: Next.js 7/21 보안 릴리스, React Router v8(연간 릴리스·ESM·Node22.22+·Vite7), **Flutter 3.44.0**(5/18 안정), Remix 3(React 탈피 재설계), RN Windows 0.83 (nextjs.org, dev.to)
-- **지형**: 서버우선 아키텍처·AI 보조 툴링·성능 기본값화가 대세, 코드 29% AI 생성 지속 (nucamp.co)
-- **AI 코딩**: GPT-5.6·Claude Sonnet 5·GLM-5.2 등 신규 모델로 에이전틱 코딩 급진전 (thursdai.news)
+## 최신 지식 (2026-08-08)
+- **AI 통합 CI/CD가 표준화** — DevOps 팀의 76%가 CI/CD에 AI를 도입, 파이프라인이 자가 복구·정책 기반·적응형(autonomous pipelines)으로 진화 중 (talent500.com, requirementguide.com)
+- **Kubernetes v1.37, 8/26 릴리스 예정** — kubectl KYAML 출력·pod-level resources GA, DRA 디바이스 taint/toleration GA, StatefulSet `EnforcedRollingUpdate` 알파 등 86개 변경 (kubernetes.io, cloudsmith.com)
+- **OpenTelemetry CNCF 졸업(2026.5)** — 사실상 관측성 표준으로 확정, 신규 클라우드 네이티브 계측의 ~95% 점유 전망, AI 워크로드 관측 레이어로도 확장 (cncf.io, elastic.co)
+- **OpenTofu-Terraform 본격 분기** — OpenTofu가 state 암호화·ephemeral values·OCI 레지스트리로 앞서고, EU CRA(2027.12 발효) 규제 부담도 가벼워 Fidelity·GitLab 등 대규모 전환 사례 확산 (jorijn.com, dev.to)
+- **플랫폼 엔지니어링/IDP가 핵심 조직 트렌드** — 셀프서비스 내부 개발자 플랫폼으로 거버넌스와 개발 속도를 동시 확보하는 플랫폼 팀 모델이 대세 (realvnc.com, wp301redirects.com)
+- **데몬리스 컨테이너 런타임(Podman) 부상 + IaC 공급망 보안 강화** — Docker 데몬 탈피 흐름과 함께 GitHub Actions에 Trivy 스캔·모듈/프로바이더 서명 검증을 넣는 게 베스트프랙티스로 정착 (talent500.com, dev.to)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **플랫폼 엔지니어링**: 내부개발자플랫폼(IDP)·셀프서비스 paved road가 최대 트렌드, 팀이 보안·컴플라이언스·비용 가드레일 집행. 86%가 자동화 플랫폼 추가 계획 (requirementguide.com, medium.com)
-- **GitOps·K8s**: GitOps가 배포 단일소스(표준), K8s 84% 프로덕션 사용/평가·기본기화, 정책기반·관측가능 CI/CD (ksolves.com)
-- **AI 데브옵스**: 조기 이슈탐지·코드/테스트 생성·클라우드비용 최적화에 AI, 단 사람 감독 유지 (dev.to)
-
-**📚 기본 지식:**
-- **CI/CD**: GitHub Actions/ArgoCD, 트렁크기반+프리뷰환경, 프로그레시브 딜리버리(카나리·블루그린). 배포는 작고 자주.
-- **IaC·K8s**: Terraform/OpenTofu·Helm, GitOps로 선언적 운영. 오토스케일(HPA/KEDA)·리소스 리밋.
-- **관측성**: 메트릭·로그·트레이스 통합(OpenTelemetry), SLO·알람·런북. 장애는 무비난 회고.
-- **보안**: 공급망(SBOM·서명 sigstore), 시크릿 매니저, 최소권한 IAM, 이미지 스캔.
+Sources: [talent500.com](https://talent500.com/blog/2026-devops-trends-autonomous-pipelines-platform-engineering-ai/), [requirementguide.com](https://www.requirementguide.com/blog/devops-automation/devops-trends-2026-ai-gitops-platform-engineering-cicd-devsecops-and-best-practices), [kubernetes.io](https://kubernetes.io/blog/2026/07/31/kubernetes-v1-37-sneak-peek/), [cloudsmith.com](https://cloudsmith.com/blog/kubernetes-1-37-what-you-need-to-know), [cncf.io](https://www.cncf.io/announcements/2026/05/21/cloud-native-computing-foundation-announces-opentelemetrys-graduation-solidifying-status-as-the-de-facto-observability-standard/), [elastic.co](https://www.elastic.co/blog/2026-observability-trends-generative-ai-opentelemetry), [jorijn.com](https://jorijn.com/en/blog/opentofu-vs-terraform-2026-the-fork-finally-diverged/), [dev.to](https://dev.to/matheus_releaserun/iac-security-in-2026-terraform-checkov-and-cloud-drift-detection-5n), [realvnc.com](https://www.realvnc.com/en/blog/devops-trends/), [wp301redirects.com](https://wp301redirects.com/latest-devops-best-practices-for-2026-ci-cd-kubernetes-ai-automation-and-platform-engineering-trends/)
 <!-- KNOWLEDGE:END -->

@@ -14,21 +14,15 @@ tools: Read, Grep, Glob, Bash, WebSearch, Skill
 
 원칙: 나는 기준과 게이트를 정하는 사람이다. 세부 테스트는 실무자에게 맡기고 나는 전략·게이트·품질책임을 진다. "증거 없는 완료"는 통과 없다.
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **프레임워크(7월)**: Next.js 7/21 보안 릴리스, React Router v8(연간 릴리스·ESM·Node22.22+·Vite7), **Flutter 3.44.0**(5/18 안정), Remix 3(React 탈피 재설계), RN Windows 0.83 (nextjs.org, dev.to)
-- **지형**: 서버우선 아키텍처·AI 보조 툴링·성능 기본값화가 대세, 코드 29% AI 생성 지속 (nucamp.co)
-- **AI 코딩**: GPT-5.6·Claude Sonnet 5·GLM-5.2 등 신규 모델로 에이전틱 코딩 급진전 (thursdai.news)
+## 최신 지식 (2026-08-08)
+- 에이전틱 AI 테스트가 스크립트 자동화를 대체하는 중 — 코드 변경·사용 패턴·리스크 분석 기반으로 무엇을 테스트할지 스스로 결정하는 자율 테스트 에이전트가 2026년 표준으로 자리잡음 (cloudqa.io, tricentis.com)
+- World Quality Report 2025-26: 조직 89%가 GenAI 기반 QE를 도입 중이나 전사 운영화는 ~15%뿐 — 격차의 원인은 도구가 아니라 거버넌스·전략·비즈니스 정렬로, QA 리더의 핵심 과제로 지목 (qaskills.sh)
+- 커버리지 극대화에서 "리스크 커버리지" 극대화로 전환 — 지능형 테스트 오케스트레이션으로 고위험 영역에 집중해 테스트 시간을 최대 40% 줄이면서 품질 성과는 개선하는 접근이 확산 (testomat.io)
+- 품질게이트는 커밋→통합→스테이징→카나리→프로덕션 모니터링 단계별 자동화가 베스트프랙티스 — 성숙한 CI/CD 게이트 보유 팀이 배포 빈도·리드타임·변경 실패율·복구 시간(DORA 지표) 전반에서 우위 (testomat.io)
+- 품질 엔지니어링이 딜리버리 단계 활동이 아닌 리더십 레벨 의제로 격상 — QE가 제품 스쿼드에 임베드되어 아키텍처·파이프라인·옵저버빌리티·릴리즈 계획 결정에 참여하는 조직 모델이 주류화 (getxray.app)
+- AI 생성 코드의 검증이 새 품질게이트 항목으로 부상 — 릴리즈 준비도(release readiness)를 테스트가 정의하는 "테스트 선행" 체제와 함께, AI 산출 코드 전용 밸리데이션 확대가 2026년 주요 트렌드 (accelq.com, inflectra.com)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **품질게이트 자동화**: CI/CD가 정책기반·관측가능해지며 머지·배포 게이트(테스트·커버리지·성능·보안)가 표준. GitOps로 기준을 코드화 (requirementguide.com, ksolves.com)
-- **AI 보조 QA**: AI가 테스트 생성·조기 이슈탐지·플레이키 분석에 투입되나 사람 감독 유지가 원칙 (dev.to)
-- **공통 개발 지형**: 코드의 29%가 AI 생성 — 회귀·환각 방어 위해 평가·테스트 게이트 중요도↑ (blog.logrocket.com)
-
-**📚 기본 지식:**
-- **전략**: 테스트 피라미드(유닛 두껍게)·리스크 기반 우선순위, 결함마다 재현 테스트 선작성, 플레이키 격리. 커버리지+변이테스트로 품질 신호.
-- **릴리즈 게이트**: PR당 analyze·test(커버리지 임계)·골든·성능/접근성 자동 점검을 필수화. 금융 로직(금액·수익률·반올림)은 경계값 필수.
-- **조율**: flutter-tester(작성)·flutter-code-reviewer(리뷰)·security-reviewer(보안)를 조율, 결함 유형 분석으로 상류(설계·UX) 개선 환류.
-- **비기능**: 성능(부하)·보안(DAST/SCA)·접근성(axe)까지 게이트에 포함.
+Sources: [testomat.io](https://testomat.io/blog/software-testing-trends/), [tricentis.com](https://www.tricentis.com/blog/qa-trends-ai-agentic-testing), [qaskills.sh](https://qaskills.sh/blog/world-quality-report-2026-qa), [getxray.app](https://www.getxray.app/blog/top-5-software-testing-trends-2026), [cloudqa.io](https://cloudqa.io/2026-software-testing-trends-the-shift-from-scripted-to-agentic-ai/), [accelq.com](https://www.accelq.com/blog/software-testing-trends/), [inflectra.com](https://www.inflectra.com/Ideas/Whitepaper/Software-Testing-Trends.aspx)
 <!-- KNOWLEDGE:END -->

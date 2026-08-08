@@ -21,23 +21,15 @@ skills:
 
 원칙: 숫자와 서사를 일치시킨다. 과장·미검증 수치 금지, 리스크는 솔직하게. 자본시장 규제를 넘지 않는다.
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **BTC 현실(7/22 ~$65,800)**: 1월 $93K→'25.10 $126K고점→6월말 21개월최저 ~$58K→반등. 금리인하 기대후퇴·ETF유출·기업매도가 하락 3대 요인 (fool.com, ig.com)
-- **규제**: 美 SEC 7/7 크립토 규칙제정 3건 의제 추가, 상원 **CLARITY Act** 개정안 공개, **일본이 크립토를 '금융자산' 재분류**·세금 대폭 인하 (investingnews.com)
-- **시사점**: 수익률 보장·강세 일변도 금지 — 실제 가격·변동성 반영. 규제 명확화가 기관유입 스위치 (crypto.news)
+## 최신 지식 (2026-08-08)
+- 2026 펀딩 시장은 극단적 양극화 — AI 메가라운드와 소수 상위 기업에 자본이 집중되고, 나머지는 밸류에이션 하락·라운드 장기화에 직면하므로 라운드 전략을 "증거(매출·리텐션) 기반"으로 설계해야 함 (pilot.com, hubspot.com)
+- 미국 시리즈A 프리머니 중간값은 약 $35–45M로 2021 고점 대비 낮은 수준에서 안정화 — AI 인프라 등 일부 섹터만 시드 $100M+ 프리미엄 (angelinvestorsnetwork.com)
+- 텀시트에서 가격보다 조건이 중요해짐 — 청산우선권·이사회 구성·희석방지 등 "더티 텀시트"가 후속 라운드 독소가 되므로 조항 검토 우선순위를 높일 것 (vcbeast.com)
+- DD 대응은 AI 데이터룸이 표준화 — 문서 자동 요약·키텀 추출·자동 리댁션·투자자 열람행동 추적(Ansarada, Ideals, Datasite 등)으로 딜 사이클 단축 (ansarada.com, ethosdata.com)
+- IR은 분기별 보고서가 아닌 "상시 라이브 데이터룸" 방식으로 전환 — 지표·캡테이블·업데이트를 단일 소스로 통합하고 투자자 CRM으로 관계를 지속 관리 (papermark.com, rings.ai)
+- 세컨더리 시장이 2026년 $250B 규모로 급성장하며 유동성 밸브 역할 — SpaceX·OpenAI 등 메가 IPO 재개와 맞물려 주주 커뮤니케이션에 세컨더리·직원 유동성 프로그램 옵션을 포함해야 함 (pitchbook.com, carta.com)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **2026 Q1 벤처 사상 최대 ~$297B, 그중 AI가 81%(~$240B) 흡수** — 자본 초집중. 비AI·전통SW는 라운드 장기화·지표요구 강화·밸류 하락 각오 (crunchbase.com, tech-insider.org)
-- 시드 AI 밸류에이션 비AI 대비 **+42%**, 중위 프리머니 ~$17.9M. 단 VC는 '실제로 작동한다는 증거' 요구 — 2026은 옥석 가리기의 해 (eqvista.com, insights4vc)
-- 시장 양극화: 극소수 초대형 라운드 vs 나머지 축소된 자본 경쟁. 얇은 마진 AI 스타트업 리스크 최대 (corpgov.law.harvard.edu)
-
-**📚 기본 지식:**
-- **시장 환경(2025~2026)**: 고금리 후 완만한 회복기, VC는 성장성보다 **효율적 성장(Rule of 40)·런웨이·수익성 경로**를 우선 심사. 브릿지·연장 라운드와 다운라운드/구조화(우선주·워런트) 증가.
-- **AI 프리미엄과 옥석 가리기**: AI 스타트업에 자본 집중되나 '래퍼(wrapper)' 회피 심화 — 자사 **데이터·워크플로 해자, 추론원가 대비 마진, 실사용 리텐션**을 증빙해야 밸류 정당화.
-- **밸류에이션·구조**: SAFE(post-money)·컨버터블노트가 초기 표준, 캡·디스카운트·MFN 조건 명확화. 한국은 RCPS(상환전환우선주)가 일반적 — 상환권·전환비율·청산우선(1x 논다중) 조건 협상이 핵심.
-- **투자자 타겟팅**: 스테이지·섹터·수표크기·포트폴리오 적합성으로 20~40곳 파이프라인, 리드 확보 후 팔로워. 웜인트로(포트폴리오사·기존투자자 경유)가 콜드보다 전환율 압도적.
-- **데이터룸·DD**: 지표(월 MRR·성장률·번·CAC/LTV·코호트), 재무·법무·계약·지분(cap table)·개인정보/보안 증빙 정리. 실사 지연이 딜 사망 원인 1위 — 사전 정비.
-- **한국 특화**: TIPS·모태펀드 연계 매칭, 신보/기보 보증·R&D 지원과 병행. 벤처투자촉진법상 조건부지분인수계약(K-SAFE) 활용 확대.
+Sources: [Pilot — 2026 VC market trends](https://pilot.com/blog/2026-vc-market-update-5-trends-startup-fundraising), [HubSpot — VC fundraising trends](https://www.hubspot.com/startups/fundraising/vc-fundraising-trends), [Angel Investors Network — Startup funding 2026](https://angelinvestorsnetwork.com/startups/startup-funding-complete-guide), [VC Beast — Term sheet anatomy 2026](https://vcbeast.com/anatomy-venture-capital-term-sheet-2026), [Ansarada — AI data rooms 2026](https://www.ansarada.com/article/best-ai-data-rooms-due-diligence-2026), [EthosData — Top VDR providers](https://www.ethosdata.com/blog/top-virtual-data-room-providers-in-2026-pricing-features-reviews-use-cases-compared/), [Papermark — Data rooms for investors](https://www.papermark.com/blog/data-room-for-investors), [Rings — IR CRMs](https://www.rings.ai/blog/the-6-best-crms-for-investor-relations), [PitchBook — Mega-IPO wave & secondaries](https://pitchbook.com/news/articles/2026s-fast-approaching-mega-ipo-wave-is-expected-to-reset-the-vc-secondaries-market), [Carta — VC secondary trends](https://carta.com/data/vc-secondary-trends-q2-2025/)
 <!-- KNOWLEDGE:END -->

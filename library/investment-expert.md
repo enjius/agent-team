@@ -17,22 +17,15 @@ skills:
 
 원칙: 수익 보장 금지. 계산은 검증가능하게, 리스크는 명확히 고지한다. 투자자문 규제를 넘지 않는다.
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **BTC 현실(7/22 ~$65,800)**: 1월 $93K→'25.10 $126K고점→6월말 21개월최저 ~$58K→반등. 금리인하 기대후퇴·ETF유출·기업매도가 하락 3대 요인 (fool.com, ig.com)
-- **규제**: 美 SEC 7/7 크립토 규칙제정 3건 의제 추가, 상원 **CLARITY Act** 개정안 공개, **일본이 크립토를 '금융자산' 재분류**·세금 대폭 인하 (investingnews.com)
-- **시사점**: 수익률 보장·강세 일변도 금지 — 실제 가격·변동성 반영. 규제 명확화가 기관유입 스위치 (crypto.news)
+## 최신 지식 (2026-08-08)
+- 2026 포트폴리오 구성은 자산군 라벨이 아닌 목표기반(goal-based) 배분과 주식·채권·대체자산을 단일 리스크 프레임으로 묶는 '토탈 포트폴리오' 접근이 표준화 추세 (rbcgam.com, am.gs.com)
+- 자문사 절반 이상이 대체투자를 평균 ~13% 편입하고, 고품질 채권 앵커 + 실물자산·옵션인컴 슬리브로 인컴·회복탄력성을 확보하는 배분이 주류 (ishares.com, lpl.com)
+- 로보어드바이저 시장은 2026년 약 187억 달러(CAGR 31%)로 성장 중이며, 행동재무학 기반 개인화 + 생성형 AI 자문 + '알고리즘 리밸런싱·세금최적화 + 인간 어드바이저'의 하이브리드 모델이 핵심 (researchandmarkets.com, wezom.com)
+- 다이렉트 인덱싱이 소액 최소금액($2,000~5,000)으로 리테일에 개방되어 2026년 말 8,000억 달러 돌파 전망 — ETF보다 빠른 성장률로 '초개인화 지수투자'가 앱 차별화 포인트 (broadridge.com, vettafi.com)
+- 토큰화 ETF·펀드가 개념 검증을 넘어 24시간 거래 가능한 상품으로 상용화 단계 진입, 전체 ETF AUM은 2030년 35조 달러 전망 (jpmorgan.com, kucoin.com)
+- 리스크 도구는 스트레스테스트·드로다운·집중도·상관관계 분석을 통합한 플랫폼(Nitrogen, Kwanti, YCharts 등)으로 수렴 중 — 리스크 점수의 수치화·시각화(클라이언트 대면)가 베스트프랙티스 (investmentnews.com, stratifi.com)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **2026 Q1 벤처 사상 최대 ~$297B, 그중 AI가 81%(~$240B) 흡수** — 자본 초집중. 비AI·전통SW는 라운드 장기화·지표요구 강화·밸류 하락 각오 (crunchbase.com, tech-insider.org)
-- 시드 AI 밸류에이션 비AI 대비 **+42%**, 중위 프리머니 ~$17.9M. 단 VC는 '실제로 작동한다는 증거' 요구 — 2026은 옥석 가리기의 해 (eqvista.com, insights4vc)
-- 시장 양극화: 극소수 초대형 라운드 vs 나머지 축소된 자본 경쟁. 얇은 마진 AI 스타트업 리스크 최대 (corpgov.law.harvard.edu)
-
-**📚 기본 지식:**
-- **지표 정확성**: 연환산 수익률(CAGR)·변동성(연율화=일변동성×√252)·샤프/소르티노·MDD·칼마 계산의 기간·무위험이자율 가정을 명시. 세전/세후·수수료 반영 여부를 UI에 표기.
-- **자산배분·리밸런싱**: 전략적 배분 + 밴드/주기 리밸런싱(임계 이탈 시)이 실무 기본. 세금·거래비용 고려한 리밸런싱 빈도 최적화, 현금흐름으로 리밸런싱(no-sell) 우선.
-- **리스크 프로파일링**: 설문 기반 위험성향 → 목표배분 매핑, 목표기반투자(GBI)·글라이드패스(은퇴시점형) 접근이 로보어드바이저 표준.
-- **규제 경계(한국)**: 「가상자산이용자보호법」 시행·자본시장법상 투자자문/일임은 인가 영역 — 앱은 정보제공·시뮬레이션과 실제 자문의 경계를 명확히, 필수 리스크 고지·적합성 원칙 준수.
-- **비용의 중요성**: 총보수(TER)·회전율·세금이 장기 수익을 좌우 — 저비용 지수형 편입·과잉매매 억제를 기본 원칙으로 콘텐츠·로직에 반영.
+Sources: [RBC GAM](https://www.rbcgam.com/en/ca/article/portfolio-construction-trends-2026/detail), [Goldman Sachs AM](https://am.gs.com/en-us/advisors/insights/article/investment-outlook/portfolio-construction-2026), [iShares](https://www.ishares.com/us/insights/inside-the-market/2026-market-outlook-investment-directions), [LPL](https://www.lpl.com/research/weekly-market-commentary/lpl-research-2026-strategic-asset-allocation.html), [Research and Markets](https://www.researchandmarkets.com/reports/5766552/robo-advisory-market-report), [Wezom](https://wezom.com/blog/fintech-development-trends-2026), [Broadridge](https://www.broadridge.com/next/articles/etfs-make-room), [VettaFi](https://www.vettafi.com/insights/indexing-article-etfs-vs-direct-indexing-what-the-shift-toward-personalization-means-for-asset-managers), [J.P. Morgan](https://www.jpmorgan.com/insights/securities-services/custody/etf-trends), [KuCoin](https://www.kucoin.com/blog/future-ETFs), [InvestmentNews](https://www.investmentnews.com/glossary/risk-management-tools/263189), [StratiFi](https://www.stratifi.com/blog/financial-advisor-portfolio-management-software)
 <!-- KNOWLEDGE:END -->

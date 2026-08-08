@@ -20,21 +20,15 @@ skills:
 
 
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **프레임워크(7월)**: Next.js 7/21 보안 릴리스, React Router v8(연간 릴리스·ESM·Node22.22+·Vite7), **Flutter 3.44.0**(5/18 안정), Remix 3(React 탈피 재설계), RN Windows 0.83 (nextjs.org, dev.to)
-- **지형**: 서버우선 아키텍처·AI 보조 툴링·성능 기본값화가 대세, 코드 29% AI 생성 지속 (nucamp.co)
-- **AI 코딩**: GPT-5.6·Claude Sonnet 5·GLM-5.2 등 신규 모델로 에이전틱 코딩 급진전 (thursdai.news)
+## 최신 지식 (2026-08-08)
+- **Server Actions/Server Functions 안정화로 "백엔드 = 프론트 리포 안의 폴더" 패턴이 보편화** — API 라우트 없이 폼·이벤트에서 직접 서버 함수를 호출하는 배선이 통합 표준으로 정착 (logrocket.com, nextjs.org)
+- **Next.js 16.x: Turbopack이 dev 기본 번들러(대형 프로젝트 HMR ~10배), 16.3 Preview에 instant navigation·부분 프리페칭 도입** — 통합 담당자는 빌드 파이프라인 전환 점검 필요 (nextjs.org, releasebot.io)
+- **2026년 7월 Next.js 보안 릴리스: Server Actions DoS, middleware/proxy 우회, rewrites SSRF, 서버 함수 엔드포인트 노출 패치** — 프론트-백 경계 취약점이므로 즉시 업그레이드 권장 (nextjs.org)
+- **엔드투엔드 타입 안전이 기본값으로: tRPC×TanStack Query 신규 통합, TanStack Start는 컴파일 타임 풀스택 타입 강제, OpenAPI가 필요하면 oRPC v1이 대안** (trpc.io, orpc.dev, infoq.com)
+- **CI/CD 시크릿은 plaintext 환경변수 대신 vault 직접 연동 + 서비스별 최소권한 주입이 표준** — 2022년 유출 시크릿의 64%가 2026년에도 미회수, 회수 파이프라인 구축이 핵심 (infisical.com, doppler.com)
+- **모노레포(Nx·Turborepo) 단위 Playwright E2E를 앱별이 아닌 리포 전체 레벨로 구성하는 패턴이 확산** — @nx/playwright 플러그인 기반 CI 통합이 사실상 표준 (pliszko.com, stacks.ensono.com)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **프론트엔드**: React 19 + React Compiler(1.0)로 useMemo/useCallback/memo 수동최적화가 레거시화. Server Components·signals 세분화 반응성·INP가 아키텍처 우열을 가름. Svelte·Astro·Qwik 부상 (logrocket.com, netguru.com)
-- **백엔드·런타임**: Bun이 Node 런타임 지위 위협, NestJS·HTTP/3, 이벤트드리븐 마이크로서비스(Kafka·EventBridge)+관측성+AI 모니터링 통합 (medium.com, nucamp.co)
-- **공통**: 코드의 29%가 이미 AI 생성, TypeScript 40% 단독채택, Vite가 Webpack 대체(만족도 98%) (blog.logrocket.com)
-
-**📚 기본 지식:**
-- **타입 안전 연결**: 프론트-백 계약을 OpenAPI/tRPC/GraphQL codegen으로 일치, 엔드투엔드 타입.
-- **인증·세션**: OAuth2/OIDC·세션관리, 프론트 라우트가드+백엔드 인가 이중화.
-- **통합 테스트**: 계약테스트+E2E(Playwright), 프리뷰 환경으로 PR별 검증.
-- **관측성**: 프론트 에러(Sentry)+백엔드 트레이스 상관관계, 배포는 프로그레시브.
+Sources: [LogRocket – 8 trends web dev 2026](https://blog.logrocket.com/8-trends-web-dev-2026/), [Next.js July 2026 Security Release](https://nextjs.org/blog/july-2026-security-release), [Next.js Server Actions guide](https://nextjs.org/docs/app/guides/server-actions), [Releasebot – Next.js updates Aug 2026](https://releasebot.io/updates/vercel/next-js), [tRPC blog](https://trpc.io/blog), [oRPC v1 announcement](https://orpc.dev/blog/v1-announcement), [InfoQ – oRPC v1](https://infoq.com/news/2025/12/orpc-v1-typesafe/), [Infisical – Secrets management best practices 2026](https://infisical.com/blog/secrets-management-best-practices), [Doppler – env var secrets 2026](https://www.doppler.com/blog/environment-variable-secrets-2026), [pliszko.com – Playwright in Nx monorepo](https://pliszko.com/blog/post/2024-07-25-setting-up-e2e-tests-in-nrwl-nx-monorepo-with-playwright), [Ensono Stacks – Testing with Playwright](https://stacks.ensono.com/docs/testing/testing_in_nx/testing_with_playwright)
 <!-- KNOWLEDGE:END -->

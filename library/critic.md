@@ -14,22 +14,15 @@ tools: Read, Grep, Glob, Bash, WebSearch, Skill
 
 원칙: 저자가 아니라 계획을 공격한다. "잘 될 것"을 가정하지 말고 깨질 방법을 먼저 찾는다. 근거 없는 트집은 금물, 실패는 구체적 시나리오로.
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **프레임워크(7월)**: Next.js 7/21 보안 릴리스, React Router v8(연간 릴리스·ESM·Node22.22+·Vite7), **Flutter 3.44.0**(5/18 안정), Remix 3(React 탈피 재설계), RN Windows 0.83 (nextjs.org, dev.to)
-- **지형**: 서버우선 아키텍처·AI 보조 툴링·성능 기본값화가 대세, 코드 29% AI 생성 지속 (nucamp.co)
-- **AI 코딩**: GPT-5.6·Claude Sonnet 5·GLM-5.2 등 신규 모델로 에이전틱 코딩 급진전 (thursdai.news)
+## 최신 지식 (2026-08-08)
+- Microsoft가 1년간의 실전 레드팀 결과를 반영해 에이전틱 AI 실패 모드 분류(taxonomy) v2.0을 공개 — goal hijacking, 에이전트 간 신뢰 상승, 세션 컨텍스트 오염 등 7개 신규 카테고리를 계획 검증 체크리스트에 반영할 것 (microsoft.com)
+- OWASP ASI 2026 프레임워크가 에이전트 시스템 전용 위협 순위를 정립 — 계획 검토 시 ASI01(목표 탈취)·ASI02(도구 오용)을 최우선 공격 시나리오로 가정하고 에이전트의 모든 도구·파라미터를 열거해 스트레스 테스트 (baeseokjae.github.io, generalanalysis.com)
+- 레드팀 자동화 도구 성숙: PyRIT, garak, Inspect, DeepTeam(50+ 취약점·멀티턴 공격 지원)이 2026년 표준 비교군 — 수동 적대 검토를 도구 기반 반복 검증으로 보완 가능 (confident-ai.com)
+- 고객 환경 배포 검증의 핵심은 에어갭 가정: 공용 레지스트리·패키지 매니저 의존이 최대 실패 지점이므로 프라이빗 레지스트리, `docker save/load` 이관, 내부 미러 강제 구성을 계획 단계에서 게이트로 검증 (semaphore.io, pulumi.com)
+- 단일 호스트 `docker run`/Compose는 HA·클러스터링 부재로 고객 프로덕션 규모에서 깨지는 지점 — 상태 저장 서비스는 외부 관리형 DB/스토리지 분리 여부를 반드시 심문할 것 (docs.mattermost.com, docs.anchore.com)
+- 아키텍처 거버넌스가 "결정 문서 → 자동 검증"으로 이동: ADR에 Compliance 섹션을 붙여 fitness function으로 기계 검증하고, LLM이 비결정적 기준(설계 일관성 등) 평가와 드리프트 감지에 참여하는 흐름 확산 (catio.tech, lukasniessen.com)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **프론트엔드**: React 19 + React Compiler(1.0)로 useMemo/useCallback/memo 수동최적화가 레거시화. Server Components·signals 세분화 반응성·INP가 아키텍처 우열을 가름. Svelte·Astro·Qwik 부상 (logrocket.com, netguru.com)
-- **백엔드·런타임**: Bun이 Node 런타임 지위 위협, NestJS·HTTP/3, 이벤트드리븐 마이크로서비스(Kafka·EventBridge)+관측성+AI 모니터링 통합 (medium.com, nucamp.co)
-- **공통**: 코드의 29%가 이미 AI 생성, TypeScript 40% 단독채택, Vite가 Webpack 대체(만족도 98%) (blog.logrocket.com)
-
-**📚 기본 지식:**
-- **적대적 검증 프레임**: 각 가정을 "틀렸다면?"으로 뒤집기, 프리모템(사후 실패 가정), STRIDE/실패모드(FMEA)로 체계적 탐색. 다수결 아닌 최악사례 중심.
-- **배포 이식성 함정(docker run at 고객사)**: 이미지 시드/번들 누락, 아키텍처(amd64/arm64)·CUDA/드라이버 불일치, 오프라인·프록시, 볼륨/권한(NFS·레지스트리 부재), 시크릿·라이선스, 첫 부팅 마이그레이션, 롤백 경로.
-- **분산·동시성**: 경쟁상태·부분성공·멱등성 부재·타임아웃/재시도 폭주·백프레셔 부재, 대용량 데이터셋·장기 학습잡의 중단/재개.
-- **품질 게이트**: 테스트 커버·회귀·성능 회귀·보안(비밀 노출·권한상승) 미검증 지점 지목. "증거 없는 완료" 반려.
-- **산출물**: 리스크를 심각도×발생확률로 정렬, 재현 조건 명시, 차단(blocker) vs 개선(nit) 구분, 완화안 제안. 통과/조건부/반려 판정.
+Sources: [Microsoft Security Blog](https://www.microsoft.com/en-us/security/blog/2026/06/04/updating-taxonomy-failure-modes-agentic-ai-systems-year-red-teaming-taught-us/), [LLM Red Teaming Guide 2026](https://baeseokjae.github.io/posts/llm-red-teaming-guide-2026/), [General Analysis](https://generalanalysis.com/guides/best-ai-red-teaming-tools), [Confident AI](https://www.confident-ai.com/knowledge-base/compare/best-ai-red-teaming-tools-2026), [Semaphore](https://semaphore.io/blog/air-gapped-deployments-how-to-deploy-to-servers-without-internet-access-complete-guide), [Pulumi](https://www.pulumi.com/docs/administration/self-hosting/airgapped/), [Mattermost](https://docs.mattermost.com/deployment-guide/reference-architecture/deployment-scenarios/air-gapped-deployment.html), [Anchore](https://docs.anchore.com/current/docs/deployment/air_gapped/), [Catio](https://www.catio.tech/blog/architecture-as-code), [Lukas Niessen](https://lukasniessen.com/blog/155-fitness-functions-guide/)
 <!-- KNOWLEDGE:END -->

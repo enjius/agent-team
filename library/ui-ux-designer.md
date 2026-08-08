@@ -21,21 +21,15 @@ skills:
 
 
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **2026 전환**: 화려함 걷어내고 **단순·차분(calm)** 흐름으로. **Generative UI(GenUI)**가 실시간 인터페이스 재구성, **Spatial UI**(3D·MR/AR) 부상 (codewave.com, tubikstudio.com)
-- **AI=코파일럿**: 올노잉 autopilot 아닌 '존중하는 copilot', 상태 전달용 **기능적 마이크로인터랙션** 강조 (uxdesign.cc)
-- **접근성·멀티모달** 기본, AI 개인화가 UX 베이스라인 (index.dev)
+## 최신 지식 (2026-08-08)
+- **에이전트 UX가 핵심 설계 과제로 부상** — AI 에이전트가 사용자 대신 행동하는 시대에 진행상태 표시·행동 근거 설명·사용자 오버라이드·오류 복구 패턴이 필수이며, NN/g는 2026년 AI 경험의 최대 설계 문제로 '신뢰'를 지목 (nngroup.com, fuselabcreative.com)
+- **Figma Config 2026: AI 에이전트 정식 출시 + Code Layers** — 재사용 가능한 스킬·Notion/Slack/GitHub 커넥터를 갖춘 AI 에이전트와, 디자인 레이어를 편집 가능한 인터랙티브 코드로 바꾸는 코드 네이티브 워크플로 공개 (figma.com, analyticsindiamag.com)
+- **Figma Motion 통합** — 타임라인·키프레임·프리셋 기반 모션 툴이 캔버스 안에 들어와 별도 툴 없이 UI 애니메이션 설계 가능; 모션은 "장식보다 목적, 과감함보다 절제 + reduced-motion 옵션 제공"이 베스트프랙티스 (alternativeto.net, uxpin.com)
+- **AI 생성이 '일반 목업'에서 '자사 디자인시스템 기반 프로덕션 UI'로 이동** — 잘 관리된 컴포넌트 라이브러리가 AI 생성 품질을 좌우하므로 디자인시스템 거버넌스가 2026년 최우선 투자처 (uxpin.com)
+- **평균 사용자용 단일 화면 → 결과 중심(outcome-oriented) 적응형 인터페이스** — AI 개인화·예측형 UX가 확산되며 디자이너 역할은 '제작자'에서 화면 프레임워크와 규칙을 정의하는 '큐레이터'로 전환 (nngroup.com, vezadigital.com)
+- **AI 에이전트 자체가 '사용자'가 되는 설계 고려 필요** — Gartner는 2026년 말까지 기업 앱 40%가 태스크 특화 에이전트를 통합할 것으로 전망, 사람과 에이전트 모두 쓸 수 있는 인터페이스 레이어 설계가 새 과제 (nngroup.com, rickyrichards.com)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **AI 네이티브·차분한 UI**: 투명한 AI·적응형 인터페이스·인지부하 감소(calm UI)·모션주도 상호작용이 핵심. 런타임 AI 생성 콘텐츠를 흡수하는 토큰기반 디자인시스템 필수 (index.dev, envato.com)
-- **접근성=인프라**: 컴플라이언스 아닌 기본 설계표준 — 고대비·키보드·리듀스모션·쉬운언어 내장. 매출·조달·신뢰에 영향 (uxdesigninstitute.com)
-- **개인화·멀티모달**: AI 개인화가 UX 베이스라인, 음성·터치·제스처 결합 멀티모달 부상 (sanjaydey.com)
-
-**📚 기본 지식:**
-- **디자인 시스템**: 토큰(Figma Variables)→코드 매핑, 컴포넌트·상태·에러/빈화면 명세. Material 3 Expressive 절제 적용.
-- **UX 프로세스**: 지속 디스커버리(주간 인터뷰)·기회-솔루션 트리, 사용성 테스트로 검증.
-- **접근성**: WCAG 대비 4.5:1·터치타깃·폰트스케일·키보드, 색만으로 정보전달 금지.
-- **핸드오프**: Dev Mode 스펙·모션·간격, 마이크로카피 협업.
+Sources: [NN/g — AI Agents as Users](https://www.nngroup.com/articles/ai-agents-as-users/), [NN/g — The Era of AI Design](https://www.nngroup.com/videos/the-era-of-ai-design/), [Figma — Config 2026 Recap](https://www.figma.com/blog/config-2026-recap/), [Analytics India Magazine — Figma Config 2026](https://analyticsindiamag.com/ai-news/figma-unveils-ai-agents-and-code-native-design-tools-at-config-2026), [AlternativeTo — Figma Motion & Code Layers](https://alternativeto.net/news/2026/6/figma-launches-a-new-integrated-motion-design-tool-alongside-code-layers-and-new-ai-features/), [UXPin — 2026 UI/UX Trends](https://www.uxpin.com/studio/blog/ui-ux-design-trends/), [Veza Digital — AI UX/UI Trends 2026](https://www.vezadigital.com/post/ai-ux-ui-design-trends), [Fuselab — Agent UX](https://fuselabcreative.com/ui-design-for-ai-agents/), [Ricky Richards — Designing for AI Agents](https://www.rickyrichards.com/blog/designing-for-ai-agents)
 <!-- KNOWLEDGE:END -->

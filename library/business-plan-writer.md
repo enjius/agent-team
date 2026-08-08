@@ -20,23 +20,15 @@ skills:
 
 원칙: 모든 수치에 가정과 근거를 붙인다. 낙관 일변도 금지 — 리스크·대응을 함께. 심사자가 30초 안에 핵심을 잡게 쓴다.
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **BTC 현실(7/22 ~$65,800)**: 1월 $93K→'25.10 $126K고점→6월말 21개월최저 ~$58K→반등. 금리인하 기대후퇴·ETF유출·기업매도가 하락 3대 요인 (fool.com, ig.com)
-- **규제**: 美 SEC 7/7 크립토 규칙제정 3건 의제 추가, 상원 **CLARITY Act** 개정안 공개, **일본이 크립토를 '금융자산' 재분류**·세금 대폭 인하 (investingnews.com)
-- **시사점**: 수익률 보장·강세 일변도 금지 — 실제 가격·변동성 반영. 규제 명확화가 기관유입 스위치 (crypto.news)
+## 최신 지식 (2026-08-08)
+- 2026 팁스(TIPS) 대개편: 3개 트랙을 성장단계형으로 통합, 일반트랙 R&D 한도 2년 5억→최대 8억, 스케일업 30억·글로벌 60억, 운영사 최소투자 2억(비수도권 1억, 물량 50% 우선배정) — 신청서의 "투자유치·성장단계" 서술 전략을 새 구조에 맞춰야 함 (kakao.vc, hitnews.co.kr, mashupventures.co)
+- 2026 창업지원사업 통합공고: 111개 기관 508개 사업, 총 3조 4,645억원(전년 대비 +5.2%) — 사업화·R&D·융자 연계 로드맵을 계획서 마일스톤에 반영하는 것이 유리 (mss.go.kr, korea.kr)
+- 2026 예비창업패키지: PSST(문제인식·실현가능성·성장전략·팀) 4대 항목 유지, 지정 양식 외 제출 시 즉시 탈락, 마이데이터 동의 기반 증빙 자동제출 도입 — 양식 준수가 그 어느 때보다 엄격 (irumteo.com, passhacker.com)
+- 기후테크(클린·카본·에코·푸드·지오테크) 창업은 별도 증빙 없이 사업계획서 내용만으로 가점 1점 부여 — 해당 분야면 본문에 명시적으로 기술할 것 (winnersshop.kr)
+- AI 사업계획서 도구는 텍스트 생성형에서 재무모델 연동형(Upmetrics·PrometAI·LivePlan)으로 이동 — 심사역이 무편집 AI 초안을 즉시 식별하므로 실제 가정·검증된 숫자·현지 시장 지식으로 반드시 재작성하는 것이 2026 베스트프랙티스 (pipedrive.com, monday.com)
+- 사업계획서를 일회성 문서가 아닌 "동적 재무·전략 엔진"으로 운영(런치 후 실적 추적·갱신)하는 접근이 표준화되는 추세 (prometai.app, kimi.com)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **2026 Q1 벤처 사상 최대 ~$297B, 그중 AI가 81%(~$240B) 흡수** — 자본 초집중. 비AI·전통SW는 라운드 장기화·지표요구 강화·밸류 하락 각오 (crunchbase.com, tech-insider.org)
-- 시드 AI 밸류에이션 비AI 대비 **+42%**, 중위 프리머니 ~$17.9M. 단 VC는 '실제로 작동한다는 증거' 요구 — 2026은 옥석 가리기의 해 (eqvista.com, insights4vc)
-- 시장 양극화: 극소수 초대형 라운드 vs 나머지 축소된 자본 경쟁. 얇은 마진 AI 스타트업 리스크 최대 (corpgov.law.harvard.edu)
-
-**📚 기본 지식:**
-- **재무모델 규율**: 톱다운(시장×점유)과 보텀업(획득경로×전환×객단가) 매출을 **교차검증**, 드라이버 기반 모델. 유닛이코노믹스(CAC·LTV·기여이익·회수기간)와 번레이트·런웨이를 반드시 명시.
-- **정부지원(한국 2026)**: 예비/초기창업패키지·창업중심대학·TIPS가 핵심 트랙, 평가는 **PSST(문제-해결-성장-팀)** 프레임. AI·딥테크·글로벌·재도전 가점 확대, 사업화자금 집행 규정 준수 서술 필요.
-- **시장분석**: 출처 있는 3차자료(통계청·KISDI·리서치사)+1차 검증(인터뷰·파일럿). TAM 부풀리기보다 **획득가능 초기시장(비치헤드)** 을 구체적으로.
-- **BM·GTM**: 수익모델(구독/거래수수료/사용량)과 프라이싱 논리, 초기 채널·판매전략·핵심 파트너십. PLG vs 세일즈 선택 근거.
-- **AI 활용 실무**: 초안·리서치·재무 시나리오를 LLM으로 가속하되 **수치 검증·출처 확인은 사람이**. 심사용은 표절·AI티 검사, 도메인 용어 정확성 점검.
-- **투자용 vs 정부용 분리**: 투자자용은 성장·엑싯 서사 중심, 정부용은 실현가능성·집행계획·고용창출·국내파급 중심으로 톤을 달리한다.
+Sources: [카카오벤처스 — 2026 TIPS 변경점](https://www.kakao.vc/blog/2026-tips-what-changed), [히트뉴스 — 팁스 R&D 대형화](https://www.hitnews.co.kr/news/articleView.html?idxno=72104), [매쉬업벤처스 — TIPS 2026](https://www.mashupventures.co/contents/tips-2026-update-startup-funding), [중기부 통합공고](https://www.mss.go.kr/site/smba/ex/bbs/View.do?cbIdx=310&bcIdx=1064197&parentSeq=1064197), [정책브리핑](https://www.korea.kr/briefing/pressReleaseView.do?newsId=156736001), [이룸터 — 예비창업패키지 2026](https://www.irumteo.com/programs/pre-startup-package/2026), [패스해커 — 사업계획서 양식 가이드](https://passhacker.com/blog/2026-pre-startup-package-business-plan-form-writing-guide), [Pipedrive — AI business plan generators](https://www.pipedrive.com/en/blog/ai-business-plan), [monday.com — Best AI business plan tools](https://monday.com/blog/crm-and-sales/best-ai-for-business-plan/), [PrometAI blog](https://prometai.app/blog/top-7-best-ai-business-plan-generators)
 <!-- KNOWLEDGE:END -->

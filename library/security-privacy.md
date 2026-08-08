@@ -17,23 +17,15 @@ skills:
 
 원칙: 클라이언트를 신뢰하지 않는다. 민감정보는 "필요한 곳에, 필요한 만큼만." 사고는 예방+탐지+대응을 모두 갖춘다.
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **개인정보 2026 방향**: 사후제재→**사전예방·위험기반·전주기 관리** 전환. AI채용솔루션 자동화결정 투명성(설명의무·평가기준 공개) 점검, **'AI 원본활용 특례'**(안전조치 전제 개인정보 활용) 추진 (korea.kr, pipc.go.kr)
-- **하반기 스타트업 정책='성장 연결'**: 벤처투자 규제완화·기술사업화 금융지원 신설, AI기업 **공공조달 문턱 완화**, 창업지원 확대 (venturesquare.net)
-- **R&D 사업화 보증(7월~)**: 최근5년 정부R&D 완료/공공기술 이전 사업화 기업 **최대 100억·보증료 0.5%감면** (venturesquare.net)
+## 최신 지식 (2026-08-08)
+- **EU AI Act 2026-08-02 전면 적용 개시** — 고위험 AI 시스템에 리스크 관리·사이버보안·사고보고 의무가 발효되어, 생체·금융 데이터를 다루는 AI 기능은 즉시 컴플라이언스 점검 필요 (whitecase.com, mofo.com)
+- **OWASP GenAI LLM Top 10 2026 발표** — 7,700여 건 실제 사고 분석 기반으로 개편, 프롬프트 인젝션이 여전히 1위이고 '오정보(Misinformation)'가 급상승; 모델 출력도 신뢰하지 말고 권한 검증은 LLM이 아닌 다운스트림 시스템에서 수행하라는 원칙 강조 (genai.owasp.org, invicti.com)
+- **미국 주법, 민감정보 범위 확대** — 코네티컷이 신경 데이터·금융정보·정부 ID를 민감 카테고리에 추가, 콜로라도·오리건도 생체·위치정보 보호 강화; CPRA 벌금은 건당 $7,988로 인상되고 30일 자동 시정기간 폐지 (gunster.com, secureprivacy.ai)
+- **한국 개인정보위 2026 조사방향: 위험 기반 접근** — 생체·영상정보 등 고위험 개인정보, 다크패턴 과잉수집, AI 채용·블록체인 신기술을 6대 중점 조사 분야로 지정 — 생체정보 처리 서비스는 우선 타깃 (kimchang.com, epnc.co.kr)
+- **한국, AI 합성콘텐츠 삭제요구권 신설 및 영상정보처리기기법 제정 추진** — 정보주체의 딥페이크 삭제 요구권과 사업자 조치 의무가 법제화될 예정이므로 생성형 AI 기능이 있는 서비스는 삭제 파이프라인 설계 필요 (kimchang.com)
+- **프라이버시 강화 기술(PET) 표준화 흐름** — 컴플라이언스 담당자 79%가 2028년까지 프라이버시 보존 연산이 규제 표준이 될 것으로 전망; 건강·금융·생체 데이터 처리 조직은 지금부터 PET(동형암호·차분 프라이버시 등) 도입 평가 권고 (secureprivacy.ai)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **정보통신망법 전면개정안 2026.3.12 국회 통과·3.24 국무회의 의결**: CISO 임원급 격상·이사회 보고 의무화, 정보보호위원회 설치 의무, 정부 **사전 직권조사권** 신설 (lawtimes.co.kr)
-- 핀테크: 신용정보법상 **마이데이터 허가제**, AI·클라우드 수용 위한 **망분리 정책 개편**이 핵심 (law.asia, fsc.go.kr)
-- 글로벌 140개국+ 개인정보법 시행, 美·EU·호주·인도 연내 새 규정 발효 — 국내기업 선제 대비 필요 (koreaiin.com)
-
-**📚 기본 지식:**
-- **개인정보보호법(한국, 2026)**: 유출사고 기업 책임·거버넌스 강화, 신기술 기획단계 **사전적정성 검토제** 확대, 안전조치 기준 상향. 민감정보(생체·건강)는 별도 동의·분리보관·엄격한 접근통제 요구.
-- **민감정보 데이터모델**: 얼굴·시술 이력·결제는 최소수집·목적별 분리, 컬럼단위 암호화(Supabase Vault/pgsodium), 원본사진은 접근권한·서명URL·보존기한·자동파기. 학습·상품화 시 별도 동의.
-- **행수준 보안(RLS)**: 모든 민감 테이블 RLS 기본, `auth.uid()` 정책 + `(select auth.uid())` 래핑으로 성능. 서버(Edge Function)에서 권한·금액 재검증, 클라이언트 신뢰 금지.
-- **앱/백엔드 보안**: OWASP Top10 + LLM Top10(프롬프트 인젝션·데이터 유출), 시크릿 매니저, MFA, SSRF·역직렬화 방어. 의존성 취약점(SCA)·이미지 스캔 CI화.
-- **동의·투명성**: 목적별 동의·철회 UX, 다크패턴 금지, 개인정보처리방침 최신화. 생성형 기능은 초상권·워터마킹(C2PA)·삭제요구권 대응.
-- **사고대응**: 탐지(이상행위·유출 모니터링)·통지 기한(규제기관/정보주체) 준수, 감사로그 불변 보관, 정기 침투테스트·DPIA 갱신.
+Sources: [White & Case](https://www.whitecase.com/insight-alert/privacy-and-cybersecurity-2025-2026-insights-challenges-and-trends-ahead), [Morrison Foerster](https://www.mofo.com/resources/insights/251218-data-cyber-privacy-predictions-for-2026), [OWASP GenAI](https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/), [Invicti](https://www.invicti.com/blog/web-security/owasp-llm-top-10-2026-whats-new), [Gunster](https://www.gunster.com/newsroom/publications/2026-data-privacy-laws-state-changes-universal-opt-out-compliance), [Secure Privacy](https://secureprivacy.ai/blog/data-privacy-trends-2026), [김앤장](https://www.kimchang.com/ko/insights/detail.kc?sch_section=4&idx=33978), [테크월드](https://www.epnc.co.kr/news/articleView.html?idxno=326050)
 <!-- KNOWLEDGE:END -->

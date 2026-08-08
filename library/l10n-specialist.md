@@ -16,22 +16,15 @@ skills:
 
 원칙: 하드코딩 문자열 금지. 맥락(스크린샷·설명)을 번역가에게 제공한다.
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **ASO=전략(2026)**: 최적화 아닌 전략. **평점 4.0+ 필수**(featured 앱 90%가 4.0↑, 3.5미만 상위노출 희박), 스토어페이지 커스터마이징이 핵심 (mobileaction.co, promodo.com)
-- **웹투앱 급증**: 딥링크 여정이 표준 대비 전환율 ~2배, AppsFlyer 웹투앱 +77% (searchlab.nl)
-- **AI ASO**: 키워드·메타데이터·크리에이티브 현지화를 수일로 압축, ASO+UA+크리에이티브 통합이 최강 (cas.ai)
+## 최신 지식 (2026-08-08)
+- AI 번역은 단일 엔진이 아닌 "시스템 운영"으로 전환 — 콘텐츠 유형·언어·리스크별 멀티엔진(LLM+MT) 라우팅과 거버넌스가 2026년 핵심 경쟁력 (localizejs.com, lingohub.com)
+- 하이브리드 표준 정착: 볼륨의 80~90%는 AI, 브랜드를 좌우하는 10~20%(크리에이티브·문화 적합성)는 전문 링귀스트가 담당하는 분업이 베스트프랙티스 (phrase.com, taia.io)
+- 번역 전 단계에서 브랜드 보이스·용어집·보호 용어를 중앙화하고, AI 기반 LQA를 파이프라인 초입에 배치해 사람 리뷰 전에 오류를 사전 차단하는 흐름 확산 (poeditor.com, lingohub.com)
+- 지속적 현지화(continuous localization)가 기본값: 커밋 시 TMS 웹훅 트리거 → 번역 병행 → CI/CD로 자동 반영, 오픈소스로는 Tolgee·Weblate가 대표 (transifex.com, getpolyglot.ai)
+- 멀티모달 현지화 부상 — 자막 타이밍 동기화, 보이스클로닝 더빙, 이미지 내 텍스트까지 한 파이프라인에서 처리하는 시스템이 트렌드 (localizejs.com)
+- CLDR 48.2/ICU 78.3 릴리스(2026.3): Unicode 17 반영, Likely Subtags 확장, 상대 날짜+시간 조합 포맷 추가 — 지역 포맷(통화·날짜·숫자) 데이터 최신화 필요, CLDR 49는 10월 예정 (blog.unicode.org)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **PM 역할 분화**: 2026 PM 역할이 세분화(AI PM 등장), AI가 리서치·스펙 작성 가속. 에이전틱 AI가 '생성→실행(행동)'으로 이동 (userpilot.com, institutepm.com)
-- **문서=지식레이어**: 문서가 서포트 자동화·인앱 어시스턴트·AI 에이전트가 읽는 지식층. 멀티모달(코드·영상·음성) 콘텐츠 기본화 (document360.com)
-- **지속적 현지화**: UI·인앱헬프·KB·마케팅·법무·서포트 매크로가 하나의 지속 현지화 모델로. AI는 오케스트레이션 층, 사람 감독 필수 (rws.com, csa-research.com)
-
-**📚 기본 지식:**
-- **Flutter i18n**: `flutter_localizations` + ARB 파일 + `gen-l10n`(codegen) 이 공식 표준. ICU 메시지 문법으로 복수형(`plural`)·성별(`select`)·중첩 처리.
-- **번역 관리(TMS)**: Crowdin/Lokalise/Localizely로 ARB 동기화, CI에서 미번역·플레이스홀더 누락 검출. 번역가에 스크린샷·문자맥락 자동 첨부.
-- **지역 포맷**: `intl`의 `NumberFormat.currency`·`DateFormat`로 통화기호·소수자릿수·천단위·요일을 로케일별 처리. 금액은 반올림·통화코드(ISO 4217) 명시.
-- **AI 번역 활용**: LLM 초벌 번역 + 사람 검수(포스트에디팅) 워크플로가 표준화. 금융 용어는 용어집 강제·일관성 검사로 오역 방지.
-- **RTL·확장**: 아랍어/히브리어 RTL은 `Directionality`·논리적 패딩(EdgeInsetsDirectional). 독일어 등 긴 문자열 대비 UI 오버플로 테스트(의사번역/pseudo-localization).
+Sources: [lingohub.com](https://lingohub.com/blog/localization-trends-2026-how-ai-is-rewriting-global-content-operations), [localizejs.com](https://localizejs.com/articles/ai-translation-trends-in-2026-what-you-need-to-know), [phrase.com](https://phrase.com/blog/posts/localization-trends-2026/), [poeditor.com](https://poeditor.com/blog/ai-translation-trends-2026/), [transifex.com](https://www.transifex.com/blog/best-tools-for-software-localization-a-developers-guide-2026), [getpolyglot.ai](https://getpolyglot.ai/blog/open-source-localization-tools), [blog.unicode.org](http://blog.unicode.org/2026/03/unicode-icu-783-and-cldr-482-released.html)
 <!-- KNOWLEDGE:END -->

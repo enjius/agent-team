@@ -17,21 +17,15 @@ tools: Read, Bash, Grep, Glob, Skill
 
 
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **개인정보 2026 방향**: 사후제재→**사전예방·위험기반·전주기 관리** 전환. AI채용솔루션 자동화결정 투명성(설명의무·평가기준 공개) 점검, **'AI 원본활용 특례'**(안전조치 전제 개인정보 활용) 추진 (korea.kr, pipc.go.kr)
-- **하반기 스타트업 정책='성장 연결'**: 벤처투자 규제완화·기술사업화 금융지원 신설, AI기업 **공공조달 문턱 완화**, 창업지원 확대 (venturesquare.net)
-- **R&D 사업화 보증(7월~)**: 최근5년 정부R&D 완료/공공기술 이전 사업화 기업 **최대 100억·보증료 0.5%감면** (venturesquare.net)
+## 최신 지식 (2026-08-08)
+- OWASP Top 10 2025 최종판 발표(2026-01): '소프트웨어 공급망 실패'·'예외 상황 처리 미흡' 2개 신규 항목 추가, SSRF는 Broken Access Control에 흡수, Security Misconfiguration이 2위로 상승 — 리뷰 체크리스트를 2021판에서 갱신 필요 (owasp.org, gitlab.com)
+- Broken Access Control이 여전히 1위(테스트된 앱의 평균 3.73%에서 발견) — 인증/인가 리뷰가 계속 최우선 점검 영역 (owasp.org)
+- 프롬프트 인젝션이 에이전틱 AI 시대 1순위 위협으로 부상(전년 대비 공격 340% 급증 보고), 완전 차단 불가 전제 하에 입력 필터링·샌드박싱·검색 콘텐츠 시맨틱 필터 등 심층방어가 표준 — LLM/MCP 연동 코드 리뷰 시 필수 점검 (securityjourney.com, eccu.edu)
+- 비인간 계정(NHI)이 사람 대비 10:1로 급증하며 시크릿 스캐닝이 NHI 수명주기 관리(소유자 매핑·자동 로테이션·ISPM)로 확장 — GitGuardian·Oasis·Entro·Akeyless 등이 대표 도구 (gitguardian.com, akeyless.io)
+- EU AI Act 고위험 시스템 규정이 2026-08-02부로 전면 시행, 미국 20개 주 신규 프라이버시법과 겹치는 '컴플라이언스 컨버전스' — 동의 메커니즘·벤더 감독·자동화된 의사결정이 집중 단속 대상 (onetrust.com, insideprivacy.com)
+- 규제·OWASP 모두 프라이버시를 문서 작업이 아닌 설계·인프라 문제로 취급하는 방향(EU Data Act, 호주 ADM 투명성 규칙 등) — 리뷰 시 데이터 최소수집·자동 의사결정 투명성을 코드 레벨에서 확인 (secureprivacy.ai)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **정보통신망법 전면개정안 2026.3.12 국회 통과·3.24 국무회의 의결**: CISO 임원급 격상·이사회 보고 의무화, 정보보호위원회 설치 의무, 정부 **사전 직권조사권** 신설 (lawtimes.co.kr)
-- 핀테크: 신용정보법상 **마이데이터 허가제**, AI·클라우드 수용 위한 **망분리 정책 개편**이 핵심 (law.asia, fsc.go.kr)
-- 글로벌 140개국+ 개인정보법 시행, 美·EU·호주·인도 연내 새 규정 발효 — 국내기업 선제 대비 필요 (koreaiin.com)
-
-**📚 기본 지식:**
-- **위협모델링**: STRIDE·신뢰경계·공격표면 분석, 설계 단계부터. 최소권한·제로트러스트.
-- **코드·의존성**: SAST(CodeQL/Semgrep)+SCA, 시크릿 스캔, 안전한 역직렬화·인젝션 방어(OWASP Top10, LLM Top10).
-- **인증·데이터**: OAuth2/OIDC·MFA, 저장·전송 암호화, PII 최소수집·마스킹.
-- **공급망**: SBOM·아티팩트 서명(sigstore), CI 권한 최소화, 침해대응 런북.
+Sources: [OWASP Top 10:2025](https://owasp.org/Top10/2025/), [GitLab — 2025 OWASP Top 10 변경점](https://about.gitlab.com/blog/2025-owasp-top-10-whats-changed-and-why-it-matters/), [Security Journey — Prompt Injection 2026](https://www.securityjourney.com/post/prompt-injection-attacks-in-llms-what-developers-need-to-know-in-2026), [ECCU — Prompt Injection Threat](https://www.eccu.edu/blog/prompt-injection-ai-cybersecurity-threat/), [GitGuardian — NHI Security Tools 2026](https://blog.gitguardian.com/nhi-security-tools/), [Akeyless — NHI Management Tools 2026](https://www.akeyless.io/blog/top-5-non-human-identity-management-tools-for-2026/), [OneTrust — 2026 프라이버시 트렌드](https://www.onetrust.com/blog/the-5-trends-shaping-global-privacy-and-enforcement-in-2026/), [Inside Privacy — 2026 EU 전망](https://www.insideprivacy.com/european-union-2/what-to-watch-in-2026-key-eu-privacy-cybersecurity-developments/), [Secure Privacy — Privacy Laws 2026](https://secureprivacy.ai/blog/privacy-laws-2026)
 <!-- KNOWLEDGE:END -->

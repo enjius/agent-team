@@ -19,21 +19,15 @@ skills:
 
 
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **프레임워크(7월)**: Next.js 7/21 보안 릴리스, React Router v8(연간 릴리스·ESM·Node22.22+·Vite7), **Flutter 3.44.0**(5/18 안정), Remix 3(React 탈피 재설계), RN Windows 0.83 (nextjs.org, dev.to)
-- **지형**: 서버우선 아키텍처·AI 보조 툴링·성능 기본값화가 대세, 코드 29% AI 생성 지속 (nucamp.co)
-- **AI 코딩**: GPT-5.6·Claude Sonnet 5·GLM-5.2 등 신규 모델로 에이전틱 코딩 급진전 (thursdai.news)
+## 최신 지식 (2026-08-08)
+- React Compiler가 Rust로 포팅되어 메인 저장소에 통합, 컴파일 최대 50% 고속화 — 수동 memo화는 사실상 퇴역, 자동 메모이제이션이 기본값 (infoq.com, react.dev)
+- Next.js 16.3의 "Instant Navigations"로 SPA 수준 즉시 내비게이션 + 메모리 사용 최대 90% 절감, 커스텀 에러 바운더리·AI 에이전트용 버전별 문서 추가 (nextjs.org)
+- Next.js 16 캐싱은 `"use cache"` 지시어 기반 Cache Components로 전환(완전 opt-in), Turbopack이 stable로 `next dev` 기본 번들러화 (nextjs.org)
+- Vite 8 정식 출시(3월): Rolldown 단일 Rust 번들러 + Oxc 트랜스포머 + Lightning CSS로 빌드 10~30배 고속화, Rolldown 1.0도 5월 stable로 API 고정 (vite.dev, byteiota.com)
+- Cloudflare가 VoidZero(Vite·Vitest·Rolldown·Oxc 개발사) 인수, 오픈소스 유지 약속 및 생태계 펀드 조성 — Rust 기반 JS 툴체인 표준화 가속 (vite.dev)
+- React 20은 아직 미출시(최신은 19.2.7), 중첩 Suspense·에러 복구 개선 등 RFC 단계 — 현시점 베스트프랙티스는 React 19.2 + Compiler 1.0 조합 (react.dev, blog.authon.dev)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **프론트엔드**: React 19 + React Compiler(1.0)로 useMemo/useCallback/memo 수동최적화가 레거시화. Server Components·signals 세분화 반응성·INP가 아키텍처 우열을 가름. Svelte·Astro·Qwik 부상 (logrocket.com, netguru.com)
-- **백엔드·런타임**: Bun이 Node 런타임 지위 위협, NestJS·HTTP/3, 이벤트드리븐 마이크로서비스(Kafka·EventBridge)+관측성+AI 모니터링 통합 (medium.com, nucamp.co)
-- **공통**: 코드의 29%가 이미 AI 생성, TypeScript 40% 단독채택, Vite가 Webpack 대체(만족도 98%) (blog.logrocket.com)
-
-**📚 기본 지식:**
-- **프레임워크**: React 19(서버컴포넌트·Actions)/Next 15, Svelte 5 runes. 서버우선 렌더링+선택적 하이드레이션.
-- **상태·데이터**: 서버상태는 TanStack Query, 폼은 스키마검증(zod). 전역상태 최소화.
-- **성능·품질**: Core Web Vitals(INP 중심), 코드분할·이미지 최적화, 접근성(WCAG)·타입안전(TS strict).
-- **툴링**: Vite/Turbopack, Tailwind, 컴포넌트 테스트(Testing Library)+E2E(Playwright).
+Sources: [InfoQ — React Compiler Rust port](https://www.infoq.com/news/2026/07/meta-react-compiler-rust/), [Next.js 16.3](https://nextjs.org/blog/next-16-3-instant-navigations), [Next.js 16](https://nextjs.org/blog/next-16), [Vite 8.0 발표](https://vite.dev/blog/announcing-vite8), [Rolldown 1.0](https://byteiota.com/rolldown-1-0-stable-vite-developers/), [React Compiler 1.0](https://react.dev/blog/2025/10/07/react-compiler-1)
 <!-- KNOWLEDGE:END -->

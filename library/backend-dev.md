@@ -19,21 +19,13 @@ skills:
 
 
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **프레임워크(7월)**: Next.js 7/21 보안 릴리스, React Router v8(연간 릴리스·ESM·Node22.22+·Vite7), **Flutter 3.44.0**(5/18 안정), Remix 3(React 탈피 재설계), RN Windows 0.83 (nextjs.org, dev.to)
-- **지형**: 서버우선 아키텍처·AI 보조 툴링·성능 기본값화가 대세, 코드 29% AI 생성 지속 (nucamp.co)
-- **AI 코딩**: GPT-5.6·Claude Sonnet 5·GLM-5.2 등 신규 모델로 에이전틱 코딩 급진전 (thursdai.news)
-
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **프론트엔드**: React 19 + React Compiler(1.0)로 useMemo/useCallback/memo 수동최적화가 레거시화. Server Components·signals 세분화 반응성·INP가 아키텍처 우열을 가름. Svelte·Astro·Qwik 부상 (logrocket.com, netguru.com)
-- **백엔드·런타임**: Bun이 Node 런타임 지위 위협, NestJS·HTTP/3, 이벤트드리븐 마이크로서비스(Kafka·EventBridge)+관측성+AI 모니터링 통합 (medium.com, nucamp.co)
-- **공통**: 코드의 29%가 이미 AI 생성, TypeScript 40% 단독채택, Vite가 Webpack 대체(만족도 98%) (blog.logrocket.com)
-
-**📚 기본 지식:**
-- **API 설계**: REST+OpenAPI 또는 gRPC, 멱등성 키·페이지네이션·버저닝. 입력검증·에러규격 통일, 계약테스트로 프론트와 동기화.
-- **데이터**: 트랜잭션 경계 명확화, N+1 제거, 인덱스·쿼리플랜 점검. 이벤트기반은 아웃박스 패턴으로 정합성 보장.
-- **성능·복원력**: 커넥션풀·타임아웃·서킷브레이커, 캐시(계층·무효화 전략), 백프레셔. 비동기 작업은 큐+워커.
-- **보안**: 인증(OAuth2/OIDC)·인가(RBAC/ABAC), 시크릿 매니저, SQL 인젝션·SSRF 방어, 감사로그.
+## 최신 지식 (2026-08-08)
+- **PostgreSQL 18**: 비동기 I/O(AIO)로 스토리지 읽기 최대 3배 개선, `uuidv7()` 기본 제공, B-tree skip scan, OAuth 인증, 임시(temporal) 제약 지원 — PK를 UUIDv7로 전환 검토 가치 있음 ([postgresql.org](https://www.postgresql.org/about/news/postgresql-18-released-3142/))
+- **Spring Boot 4.1**(2026-06): gRPC 1급 지원, lazy JDBC 커넥션, `InetAddressFilter` 기반 SSRF 방어, `@RedisListener`, 타입세이프 프로퍼티 경로 — 4.0의 Jakarta EE 11·Jackson 3·JSpecify null-safety 위에 추가 ([danvega.dev](https://www.danvega.dev/blog/spring-boot-4-is-here), [herodevs.com](https://www.herodevs.com/blog-posts/spring-boot-versions-eol-dates-and-latest-releases-april-2026))
+- **API-first + AI-ready 설계**가 프레임워크 선정 기준으로 정착: 처리량·확장성과 함께 관측성(observability)과 LLM/ML 파이프라인 연동 용이성을 초기 설계 단계에서 평가 ([digitalapi.ai](https://www.digitalapi.ai/blogs/top-backend-frameworks-your-guide-to-choosing-the-best), [blog.logrocket.com](https://blog.logrocket.com/8-trends-web-dev-2026/))
+- **Hono** 등 런타임 불문(Node/Bun/Deno/엣지) 초경량 프레임워크가 API 서버 표준 후보로 부상 — 스키마 검증 내장, 엣지/서버리스 배포에 유리 ([quartzdevs.com](https://quartzdevs.com/resources/best-backend-frameworks-2026-top-server-side-tools))
+- **Node.js 24 LTS**(현재 24.19, 2026-08-03): V8 13.6 탑재로 대형 엔진 업그레이드 — LTS 마이그레이션 시점 도래 ([blog.logrocket.com](https://blog.logrocket.com/node-js-24-new/), [versionlog.com](https://versionlog.com/nodejs/24/))
+- **보안 기본값 강화 흐름**: 프레임워크 차원에서 안전하지 않은 패턴 차단(safer API, 정적 분석 경고)과 SSRF·인젝션류 방어 내장이 표준화 — 앱 코드가 아닌 프레임워크 설정으로 방어층 확보 권장 ([blog.logrocket.com](https://blog.logrocket.com/8-trends-web-dev-2026/))
 <!-- KNOWLEDGE:END -->

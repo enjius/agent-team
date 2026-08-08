@@ -14,22 +14,15 @@ tools: Read, Edit, Write, Bash, Grep, Glob, Skill
 
 원칙: 클라이언트를 신뢰하지 않는다 — 권한·금액·정합성은 DB/서버에서 강제한다.
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **프레임워크(7월)**: Next.js 7/21 보안 릴리스, React Router v8(연간 릴리스·ESM·Node22.22+·Vite7), **Flutter 3.44.0**(5/18 안정), Remix 3(React 탈피 재설계), RN Windows 0.83 (nextjs.org, dev.to)
-- **지형**: 서버우선 아키텍처·AI 보조 툴링·성능 기본값화가 대세, 코드 29% AI 생성 지속 (nucamp.co)
-- **AI 코딩**: GPT-5.6·Claude Sonnet 5·GLM-5.2 등 신규 모델로 에이전틱 코딩 급진전 (thursdai.news)
+## 최신 지식 (2026-08-08)
+- Auth 패스키(WebAuthn) 정식 제공 — 생체인증·하드웨어 키 로그인이 피싱 저항형으로 지원되므로 RAKWAN 인증 설계에 우선 검토 (supabase.com)
+- Realtime Broadcast가 바이너리(bytea) 페이로드를 지원 — 단 Dart/Kotlin 클라이언트는 미지원·구버전 SDK는 조용히 드롭하므로 Flutter 연동 시 주의 (supabase.com)
+- 대시보드에 RLS Tester(Feature Preview) 추가 — 임의 역할로 SELECT를 실행해 정책 디버깅 가능, RLS 검증 워크플로에 도입 권장 (supabase.com)
+- 셀프호스트 기본 이미지가 Postgres 17로 상향, 2026-08-09 주부터 API 게이트웨이 기본값이 Kong→Envoy로 교체 예정 (supabase.com, github.com)
+- RLS 성능 베스트프랙티스: 재귀적 권한 체크는 SECURITY DEFINER 헬퍼 함수로, 역할 판별은 JWT 커스텀 클레임(app_metadata)으로 DB 조회 제거 (supabase.com, makerkit.dev)
+- Edge Functions에서 트랜잭션+RLS가 필요하면 Postgres 함수(RPC) 호출 패턴이 표준 — 저장 프로시저가 호출자 권한으로 실행되어 RLS 유지 (marmelab.com); 커스텀 OAuth2/OIDC IdP 연결(PKCE 기본) 및 ISO 27001:2022 인증도 확보 (supabase.com)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **supabase_flutter 2.7.0(2026.4.20)**: PostgREST **자동 재시도** 내장, 타 SDK 동반 업데이트로 신뢰성 개선 (apparencekit.dev)
-- **Supabase 패스키(Passkey) 인증 BETA** — 대시보드 Authentication>Passkeys 활성화, 비밀번호리스 인증 도입 (supabase.com)
-- Flutter+Supabase 통합 템플릿(인증·알림·DB·스토리지·애널리틱스 선구성) 확산 (fluttergems.dev)
-
-**📚 기본 지식:**
-- **RLS 우선 설계**: 모든 테이블 `enable row level security` 기본, `auth.uid()` 기반 정책. 정책 성능은 `(select auth.uid())` 래핑으로 initplan 캐싱 — 대량행 쿼리 속도 개선 권장 패턴.
-- **마이그레이션**: Supabase CLI `db diff`/`migration`로 버전관리, `supabase start`(로컬 Docker)로 브랜치별 검증. 선언형 스키마(declarative schema) 기능 확대.
-- **Edge Functions**: Deno 런타임, 배경작업(`EdgeRuntime.waitUntil`), 웹훅 서명검증. 결제·정산 등 신뢰 필요한 로직은 여기서. 시크릿은 `supabase secrets`.
-- **성능·비용**: 커넥션은 Supavisor 풀러(트랜잭션 모드) 경유, N+1은 PostgREST `embed`(resource embedding)로 조인. 무거운 집계는 `materialized view`·`pg_cron`.
-- **인증·보안**: MFA(TOTP)·비밀번호 유출검사 활성, Postgres `pgsodium`/Vault로 민감컬럼 암호화. 핀테크 특성상 감사로그 테이블·불변(append-only) 기록 권장.
+Sources: [Supabase Changelog](https://supabase.com/changelog), [Developer Update — June 2026](https://supabase.com/changelog/46689-developer-update-june-2026), [Developer Update — July 2026](https://supabase.com/changelog/47796-developer-update-july-2026), [Developer Update — May 2026](https://supabase.com/changelog/45702-developer-update-may-2026), [RLS Performance and Best Practices](https://supabase.com/docs/guides/troubleshooting/rls-performance-and-best-practices-Z5Jjwv), [Supabase RLS Best Practices (Makerkit)](https://makerkit.dev/blog/tutorials/supabase-rls-best-practices), [Transactions and RLS in Edge Functions (Marmelab)](https://marmelab.com/blog/2025/12/08/supabase-edge-function-transaction-rls.html)
 <!-- KNOWLEDGE:END -->

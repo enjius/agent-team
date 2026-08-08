@@ -18,21 +18,15 @@ tools: Read, Edit, Write, Bash, Grep, Glob, Skill
 
 
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **프레임워크(7월)**: Next.js 7/21 보안 릴리스, React Router v8(연간 릴리스·ESM·Node22.22+·Vite7), **Flutter 3.44.0**(5/18 안정), Remix 3(React 탈피 재설계), RN Windows 0.83 (nextjs.org, dev.to)
-- **지형**: 서버우선 아키텍처·AI 보조 툴링·성능 기본값화가 대세, 코드 29% AI 생성 지속 (nucamp.co)
-- **AI 코딩**: GPT-5.6·Claude Sonnet 5·GLM-5.2 등 신규 모델로 에이전틱 코딩 급진전 (thursdai.news)
+## 최신 지식 (2026-08-08)
+- **Kafka의 '디스크리스(diskless)' 아키텍처 전환** — 오브젝트 스토리지 직결(KIP-1150 계열)로 브로커 디스크·복제 비용을 없애고 Iceberg와 통합해 실시간·과거 데이터를 단일 스토리지로 통합하는 흐름이 2026년 핵심 트렌드 (kai-waehner.de)
+- **Flink 2.2~2.3의 AI 네이티브 스트리밍** — SQL에서 `ML_PREDICT`(LLM 추론)·`VECTOR_SEARCH`(실시간 벡터 검색), Materialized Table, 분리형(disaggregated) 상태 백엔드, Delta Join으로 스트리밍+AI 파이프라인을 SQL만으로 구성 가능 (flink.apache.org)
+- **Apache Iceberg가 레이크하우스 표준 테이블 포맷으로 사실상 확정** — Kafka→Iceberg 직접 머티리얼라이즈(Confluent Tableflow 등)로 별도 ETL 없이 스트림을 분석 테이블화하는 패턴이 보편화 (infoworld.com, confluent.io)
+- **틱/시계열 저장은 개방 포맷 중심 재편** — QuestDB·InfluxDB 3 등이 콜드 데이터를 Parquet로 오브젝트 스토리지에 계층화하고 Arrow(ADBC)로 제로카피 조회, kdb+ 대체 흐름 가속 (questdb.com)
+- **엔터프라이즈 요구는 RPO=0·주권 클라우드** — 무손실 복제와 자동화된 DR, 데이터 주권 규제 대응용 리전별 Kafka 배포가 플랫폼 선택 기준으로 부상 (kai-waehner.de)
+- **스트리밍이 AI 에이전트의 '컨텍스트 엔진'으로** — 실시간 피처/임베딩 공급 파이프라인(Kafka+Flink+벡터 검색)이 피처 스토어의 차세대 형태로 자리잡는 중 (risingwave.com, confluent.io)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **모던 데이터스택**: Snowflake/Databricks + dbt(변환 표준) + Airflow + Fivetran/dlt + Great Expectations/Monte Carlo가 2026 기본 (proinsightsportal.com, uvik.net)
-- **레이크하우스·오픈포맷**: 저장/컴퓨트 분리, Iceberg가 신규 레이크하우스 기본 오픈테이블 포맷, Unity Catalog·Polaris 부상 (dev.to, lucentinnovation.com)
-- **AI 운영**: AI가 파이프라인 모니터링·디버깅·최적화에 투입돼 실패↓·디버깅속도↑ (refontelearning.com)
-
-**📚 기본 지식:**
-- **레이크하우스**: Delta/Iceberg/Hudi 테이블 포맷으로 ACID·타임트래블, 파일 컴팩션·파티셔닝으로 스캔 최소화. 메달리온(브론즈/실버/골드) 계층.
-- **처리엔진**: Spark 3.5/Flink, 배치+스트리밍 통합(Structured Streaming). dbt로 변환 계층 표준화·테스트.
-- **오케스트레이션**: Airflow/Dagster로 DAG·데이터 계약·SLA. 스키마 진화·데이터 품질(Great Expectations) 게이트.
-- **비용**: 파티션 프루닝·Z-order, 스팟 인스턴스, 저장/컴퓨트 분리로 워크로드별 최적화.
+Sources: [Top Trends for Data Streaming 2026 (Kai Waehner)](https://www.kai-waehner.de/blog/2025/12/10/top-trends-for-data-streaming-with-apache-kafka-and-flink-in-2026/), [Data Streaming Landscape 2026](https://www.kai-waehner.de/blog/2025/12/05/the-data-streaming-landscape-2026/), [Flink 2.2.0 Release](https://flink.apache.org/2025/12/04/apache-flink-2.2.0-advancing-real-time-data--ai-and-empowering-stream-processing-for-the-ai-era/), [3 Data Engineering Trends riding Kafka, Flink, Iceberg (InfoWorld)](https://www.infoworld.com/article/3607370/3-data-engineering-trends-riding-kafka-flink-and-iceberg.html), [Best Time-Series Databases 2026 (QuestDB)](https://questdb.com/blog/best-time-series-databases/), [Confluent Cloud Q2 2026](https://www.confluent.io/blog/2026-q2-confluent-cloud-launch/)
 <!-- KNOWLEDGE:END -->

@@ -14,22 +14,15 @@ tools: Read, Grep, Glob, Bash, Skill
 
 원칙: 지적은 근거와 수정 예시를 함께. 스타일보다 정확성·보안을 우선.
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **프레임워크(7월)**: Next.js 7/21 보안 릴리스, React Router v8(연간 릴리스·ESM·Node22.22+·Vite7), **Flutter 3.44.0**(5/18 안정), Remix 3(React 탈피 재설계), RN Windows 0.83 (nextjs.org, dev.to)
-- **지형**: 서버우선 아키텍처·AI 보조 툴링·성능 기본값화가 대세, 코드 29% AI 생성 지속 (nucamp.co)
-- **AI 코딩**: GPT-5.6·Claude Sonnet 5·GLM-5.2 등 신규 모델로 에이전틱 코딩 급진전 (thursdai.news)
+## 최신 지식 (2026-08-08)
+- Flutter 3.44 + Dart 3.12가 최신 스테이블(Google I/O 2026 발표) — 데스크톱 멀티윈도우, WebAssembly 렌더링 개선 등 신규 API 사용 PR은 최소 SDK 버전 정합성 확인 필요 (fluttersolution.com, io.google)
+- lints 2.0 출시: `no_raw_types`·`no_dynamic_casts` 린트가 기존 strict-raw-types/strict-casts 분석 옵션을 대체 — analysis_options 마이그레이션 여부를 리뷰 체크리스트에 반영 (dart.dev, pub.dev)
+- Dart에 private named parameters 신규 문법·strict language mode 도입, `simplify_variable_pattern` 등 패턴 관련 린트 추가 — `dart fix` 자동 수정 가능 항목은 수동 지적 대신 도구 적용 권장 (dart.dev)
+- Impeller가 iOS·Android(API 29+) 기본 렌더러로 정착 — 리뷰 시 const 위젯, RepaintBoundary, cacheWidth/cacheHeight 지정 등 UI 4ms/Raster 4ms 프레임 예산 기준으로 성능 점검 (medium.com, dev.to)
+- 공급망 보안 강화: GitHub Advisory DB·Dependabot이 Dart 공식 지원, `dart pub get` 시 보안 권고 표시 — pubspec 변경 PR은 신규 의존성의 발행 시점·advisory 확인 필수 (dart.dev, github.com)
+- OWASP 'Flutter Top 10'의 M2(공급망 보안 미흡)가 별도 항목화 — 버전 고정(pinning) 남용과 방치된 패키지 사용을 리뷰 단계에서 걸러내는 관행 확산 (docs.talsec.app)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **supabase_flutter 2.7.0(2026.4.20)**: PostgREST **자동 재시도** 내장, 타 SDK 동반 업데이트로 신뢰성 개선 (apparencekit.dev)
-- **Supabase 패스키(Passkey) 인증 BETA** — 대시보드 Authentication>Passkeys 활성화, 비밀번호리스 인증 도입 (supabase.com)
-- Flutter+Supabase 통합 템플릿(인증·알림·DB·스토리지·애널리틱스 선구성) 확산 (fluttergems.dev)
-
-**📚 기본 지식:**
-- **정적분석**: `very_good_analysis`/`flutter_lints` 최신 룰셋 + `dart analyze --fatal-infos`. `custom_lint`+`riverpod_lint`로 Riverpod 오용(누락된 autoDispose, 잘못된 ref 사용) 자동 검출.
-- **널·타입 안정성**: Dart 3 sound null-safety 전제 — `!` 강제언랩·`late` 남용·`as` 다운캐스트를 레드플래그로. `sealed`/`switch` 완전성 검사 활용.
-- **비동기·리소스**: `Future` 미await, `StreamSubscription`/`Timer`/`TextEditingController` dispose 누락, `BuildContext` async-gap 사용(`if (!mounted) return`) 점검.
-- **보안(핀테크 특화)**: 하드코딩 키/토큰, 클라이언트측 금액·권한 신뢰, Supabase RLS 미적용 테이블 직접 접근, 로그에 PII·잔고 노출을 차단.
-- **AI 리뷰 보조**: LLM 1차 스캔으로 표면결함을 걸러내되 아키텍처·의도 판단은 사람이. 리뷰 코멘트는 실행가능한 제안 형태로 남긴다.
+Sources: [FlutterSolution — Flutter 3.44 & Dart 3.12](https://www.fluttersolution.com/2026/05/flutter-344-dart-312-everything-new-at.html), [Google I/O 2026 — What's new in Flutter](https://io.google/2026/explore/pa-keynote-12), [Dart — What's new](https://dart.dev/resources/whats-new), [Dart linter rules](https://dart.dev/tools/linter-rules), [Medium — Flutter + Impeller 120fps in 2026](https://shindekalpesharun.medium.com/flutter-impeller-how-to-achieve-native-120fps-performance-in-2026-68ec28cc71e5), [DEV — Impeller in 2026](https://dev.to/eira-wexford/how-impeller-is-transforming-flutter-ui-rendering-in-2026-3dpd), [Dart — Security advisories](https://dart.dev/tools/pub/security-advisories), [GitHub — pub cooldown feature request](https://github.com/dart-lang/pub/issues/4791), [Talsec — OWASP Flutter M2](https://docs.talsec.app/appsec-articles/articles/owasp-top-10-for-flutter-m2-inadequate-supply-chain-security-in-flutter)
 <!-- KNOWLEDGE:END -->

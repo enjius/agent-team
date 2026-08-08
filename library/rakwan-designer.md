@@ -19,22 +19,15 @@ skills:
 원칙: 화려함보다 명료함. 금액·리스크 정보는 오인 없는 위계로.
 - **디자인 전 반드시 Pinterest(kr.pinterest.com) 레퍼런스를 조사**해 무드보드·패턴을 잡고 시작한다(design-inspiration 스킬).
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **2026 전환**: 화려함 걷어내고 **단순·차분(calm)** 흐름으로. **Generative UI(GenUI)**가 실시간 인터페이스 재구성, **Spatial UI**(3D·MR/AR) 부상 (codewave.com, tubikstudio.com)
-- **AI=코파일럿**: 올노잉 autopilot 아닌 '존중하는 copilot', 상태 전달용 **기능적 마이크로인터랙션** 강조 (uxdesign.cc)
-- **접근성·멀티모달** 기본, AI 개인화가 UX 베이스라인 (index.dev)
+## 최신 지식 (2026-08-08)
+- Figma Config 2026에서 Code Layers(디자인 레이어를 클릭 한 번에 인터랙티브 코드로 변환), Figma Motion(키프레임 타임라인·CSS/React/MP4 내보내기), 셰이더 필·생성형 플러그인 공개 — 디자인-코드 경계가 사실상 사라지는 중 (figma.com, cmswire.com)
+- Figma 'Design System Intelligence'가 디자인시스템 불일치 감지·수정 제안·토큰 동기화·컴포넌트 사용 추적을 자동화 — 시스템 거버넌스가 문서에서 자동 감시 체계로 이동 (figma.com, dodefy.com)
+- 2026 UI 트렌드는 '캄 인터페이스(calm interface)'와 투명한 AI — 시각적 과시 대신 인지 부하 최소화, AI 개입 지점을 명시적으로 드러내는 설계가 표준화 (elements.envato.com, uxpin.com)
+- 핀테크 신뢰 시그널은 일관된 스페이싱 시스템, 목적 있는 컬러, 거래 플로우의 시각적 노이즈 제로로 구체화 — 사용자 82%가 데이터를 시각화로 보여줄 때 앱을 더 신뢰 (eleken.co, webstacks.com)
+- 핀테크 UX는 '데이터 시각화 → 데이터 스토리텔링' 전환과 생체·행동 기반 인증(지문·얼굴·행동 패턴) UI가 핵심 흐름 (webstacks.com, yellowslice.in)
+- 접근성이 디자인 토큰 정책으로 편입: 대비 관계를 토큰 쌍으로 인코딩해 WCAG 2.2 AA(본문 대비 4.5:1, 탭 타겟 44×44pt)를 기본값으로 보장하는 방식이 금융앱 베스트프랙티스 (testparty.ai, appricotsoft.com)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **AI 네이티브·차분한 UI**: 투명한 AI·적응형 인터페이스·인지부하 감소(calm UI)·모션주도 상호작용이 핵심. 런타임 AI 생성 콘텐츠를 흡수하는 토큰기반 디자인시스템 필수 (index.dev, envato.com)
-- **접근성=인프라**: 컴플라이언스 아닌 기본 설계표준 — 고대비·키보드·리듀스모션·쉬운언어 내장. 매출·조달·신뢰에 영향 (uxdesigninstitute.com)
-- **개인화·멀티모달**: AI 개인화가 UX 베이스라인, 음성·터치·제스처 결합 멀티모달 부상 (sanjaydey.com)
-
-**📚 기본 지식:**
-- **디자인 시스템**: Figma Variables(모드=라이트/다크·브랜드)로 토큰 관리 → `Material 3` 테마 매핑. Flutter는 `ThemeExtension`으로 커스텀 토큰 주입이 정석.
-- **M3 Expressive(2025)**: 구글 Material 3 Expressive 업데이트 — 강조 모션·크기 대비·컨테이너 형태 다양화. 금융앱은 절제해 적용(핵심 액션만 강조).
-- **금융 UX**: 금액·수익률은 색(상승/하락)+부호+접근성 대비 4.5:1 동시 사용(색맹 고려). 큰 숫자는 축약(1.2만)과 정확값(툴팁) 병기, 로딩은 스켈레톤.
-- **데이터 시각화**: `fl_chart`/`syncfusion` 차트 — 시계열은 과밀 방지 다운샘플, 리스크는 히트맵/게이지. 실시간 값 변동은 부드러운 애니메이션으로 인지부담 완화.
-- **핸드오프**: Figma Dev Mode + 간격/상태/에러·빈화면 명세. 마이크로카피는 UX라이터와 협업, 접근성(폰트 스케일·터치타깃 48dp) 체크리스트 첨부.
+Sources: [figma.com/blog/config-2026-recap](https://www.figma.com/blog/config-2026-recap/), [cmswire.com](https://www.cmswire.com/digital-experience/figma-launches-code-layers-motion-at-config-2026/), [dodefy.com](https://www.dodefy.com/articles-posts/figma-2026-complete-breakdown-of-new-products-and-how-to-use-them-effectively), [elements.envato.com](https://elements.envato.com/learn/ux-ui-design-trends), [uxpin.com](https://www.uxpin.com/studio/blog/ui-ux-design-trends/), [eleken.co](https://www.eleken.co/blog-posts/modern-fintech-design-guide), [webstacks.com](https://www.webstacks.com/blog/fintech-ux-design), [yellowslice.in](https://www.yellowslice.in/blog/fintech-ux-design-trends-you-must-know), [testparty.ai](https://testparty.ai/blog/accessibility-as-design-system-policy), [appricotsoft.com](https://appricotsoft.com/blog/mobile-banking-app-accessibility-requirements-how-to-build-inclusive-banking-experiences/)
 <!-- KNOWLEDGE:END -->

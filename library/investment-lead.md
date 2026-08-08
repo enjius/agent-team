@@ -17,21 +17,15 @@ skills:
 
 원칙: 나는 금융 방향과 기준을 정하는 사람이다. 수익 보장 금지, 계산은 검증가능·리스크는 명확히. 자문/일임 규제 경계를 넘지 않는다.
 
+
 <!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-07-24)
-**🆕 오늘 웹리서치 (2026-07-24):**
-- **BTC 현실(7/22 ~$65,800)**: 1월 $93K→'25.10 $126K고점→6월말 21개월최저 ~$58K→반등. 금리인하 기대후퇴·ETF유출·기업매도가 하락 3대 요인 (fool.com, ig.com)
-- **규제**: 美 SEC 7/7 크립토 규칙제정 3건 의제 추가, 상원 **CLARITY Act** 개정안 공개, **일본이 크립토를 '금융자산' 재분류**·세금 대폭 인하 (investingnews.com)
-- **시사점**: 수익률 보장·강세 일변도 금지 — 실제 가격·변동성 반영. 규제 명확화가 기관유입 스위치 (crypto.news)
+## 최신 지식 (2026-08-08)
+- 기관 자산배분이 전통 60/40에서 60/20/20(주식/채권/대체)로 이동 중이며 사모시장이 약 $20조 규모로 성장, 사모대출은 미국 기관 45%가 확대 계획 — 앱의 자산배분 기본 프레임에 대체자산 슬리브 반영 검토 필요 (natixis.com, blackrock.com)
+- 개인·자산관리 고객의 사모시장 접근이 에버그린 펀드 구조(ELTIF·LTAF·모델 포트폴리오)로 확산 — 유동성 정책과 상품 로직 기준 설계 시 참조할 구조 (avivainvestors.com)
+- 웰스매니지먼트에서 '에이전틱 AI'가 자문 전달 방식을 바꾸는 핵심 트렌드로 부상, 로보어드바이저 시장은 2026년 $18.7B(CAGR ~31%)로 성장하며 하이브리드(디지털+휴먼) 모델이 표준화 (investsuite.com, thebusinessresearchcompany.com)
+- SEC가 2026-01-28 3개 부서 합동성명으로 "토큰화해도 증권은 증권" 원칙을 명확화했고, 3월 나스닥의 토큰화 증권 거래 승인·DTCC 파일럿으로 토큰화 RWA 시장이 Q1에만 30% 성장($29B) — 토큰화 자산 취급 시 기존 증권규제 준수가 기본선 (lw.com, investax.io)
+- 미 연준·OCC·FDIC가 2026-04 SR 26-2로 모델 리스크 관리 기준을 개정했으나 생성형·에이전틱 AI 공백이 남아, CRI의 FS AI RMF(230개 통제항목)가 사실상의 보완 프레임워크로 활용됨 — AI 기반 투자 로직의 거버넌스 체크리스트로 유용 (bloomberg.com, mitratech.com)
+- EU AI Act 고위험 시스템 규제가 2026-08-02 발효되어 신용평가·자동화된 금융 접근성 결정 등이 고위험으로 분류 — AI 추천·자산배분 기능의 설명가능성·감사 로그 요건을 상품 기준에 선반영 권장 (sia-partners.com)
 
-**🔎 오늘 웹리서치 (2026-07-21):**
-- **기관 편입·시장**: JPMorgan $170K·Standard Chartered $150K·Fundstrat $150~200K 등 BTC 전망 분분, 글로벌 투자자 76%가 디지털자산 확대 계획 (blockchain-council.org, coinbase.com)
-- **규제 명확화**: 스테이블코인 프레임워크·과세 조율·DeFi 통제 강화가 2026 최대 변수, TradFi-DeFi 융합 가속 (sumsub.com, finextra.com)
-- **AI 운용**: 포트폴리오 관리·알고리즘 트레이딩(자동 리밸런싱·전략 최적화)에 AI 확대 (blog.kraken.com)
-
-**📚 기본 지식:**
-- **방향·정책**: 전략적 자산배분+밴드/주기 리밸런싱, 목표기반투자(GBI)·리스크 프로파일링을 표준으로 정하고 실무자에게 위임.
-- **지표 기준**: 수익률(TWR/MWR 구분)·변동성·샤프·MDD 계산·표기 기준을 통일, 세전/세후·수수료 반영 명시.
-- **규제 경계(한국)**: 「가상자산이용자보호법」·자본시장법상 자문/일임 인가 영역 — 정보제공·시뮬레이션과 실제 자문의 경계를 명확히, 적합성·필수 고지 집행.
-- **정합성**: 금액은 정수/Decimal, 원장 불변·재계산 가능, 대사(reconciliation)로 정합 검증 — asset-manager와 협업.
+Sources: [Natixis IM](https://www.im.natixis.com/en-us/insights/portfolio-construction/2026/institutional-market-trends-shaping-2026), [BlackRock](https://www.blackrock.com/institutions/en-us/insights/outlooks/private-markets-outlook), [Aviva Investors](https://www.avivainvestors.com/en-gb/capabilities/private-markets/private-markets-study-2026/), [InvestSuite](https://www.investsuite.com/insights/blogs/top-wealth-management-trends-in-2026-the-shift-to-agentic-ai-and-private-markets), [TBRC](https://www.thebusinessresearchcompany.com/report/robo-advisory-global-market-report), [Latham & Watkins](https://www.lw.com/en/us-crypto-policy-tracker/regulatory-developments), [InvestaX](https://investax.io/blog/q1-2026-real-world-asset-tokenization-market-report), [Bloomberg](https://www.bloomberg.com/professional/insights/regulation/july-2026-global-regulatory-brief-model-risk-capital-markets-reform-and-ai-innovation/), [Mitratech](https://mitratech.com/resource-hub/blog/ai-governance-financial-services-accountability-gap/), [Sia Partners](https://www.sia-partners.com/system/files/document_download/file/2026-04/2026SIA_AI_Regulation-US_FS%201%20(1)%20(1).pdf)
 <!-- KNOWLEDGE:END -->
