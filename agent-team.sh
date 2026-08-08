@@ -1257,6 +1257,12 @@ cmd_schedule() {
   local selfsh="$SCRIPT_DIR/agent-team.sh"
   local logf="$AGENT_TEAM_HOME/logs/learn.log"
   mkdir -p "$AGENT_TEAM_HOME/logs"
+  # launchd 는 최소 PATH(/usr/bin:/bin…)로 실행돼 claude CLI 를 못 찾는다
+  # → 설치 시점에 claude 위치를 찾아 plist PATH 에 박아둔다
+  local claudebin claudedir=""
+  claudebin="$(command -v claude 2>/dev/null || true)"
+  [ -n "$claudebin" ] && claudedir="${claudebin%/*}"
+  local lpath="${claudedir:+$claudedir:}/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin"
 
   case "$action" in
     uninstall)
@@ -1279,7 +1285,10 @@ cmd_schedule() {
     <string>learn</string>$( [ -n "$target" ] && printf "\n    <string>%s</string>" "$target" )
   </array>
   <key>EnvironmentVariables</key>
-  <dict><key>AGENT_TEAM_HOME</key><string>$AGENT_TEAM_HOME</string></dict>
+  <dict>
+    <key>AGENT_TEAM_HOME</key><string>$AGENT_TEAM_HOME</string>
+    <key>PATH</key><string>$lpath</string>
+  </dict>
   <key>StartCalendarInterval</key>
   <dict><key>Hour</key><integer>$((10#$hh))</integer><key>Minute</key><integer>$((10#$mm))</integer></dict>
   <key>StandardOutPath</key><string>$logf</string>
