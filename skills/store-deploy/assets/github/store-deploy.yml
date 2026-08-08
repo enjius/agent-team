@@ -1,0 +1,145 @@
+name: Store Deploy
+
+# v* 태그를 push하면 자동 배포. 수동 실행 시 트랙 선택 가능.
+#   git tag v1.2.3 && git push --tags
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      track:
+        description: "배포 트랙"
+        type: choice
+        options: [test, production]
+        default: test
+
+env:
+  FLUTTER_VERSION: "3.24.0"   # 대상 프로젝트에 맞게 수정
+  # workflow_dispatch면 입력값, 태그 push면 production
+  DEPLOY_TRACK: ${{ github.event.inputs.track || 'production' }}
+
+jobs:
+  android:
+    name: Android → Play Store
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+
+      - name: Restore upload keystore
+        run: echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > android/app/upload-keystore.jks
+
+      - name: Write key.properties
+        run: |
+          cat > android/key.properties <<EOF
+          storeFile=upload-keystore.jks
+          storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}
+          keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}
+          EOF
+
+      - name: Write Play Store service account
+        run: echo '${{ secrets.PLAY_STORE_JSON_KEY }}' > android/play-store-key.json
+
+      - run: flutter pub get
+      - run: flutter build appbundle --release
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+          working-directory: android
+
+      - name: Fastlane deploy
+        working-directory: android
+        env:
+          PLAY_STORE_JSON_KEY_PATH: play-store-key.json
+          ANDROID_PACKAGE_NAME: ${{ secrets.ANDROID_PACKAGE_NAME }}
+        run: |
+          LANE=${{ env.DEPLOY_TRACK == 'production' && 'production' || 'internal' }}
+          bundle exec fastlane $LANE
+
+      - name: Cleanup secrets
+        if: always()
+        run: rm -f android/play-store-key.json android/app/upload-keystore.jks android/key.properties
+
+  # ─────────────────────────────────────────────────────────────
+  # iOS는 macOS 러너(무료 티어 10배 가중)를 씁니다.
+  # 비용을 아끼려면 이 잡을 지우고 로컬 Mac에서 `cd ios && bundle exec fastlane production` 실행하세요.
+  # CI에서 돌리려면 references/setup-ios.md의 서명(p12/프로비저닝) 시크릿을 먼저 등록하세요.
+  # ⚠️ 러너는 macos-26 필수: 2026-04-28부터 App Store 업로드는 Xcode 26 + iOS 26 SDK
+  #    빌드만 허용됩니다. macos-26 이미지에 Xcode 26이 프리인스톨돼 있습니다.
+  #    (로컬 Mac에서 돌린다면 Xcode를 26 이상으로 업데이트하세요.)
+  # ─────────────────────────────────────────────────────────────
+  ios:
+    name: iOS → App Store
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify Xcode 26+ (App Store 요구사항)
+        run: |
+          XV=$(xcodebuild -version | sed -n 's/^Xcode \([0-9]*\).*/\1/p')
+          echo "Xcode major version: $XV"
+          if [ "${XV:-0}" -lt 26 ]; then
+            echo "::error::App Store는 Xcode 26 + iOS 26 SDK 빌드만 허용합니다(현재 $XV). 러너를 macos-26으로 두세요."
+            exit 1
+          fi
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+
+      - name: Import signing certificate
+        env:
+          IOS_DIST_CERT_P12: ${{ secrets.IOS_DIST_CERT_P12 }}
+          IOS_DIST_CERT_PASSWORD: ${{ secrets.IOS_DIST_CERT_PASSWORD }}
+          IOS_PROVISION_PROFILE: ${{ secrets.IOS_PROVISION_PROFILE }}
+        run: |
+          KEYCHAIN=build.keychain
+          security create-keychain -p "" $KEYCHAIN
+          security default-keychain -s $KEYCHAIN
+          security unlock-keychain -p "" $KEYCHAIN
+          echo "$IOS_DIST_CERT_P12" | base64 --decode > cert.p12
+          security import cert.p12 -k $KEYCHAIN -P "$IOS_DIST_CERT_PASSWORD" -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "" $KEYCHAIN
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          echo "$IOS_PROVISION_PROFILE" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/profile.mobileprovision
+
+      - name: Write App Store Connect API key
+        run: |
+          mkdir -p ios/private_keys
+          echo "${{ secrets.ASC_KEY_P8 }}" | base64 --decode > ios/private_keys/AuthKey.p8
+
+      - run: flutter pub get
+      - run: flutter build ipa --release --export-options-plist=ios/ExportOptions.plist
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+          working-directory: ios
+
+      - name: Fastlane deploy
+        working-directory: ios
+        env:
+          IOS_BUNDLE_ID: ${{ secrets.IOS_BUNDLE_ID }}
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY_PATH: private_keys/AuthKey.p8
+          APPLE_DEV_TEAM_ID: ${{ secrets.APPLE_DEV_TEAM_ID }}
+        run: |
+          LANE=${{ env.DEPLOY_TRACK == 'production' && 'production' || 'beta' }}
+          bundle exec fastlane $LANE
+
+      - name: Cleanup secrets
+        if: always()
+        run: rm -f ios/private_keys/AuthKey.p8 cert.p12

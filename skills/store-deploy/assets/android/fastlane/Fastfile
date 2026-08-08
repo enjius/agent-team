@@ -1,0 +1,34 @@
+default_platform(:android)
+
+# Flutter가 만든 AAB 경로 (프로젝트 루트 기준 android/에서 상대경로)
+AAB_PATH = "../build/app/outputs/bundle/release/app-release.aab"
+
+# 공통 업로드 옵션: 메타데이터/스크린샷은 콘솔에서 관리(자동화 실패 방지)
+def common_opts
+  {
+    aab: AAB_PATH,
+    skip_upload_apk: true,
+    skip_upload_metadata: true,
+    skip_upload_images: true,
+    skip_upload_screenshots: true,
+    skip_upload_changelogs: true
+  }
+end
+
+platform :android do
+  desc "빌드는 CI/로컬에서 `flutter build appbundle --release`로 먼저 수행할 것"
+
+  desc "Play Store 내부 테스트 트랙 업로드 (안전 확인용)"
+  lane :internal do
+    upload_to_play_store(track: "internal", **common_opts)
+  end
+
+  desc "Play Store 정식 출시 (심사 자동 제출)"
+  lane :production do
+    upload_to_play_store(
+      track: "production",
+      release_status: "completed",
+      **common_opts
+    )
+  end
+end

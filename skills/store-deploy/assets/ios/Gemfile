@@ -1,0 +1,4 @@
+source "https://rubygems.org"
+
+# CVE-2026-35611(addressable DoS)은 fastlane 2.236.1에서 패치됨 → 그 이상으로 고정
+gem "fastlane", ">= 2.236.1"
