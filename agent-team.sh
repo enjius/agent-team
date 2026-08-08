@@ -1131,6 +1131,10 @@ cmd_skill_install() {
 # 응답이 실제 지식이 아니라 API 오류/실패 메시지인지 판별 (지식 오염 방지)
 #   크레딧 부족·권한·레이트리밋·인증오류·너무 짧은 응답 → 실패로 간주하고 저장 안 함
 _is_error_out() {
+  # 실제 CLI 에러는 한두 줄 — 충분히 긴 출력은 정상 지식으로 간주.
+  # (백엔드/보안 에이전트 지식 본문에 'rate limit'/'permission'/'error' 같은
+  #  단어가 정상적으로 들어가므로, 전체 문자열 패턴매칭만으로는 오탐한다)
+  [ "${#1}" -ge 300 ] && return 1
   case "$1" in
     *"Credit balance is too low"*|*"credit balance"*|*"Credit balance"*) return 0 ;;
     *"rate limit"*|*"Rate limit"*|*"overloaded"*|*"Overloaded"*) return 0 ;;
