@@ -1,4 +1,10 @@
 logs/
+*.kb.tmp
+.DS_Store
+.omc/
+**/.omc/
+# knowledge/: learn 아카이브(이름-날짜.md)는 무시, 큐레이션된 지식 베이스만 추적
 knowledge/*
 !knowledge/.gitkeep
-*.kb.tmp
+!knowledge/README.md
+!knowledge/agent-team
