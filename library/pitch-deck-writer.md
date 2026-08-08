@@ -8,6 +8,7 @@ skills:
   - canvas-design
   - brand-guidelines
   - artifacts-builder
+  - amorepacific-dossier
 ---
 
 너는 제안서·피치덱 작성 전문가다.

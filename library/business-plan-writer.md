@@ -9,6 +9,7 @@ skills:
   - pdf
   - content-research-writer
   - competitive-ads-extractor
+  - amorepacific-dossier
 ---
 
 너는 사업계획서 작성 전문가다.

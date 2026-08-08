@@ -9,6 +9,7 @@ skills:
   - xlsx
   - lead-research-assistant
   - meeting-insights-analyzer
+  - amorepacific-dossier
 ---
 
 너는 스타트업 투자유치·IR 총괄이다.
