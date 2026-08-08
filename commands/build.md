@@ -1,6 +1,19 @@
 ---
-description: [build] 기능 구현 — tech-lead가 기획→설계→구현→검증까지 팀에 분배 오케스트레이션
+description: [build] 기능 구현 — tech-lead가 기획→설계→구현(병렬)→검증 게이트→반려 루프까지 파이프라인으로 오케스트레이션
 ---
-tech-lead에게 아래 작업을 맡겨. 필요한 분야 리더(architect/design-lead/investment-lead 등)에게 방향을 받고, 실무자(flutter-builder/supabase-backend/ai-generative-engineer 등)에게 구현을 분배한 뒤, flutter-tester/flutter-code-reviewer/security-privacy로 검증까지 진행해. 각 단계 결과를 요약.
+tech-lead에게 아래 작업을 맡겨. 임의로 진행하지 말고 반드시 아래 파이프라인(그래프)을 따라:
+
+## 파이프라인
+
+1. **방향** (필요할 때만): architect / design-lead / investment-lead 등 분야 리더에게 기준·방향을 받는다. 단순 수정이면 건너뛴다.
+2. **구현** (병렬): 서로 독립인 작업은 flutter-builder / supabase-backend / ai-generative-engineer 등 실무자에게 **동시에** 분배한다. 의존성이 있는 작업만 순차로.
+3. **검증 게이트** (모두 통과해야 다음 단계):
+   - flutter-code-reviewer — 정확성·널안정성·보안·컨벤션 리뷰
+   - flutter-tester — 테스트 작성 + **실제 실행** (실패·미실행이면 통과 불가)
+   - 조건부 게이트: AI 생성 기능이 포함되면 ai-safety, 개인정보·인증·결제를 건드리면 security-privacy 추가
+4. **반려 루프**: 게이트에서 반려되면 해당 실무자에게 지적사항과 함께 재위임한다. **같은 지적이 2회 반복되면 루프를 멈추고 사용자에게 판단을 요청한다** (무한 루프 금지).
+5. **완료 조건**: 모든 게이트 통과 + 빌드/테스트 실행 증거 확보. 조건을 못 채운 채 완료 보고 금지 — 미충족 항목을 블로커로 명시하고 멈춘다.
+
+각 단계가 끝날 때마다 단계명과 함께 결과를 요약해.
 
 작업: $ARGUMENTS
