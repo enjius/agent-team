@@ -19,6 +19,14 @@ skills:
 
 
 <!-- KNOWLEDGE:START -->
+## 최신 지식 (2026-08-09) — 프레임워크·아키텍처 프론티어
+- **에이전트 프레임워크 대통합**: MS Agent Framework 1.0(Semantic Kernel+AutoGen 병합), LangGraph 1.0, **Claude Agent SDK 계층적 서브에이전트 스포닝**, CrewAI 1.14, Pydantic AI V2·LlamaIndex Workflows 1.0 stable — 빌드-vs-바이·표준 프레임워크 선택 기준 재정립 (firecrawl.dev, alicelabs.ai)
+- **다음 프론티어는 메모리·컨텍스트 엔지니어링**: 파운데이션 모델 성능 향상 둔화 → 에이전트 메모리(적응형 압축)·컨텍스트 엔지니어링이 혁신의 축. 팀 역량을 이쪽으로 재배치 (labs.adaline.ai, mem0.ai)
+- **하이브리드 아키텍처**: 어텐션+Mamba(SSM) 결합(IBM Granite 4.0·AI21 Jamba), 선형시간 어텐션·희소 MoE로 비용/지연 구조 변화 → 모델 포트폴리오 재검토 (infoworld.com)
+- **표준 프로토콜**: MCP 스테이트리스 개정 + A2A v1.0 정식 릴리스가 멀티에이전트 아키텍처 선택 기준 (mindstudio.ai)
+- **성패는 모델이 아니라 거버넌스**: 데이터 품질·보안/컴플라이언스·툴링 준비도·인력 역량이 ROI를 가른다 (datacamp.com)
+
+
 ## 최신 지식 (2026-08-08)
 - 2026-08-02부로 EU AI Act의 GPAI 모델 제공자 의무에 대한 AI Office 집행 권한이 발효 — 기술문서 요구·모델 평가·시정명령·과징금(최대 €15M 또는 매출 3%)이 실제 리스크가 됨 (artificialintelligenceact.eu, digitalapplied.com)
 - 프런티어 모델 경쟁 재편: Anthropic Claude Fable 5·Opus 5(7월), OpenAI GPT-5.6(7월), Gemini 3.5 Flash Lite 등 최신 세대가 출시되어 모델 포트폴리오·벤더 전략 재검토 필요 (llm-stats.com, llmgateway.io)

@@ -16,6 +16,13 @@ tools: Read, Edit, Write, Bash, Grep, Glob, WebSearch, Skill
 
 
 <!-- KNOWLEDGE:START -->
+## 최신 지식 (2026-08-09) — 서빙·아키텍처 효율 프론티어
+- **추론 엔진 선택 기준(2026)**: SGLang(RadixAttention·구조화 생성, **vLLM 대비 ~29% 빠름**) vs vLLM(처리량·동시성) vs TensorRT-LLM(NVIDIA 저수준 최적화) vs TGI(생태계). 워크로드별 이원화가 정석 (yottalabs.ai, localaimaster.com)
+- **하이브리드 아키텍처가 서빙 비용 구조를 바꾼다**: 어텐션+Mamba(SSM) 결합(Granite 4.0·Jamba), 선형시간 어텐션(이차 스케일링 제거), 희소 MoE(토큰별 필요 파라미터만 활성) → 메모리·지연·비용 재산정 (infoworld.com)
+- **test-time compute·추론 증류**: o-시리즈식 테스트타임 컴퓨트 배분(지연↔지능 트레이드오프)과 추론 증류(o3급→엣지)로 SLA·비용 설계 변화 (labs.adaline.ai)
+- **에이전트 메모리 서빙**: 적응형 메모리 압축·영속 저장이 새 인프라 요구(벡터/메모리 스토어 운영·비용) (mem0.ai)
+
+
 ## 최신 지식 (2026-08-08)
 - 통합 MLOps/LLMOps 플랫�폼 수렴: 전통 ML 모델과 파인튜닝 LLM을 동일한 레지스트리·모니터링·배포 파이프라인으로 관리하고, 프롬프트도 git 태그 릴리스로 버전 관리하는 것이 표준화 (medium.com/codex)
 - KServe가 vLLM 기반 런타임으로 LLM을 서빙하며 OpenAI 호환 API를 노출 — 서빙 스택은 vLLM/Triton behind KServe가 기본 조합으로 정착 (kodekloud.com, rahulkolekar.com)

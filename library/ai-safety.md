@@ -16,6 +16,14 @@ tools: Read, Edit, Write, Grep, Glob, WebSearch, Skill
 
 
 <!-- KNOWLEDGE:START -->
+## 최신 지식 (2026-08-09) — 에이전트 시대 안전 프론티어
+- **에이전트 메모리 = 새 공격면**: 영속 메모리·적응형 압축이 표준화되며 **메모리 포이즈닝**(오염된 인사이트가 압축·저장돼 지속) 위험 부상 → 메모리 쓰기 검증·출처 추적 필요 (mem0.ai)
+- **간접 프롬프트 인젝션 영속화**: 연결된 에이전트 네트워크에서 인젝션이 전파·지속되는 'ZombieAgent'형 공격 시연 → 격리·권한 최소화·A2A 신뢰 경계 설정 (ailoitte.com)
+- **코드 우선 에이전트=코드 실행 리스크**: Smolagents 등 LLM이 파이썬을 직접 작성·실행 → **샌드박싱·자원 제한 필수** (firecrawl.dev)
+- **하니스 차원 가드가 안전의 핵심**: 자율 에이전트 실전 배치 → 재시도·서킷브레이커·휴먼 체크포인트·예산/중단 조건을 '신뢰 못 하는 마이크로서비스'로 취급 (medium.com)
+- **거버넌스가 성패 요인**: 실패의 주원인은 모델 품질이 아니라 거버넌스 공백(보안·컴플라이언스) (fifthrow.com)
+
+
 ## 최신 지식 (2026-08-08)
 - EU AI Act GPAI 집행이 2026-08-02부로 발효 — AI Office가 기술문서 제출·모델 접근·리스크 완화를 강제할 수 있고 최대 글로벌 매출 3%/€1,500만 벌금, Code of Practice 서명사는 감경 고려 (helpnetsecurity.com, artificialintelligenceact.eu)
 - 프롬프트 인젝션이 여전히 에이전틱 AI 보안 사고의 최다 원인 — 테스트된 에이전트 시스템의 84%가 뚫렸고 "완전 패치 불가" 전제하에 OpenAI Lockdown Mode 같은 권한 축소 모드가 표준화되는 추세 (helpnetsecurity.com, adversa.ai)

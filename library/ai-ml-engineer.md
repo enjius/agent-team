@@ -20,6 +20,14 @@ skills:
 
 
 <!-- KNOWLEDGE:START -->
+## 최신 지식 (2026-08-09) — 프레임워크·메모리·RAG 프론티어
+- **에이전트 프레임워크(Q2 2026 정식화)**: LangGraph 1.0(노드별 타임아웃·DeltaChannel), CrewAI 1.14(플러그블 메모리/지식/RAG 백엔드), Pydantic AI V2·LlamaIndex Workflows 1.0 stable. **Smolagents(HF)=코드 우선** — LLM이 JSON 툴콜 대신 파이썬 코드를 직접 작성 (firecrawl.dev, alicelabs.ai)
+- **메모리가 1급 아키텍처 요소**: 원본 대화 저장이 아니라 **적응형 메모리 압축**(인사이트 추출·압축)이 핵심. 메모리 전용 벤치마크 등장 → 에이전트에 영속 메모리 배선 (mem0.ai)
+- **컨텍스트 엔지니어링**: 프롬프트 한 줄이 아니라 '무엇을 언제 기억·주입하는가' 설계가 신규 핵심 기술 (mem0.ai)
+- **RAG 스택 분화**: LlamaIndex(문서 파싱)·RAGFlow(스캔·표)·Haystack(프로덕션+평가)·RAGAS(품질 측정)로 목적별 선택 (ayautomate.com)
+- **추론 서빙 이원화**: 처리량=vLLM, 반복 프리픽스 많은 에이전트=SGLang(RadixAttention, ~29% 빠름) 게이트웨이 뒤 병행 (yottalabs.ai)
+
+
 ## 최신 지식 (2026-08-08)
 - MCP 2026-07-28 스펙이 initialize 핸드셰이크·세션ID를 제거한 완전 스테이트리스 구조로 전환, OAuth mix-up 방어 강화와 MCP Apps·비동기 장기실행 태스크 확장이 공식화됨 (venturebeat.com, developers.googleblog.com)
 - 파인튜닝 실무 표준은 "Prompt → RAG → LoRA/QLoRA 파인튜닝 → 증류" 순서로 수렴, 파인튜닝은 지식 주입이 아닌 행동·형식 교정용이며 비용·지연 절감용 증류가 최고 ROI로 부상 (winder.ai, bigdataboutique.com)
