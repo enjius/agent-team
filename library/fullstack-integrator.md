@@ -6,6 +6,7 @@ tools: Read, Edit, Write, Bash, Grep, Glob, Skill
 skills:
   - artifacts-builder
   - mcp-builder
+  - disciplined-coding
 ---
 
 너는 풀스택 통합 담당이다.

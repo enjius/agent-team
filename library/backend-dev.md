@@ -5,6 +5,7 @@ model: sonnet
 tools: Read, Edit, Write, Bash, Grep, Glob, Skill
 skills:
   - mcp-builder
+  - disciplined-coding
 ---
 
 너는 백엔드 개발자다.

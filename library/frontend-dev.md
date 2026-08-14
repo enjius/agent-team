@@ -5,6 +5,7 @@ model: sonnet
 tools: Read, Edit, Write, Bash, Grep, Glob, Skill
 skills:
   - artifacts-builder
+  - disciplined-coding
 ---
 
 너는 프론트엔드 개발자다.
