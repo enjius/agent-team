@@ -67,13 +67,27 @@ Play Console 정책상 타깃 API 레벨 요건이 매년 상향된다. 2026 기
 Flutter 프로젝트에서 확인·수정할 곳 (`android/app/build.gradle` 또는 `build.gradle.kts`):
 ```gradle
 android {
-    compileSdk 36
+    compileSdk 36            // 아래 "compileSdk ≥ targetSdk" 주의 참고 — 종속성이 요구하면 더 올린다
     defaultConfig {
-        targetSdk 36   // ← 36 미만이면 2026-08-31 이후 신규/업데이트 업로드 거절
+        targetSdk 36         // ← 36 미만이면 2026-08-31 이후 신규/업데이트 업로드 거절
         // minSdk 는 앱 정책대로 유지
     }
 }
 ```
-> Flutter 기본 템플릿은 `flutter.targetSdkVersion`을 참조하기도 한다. 이 경우 사용하는
-> Flutter SDK가 API 36을 기본값으로 갖는 버전(최신 stable)인지 확인하고, 아니면 위처럼
-> 명시적으로 `36`을 박는다. 빌드 후 `aapt dump badging <aab>`로 실제 targetSdk를 검증.
+
+### ⚠️ compileSdk 와 targetSdk 는 다르다 — 헷갈리면 빌드가 깨진다
+- **targetSdk** = "어느 API에서 **실행**되도록 맞추나". **런타임 동작·Play 정책**을 결정한다.
+  Play 데드라인이 요구하는 값(2026 신규/업데이트 = **36**)을 여기에 박는다. **이건 함부로 올리지 않는다**
+  (올리면 새 런타임 동작 검증 필요).
+- **compileSdk** = "어느 API로 **컴파일**하나". 런타임 동작을 바꾸지 않고 하위 호환이며,
+  **targetSdk보다 높아도 된다**. 오히려 **종속성이 더 높은 compileSdk를 요구하면 올려야 한다.**
+
+**실전 사례(반드시 인지):** 어떤 라이브러리의 AAR 메타데이터가 상위 API로 컴파일돼 있으면
+`:app:checkDebugAarMetadata` 단계에서 빌드가 **거부**된다. 예) `flutter_secure_storage 11.0.0`은
+`compileSdkVersion=37`로 배포돼 있어 `compileSdk 36`이면 빌드 실패 → **compileSdk 만 37로 올리고
+targetSdk 는 36 그대로** 둔다. (AGP가 "권장 최대 compileSdk" 경고를 낼 수 있으나 빌드는 통과.)
+
+> 정리: **compileSdk 는 종속성이 요구하는 만큼(≥ targetSdk) 올리되, targetSdk 는 Play 데드라인 값(36)에 고정.**
+> Flutter 기본 템플릿은 `flutter.compileSdkVersion`/`flutter.targetSdkVersion`을 참조하기도 하므로,
+> AAR 메타데이터 오류가 나면 위처럼 `compileSdk` 만 명시적으로 올린다.
+> 빌드 후 `aapt dump badging <aab>`로 실제 targetSdk가 36인지 검증.

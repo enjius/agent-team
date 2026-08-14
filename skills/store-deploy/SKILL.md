@@ -33,8 +33,9 @@ Flutter 앱 하나를 대상으로 **App Store + Play Store 자동배포**를 �
    이미 커밋된 적 있으면 `git rm --cached` 안내(히스토리 잔존은 별도 경고).
 3. Android `applicationId`, iOS `PRODUCT_BUNDLE_IDENTIFIER` 값을 확인해 기록.
 4. **스토어 데드라인 사전 점검(2026 — 놓치면 업로드 거절).** 아래를 확인하고 미달이면 먼저 조치:
-   - **Android targetSdk**: 신규 앱·업데이트는 `targetSdk 36`(Android 16, ~2026-08-31),
-     기존 앱은 35 이상. `android/app/build.gradle`의 `targetSdk` 확인. → `references/setup-android.md §6`
+   - **Android targetSdk/compileSdk**: 신규 앱·업데이트는 `targetSdk 36`(Android 16, ~2026-08-31),
+     기존 앱은 35 이상. **compileSdk는 targetSdk보다 높아도 되고, 종속성(예: flutter_secure_storage 11.0
+     →37)이 요구하면 올려야 한다** — targetSdk는 36 고정. `android/app/build.gradle` 확인. → `references/setup-android.md §6`
    - **iOS Xcode**: 2026-04-28부터 App Store 업로드는 **Xcode 26 + iOS 26 SDK 빌드만 허용**.
      CI 러너는 `macos-26`, 로컬은 `xcodebuild -version`으로 26+ 확인. → `references/setup-ios.md`
    - **fastlane**: Gemfile은 `>= 2.236.1`로 고정돼 있다(CVE-2026-35611 패치). 대상 프로젝트에
