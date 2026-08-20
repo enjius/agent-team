@@ -19,6 +19,12 @@ skills:
 
 
 <!-- KNOWLEDGE:START -->
+## 최신 지식 (2026-08-20) — 모델·가격 지형 급변
+- **오픈웨이트가 비용 판을 흔든다**: DeepSeek **V4/0731**이 MIT 라이선스로 공개(284B, 코딩·에이전틱 벤치 최상위급인데 60% 저렴), V4-Flash 안정화. 자체호스팅이 전략 선택지로 부상 → 빌드 vs 바이 재검토 (buildez.ai)
+- **프론티어 가격 급락**: OpenAI GPT-5.6 Luna 입력가 **80%↓ ($0.20/1M)**, 신모델 연쇄 출시(OpenAI Astra 추론군, Alibaba Qwen3.8-Max, Google Gemini 3.5/3.6 Flash 계열) → 모델 포트폴리오·라우팅 정책 재산정 (augusto.digital)
+- **컨텍스트 엔지니어링이 생산 규율로 정착**: 4기둥(지시·검색·메모리·툴/MCP). 팀 역량을 이 축으로 (sourcegraph.com)
+- **벤더 리스크**: Amazon Bedrock Agents가 'Classic'으로 강등·신규 마감(7/30) → 특정 벤더 종속 재점검 (agentic.ai)
+
 ## 최신 지식 (2026-08-09) — 프레임워크·아키텍처 프론티어
 - **에이전트 프레임워크 대통합**: MS Agent Framework 1.0(Semantic Kernel+AutoGen 병합), LangGraph 1.0, **Claude Agent SDK 계층적 서브에이전트 스포닝**, CrewAI 1.14, Pydantic AI V2·LlamaIndex Workflows 1.0 stable — 빌드-vs-바이·표준 프레임워크 선택 기준 재정립 (firecrawl.dev, alicelabs.ai)
 - **다음 프론티어는 메모리·컨텍스트 엔지니어링**: 파운데이션 모델 성능 향상 둔화 → 에이전트 메모리(적응형 압축)·컨텍스트 엔지니어링이 혁신의 축. 팀 역량을 이쪽으로 재배치 (labs.adaline.ai, mem0.ai)

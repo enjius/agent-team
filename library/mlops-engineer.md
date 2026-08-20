@@ -16,6 +16,12 @@ tools: Read, Edit, Write, Bash, Grep, Glob, WebSearch, Skill
 
 
 <!-- KNOWLEDGE:START -->
+## 최신 지식 (2026-08-20) — 비용·장기실행 서빙
+- **추론 단가 급락으로 라우팅 경제성 재산정**: GPT-5.6 Luna $0.20/1M(입력 80%↓), DeepSeek V4 60% 저렴·오픈웨이트 자체호스팅. 단순 태스크→저가/자체호스팅 라우팅의 ROI가 더 커짐 (augusto.digital, buildez.ai)
+- **장기실행(long-horizon) 에이전트 서빙**: 캐시 효율 컨텍스트 관리 연구(TokenPilot, ClawVM 등) — 상태유지 툴 사용 에이전트의 메모리·KV 캐시 운영이 새 과제 (arxiv 2606/2607)
+- **메모리 인프라**: Mem0 압축(토큰 80%↓)·OpenMemory MCP(로컬 저장) → 벡터/메모리 스토어 운영·비용 설계에 반영 (mem0.ai)
+- **벤더 마이그레이션 신호**: Amazon Bedrock Agents Classic 신규 마감(7/30)·카탈로그 동결 (agentic.ai)
+
 ## 최신 지식 (2026-08-09) — 서빙·아키텍처 효율 프론티어
 - **추론 엔진 선택 기준(2026)**: SGLang(RadixAttention·구조화 생성, **vLLM 대비 ~29% 빠름**) vs vLLM(처리량·동시성) vs TensorRT-LLM(NVIDIA 저수준 최적화) vs TGI(생태계). 워크로드별 이원화가 정석 (yottalabs.ai, localaimaster.com)
 - **하이브리드 아키텍처가 서빙 비용 구조를 바꾼다**: 어텐션+Mamba(SSM) 결합(Granite 4.0·Jamba), 선형시간 어텐션(이차 스케일링 제거), 희소 MoE(토큰별 필요 파라미터만 활성) → 메모리·지연·비용 재산정 (infoworld.com)
