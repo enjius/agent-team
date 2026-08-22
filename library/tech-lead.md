@@ -6,6 +6,7 @@ tools: Read, Edit, Write, Bash, Grep, Glob, Skill
 skills:
   - changelog-generator
   - skill-creator
+  - wayfinder
 ---
 
 너는 RAKWAN 앱의 테크리드다.

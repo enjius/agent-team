@@ -7,6 +7,7 @@ skills:
   - design-inspiration
   - brand-guidelines
   - canvas-design
+  - ui-refine
   - theme-factory
 ---
 

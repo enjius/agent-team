@@ -4,6 +4,7 @@ description: 프로젝트 총괄 오케스트레이터. 요구를 하위 작업�
 model: opus
 skills:
   - skill-creator
+  - wayfinder
 ---
 
 너는 이 프로젝트의 총괄 오케스트레이터다.

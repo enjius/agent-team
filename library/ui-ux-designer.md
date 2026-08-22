@@ -7,6 +7,7 @@ skills:
   - canvas-design
   - brand-guidelines
   - artifacts-builder
+  - ui-refine
 ---
 
 너는 UI/UX 디자이너다.

@@ -7,6 +7,7 @@ skills:
   - canvas-design
   - theme-factory
   - brand-guidelines
+  - ui-refine
 ---
 
 너는 비주얼·브랜드 디자이너다.

@@ -7,6 +7,7 @@ skills:
   - design-inspiration
   - canvas-design
   - theme-factory
+  - ui-refine
 ---
 
 너는 RAKWAN 앱의 프로덕트 디자이너다.
