@@ -1245,6 +1245,24 @@ cmd_skill_install() {
   done < <(find "$SKILLS_DIR" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | sort)
   ok "스킬 ${C_BOLD}${n}개${C_RESET} 설치 → $dest"
 
+  # career-ops: 래퍼 스킬은 실제 체크아웃(~/career-ops)이 있어야 동작 → 없으면 clone
+  if [ -d "$SKILLS_DIR/career-ops" ]; then
+    local co_home="${CAREER_OPS_HOME:-$HOME/career-ops}"
+    if [ -f "$co_home/AGENTS.md" ] && [ -d "$co_home/modes" ]; then
+      info "career-ops 체크아웃 확인: ${C_DIM}$co_home${C_RESET}"
+    elif command -v git >/dev/null 2>&1; then
+      info "career-ops clone 중… ${C_DIM}$co_home${C_RESET}"
+      if git clone -q https://github.com/santifer/career-ops.git "$co_home" 2>/dev/null; then
+        ok "career-ops 설치 → $co_home"
+        log "   ${C_DIM}의존성: cd $co_home && npm install  (PDF 생성 시 npx playwright install chromium)${C_RESET}"
+      else
+        warn "career-ops clone 실패 — 수동: git clone https://github.com/santifer/career-ops.git $co_home"
+      fi
+    else
+      warn "git 없음 — career-ops 체크아웃을 수동으로 준비하세요: $co_home"
+    fi
+  fi
+
   # 슬래시 명령(commands/*.md)도 함께 설치 (있으면)
   local cmds_src="$AGENT_TEAM_HOME/commands"
   if [ -d "$cmds_src" ] && [ -n "$(find "$cmds_src" -maxdepth 1 -name '*.md' 2>/dev/null | head -1)" ]; then
