@@ -1569,7 +1569,7 @@ PLIST
       else
         warn "plist 생성됨(로드 실패 가능): $plist  ${C_DIM}→ 수동: launchctl load $plist${C_RESET}"
       fi
-      log "   ${C_DIM}대상: ${target:-라이브러리 전체} · 로그: $logf${C_RESET}"
+      log "   ${C_DIM}대상: ${target:-도메인 스킬(skills/knowledge-*, 없으면 라이브러리)} · 로그: $logf${C_RESET}"
       ;;
     *)
       if [ -f "$plist" ]; then
