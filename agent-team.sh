@@ -1417,7 +1417,51 @@ _learn_domains() {  # $1=dry $2=limit
   else
     ok "지식 습득 완료: ${C_GREEN}${updated}${C_RESET}/${done}개 도메인 갱신 · 아카이브: $KNOW_DIR"
     log "   ${C_DIM}적용: agent-team skill-install (전역) 또는 skill-install --project DIR${C_RESET}"
+    # 매주 월요일: 스킬 스카우트도 함께 실행 (새 스킬·도구 도입 후보 리포트 — 설치는 수동)
+    if [ "$(date +%u)" = "1" ]; then cmd_scout || warn "스킬 스카우트 실패 — 수동: agent-team scout"; fi
   fi
+}
+
+# ══════════════════════════════════════════════════════════════════════
+# scout — 새로 나온/유행하는 Claude Code 스킬·도구를 웹 조사해 도입 후보 리포트
+#   자동 설치는 하지 않는다(서드파티 SKILL.md = 프롬프트 인젝션 표면).
+#   도입은 리포트 검토 후 skill-import <REPO> 로 직접 결정.
+# ══════════════════════════════════════════════════════════════════════
+cmd_scout() {
+  local dry=0
+  [ "${1:-}" = "--dry-run" ] && dry=1
+  local date; date=$(date +%Y-%m-%d)
+  # 보유 스킬 인벤토리 (이름: 설명 한 줄)
+  local inv=""
+  while IFS= read -r sf; do
+    [ -n "$sf" ] || continue
+    local nm dsc; nm=$(basename "$(dirname "$sf")")
+    dsc=$(front_field "$sf" "description" | cut -c1-60)
+    inv="$inv
+- $nm: $dsc"
+  done < <(find "$SKILLS_DIR" -mindepth 2 -maxdepth 2 -name 'SKILL.md' | sort)
+  local prompt="너는 Claude Code 생태계의 스킬 스카우트다. 오늘(${date}) 기준으로 새로 나왔거나 유행하는 \
+Claude Code 스킬·에이전트 도구(GitHub topic: claude-skills / anthropics/skills / awesome-claude-code 계열 \
+리스트, HN·Reddit에서 화제인 에이전트 도구)를 웹에서 조사하라. 우리 팀 용도: 앱 개발(Flutter·웹), \
+트레이딩·투자 분석, 마케팅·사업문서. 아래 '보유 스킬'과 중복되지 않는 후보만 5~10개 골라, 각 항목을 \
+'이름 — 하는 일 한 줄 — repo/URL — 우리 팀에 유용한 이유 한 줄' 형식으로 출력하고, 마지막에 '도입 추천 TOP 3'를 \
+근거와 함께 제시하라. 서론/맺음말 금지. 한국어.
+보유 스킬:${inv}"
+  if [ "$dry" -eq 1 ]; then
+    info "[dry-run] 스킬 스카우트 — 보유 $(printf '%s' "$inv" | grep -c '^- ')개와 비교해 신규 후보 조사 예정"
+    return
+  fi
+  command -v claude >/dev/null 2>&1 || die "claude CLI 필요"
+  info "스킬 스카우트 조사 중… (웹서치)"
+  local out; out=$(cd "$SKILLS_DIR" && claude -p "$prompt" --allowedTools WebSearch ${AGENT_TEAM_LEARN_FLAGS:-} </dev/null 2>/dev/null || true)
+  { [ -z "$out" ] || _is_error_out "$out"; } && die "조사 실패(응답없음/API오류) — 잠시 후 재시도"
+  mkdir -p "$KNOW_DIR"
+  local rpt="$KNOW_DIR/skill-scout-${date}.md"
+  { echo "# 스킬 스카우트 — ${date}"; echo; printf "%s\n" "$out"; echo
+    echo "---"; echo "도입: 리포트 검토 후 \`agent-team skill-import <REPO_URL>\` (자동 설치 안 함 — 서드파티 스킬은 검토 후 도입)"; } > "$rpt"
+  ok "리포트 저장: $rpt"
+  log ""
+  printf "%s\n" "$out"
 }
 
 cmd_learn() {
@@ -2064,7 +2108,10 @@ ${C_BOLD}agent-team.sh${C_RESET} — Claude Code 에이전트 팀 운영/오케�
                                              9개 단위 갱신(빠르고 저렴). --agents 는 예전처럼
                                              에이전트 .md 개별 갱신(대상: 프로젝트/폴더/라이브러리)
   schedule [--install|--uninstall] [--time HH:MM] [--target PROJECT]
-                                             매일 자동 learn (macOS launchd)
+                                             매일 자동 learn (macOS launchd, 월요일엔 scout 포함)
+  scout    [--dry-run]                       새로 나온/유행 Claude Code 스킬·도구 웹조사 →
+                                             도입 후보 리포트(knowledge/skill-scout-<날짜>.md).
+                                             자동 설치 안 함 — 검토 후 skill-import 로 도입
   import   <APP_DIR> [--from DIR]... [--move] [--force] [--backup DIR]
                                              소스에서 에이전트 수집. --move 는 원본을
                                              제거해 'app 폴더에서만' 사용되게 함(백업 후)
@@ -2109,6 +2156,7 @@ main() {
     serve)    cmd_serve "$@" ;;
     sync)     cmd_sync "$@" ;;
     install)  cmd_install "$@" ;;
+    scout)    cmd_scout "$@" ;;
     skill-import)  cmd_skill_import "$@" ;;
     skill-install) cmd_skill_install "$@" ;;
     learn)    cmd_learn "$@" ;;

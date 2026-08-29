@@ -134,6 +134,11 @@ agent-team schedule --install --time 06:30
 agent-team schedule --uninstall         # 해제
 ```
 
+**스킬 스카우트**: 지식뿐 아니라 도구도 조사합니다 — `agent-team scout` 가 새로 나온/유행하는
+Claude Code 스킬을 웹조사해 보유 스킬과 겹치지 않는 도입 후보를 `knowledge/skill-scout-<날짜>.md`
+리포트로 남깁니다(매주 월요일 자동 learn 때 함께 실행). **자동 설치는 하지 않습니다** — 서드파티
+SKILL.md 는 에이전트 지시문이 되므로, 리포트를 검토한 뒤 `skill-import <REPO>` 로 직접 도입하세요.
+
 원본은 `knowledge/knowledge-<도메인>-<날짜>.md` 로 아카이브됩니다.
 (과거 방식이던 에이전트 `.md` 내 `KNOWLEDGE` 블록은 2026-08-29 도메인 스킬로 통합·제거했습니다.)
 
