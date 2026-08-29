@@ -1403,6 +1403,11 @@ _learn_domains() {  # $1=dry $2=limit
       echo
       printf "%s\n" "$out"
     } > "$sf"
+    # 전역에 이미 설치된 도메인 스킬이면 갱신본을 즉시 반영 (매일 자동 learn 이 세션까지 이어지도록)
+    if [ -d "$HOME/.claude/skills/$name" ]; then
+      rm -rf "$HOME/.claude/skills/$name"; mkdir -p "$HOME/.claude/skills/$name"
+      cp -R "$d/." "$HOME/.claude/skills/$name/"
+    fi
     updated=$((updated+1))
     printf " ${C_GREEN}습득✔${C_RESET}\n"
   done < <(find "$SKILLS_DIR" -mindepth 1 -maxdepth 1 -type d -name 'knowledge-*' | sort)
