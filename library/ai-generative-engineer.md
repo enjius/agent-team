@@ -18,26 +18,3 @@ skills:
 원칙: 결과는 재현가능하게(시드·버전 고정). 학습·생성 데이터의 출처·라이선스·동의를 반드시 확인한다. 비용은 품질과 함께 설계한다.
 
 
-<!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-08-20) — 저비용 모델·생성 파이프라인
-- **저비용·오픈웨이트 확산이 생성 비용을 낮춘다**: DeepSeek V4(오픈웨이트·60%↓), GPT-5.6 Luna 입력 80%↓, Google Gemini 3.5 Flash 계열 등 → 멀티모달 전처리·캡션·프롬프트 생성 등 파이프라인 보조 LLM 비용 급감 (buildez.ai, augusto.digital)
-- **이번 사이클은 추론·에이전트 중심**: 대형 생성 미디어 신모델보다 추론군(OpenAI Astra)·코딩 에이전트(Meta Muse Code)가 주도 → 생성 파이프라인은 오픈웨이트 LoRA 자체호스팅 기조 유지가 실용적 (agentic.ai)
-- **근거 있는 생성**: Google ScientistOne이 환각 없는 인용(75편 평가서 가짜 참조 0) 시연 → 생성물에 출처·근거를 강제하는 패턴 참고 (agentic.ai)
-
-## 최신 지식 (2026-08-09) — 생성 미디어·모델 프론티어
-- **생성 비디오가 프로덕션 도구화**: 2026년 언캐니밸리 돌파, 더 이상 도박이 아닌 전문 제작 도구. 멀티모달 통합 생성(텍스트·이미지·오디오·비디오 단일 아키텍처)이 기본선 (a16z.com)
-- **오픈웨이트가 클로즈드와 대등**: FLUX.2·Qwen-Image류가 포토리얼리즘·텍스트렌더·편집에서 근접 → **LoRA 파인튜닝 기반 자체 호스팅**이 실용적 디폴트, 파이프라인 비용↓ (a16z.com)
-- **하이브리드·효율 아키텍처**: 선형어텐션·희소 MoE·SSM 결합이 생성 모델 추론 비용을 낮춤 → 배치·실시간 생성 재설계 여지 (infoworld.com)
-- **thinking mode**: 빠른 추론↔깊은 추론을 요청마다 전환하는 패턴이 생성 품질/비용 튜닝에 활용 (masterofcode.com)
-
-
-## 최신 지식 (2026-08-08)
-- **GPT Image 2(4월 출시)가 아레나 1위, MiniMax H3(Hailuo 3.0, 7/31)는 텍스트·이미지·비디오·오디오 입력→2K 스테레오 오디오 비디오 출력에 모션 트랜스퍼·생성형 편집까지 지원 — 멀티모달 통합 생성이 표준화 흐름** (llm-stats.com, local-ai-zone.github.io)
-- **Qwen-Image-2.0(2월)이 생성·편집을 7B 단일 모델로 통합, 네이티브 2K·타이포그래피 강점으로 T2I·편집 아레나 동시 1위 — 20B→7B 경량화로 자체 호스팅 파이프라인 비용이 크게 하락** (qwenimages.com, gigazine.net)
-- **FLUX.2·Qwen-Image 등 오픈 웨이트 모델이 포토리얼리즘·텍스트 렌더링·편집에서 클로즈드 모델과 대등 — 핵심 IP용 LoRA 파인튜닝 기반으로 오픈 모델 채택이 실용적 디폴트가 됨** (thundercompute.com, spheron.network)
-- **VLM은 실시간 스트리밍 비디오로 이동 중: OpenMOSS MOSS-VL-Realtime(11B, 오픈소스)이 능동 발화 벤치마크 SOTA, Thinking Machines의 Inkling(975B MoE)은 Apache 2.0 공개 — 이미지 분석 파이프라인에 실시간·프로액티브 패턴 검토 가치** (thursdai.news)
-- **디퓨전 LoRA 실무 컨센서스: 스타일·오브젝트 삽입은 r=64~128, α=2r 기준으로 시작해 검증 손실 기반 rank 조정, DAAM 어트리뷰션 맵으로 데이터셋 오염 토큰 진단** (thecodeforge.io, propelrc.com)
-- **EU AI Act 50조(AI 생성물 기계판독 가능 표시 의무)가 2026년 8월부터 집행, 캘리포니아 SB 942도 1월 발효 — C2PA 메타데이터+비가시 워터마크(SynthID류)+로깅의 다층 표시가 생성 파이프라인 필수 요건화** (sesamedisk.com, magiclight.ai)
-
-Sources: [llm-stats 이미지 생성 리더보드](https://llm-stats.com/leaderboards/best-ai-for-image-generation), [Local AI Zone 8월 업데이트](https://local-ai-zone.github.io/blog/ai-updates-august-2026.html), [Qwen-Image-2.0 릴리스](https://qwenimages.com/blog/qwen-image-2-release), [GIGAZINE](https://gigazine.net/gsc_news/en/20260212-qwen-image-2/), [Thunder Compute 오픈소스 이미지 모델](https://www.thundercompute.com/blog/best-open-source-image-generation-models), [Spheron 이미지 편집 모델 배포 가이드](https://www.spheron.network/blog/deploy-open-source-ai-image-editing-models-gpu-cloud-2026/), [ThursdAI 2026년 7월 릴리스](https://thursdai.news/releases/2026-07), [TheCodeForge LoRA/PEFT 가이드](https://thecodeforge.io/ml-ai/lora-peft-fine-tuning/), [propelrc LoRA 학습 가이드](https://propelrc.com/how-to-train-stable-diffusion-lora-models/), [sesamedisk C2PA·EU AI Act](https://sesamedisk.com/ai-content-provenance-2026-c2pa-watermarking/), [MagicLight C2PA 워터마킹 의무화](https://magiclight.ai/news/c2pa-and-global-watermarking-mandates-for-ai-video-in-2026/)
-<!-- KNOWLEDGE:END -->

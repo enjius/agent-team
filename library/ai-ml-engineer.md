@@ -19,28 +19,3 @@ skills:
 원칙: 재현가능(시드·버전·데이터 스냅샷). 평가셋 없이는 개선을 주장하지 않는다.
 
 
-<!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-08-20) — 오픈웨이트·메모리 실무
-- **DeepSeek V4/0731 오픈웨이트(MIT)**: 코딩·에이전틱 벤치 최상위급, 60% 저렴, 자체호스팅 가능 → 프롬프트/RAG 파이프라인의 실질 대안. 대·소 모델 라우팅 재구성 (buildez.ai)
-- **컨텍스트 엔지니어링 4기둥**: 지시(시스템프롬프트)·검색(RAG)·메모리(단기 대화+장기 영속)·툴(MCP 표준화). 프롬프트 한 줄이 아니라 이 4개를 설계 (sourcegraph.com, mem0.ai)
-- **메모리 압축 실무화**: Mem0 압축 엔진이 충실도 유지하며 **토큰 최대 80%↓**. OpenMemory **MCP**로 로컬 메모리 저장·관리 대시보드 → 에이전트에 영속 메모리 배선 (mem0.ai)
-- **MCP 메이저 릴리스 후보(RC)** 배포 → 툴 연결 표준 최신화 확인 (agentic.ai)
-
-## 최신 지식 (2026-08-09) — 프레임워크·메모리·RAG 프론티어
-- **에이전트 프레임워크(Q2 2026 정식화)**: LangGraph 1.0(노드별 타임아웃·DeltaChannel), CrewAI 1.14(플러그블 메모리/지식/RAG 백엔드), Pydantic AI V2·LlamaIndex Workflows 1.0 stable. **Smolagents(HF)=코드 우선** — LLM이 JSON 툴콜 대신 파이썬 코드를 직접 작성 (firecrawl.dev, alicelabs.ai)
-- **메모리가 1급 아키텍처 요소**: 원본 대화 저장이 아니라 **적응형 메모리 압축**(인사이트 추출·압축)이 핵심. 메모리 전용 벤치마크 등장 → 에이전트에 영속 메모리 배선 (mem0.ai)
-- **컨텍스트 엔지니어링**: 프롬프트 한 줄이 아니라 '무엇을 언제 기억·주입하는가' 설계가 신규 핵심 기술 (mem0.ai)
-- **RAG 스택 분화**: LlamaIndex(문서 파싱)·RAGFlow(스캔·표)·Haystack(프로덕션+평가)·RAGAS(품질 측정)로 목적별 선택 (ayautomate.com)
-- **추론 서빙 이원화**: 처리량=vLLM, 반복 프리픽스 많은 에이전트=SGLang(RadixAttention, ~29% 빠름) 게이트웨이 뒤 병행 (yottalabs.ai)
-
-
-## 최신 지식 (2026-08-08)
-- MCP 2026-07-28 스펙이 initialize 핸드셰이크·세션ID를 제거한 완전 스테이트리스 구조로 전환, OAuth mix-up 방어 강화와 MCP Apps·비동기 장기실행 태스크 확장이 공식화됨 (venturebeat.com, developers.googleblog.com)
-- 파인튜닝 실무 표준은 "Prompt → RAG → LoRA/QLoRA 파인튜닝 → 증류" 순서로 수렴, 파인튜닝은 지식 주입이 아닌 행동·형식 교정용이며 비용·지연 절감용 증류가 최고 ROI로 부상 (winder.ai, bigdataboutique.com)
-- 추론 서빙은 대량 배치·처리량 중심이면 vLLM, 반복 프리픽스가 많은 에이전트·대화형 워크로드면 RadixAttention 기반 SGLang을 쓰고 게이트웨이 뒤에 병행 운영하는 이원화가 정착 (yottalabs.ai, sandbase.ai)
-- 에이전트 평가는 end-to-end·트래젝터리(툴콜·재시도·핸드오프)·컴포넌트 3계층으로 나누고, 프로덕션에서는 휴리스틱 100% + LLM-judge 5~10% 샘플링으로 트레이스 기반 상시 평가하는 게 베스트프랙티스 (confident-ai.com, braintrust.dev)
-- 평가-관측 통합이 핵심 트렌드: 점수를 프롬프트·모델·데이터셋 버전에 역추적 가능하게 연결하고, 프로덕션 엣지케이스를 평가셋으로 자동 환류시켜 품질 드리프트를 사전 감지 (adaline.ai, future_agi/medium.com)
-- 에이전트 간 통신 표준 A2A v1.0이 프로덕션 표준으로 정식 릴리스되고 MCP 서버 구현 200+ 돌파, 멀티에이전트 상호운용성이 프레임워크 선택의 주요 기준이 됨 (ruh.ai, aaif.io)
-
-Sources: [VentureBeat](https://venturebeat.com/infrastructure/mcp-just-got-its-biggest-update-ever-heres-what-changes-for-ai-agents), [Google Developers Blog](https://developers.googleblog.com/scaling-ai-agent-infrastructure-with-the-mcp-stateless-updates/), [Winder.AI](https://winder.ai/rag-vs-fine-tuning-2026-decision-framework/), [BigData Boutique](https://bigdataboutique.com/blog/fine-tuning-llms-when-rag-isnt-enough), [Yotta Labs](https://www.yottalabs.ai/post/vllm-vs-sglang-which-inference-engine-should-you-use-in-2026), [SandBase](https://www.sandbase.ai/blog/vllm-vs-sglang-2026/), [Confident AI](https://www.confident-ai.com/blog/llm-agent-evaluation-complete-guide), [Braintrust](https://www.braintrust.dev/articles/agent-observability-complete-guide-2026), [Adaline](https://www.adaline.ai/blog/complete-guide-llm-ai-agent-evaluation-2026), [ruh.ai](https://www.ruh.ai/blogs/ai-agent-protocols-2026-complete-guide), [AAIF](https://aaif.io/blog/mcp-is-growing-up)
-<!-- KNOWLEDGE:END -->

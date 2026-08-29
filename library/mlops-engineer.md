@@ -15,27 +15,3 @@ tools: Read, Edit, Write, Bash, Grep, Glob, WebSearch, Skill
 원칙: 모든 배포는 되돌릴 수 있게. 데이터·모델·코드 삼중 버전관리로 재현성 확보.
 
 
-<!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-08-20) — 비용·장기실행 서빙
-- **추론 단가 급락으로 라우팅 경제성 재산정**: GPT-5.6 Luna $0.20/1M(입력 80%↓), DeepSeek V4 60% 저렴·오픈웨이트 자체호스팅. 단순 태스크→저가/자체호스팅 라우팅의 ROI가 더 커짐 (augusto.digital, buildez.ai)
-- **장기실행(long-horizon) 에이전트 서빙**: 캐시 효율 컨텍스트 관리 연구(TokenPilot, ClawVM 등) — 상태유지 툴 사용 에이전트의 메모리·KV 캐시 운영이 새 과제 (arxiv 2606/2607)
-- **메모리 인프라**: Mem0 압축(토큰 80%↓)·OpenMemory MCP(로컬 저장) → 벡터/메모리 스토어 운영·비용 설계에 반영 (mem0.ai)
-- **벤더 마이그레이션 신호**: Amazon Bedrock Agents Classic 신규 마감(7/30)·카탈로그 동결 (agentic.ai)
-
-## 최신 지식 (2026-08-09) — 서빙·아키텍처 효율 프론티어
-- **추론 엔진 선택 기준(2026)**: SGLang(RadixAttention·구조화 생성, **vLLM 대비 ~29% 빠름**) vs vLLM(처리량·동시성) vs TensorRT-LLM(NVIDIA 저수준 최적화) vs TGI(생태계). 워크로드별 이원화가 정석 (yottalabs.ai, localaimaster.com)
-- **하이브리드 아키텍처가 서빙 비용 구조를 바꾼다**: 어텐션+Mamba(SSM) 결합(Granite 4.0·Jamba), 선형시간 어텐션(이차 스케일링 제거), 희소 MoE(토큰별 필요 파라미터만 활성) → 메모리·지연·비용 재산정 (infoworld.com)
-- **test-time compute·추론 증류**: o-시리즈식 테스트타임 컴퓨트 배분(지연↔지능 트레이드오프)과 추론 증류(o3급→엣지)로 SLA·비용 설계 변화 (labs.adaline.ai)
-- **에이전트 메모리 서빙**: 적응형 메모리 압축·영속 저장이 새 인프라 요구(벡터/메모리 스토어 운영·비용) (mem0.ai)
-
-
-## 최신 지식 (2026-08-08)
-- 통합 MLOps/LLMOps 플랫�폼 수렴: 전통 ML 모델과 파인튜닝 LLM을 동일한 레지스트리·모니터링·배포 파이프라인으로 관리하고, 프롬프트도 git 태그 릴리스로 버전 관리하는 것이 표준화 (medium.com/codex)
-- KServe가 vLLM 기반 런타임으로 LLM을 서빙하며 OpenAI 호환 API를 노출 — 서빙 스택은 vLLM/Triton behind KServe가 기본 조합으로 정착 (kodekloud.com, rahulkolekar.com)
-- 드리프트 감지·비용 평가·재학습·검증·배포까지 닫힌 루프로 자동화하는 "자율 재학습(autonomous retraining)"이 확산, 사람은 정책·예외만 검토 (hyscaler.com)
-- 드리프트 모니터링은 특징 드리프트(PSI/KS)·예측 드리프트·개념 드리프트(지연 레이블 보정) 3계층 + 인프라·데이터품질·모델성능·비즈니스임팩트 4계층 관측이 베스트프랙티스 (mlmonitoring.report, hjlabs.in)
-- EU AI Act: 2026-08-02부로 투명성 의무(Art.50)·GPAI 집행권·벌칙 체계가 본격 발효(고위험 시스템 중과 의무는 2027-12/2028-08로 연기) — 감사가능성·로그 보존이 MLOps 파이프라인 요구사항으로 편입 (artificialintelligenceact.eu, hklaw.com)
-- 2026 기본 스택: Iceberg/Delta(데이터) + Feast/Tecton(특징스토어) + MLflow 3(GenAI 트래킹)/W&B + Airflow/Dagster/Kubeflow(오케스트레이션) + DVC(데이터 버전) 조합이 사실상 표준 (rahulkolekar.com, devidevs.com)
-
-Sources: [MLOps in 2026 Guide](https://hyscaler.com/insights/mlops-in-2026-guide/), [MLOps in 2026: From MLflow to LLMOps](https://medium.com/codex/mlops-in-2026-from-mlflow-to-llmops-the-complete-guide-to-shipping-ai-in-production-0024955b70c4), [ML Monitoring Report](https://mlmonitoring.report/), [MLOps on Kubernetes 2026](https://kodekloud.com/blog/using-kubernetes-for-mlops/), [MLOps in 2026 — The Definitive Guide](https://rahulkolekar.com/mlops-in-2026-the-definitive-guide-tools-cloud-platforms-architectures-and-a-practical-playbook/), [MLOps Tools Comparison 2026](https://devidevs.com/blog/mlops-tools-comparison-2026-complete-stack), [EU AI Act Aug 2026 Deadline (Holland & Knight)](https://www.hklaw.com/en/insights/publications/2026/04/us-companies-face-eu-ai-acts-possible-august-2026-compliance-deadline), [EU AI Act High-level Summary](https://artificialintelligenceact.eu/high-level-summary/)
-<!-- KNOWLEDGE:END -->

@@ -31,14 +31,3 @@ skills:
 - 남은 수동 작업 체크리스트(첫 등록, 준비물, Secrets 등록)
 - 검증 결과(로컬 빌드/자격 검증/테스트 트랙 배포)
 
-<!-- KNOWLEDGE:START -->
-## 최신 지식 (2026-08-08)
-- **Apple: 2026-04-28부터 App Store 업로드는 Xcode 26 + iOS 26 SDK 빌드 필수** — CI 러너(macOS 이미지)의 Xcode 버전을 26 이상으로 고정해야 업로드 거절을 피함 (developer.apple.com)
-- **Google Play: 2026-08-31까지 기존 앱 targetSdk 35(Android 15) 이상, 신규 앱·업데이트는 API 36(Android 16) 필수** — 연장 신청은 2026-11-01까지 가능, Flutter의 `targetSdkVersion` 상향 점검 필요 (developer.android.com, support.google.com)
-- **fastlane은 여전히 활발히 유지보수 중** — 최근 릴리스에서 Transporter 구식 플래그 제거와 CVE-2026-35611 보안 패치가 반영됐으니 CI에서 fastlane 버전을 최신으로 갱신 권장 (github.com/fastlane)
-- **인증은 API 키 기반이 표준** — iOS는 App Store Connect API Key(p8), Android는 Google Cloud 서비스 계정 JSON을 GitHub Secrets에 저장하는 방식이 2단계 인증 강제 환경에서 유일하게 안정적 (docs.fastlane.tools)
-- **Play Console 정책 강화: AAB 제출 표준화 + 전체 계정 2단계 인증 의무화, 조직 계정은 D-U-N-S 검증 필요** — 배포 자동화 셋업 시 계정 검증 상태를 사전 확인해야 함 (saastostore.com, primetestlab.com)
-- **2026 파이프라인 베스트프랙티스: 4단계 구조(Prepare→Verify→Build→Distribute) + 환경 분리** — staging은 Firebase App Distribution/TestFlight, production은 스토어 제출로 나누고, 의존성 캐시·테스트 잡 분할로 피드백 속도 확보 (freecodecamp.org, gitnexa.com)
-
-Sources: [Apple Developer News](https://developer.apple.com/news/?id=6lxhtioi), [Google Play target API requirements](https://support.google.com/googleplay/android-developer/answer/11926878?hl=en), [Android Developers](https://developer.android.com/google/play/requirements/target-sdk), [fastlane releases](https://github.com/fastlane/fastlane/releases), [fastlane App Store Connect API docs](https://docs.fastlane.tools/app-store-connect-api/), [freeCodeCamp Flutter CI/CD 가이드](https://www.freecodecamp.org/news/how-to-build-a-production-ready-flutter-ci-cd-pipeline-with-github-actions-quality-gates-environments-and-store-deployment/), [GitNexa 2026 모바일 CI/CD 가이드](https://www.gitnexa.com/blogs/mobile-app-cicd-pipeline-guide), [Google Play 정책 변경 2026](https://saastostore.com/blog/google-play-policy-changes-2026)
-<!-- KNOWLEDGE:END -->

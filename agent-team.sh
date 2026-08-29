@@ -563,8 +563,13 @@ cmd_run() {
   [ -d "$app/.claude/agents" ] && \
     have=$(find "$app/.claude/agents" -maxdepth 1 -type f -name '*.md' | wc -l | tr -d ' ')
   if [ "${have:-0}" -eq 0 ]; then
-    warn "팀 미구성 → 기본팀(${AGENT_TEAM_DEFAULT:-core}) 자동 구성"
-    cmd_provision "$app" --team "${AGENT_TEAM_DEFAULT:-core}" >/dev/null
+    if [ -n "${AGENT_TEAM_DEFAULT:-}" ]; then
+      warn "팀 미구성 → 기본팀(${AGENT_TEAM_DEFAULT}) 자동 구성"
+      cmd_provision "$app" --team "$AGENT_TEAM_DEFAULT" >/dev/null
+    else
+      warn "팀 미구성 → 프로젝트 내용으로 팀팩 자동 감지·구성"
+      cmd_provision "$app" --auto
+    fi
   fi
   require_app_dir "$app"
   app=$(abspath "$app")
@@ -899,6 +904,7 @@ _write_routing() {
 - 사업계획서 → business-plan-writer · 투자 피치덱 → pitch-deck-writer · 시장리서치 → market-researcher
 - 구현 → flutter-builder/supabase-backend/ai-generative-engineer · 검증 → flutter-tester/flutter-code-reviewer/security-privacy
 - 여러 단계가 필요하면 **tech-lead**가 총괄해 위 팀원들에게 분배한다.
+- 도메인 최신 지식은 **knowledge-\* 스킬**(knowledge-ai-ml, knowledge-mobile-frontend 등)에 있다 — 각 팀원은 작업 전 자기 도메인 스킬을 참고한다.
 문서 산출물은 해당 스킬(docx/pptx/xlsx)로 실제 파일까지 생성한다.
 <!-- AGENT-TEAM:ROUTING END -->
 ROUTING
@@ -913,13 +919,48 @@ ROUTING
   ok "라우팅 규칙 심음 → $cm  ${C_DIM}(\"디자인해줘\" 하면 디자이너가 Pinterest 자동 참고)${C_RESET}"
 }
 
+# ── _detect_team_pack — 프로젝트 폴더를 스캔해 어울리는 팀팩 자동 선택 ──
+#   $1=projdir → stdout "팩이름|근거"  (신호 없으면 core)
+_detect_team_pack() {
+  local p="$1" sig="" f
+  for f in README.md CLAUDE.md package.json pubspec.yaml requirements.txt pyproject.toml go.mod Cargo.toml; do
+    [ -f "$p/$f" ] && sig="$sig
+$(head -c 8192 "$p/$f" 2>/dev/null)"
+  done
+  _sig_has() { printf '%s' "$sig" | grep -qiE "$1"; }
+
+  if [ -f "$p/pubspec.yaml" ]; then
+    if _sig_has 'supabase' && _sig_has 'trading|invest|stock|crypto|coin|백테스트|트레이딩|투자|주식|코인'; then
+      printf 'rakwan|pubspec.yaml + supabase + 투자 키워드'; return
+    fi
+    printf 'mobile|pubspec.yaml (Flutter)'; return
+  fi
+  if _sig_has 'backtest|ccxt|binance|upbit|ohlcv|candle|퀀트|백테스트|트레이딩|quant'; then
+    printf 'trading|트레이딩·퀀트 키워드'; return
+  fi
+  if _sig_has 'fintech|payment|ledger|핀테크|결제|송금|정산'; then
+    printf 'fintech|핀테크·결제 키워드'; return
+  fi
+  if _sig_has 'anthropic|openai|langchain|transformers|diffus|\bllm\b|\brag\b|embedding|임베딩|프롬프트|생성형'; then
+    printf 'ai-app|AI·LLM 키워드'; return
+  fi
+  if [ -f "$p/package.json" ]; then
+    printf 'webapp|package.json (Node/웹 프로젝트)'; return
+  fi
+  if _sig_has 'marketing|growth|launch|landing|캠페인|마케팅|런치'; then
+    printf 'growth|마케팅·런치 키워드'; return
+  fi
+  printf 'core|뚜렷한 신호 없음 → 기본팀'
+}
+
 cmd_provision() {
-  local proj="" team="" force=0 prune=0
+  local proj="" team="" force=0 prune=0 auto=0
   local -a needs=()
   while [ $# -gt 0 ]; do
     case "$1" in
       --team) shift; [ $# -gt 0 ] || die "--team 뒤에 이름 필요"; team="$1" ;;
       --need) shift; [ $# -gt 0 ] || die "--need 뒤에 역할 필요"; needs+=("$1") ;;
+      --auto) auto=1 ;;
       --force) force=1 ;;
       --prune) prune=1 ;;
       -*) die "알 수 없는 옵션: $1" ;;
@@ -927,7 +968,14 @@ cmd_provision() {
     esac
     shift
   done
-  [ -n "$proj" ] || die "사용법: provision <PROJECT_DIR> [--team PACK] [--need 역할[=설명]]..."
+  [ -n "$proj" ] || die "사용법: provision <PROJECT_DIR> [--auto] [--team PACK] [--need 역할[=설명]]..."
+
+  # --auto: 팀팩 미지정 시 프로젝트 내용을 보고 자동 선택
+  if [ "$auto" -eq 1 ] && [ -z "$team" ]; then
+    local det; det=$(_detect_team_pack "$proj")
+    team="${det%%|*}"
+    info "팀팩 자동 감지: ${C_BOLD}$team${C_RESET}  ${C_DIM}(${det#*|})${C_RESET}"
+  fi
 
   if [ ! -d "$proj/.claude/agents" ]; then cmd_init "$proj" >/dev/null; fi
   proj=$(abspath "$proj")
@@ -1310,18 +1358,85 @@ _set_knowledge_block() {
 # learn — 매일 1회: 모든 에이전트가 자기 분야 최신 지식을 서치·습득
 #   claude 로 웹 리서치 → 각 .md 의 지식 블록 갱신 + knowledge/ 아카이브
 # ══════════════════════════════════════════════════════════════════════
+# ── _learn_domains — 도메인 스킬(skills/knowledge-*) 단위 지식 습득 ──
+#   에이전트 82명 개별 리서치 대신 도메인 9개만 갱신 → 시간·비용 1/9
+_learn_domains() {  # $1=dry $2=limit
+  local dry="$1" limit="$2"
+  local date; date=$(date +%Y-%m-%d)
+  if [ "$dry" -ne 1 ] && ! command -v claude >/dev/null 2>&1; then
+    die "claude CLI 필요 (지식 리서치용). --dry-run 으로 미리보기 가능."
+  fi
+  local total; total=$(find "$SKILLS_DIR" -mindepth 1 -maxdepth 1 -type d -name 'knowledge-*' | wc -l | tr -d ' ')
+  info "지식 습득 대상: ${C_BOLD}${total}개 도메인 스킬${C_RESET}  (skills/knowledge-*)"
+  [ "$limit" -gt 0 ] && info "이번 실행 제한: 최대 ${limit}개"
+  mkdir -p "$KNOW_DIR"
+  local done=0 updated=0
+  while IFS= read -r d; do
+    [ -n "$d" ] || continue
+    [ "$limit" -gt 0 ] && [ "$done" -ge "$limit" ] && break
+    done=$((done+1))
+    local sf="$d/SKILL.md" name; name=$(basename "$d")
+    [ -f "$sf" ] || continue
+    local desc; desc=$(front_field "$sf" "description" | sed 's/ *(갱신:.*//')
+    local dn="${name#knowledge-}"
+    local prompt="너는 '${dn}' 도메인 전담 리서처다(${desc}). 오늘(${date}) 기준으로 이 도메인에서 \
+팀 전체가 알아야 할 최신 동향·도구·베스트프랙티스를 웹에서 조사하라. 하위 영역별로 소제목(## 제목)을 \
+나누고 각 영역 4~8개 불릿(각 한 줄, 가능하면 출처 도메인 표기)으로 한국어로 출력하라. 서론/맺음말 금지."
+    if [ "$dry" -eq 1 ]; then
+      log "  ${C_DIM}[dry] $name ← 도메인 리서치 예정${C_RESET}"
+      continue
+    fi
+    printf "  ${C_BLUE}▸${C_RESET} %-26s 리서치…" "$name"
+    local out; out=$(cd "$SKILLS_DIR" && claude -p "$prompt" --allowedTools WebSearch ${AGENT_TEAM_LEARN_FLAGS:-} </dev/null 2>/dev/null || true)
+    if [ -z "$out" ]; then printf " ${C_YELLOW}건너뜀(응답없음)${C_RESET}\n"; continue; fi
+    if _is_error_out "$out"; then printf " ${C_YELLOW}건너뜀(API오류/크레딧부족)${C_RESET}\n"; continue; fi
+    { echo "# ${name} — ${date} 지식 업데이트"; echo; printf "%s\n" "$out"; } > "$KNOW_DIR/${name}-${date}.md"
+    {
+      echo "---"
+      echo "name: ${name}"
+      echo "description: ${desc} (갱신: ${date})"
+      echo "---"
+      echo
+      echo "# ${dn} 도메인 지식 (${date})"
+      echo
+      echo "> \`agent-team learn\` 이 도메인 단위로 갱신하는 지식 베이스. 이 도메인 역할의 에이전트는 작업 전 참고."
+      echo
+      printf "%s\n" "$out"
+    } > "$sf"
+    updated=$((updated+1))
+    printf " ${C_GREEN}습득✔${C_RESET}\n"
+  done < <(find "$SKILLS_DIR" -mindepth 1 -maxdepth 1 -type d -name 'knowledge-*' | sort)
+  log ""
+  if [ "$dry" -eq 1 ]; then
+    ok "[dry-run] ${done}개 도메인 리서치 예정 (실제 실행: --dry-run 제거)"
+  else
+    ok "지식 습득 완료: ${C_GREEN}${updated}${C_RESET}/${done}개 도메인 갱신 · 아카이브: $KNOW_DIR"
+    log "   ${C_DIM}적용: agent-team skill-install (전역) 또는 skill-install --project DIR${C_RESET}"
+  fi
+}
+
 cmd_learn() {
-  local target="" dry=0 limit=0 model=""
+  local target="" dry=0 limit=0 model="" mode=""
   while [ $# -gt 0 ]; do
     case "$1" in
       --dry-run) dry=1 ;;
       --limit) shift; limit="${1:-0}" ;;
       --model) shift; model="${1:-}" ;;
+      --domains) mode="domains" ;;
+      --agents) mode="agents" ;;
       -*) die "알 수 없는 옵션: $1" ;;
       *) [ -z "$target" ] && target="$1" || die "인자 과다: $1" ;;
     esac
     shift
   done
+
+  # 도메인 스킬(skills/knowledge-*)이 있으면 기본은 도메인 단위 습득 (--agents 로 역할별 강제)
+  if [ "$mode" != "agents" ] && [ -z "$target" ] && \
+     [ -n "$(find "$SKILLS_DIR" -mindepth 1 -maxdepth 1 -type d -name 'knowledge-*' 2>/dev/null | head -1)" ]; then
+    _learn_domains "$dry" "$limit"
+    return
+  fi
+  [ "$mode" = "domains" ] && die "도메인 스킬 없음: $SKILLS_DIR/knowledge-*  (먼저 생성 필요)"
 
   # 대상 디렉터리 결정:
   #   1) <target>/.claude/agents 있으면 그 프로젝트 팀
@@ -1921,9 +2036,11 @@ ${C_BOLD}agent-team.sh${C_RESET} — Claude Code 에이전트 팀 운영/오케�
   scaffold <PROJECT_DIR> --team <이름> [--add NAME]... [--force]
                                              라이브러리에서 팀을 골라 프로젝트 전용
                                              팀 구성(여러 프로젝트 동시 진행용)
-  provision <PROJECT_DIR> [--team PACK] [--need 역할[=설명]]... [--force] [--prune]
+  provision <PROJECT_DIR> [--auto] [--team PACK] [--need 역할[=설명]]... [--force] [--prune]
                                              팀 보장: 있는 에이전트는 배정, 없는 역할은
                                              자동 생성·습득 후 배정(요청 없으면 기본팀)
+                                             --auto: 프로젝트 파일(pubspec/package.json/README …)을
+                                             스캔해 어울리는 팀팩을 자동 선택
                                              --force: 기존 파일도 라이브러리 최신본으로 덮어씀
                                              --prune: 팀팩에 없는 에이전트 제거(백업 후) — 중복 정리
   status  [ROOT] [--json]                    한 본부에서 여러 프로젝트 현황 스캔
@@ -1937,9 +2054,10 @@ ${C_BOLD}agent-team.sh${C_RESET} — Claude Code 에이전트 팀 운영/오케�
                                              --seed 로 기존 팀(~/.claude/agents 등) 흡수
   sync                                       새 에이전트/팀팩 변경을 git 리포로 push
                                              (홈이 클론일 때. AGENT_TEAM_AUTOPUSH=1 로 자동)
-  learn   [DIR|PROJECT] [--dry-run] [--limit N]
-                                             모든 에이전트가 최신 지식 서치·습득. 대상은
-                                             프로젝트/에이전트폴더 모두 가능(없으면 라이브러리)
+  learn   [DIR|PROJECT] [--domains|--agents] [--dry-run] [--limit N]
+                                             지식 습득. 기본: 도메인 스킬(skills/knowledge-*)
+                                             9개 단위 갱신(빠르고 저렴). --agents 는 예전처럼
+                                             에이전트 .md 개별 갱신(대상: 프로젝트/폴더/라이브러리)
   schedule [--install|--uninstall] [--time HH:MM] [--target PROJECT]
                                              매일 자동 learn (macOS launchd)
   import   <APP_DIR> [--from DIR]... [--move] [--force] [--backup DIR]

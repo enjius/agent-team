@@ -58,7 +58,15 @@ cd ~/Documents/app/projB && claude "백테스트 대시보드 만들어라"
 
 # 요청 없이 그냥 보장만 → 기본팀(core) 자동 배정
 ./agent-team.sh provision ~/Documents/app/projB
+
+# 팀팩 자동 감지 — 프로젝트 파일을 보고 알맞은 팩을 스스로 고름
+#   pubspec.yaml → mobile · +supabase+투자 키워드 → rakwan · package.json → webapp
+#   백테스트/퀀트 키워드 → trading · 결제 키워드 → fintech · LLM 키워드 → ai-app
+./agent-team.sh provision ~/Documents/app/projC --auto
 ```
+
+`run` 도 팀 미구성 폴더에서는 자동 감지로 팀을 심고 시작합니다(`AGENT_TEAM_DEFAULT` 로 팩 고정 가능).
+더 깊은 판단이 필요하면 Claude Code 안에서 **`/team`** 커맨드 — 프로젝트를 직접 읽고 팀팩+보강 역할(`--need`)까지 골라 provision 해줍니다.
 
 - 새로 만든 에이전트는 `library/` 에 저장돼 **다음 프로젝트에서 재사용**됩니다(습득).
 - `run` 은 팀이 없으면 기본팀을 **자동 구성 후 실행** → 빈 폴더에 바로 `run` 해도 됩니다.
@@ -110,20 +118,24 @@ agent-team schedule --install --time 06:30 --target ~/.claude/agents
 
 ## 매일 지식 습득 (learn + schedule)
 
-모든 에이전트가 매일 자기 분야 최신 지식을 서치해 **습득**합니다(각 `.md` 의 지식 블록 갱신).
+지식은 에이전트 개인이 아니라 **도메인 스킬**(`skills/knowledge-*` 9개: ai-ml, backend-infra,
+mobile-frontend, product-design, quality-security, trading-quant, marketing-biz, data-analytics,
+legal-ops)이 담습니다. `learn` 은 이 9개만 갱신하므로 예전(에이전트 82명 개별)보다 **9배 빠르고 저렴**하며,
+어떤 에이전트든 자기 도메인 스킬을 로드해 같은 최신 지식을 공유합니다.
 
 ```bash
 agent-team learn --dry-run              # 무엇을 리서치할지 미리보기
-agent-team learn                        # 라이브러리 전체 습득(claude 필요)
-agent-team learn ~/Documents/app/proj1  # 특정 프로젝트 팀만
+agent-team learn                        # 도메인 스킬 9개 갱신(claude 필요)
+agent-team skill-install                # 갱신된 스킬을 ~/.claude/skills 에 적용
+agent-team learn --agents ~/Documents/app/proj1  # (구방식) 특정 팀 .md 개별 갱신
 
 # 매일 06:30 자동 실행 등록 (macOS launchd)
 agent-team schedule --install --time 06:30
 agent-team schedule --uninstall         # 해제
 ```
 
-각 에이전트 `.md` 끝에 `<!-- KNOWLEDGE:START/END -->` 블록으로 최신 지식이 주입되어,
-다음 작업 때 그 지식을 갖고 일합니다. 원본은 `knowledge/<이름>-<날짜>.md` 로 아카이브됩니다.
+원본은 `knowledge/knowledge-<도메인>-<날짜>.md` 로 아카이브됩니다.
+(과거 방식이던 에이전트 `.md` 내 `KNOWLEDGE` 블록은 2026-08-29 도메인 스킬로 통합·제거했습니다.)
 
 ## 스킬 자동 사용
 
@@ -187,7 +199,7 @@ claude "랜딩페이지 만들어라"          # 자동으로 --add-dir ~/app �
 | `teams` | 내장 팀팩 목록 (webapp/mobile/ai-app/trading/growth) |
 | `library` | 내장 에이전트 라이브러리(25명) 목록 |
 | `scaffold <PROJECT_DIR> --team <이름> [--add NAME]... [--force]` | 라이브러리에서 팀팩을 골라 프로젝트 전용 `.claude/agents/` 구성. `--add` 로 에이전트 추가. **프로젝트마다 독립 팀 → 동시 진행 가능** |
-| `provision <PROJECT_DIR> [--team PACK] [--need 역할[=설명]]...` | 팀 보장: 있는 에이전트 배정, **없는 역할은 자동 생성·습득 후 배정**. 요청 없으면 기본팀(core) |
+| `provision <PROJECT_DIR> [--auto] [--team PACK] [--need 역할[=설명]]...` | 팀 보장: 있는 에이전트 배정, **없는 역할은 자동 생성·습득 후 배정**. `--auto` 는 프로젝트 파일(pubspec/package.json/README…)을 스캔해 **팀팩을 자동 선택**(mobile/webapp/trading/fintech/ai-app/rakwan, 신호 없으면 core). 요청 없으면 기본팀(core) |
 | `status [ROOT] [--json]` | 본부 하나에서 여러 프로젝트 현황 스캔(팀 인원·팩·최근실행). 기본 ROOT=`~/Documents/app` |
 | `install [DEST]` | **git 없이** Mac 홈(`~/.agent-team`)에 스크립트·라이브러리·팀팩을 복사하고 `agent-team` 를 PATH에 링크 |
 | `learn [PROJECT] [--dry-run] [--limit N]` | 모든 에이전트가 자기 분야 최신 지식을 웹서치해 **습득**(각 `.md` 지식 블록 갱신 + `knowledge/` 아카이브). 대상 없으면 라이브러리 전체 |

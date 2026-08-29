@@ -1,8 +1,12 @@
-# 기본 팀 (어떤 프로젝트든 최소 구성) — 7명
-orchestrator
-product-planner
-architect
-frontend-dev
-backend-dev
-qa-engineer
-code-reviewer
+# 기본 팀 (소수정예 — 자동위임 잘 되게) — 10명
+# 전문성·최신지식은 skills/knowledge-* 도메인 스킬이 담당. 특수 역할은 필요할 때 provision --need 로 추가.
+orchestrator        # 총괄
+product-planner     # 기획
+ui-ux-designer      # 디자인
+frontend-dev        # 구현
+backend-dev         # 구현
+qa-engineer         # 검증 게이트 — 테스트
+code-reviewer       # 검증 게이트 — 리뷰
+security-reviewer   # 검증 게이트 — 보안
+market-researcher   # 리서치
+doc-writer          # 문서 (haiku)
