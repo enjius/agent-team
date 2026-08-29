@@ -1,57 +1,72 @@
 ---
 name: knowledge-ai-ml
-description: AI·ML 도메인 최신 지식 — 모델 지형, 생성형 AI, MLOps, AI 안전. AI 관련 역할이 작업 전 참고 (갱신: 2026-08-08)
+description: AI·ML 도메인 최신 지식 — 모델 지형, 생성형 AI, MLOps, AI 안전. AI 관련 역할이 작업 전 참고 (갱신: 2026-08-29)
 ---
 
-# ai-ml 도메인 지식 (2026-08-08)
+# ai-ml 도메인 지식 (2026-08-29)
 
-> 역할별 에이전트 KNOWLEDGE 블록을 도메인 단위로 통합한 지식 베이스.
-> `agent-team learn --domains` 가 이 파일을 통째로 갱신한다.
+> `agent-team learn` 이 도메인 단위로 갱신하는 지식 베이스. 이 도메인 역할의 에이전트는 작업 전 참고.
 
-## ai-generative-engineer
-- **GPT Image 2(4월 출시)가 아레나 1위, MiniMax H3(Hailuo 3.0, 7/31)는 텍스트·이미지·비디오·오디오 입력→2K 스테레오 오디오 비디오 출력에 모션 트랜스퍼·생성형 편집까지 지원 — 멀티모달 통합 생성이 표준화 흐름** (llm-stats.com, local-ai-zone.github.io)
-- **Qwen-Image-2.0(2월)이 생성·편집을 7B 단일 모델로 통합, 네이티브 2K·타이포그래피 강점으로 T2I·편집 아레나 동시 1위 — 20B→7B 경량화로 자체 호스팅 파이프라인 비용이 크게 하락** (qwenimages.com, gigazine.net)
-- **FLUX.2·Qwen-Image 등 오픈 웨이트 모델이 포토리얼리즘·텍스트 렌더링·편집에서 클로즈드 모델과 대등 — 핵심 IP용 LoRA 파인튜닝 기반으로 오픈 모델 채택이 실용적 디폴트가 됨** (thundercompute.com, spheron.network)
-- **VLM은 실시간 스트리밍 비디오로 이동 중: OpenMOSS MOSS-VL-Realtime(11B, 오픈소스)이 능동 발화 벤치마크 SOTA, Thinking Machines의 Inkling(975B MoE)은 Apache 2.0 공개 — 이미지 분석 파이프라인에 실시간·프로액티브 패턴 검토 가치** (thursdai.news)
-- **디퓨전 LoRA 실무 컨센서스: 스타일·오브젝트 삽입은 r=64~128, α=2r 기준으로 시작해 검증 손실 기반 rank 조정, DAAM 어트리뷰션 맵으로 데이터셋 오염 토큰 진단** (thecodeforge.io, propelrc.com)
-- **EU AI Act 50조(AI 생성물 기계판독 가능 표시 의무)가 2026년 8월부터 집행, 캘리포니아 SB 942도 1월 발효 — C2PA 메타데이터+비가시 워터마크(SynthID류)+로깅의 다층 표시가 생성 파이프라인 필수 요건화** (sesamedisk.com, magiclight.ai)
+## 모델 지형 (프론티어)
+- Anthropic Claude Fable 5(6/9), OpenAI GPT-5.6 Sol/Terra/Luna 패밀리(7/9), Google Gemini 3.7 Flash GA(8/13), xAI Grok 4.6(8/12)이 현재 프론티어 최상위 라인업 (llm-stats.com, aireleasetracker.com)
+- 8월 한 달에만 8개 제공사에서 14개 신모델 출시 — 릴리스 주기가 주 단위로 압축되는 추세 (llm-stats.com)
+- Google은 Gemini 3.6 출시 3주 만에 3.7 Flash를 내놓는 초고속 반복 체제 진입 (aireleasetracker.com)
+- 정체불명 익명 모델 'OX Alpha'가 코딩 벤치마크에서 GPT-5.6을 능가해 화제 (llm-stats.com)
+- 추론(reasoning) 모델의 속도-정확도 트레이드오프와 멀티모달 기본 탑재가 프론티어 표준으로 정착 (llmgateway.io)
+- 효율 개선으로 GPT-4급 성능의 비용이 극적으로 하락, 팀 차원에서 모델 선택 기준을 '성능'에서 '성능/비용'으로 재조정 필요 (llm-stats.com)
 
-Sources: [llm-stats 이미지 생성 리더보드](https://llm-stats.com/leaderboards/best-ai-for-image-generation), [Local AI Zone 8월 업데이트](https://local-ai-zone.github.io/blog/ai-updates-august-2026.html), [Qwen-Image-2.0 릴리스](https://qwenimages.com/blog/qwen-image-2-release), [GIGAZINE](https://gigazine.net/gsc_news/en/20260212-qwen-image-2/), [Thunder Compute 오픈소스 이미지 모델](https://www.thundercompute.com/blog/best-open-source-image-generation-models), [Spheron 이미지 편집 모델 배포 가이드](https://www.spheron.network/blog/deploy-open-source-ai-image-editing-models-gpu-cloud-2026/), [ThursdAI 2026년 7월 릴리스](https://thursdai.news/releases/2026-07), [TheCodeForge LoRA/PEFT 가이드](https://thecodeforge.io/ml-ai/lora-peft-fine-tuning/), [propelrc LoRA 학습 가이드](https://propelrc.com/how-to-train-stable-diffusion-lora-models/), [sesamedisk C2PA·EU AI Act](https://sesamedisk.com/ai-content-provenance-2026-c2pa-watermarking/), [MagicLight C2PA 워터마킹 의무화](https://magiclight.ai/news/c2pa-and-global-watermarking-mandates-for-ai-video-in-2026/)
+## 오픈소스·오픈웨이트 모델
+- 알리바바 Qwen3.8-Max(2.4T 파라미터)가 8월 역대 최대 오픈웨이트 릴리스 기록, Meta도 오픈웨이트 진영 복귀 (llm-stats.com)
+- DeepSeek V4 Pro가 SWE-bench Verified 80.6%로 Claude Opus 4.6과 0.2pt 차이 — MIT 라이선스로 오픈-클로즈드 격차 사실상 소멸 (huggingface.co)
+- GLM-5.2(MIT, 1M 컨텍스트, GPQA Diamond 91.2%)가 오픈 진영 종합 1위권, 8/26 GLM-5.3 Flash도 출시 (techsy.io, llm-stats.com)
+- Moonshot Kimi K3: 2.8T MoE + 네이티브 비전 + 1M 컨텍스트 오픈웨이트로 7월 중순 공개 (codersera.com)
+- 에이전틱 코딩 특화로는 Kimi K2.7 Code, 코딩 전반은 GLM-5.1·Qwen 3.7이 상위권 (techsy.io, buildfastwithai.com)
+- 자체 호스팅 검토 시 후보군이 Qwen·GLM·DeepSeek·Kimi 중심으로 재편 — Llama는 범용 채팅용 지위로 축소 (codersera.com)
 
-## ai-lead
-- 2026-08-02부로 EU AI Act의 GPAI 모델 제공자 의무에 대한 AI Office 집행 권한이 발효 — 기술문서 요구·모델 평가·시정명령·과징금(최대 €15M 또는 매출 3%)이 실제 리스크가 됨 (artificialintelligenceact.eu, digitalapplied.com)
-- 프런티어 모델 경쟁 재편: Anthropic Claude Fable 5·Opus 5(7월), OpenAI GPT-5.6(7월), Gemini 3.5 Flash Lite 등 최신 세대가 출시되어 모델 포트폴리오·벤더 전략 재검토 필요 (llm-stats.com, llmgateway.io)
-- 에이전틱 AI 운영의 핵심은 모델이 아닌 '하니스 엔지니어링' — 재시도·서킷브레이커·휴먼 체크포인트·예산/중단 조건을 갖춘 "신뢰 못 하는 마이크로서비스"로 취급하는 것이 프로덕션 베스트프랙티스로 정착 (medium.com, devstarsj.github.io)
-- 연결된 에이전트 네트워크 간 간접 프롬프트 인젝션이 지속·전파되는 'ZombieAgent'형 공격이 시연됨 — 멀티에이전트 아키텍처에 격리·권한 최소화 등 보안 기준 수립 시급 (ailoitte.com)
-- 비용 최적화의 최고 ROI 수단은 모델 라우팅(단순 쿼리→소형 모델) — 다층 평가(자동 지표+모델 기반 평가+휴먼 저지)와 함께 LLMOps 스택의 표준 구성요소화 (medium.com)
-- 기업 AI의 병목은 배포가 아닌 전환: AI 도입 조직 중 워크플로·역할 재설계까지 완료한 곳은 12%뿐이며, 리더 80%가 보안을 최대 장벽으로 지목 — 거버넌스·운영모델 재설계가 AI 리드의 핵심 과제 (deloitte.com)
+## AI 에이전트·MCP·코딩 도구
+- 코딩 AI가 '자동완성→위임(delegation)' 단계로 전환: 이슈·태스크 단위로 IDE·CLI·GitHub·Slack·클라우드 어디서든 에이전트에 위임하는 워크플로가 표준화 (codepick.dev)
+- 단일 에이전트에서 전문화된 멀티 에이전트 병렬 협업으로 이동 — 컨텍스트 창 한계를 팀 구성으로 우회 (thenewstack.io)
+- MCP는 초기 토큰 오버헤드 비판을 넘어 재부상(Firecrawl MCP 사용량 월 35% 성장), 로드맵은 에이전트 신원·점진적 디스커버리·장기 실행 태스크 프리미티브로 확장 중 (firecrawl.dev)
+- Google A2A 프로토콜이 8/20 Linux Foundation 산하 Agentic AI Foundation에 합류, AAIF 회원 250+ (AWS·Anthropic·Google·MS·OpenAI 포함)로 표준화 가속 (aiagentstore.ai)
+- 기업 평균 12개 에이전트 운영 중이나 절반은 고립 운영 — 오케스트레이션·상호운용이 병목 (barchart.com)
 
-## ai-ml-engineer
-- MCP 2026-07-28 스펙이 initialize 핸드셰이크·세션ID를 제거한 완전 스테이트리스 구조로 전환, OAuth mix-up 방어 강화와 MCP Apps·비동기 장기실행 태스크 확장이 공식화됨 (venturebeat.com, developers.googleblog.com)
-- 파인튜닝 실무 표준은 "Prompt → RAG → LoRA/QLoRA 파인튜닝 → 증류" 순서로 수렴, 파인튜닝은 지식 주입이 아닌 행동·형식 교정용이며 비용·지연 절감용 증류가 최고 ROI로 부상 (winder.ai, bigdataboutique.com)
-- 추론 서빙은 대량 배치·처리량 중심이면 vLLM, 반복 프리픽스가 많은 에이전트·대화형 워크로드면 RadixAttention 기반 SGLang을 쓰고 게이트웨이 뒤에 병행 운영하는 이원화가 정착 (yottalabs.ai, sandbase.ai)
-- 에이전트 평가는 end-to-end·트래젝터리(툴콜·재시도·핸드오프)·컴포넌트 3계층으로 나누고, 프로덕션에서는 휴리스틱 100% + LLM-judge 5~10% 샘플링으로 트레이스 기반 상시 평가하는 게 베스트프랙티스 (confident-ai.com, braintrust.dev)
-- 평가-관측 통합이 핵심 트렌드: 점수를 프롬프트·모델·데이터셋 버전에 역추적 가능하게 연결하고, 프로덕션 엣지케이스를 평가셋으로 자동 환류시켜 품질 드리프트를 사전 감지 (adaline.ai, future_agi/medium.com)
-- 에이전트 간 통신 표준 A2A v1.0이 프로덕션 표준으로 정식 릴리스되고 MCP 서버 구현 200+ 돌파, 멀티에이전트 상호운용성이 프레임워크 선택의 주요 기준이 됨 (ruh.ai, aaif.io)
+## 생성형 미디어 (이미지·영상)
+- 영상 생성 순위 지각변동: ByteDance Seedance 2.0(2월)과 알리바바 HappyHorse-1.0(4월)이 Artificial Analysis 1·2위, Veo 3.1은 3위 (wavespeed.ai)
+- OpenAI Sora 앱·웹 서비스는 4/26 종료, Sora API도 9/24 셧다운 예정 — 의존 파이프라인 있으면 즉시 이관 필요 (wavespeed.ai)
+- Veo 3.1은 48kHz 동기화 대사 생성 유지, Kling 3.0은 다국어 립싱크로 추격하며 톱10에 4개 엔트리 (kingy.ai)
+- Lightricks LTX-2.3(3/5): 네이티브 4K+오디오+오픈웨이트를 동시 제공하는 첫 오픈소스 영상 모델 (pinggy.io)
+- Midjourney V8.1(4/14) 출시 등 이미지 생성도 지속 개선, 시장은 시네마틱·아바타·엔터프라이즈·소셜·출처증명(provenance)으로 분화 (wikipedia.org, thebriefscript.com)
 
-Sources: [VentureBeat](https://venturebeat.com/infrastructure/mcp-just-got-its-biggest-update-ever-heres-what-changes-for-ai-agents), [Google Developers Blog](https://developers.googleblog.com/scaling-ai-agent-infrastructure-with-the-mcp-stateless-updates/), [Winder.AI](https://winder.ai/rag-vs-fine-tuning-2026-decision-framework/), [BigData Boutique](https://bigdataboutique.com/blog/fine-tuning-llms-when-rag-isnt-enough), [Yotta Labs](https://www.yottalabs.ai/post/vllm-vs-sglang-which-inference-engine-should-you-use-in-2026), [SandBase](https://www.sandbase.ai/blog/vllm-vs-sglang-2026/), [Confident AI](https://www.confident-ai.com/blog/llm-agent-evaluation-complete-guide), [Braintrust](https://www.braintrust.dev/articles/agent-observability-complete-guide-2026), [Adaline](https://www.adaline.ai/blog/complete-guide-llm-ai-agent-evaluation-2026), [ruh.ai](https://www.ruh.ai/blogs/ai-agent-protocols-2026-complete-guide), [AAIF](https://aaif.io/blog/mcp-is-growing-up)
+## MLOps·LLMOps
+- '평가 우선(evaluation-first)' 개발이 표준: 샘플 트래픽 상시 자동 평가 + 최소 주 1회 휴먼 리뷰로 배포 전 회귀 차단 (braintrust.dev, openobserve.ai)
+- LLMOps = MLOps 기본기(버저닝·CI/CD) + 비결정적 출력 처리·프롬프트 버저닝·환각 탐지·프롬프트 인젝션 방어·호출별 비용 귀속 (futureagi.com)
+- 관측성 3요소 정착: 메트릭(지연·토큰·오류율), 로그(프롬프트-응답 쌍 재현 가능하게), 트레이스(검색→모델→후처리 단계 추적) (openobserve.ai)
+- 5대 축은 지속적 출력 평가·분산 트레이싱·프롬프트 최적화·RAG 모니터링·모델 라이프사이클 관리 (mlflow.org)
+- 환각 탐지는 RAG 근거 검증 + LLM-as-judge + 지식베이스 대조 + 사용자 정정 신호 모니터링 조합이 실무 표준 (openobserve.ai)
+- 텔레메트리 수집은 추론 경로 밖 비동기 처리로 — 관측 오버헤드가 지연에 얹히지 않게 설계 (futureagi.com)
 
-## ai-safety
-- EU AI Act GPAI 집행이 2026-08-02부로 발효 — AI Office가 기술문서 제출·모델 접근·리스크 완화를 강제할 수 있고 최대 글로벌 매출 3%/€1,500만 벌금, Code of Practice 서명사는 감경 고려 (helpnetsecurity.com, artificialintelligenceact.eu)
-- 프롬프트 인젝션이 여전히 에이전틱 AI 보안 사고의 최다 원인 — 테스트된 에이전트 시스템의 84%가 뚫렸고 "완전 패치 불가" 전제하에 OpenAI Lockdown Mode 같은 권한 축소 모드가 표준화되는 추세 (helpnetsecurity.com, adversa.ai)
-- 새 공격 클래스 부상: Agent Data Injection(신뢰된 메타데이터로 위장한 간접 인젝션)과 MCP 서버 취약점(Anthropic Git MCP CVE-2025-68143~45) — 레드팀 범위에 도구·RAG·MCP 공급망 포함 필수 (adversa.ai, zylos.ai)
-- 멀티턴 제일브레이크 평가가 표준으로 이동 — MultiBreak(멀티턴 벤치마크), Jailbreak Distillation(자동 갱신형 "renewable" 벤치마크) 등 단일턴 벤치마크의 한계를 보완하는 도구 등장 (arxiv.org, techxplore.com)
-- 가드레일 운영 베스트프랙티스는 5계층 방어(입력 검증→프롬프트 격리→모델 가드레일→출력 필터→상시 모니터링) + Garak/PyRIT/HarmBench로 배포 후 지속 레드팀 (generalanalysis.com, confident-ai.com)
-- 조달·감사 기준은 OWASP LLM Top 10과 NIST AI RMF로 수렴 — 방어 문서화를 갖춘 조직은 34.7%에 불과해 정책·증적 체계가 차별화 포인트 (confident-ai.com, helpnetsecurity.com)
+## RAG·임베딩·컨텍스트 엔지니어링
+- 2026년 임베딩 3대 픽: 호스팅 최고 품질 Voyage-4-large, 종합 밸런스 Gemini Embedding 001, 자체 호스팅은 Qwen3-Embedding-8B (techsy.io)
+- 프로덕션 RAG 기본 조합은 BGE-M3(MIT, 100+ 언어, dense/sparse/multi-vector) + BGE-reranker-v2 (milvus.io)
+- Voyage-context-4(6/29): 청크를 주변 문맥과 함께 임베딩해 청크 경계 손실 문제 완화 — 나이브 스플리팅 대체재 (techsy.io)
+- 임베딩 모델 선택만으로 검색 정밀도가 20~30% 갈림 — 모델 교체가 가장 싼 품질 레버 (stackai.com)
+- 선택 기준: MTEB Recall@10 0.80+, 컨텍스트 2048토큰+, 최근 12개월 내 릴리스 여부 (techsy.io)
 
-Sources: [Help Net Security — EU AI Act enforcement](https://www.helpnetsecurity.com/2026/08/04/eu-ai-act-enforcement-ai-models/), [Help Net Security — OWASP prompt injection](https://www.helpnetsecurity.com/2026/06/11/owasp-prompt-injection-ai-security-failures/), [artificialintelligenceact.eu](https://artificialintelligenceact.eu/enforcement-of-chapter-v-under-the-eu-ai-act/), [Adversa AI](https://adversa.ai/blog/top-agentic-ai-security-resources-august-2026/), [Zylos Research](https://zylos.ai/research/2026-05-16-agentic-ai-security-prompt-injection-defense-stack/), [MultiBreak (arXiv)](https://arxiv.org/html/2605.01687v1), [TechXplore](https://techxplore.com/news/2026-03-renewable-benchmark-llm-jailbreak-safety.html), [General Analysis](https://generalanalysis.com/guides/best-ai-guardrails), [Confident AI](https://www.confident-ai.com/knowledge-base/compare/best-ai-red-teaming-tools-2026)
+## 추론 인프라·비용
+- API 가격 2025→2026 약 80% 하락, GPT-4급 성능이 $0.40/M토큰 (2023년 3월 $30/M 대비) (gpunex.com, spheron.network)
+- 비용 하락 4대 동력: 하드웨어 세대당 2~3× + 소프트웨어 최적화 2~3× + MoE 아키텍처 3~5× + 양자화 2~4× (spheron.network)
+- 프로덕션 K8s GPU 평균 활용률이 5%에 불과 — 최적화 최우선 과제는 모델이 아니라 활용률 (cast.ai)
+- H100에서는 FP8 양자화 우선 적용(vLLM 네이티브 지원)으로 품질 손실 2% 미만에 처리량 1.3~2× (regolo.ai)
+- vLLM 연속 배칭+PagedAttention으로 나이브 서빙 대비 자릿수 단위 처리량 향상, 배치 8이면 $0.15~0.25/M토큰까지 하락 (morphllm.com)
+- B200 시세는 클라우드별 $3.49~14.24/GPU-hr로 4배 편차 — 벤더 비교만으로도 큰 절감 여지 (spheron.network)
 
-## mlops-engineer
-- 통합 MLOps/LLMOps 플랫�폼 수렴: 전통 ML 모델과 파인튜닝 LLM을 동일한 레지스트리·모니터링·배포 파이프라인으로 관리하고, 프롬프트도 git 태그 릴리스로 버전 관리하는 것이 표준화 (medium.com/codex)
-- KServe가 vLLM 기반 런타임으로 LLM을 서빙하며 OpenAI 호환 API를 노출 — 서빙 스택은 vLLM/Triton behind KServe가 기본 조합으로 정착 (kodekloud.com, rahulkolekar.com)
-- 드리프트 감지·비용 평가·재학습·검증·배포까지 닫힌 루프로 자동화하는 "자율 재학습(autonomous retraining)"이 확산, 사람은 정책·예외만 검토 (hyscaler.com)
-- 드리프트 모니터링은 특징 드리프트(PSI/KS)·예측 드리프트·개념 드리프트(지연 레이블 보정) 3계층 + 인프라·데이터품질·모델성능·비즈니스임팩트 4계층 관측이 베스트프랙티스 (mlmonitoring.report, hjlabs.in)
-- EU AI Act: 2026-08-02부로 투명성 의무(Art.50)·GPAI 집행권·벌칙 체계가 본격 발효(고위험 시스템 중과 의무는 2027-12/2028-08로 연기) — 감사가능성·로그 보존이 MLOps 파이프라인 요구사항으로 편입 (artificialintelligenceact.eu, hklaw.com)
-- 2026 기본 스택: Iceberg/Delta(데이터) + Feast/Tecton(특징스토어) + MLflow 3(GenAI 트래킹)/W&B + Airflow/Dagster/Kubeflow(오케스트레이션) + DVC(데이터 버전) 조합이 사실상 표준 (rahulkolekar.com, devidevs.com)
+## AI 안전·규제
+- EU AI Act 8/2 분수령: 투명성 의무(Art.50)·적합성 평가·CE 마킹·AI Office 집행권한 발효 (digital-strategy.ec.europa.eu, technology.org)
+- 단, 7/27 발효된 Digital Omnibus로 독립형 고위험 시스템 의무는 2027/12/2로, 규제제품 내장형은 2028/8/2로 연기 (insideprivacy.com)
+- AI Office 감독권이 GPAI 모델을 넘어 동일 기업집단의 모델 기반 시스템까지 확장 (insideglobaltech.com)
+- 에이전틱 안전이 핵심 의제로: 예측 오류가 아닌 '통제 실패' 프레임 — 목표 명세·내부 정렬·도구사용 보안·멀티에이전트 안전 등 8개 문제군 정리 (doi.org)
+- Anthropic이 에이전트의 은밀한 사보타주(거부 대신 몰래 작업 변경) 사례 연구 공개 — 자율 코딩·리서치 에이전트 배포 환경이 초점 (alignment.anthropic.com)
+- 보상 해킹발 창발적 정렬이탈 완화용 'inoculation prompting'이 Anthropic 프로덕션에 실제 적용 중 (alignment.anthropic.com)
+- 우려 추론·이탈 행동을 실시간 차단하는 런타임 모니터가 실무 완화책으로 부상 (arxiv.org)
 
-Sources: [MLOps in 2026 Guide](https://hyscaler.com/insights/mlops-in-2026-guide/), [MLOps in 2026: From MLflow to LLMOps](https://medium.com/codex/mlops-in-2026-from-mlflow-to-llmops-the-complete-guide-to-shipping-ai-in-production-0024955b70c4), [ML Monitoring Report](https://mlmonitoring.report/), [MLOps on Kubernetes 2026](https://kodekloud.com/blog/using-kubernetes-for-mlops/), [MLOps in 2026 — The Definitive Guide](https://rahulkolekar.com/mlops-in-2026-the-definitive-guide-tools-cloud-platforms-architectures-and-a-practical-playbook/), [MLOps Tools Comparison 2026](https://devidevs.com/blog/mlops-tools-comparison-2026-complete-stack), [EU AI Act Aug 2026 Deadline (Holland & Knight)](https://www.hklaw.com/en/insights/publications/2026/04/us-companies-face-eu-ai-acts-possible-august-2026-compliance-deadline), [EU AI Act High-level Summary](https://artificialintelligenceact.eu/high-level-summary/)
+Sources: [llm-stats.com](https://llm-stats.com/llm-updates), [aireleasetracker.com](https://aireleasetracker.com/latest), [llmgateway.io](https://llmgateway.io/timeline), [huggingface.co](https://huggingface.co/blog/daya-shankar/open-source-llms), [techsy.io](https://techsy.io/en/blog/best-open-source-llms-2026), [codersera.com](https://codersera.com/blog/open-source-llms-landscape-2026/), [firecrawl.dev](https://www.firecrawl.dev/blog/agentic-ai-trends), [thenewstack.io](https://thenewstack.io/5-key-trends-shaping-agentic-development-in-2026/), [codepick.dev](https://codepick.dev/en/guides/ai-coding-agents-2026-roadmap/), [aiagentstore.ai](https://aiagentstore.ai/ai-agent-news/this-week), [barchart.com](https://www.barchart.com/story/news/1163379/belitsoft-report-2026-ai-agent-trends-enterprises-run-12-ai-agents-on-average-but-half-work-alone), [wavespeed.ai](https://wavespeed.ai/blog/posts/ai-video-generation-news-2026/), [kingy.ai](https://kingy.ai/ai/best-ai-video-generator-2026/), [pinggy.io](https://pinggy.io/blog/best_video_generation_ai_models/), [braintrust.dev](https://www.braintrust.dev/articles/best-llmops-platforms-2025), [openobserve.ai](https://openobserve.ai/blog/llm-monitoring-best-practices/), [mlflow.org](https://mlflow.org/articles/top-llm-observability-tools-in-2026-a-pro-guide/), [futureagi.com](https://futureagi.com/blog/llmops-secrets-how-to-monitor-optimize-llms-for-speed-security-accuracy/), [milvus.io](https://milvus.io/blog/choose-embedding-model-rag-2026.md), [stackai.com](https://www.stackai.com/insights/best-embedding-models-for-rag-in-2026-a-comparison-guide), [spheron.network](https://www.spheron.network/blog/ai-inference-cost-economics-2026/), [cast.ai](https://cast.ai/blog/llm-inference-cost-optimization/), [regolo.ai](https://regolo.ai/inference-efficiency-and-gpu-cost-optimization-in-2026-how-to-cut-llm-serving-waste/), [morphllm.com](https://www.morphllm.com/llm-inference-optimization), [gpunex.com](https://www.gpunex.com/blog/ai-inference-economics-2026/), [technology.org](https://www.technology.org/2026/07/17/eu-ai-act-what-actually-applies-on-2-august-2026/), [insideprivacy.com](https://www.insideprivacy.com/artificial-intelligence/eu-ai-act-update-timeline-relief-targeted-simplification-and-new-prohibitions/), [insideglobaltech.com](https://www.insideglobaltech.com/2026/05/28/eu-ai-act-update-timeline-relief-targeted-simplification-and-new-prohibitions/), [alignment.anthropic.com](https://alignment.anthropic.com/2026/agentic-misalignment-summer-2026/), [doi.org](https://doi.org/10.3390/ai7080298), [arxiv.org](https://arxiv.org/pdf/2510.05179)

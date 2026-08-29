@@ -1,91 +1,84 @@
 ---
 name: knowledge-quality-security
-description: QA·코드리뷰·보안 최신 지식 — 테스트 자동화, 취약점, 개인정보. 검증 게이트 역할이 작업 전 참고 (갱신: 2026-08-08)
+description: QA·코드리뷰·보안 최신 지식 — 테스트 자동화, 취약점, 개인정보. 검증 게이트 역할이 작업 전 참고 (갱신: 2026-08-29)
 ---
 
-# quality-security 도메인 지식 (2026-08-08)
+# quality-security 도메인 지식 (2026-08-29)
 
-> 역할별 에이전트 KNOWLEDGE 블록을 도메인 단위로 통합한 지식 베이스.
-> `agent-team learn --domains` 가 이 파일을 통째로 갱신한다.
+> `agent-team learn` 이 도메인 단위로 갱신하는 지식 베이스. 이 도메인 역할의 에이전트는 작업 전 참고.
 
-## code-reviewer
-- AI 코드리뷰가 "코멘트 게시 도구"에서 "행동하는 에이전트"로 전환 — 누락 테스트를 직접 작성하고 후속 PR을 열어 CI까지 돌리는 에이전틱 아키텍처가 2026년 핵심 흐름 (critique.sh)
-- 전체 커밋의 41%가 AI 보조 생성이며, AI 고도입 팀은 PR 병합이 98% 늘지만 리뷰 시간도 91% 증가 — 리뷰가 새 병목이 되어 자동화 리뷰가 필수 인프라화 (dev.to, greptile.com)
-- 조직 81%가 AI 생성 코드발 프로덕션 이슈 증가를 보고, AI 코드는 라인당 취약점이 15~18% 더 많음 — AI 생성 코드에는 생성 모델과 독립된 리뷰어를 두는 것이 베스트프랙티스 (codeant.ai, sourcegraph.com)
-- 정적 분석 + AI 리뷰를 한 패스로 결합한 하이브리드가 정확도·노이즈 면에서 우세하며, 기본 설정보다 팀 코딩 표준·아키텍처 규칙 기반 커스텀 리뷰 룰이 훨씬 유용한 피드백 생성 (deepsource.com, greptile.com)
-- 이슈 발견에서 그치지 않고 패치를 생성해 원클릭으로 PR에 적용하는 "능동적 수정(active remediation)"이 주류화 — 발견→수정→검증 루프가 리뷰 도구 안으로 통합 (critique.sh, sourcegraph.com)
-- 주요 도구는 Greptile, CodeRabbit, Cursor BugBot, Qodo, Graphite, SonarQube, Semgrep 등이며, 저장소 전체 컨텍스트 인지와 사용량 기반 과금이 선택 기준으로 부상 (greptile.com, kodus.io)
+## 테스트 자동화·QA
 
-Sources: [Greptile](https://www.greptile.com/content-library/best-ai-code-review-tools) · [DeepSource](https://deepsource.com/resources/ai-code-review-tools) · [Critique](https://www.critique.sh/ai-code-review-trends-2026) · [Sourcegraph](https://sourcegraph.com/blog/ai-code-review) · [CodeAnt](https://codeant.ai/blogs/how-to-review-ai-generated-code) · [DEV Community](https://dev.to/rahulxsingh/the-state-of-ai-code-review-in-2026-trends-tools-and-whats-next-2gfh) · [Kodus](https://kodus.io/en/ai-code-review-tools/)
+- 2026년은 '에이전틱 테스팅' 실전 도입 원년으로, 자율 에이전트가 앱을 탐색·리스크 추론·테스트 작성·실행·학습까지 수행하는 흐름이 주류화 (tricentis.com, parasoft.com)
+- Playwright v1.56+가 planner(탐색)·generator(코드 작성)·healer(로케이터 복구) 3-에이전트 아키텍처를 공식 내장 — 플래키 로케이터 수리 시간이 시간 단위에서 분 단위로 단축 (qaskills.sh, testdino.com)
+- Playwright MCP + 접근성 트리 우선 실행으로 AI가 구조화된 방식으로 앱을 탐색·테스트 생성·자가치유하는 패턴이 표준화 (anhtu.dev, testleaf.com)
+- 올해 5대 테스팅 트렌드: 자율 에이전트, 컴플라이언스 테스팅, AI 생성 코드 검증, 신뢰수준(confidence-level) 테스팅, 자가치유 테스트 (parasoft.com)
+- QA 역할이 '스크립트 작성자'에서 품질 목표 정의·AI 산출물 감독·자동 판단의 비즈니스 정합성 검증자로 이동 (tricentis.com, testomat.io)
+- 에코시스템 도구: TestDino(플래키 감지·AI 리포팅), Octomind(자율 테스트 플로우), ZeroStep(자연어 실행), TestSprite(MCP 기반) 등이 부상 (testdino.com)
+- 핵심 운영 모델은 '폐쇄 루프 AI + 인간 거버넌스' — 에이전트가 작성·실행·분석하되 인간이 게이트를 유지하는 구조 (getxray.app)
 
-## critic
-- Microsoft가 1년간의 실전 레드팀 결과를 반영해 에이전틱 AI 실패 모드 분류(taxonomy) v2.0을 공개 — goal hijacking, 에이전트 간 신뢰 상승, 세션 컨텍스트 오염 등 7개 신규 카테고리를 계획 검증 체크리스트에 반영할 것 (microsoft.com)
-- OWASP ASI 2026 프레임워크가 에이전트 시스템 전용 위협 순위를 정립 — 계획 검토 시 ASI01(목표 탈취)·ASI02(도구 오용)을 최우선 공격 시나리오로 가정하고 에이전트의 모든 도구·파라미터를 열거해 스트레스 테스트 (baeseokjae.github.io, generalanalysis.com)
-- 레드팀 자동화 도구 성숙: PyRIT, garak, Inspect, DeepTeam(50+ 취약점·멀티턴 공격 지원)이 2026년 표준 비교군 — 수동 적대 검토를 도구 기반 반복 검증으로 보완 가능 (confident-ai.com)
-- 고객 환경 배포 검증의 핵심은 에어갭 가정: 공용 레지스트리·패키지 매니저 의존이 최대 실패 지점이므로 프라이빗 레지스트리, `docker save/load` 이관, 내부 미러 강제 구성을 계획 단계에서 게이트로 검증 (semaphore.io, pulumi.com)
-- 단일 호스트 `docker run`/Compose는 HA·클러스터링 부재로 고객 프로덕션 규모에서 깨지는 지점 — 상태 저장 서비스는 외부 관리형 DB/스토리지 분리 여부를 반드시 심문할 것 (docs.mattermost.com, docs.anchore.com)
-- 아키텍처 거버넌스가 "결정 문서 → 자동 검증"으로 이동: ADR에 Compliance 섹션을 붙여 fitness function으로 기계 검증하고, LLM이 비결정적 기준(설계 일관성 등) 평가와 드리프트 감지에 참여하는 흐름 확산 (catio.tech, lukasniessen.com)
+## AI 코드리뷰
 
-Sources: [Microsoft Security Blog](https://www.microsoft.com/en-us/security/blog/2026/06/04/updating-taxonomy-failure-modes-agentic-ai-systems-year-red-teaming-taught-us/), [LLM Red Teaming Guide 2026](https://baeseokjae.github.io/posts/llm-red-teaming-guide-2026/), [General Analysis](https://generalanalysis.com/guides/best-ai-red-teaming-tools), [Confident AI](https://www.confident-ai.com/knowledge-base/compare/best-ai-red-teaming-tools-2026), [Semaphore](https://semaphore.io/blog/air-gapped-deployments-how-to-deploy-to-servers-without-internet-access-complete-guide), [Pulumi](https://www.pulumi.com/docs/administration/self-hosting/airgapped/), [Mattermost](https://docs.mattermost.com/deployment-guide/reference-architecture/deployment-scenarios/air-gapped-deployment.html), [Anchore](https://docs.anchore.com/current/docs/deployment/air_gapped/), [Catio](https://www.catio.tech/blog/architecture-as-code), [Lukas Niessen](https://lukasniessen.com/blog/155-fitness-functions-guide/)
+- 상위 도구 지형: Claude Code 리뷰(9개 병렬 서브에이전트 다차원 리뷰), CodeRabbit, Greptile, Qodo(2026년 멀티에이전트 아키텍처 도입), SonarQube (techsy.io, awesomecodereviews.com)
+- Sonar가 2026년 5월 Gitar 인수 — '알고리즘 정적분석 + 에이전틱 추론' 결합이 업계 방향으로 굳어짐 (awesomecodereviews.com)
+- AI 리뷰의 승부처는 검출량이 아니라 '고신호 코멘트' — 코드베이스 이해·팀 컨벤션 존중·거짓양성 최소화가 도입 성패를 가름 (collinwilkins.com)
+- AI 생성 코드는 '유능하지만 주니어인 개발자의 코드'로 취급: 동작은 하나 엣지케이스·보안·아키텍처 정합성 리뷰 필수 (collinwilkins.com)
+- 자율성이 높은 코딩 도구일수록 리뷰 규율도 비례해 강화해야 한다는 '고자율=고리뷰' 원칙이 베스트프랙티스로 정착 (internative.net)
+- 권장 리뷰 프로토콜: 보안 → 로직 오류 → 성능 → 스타일 순으로 스캔하고 심각도별로 findings 정리 (agensi.io)
 
-## qa-automation
-테스트 자동화 전략·유닛/통합/E2E·플래키 안정화 관점의 2026년 최신 동향입니다.
+## 애플리케이션 보안·취약점 동향
 
-- **에이전틱(Agentic) 테스팅 부상**: LLM이 목표(intent)만 받아 브라우저를 탐색·테스트 생성·자가치유하는 "테스트 에이전트"가 실전 도입, 단 완전 자율은 여전히 경계 대상 (testquality.com, devot.team)
-- **Playwright + MCP가 사실상 표준**: Model Context Protocol과 접근성 트리(accessibility-tree) 우선 실행으로 AI가 앱 구조를 구조적으로 탐색·테스트 자동생성하는 아키텍처가 2026년 주류화 (testdino.com, testquality.com)
-- **셀프힐링의 확장**: 로케이터 패치를 넘어 셀렉터·타이밍·런타임 오류·테스트 데이터·비주얼 어설션·인터랙션 등 6개 유형으로 자가치유가 세분화 (medium.com/qawolf, keysight.com)
-- **플래키 근본원인 분류가 핵심**: 레이스 컨디션·DOM 결합 브리틀 로케이터·오염된 인증 컨텍스트·환경별 렌더링 편차·비결정적 AI 에이전트 동작이 주요 원인으로 진단 플레이북화 (testquality.com)
-- **AI 치유는 반드시 인간 검토 게이트**: 자동 로케이터 수정은 승인 후 반영, 치유 빈도 분석으로 불안정 UI 영역을 역추적하는 것이 베스트프랙티스 (testomat.io, tenjinonline.com)
-- **의도 기반 로케이터 + 결정적 폴백**: 접근성 기반 intent 로케이터를 쓰되 직접 통제하는 deterministic fallback 래퍼를 붙여 AI 치유와 견고한 테스트 아키텍처를 결합 (qaskills.sh, shiplight.ai)
+- OWASP Top 10 2025 기준 Broken Access Control 1위(평가 대상 앱 100% 발견), Security Misconfiguration 2위 — 접근제어 결함이 고심각도 발견의 32%로 40% 급증 (patrowl.io, cycode.com)
+- CVE 발행량 지속 폭증: 2025년 상반기에만 23,667건으로 전년 대비 16% 증가 — 우선순위화(KEV·EPSS 기반)가 필수 역량 (cycode.com)
+- 공급망 CVE가 OWASP Top 10 전체에서 평균 익스플로잇·임팩트 점수 최고 — 취약점 스캐너 Trivy 자체가 하이재킹돼 CI/CD 수천 개에 자격증명 탈취를 배포한 사건(CVE-2026-33634)이 상징적 (cycode.com)
+- 조직 92%+가 AI 코딩 어시스턴트 사용 중이나, AI 생성 코드가 AppSec 팀의 1순위 사각지대로 지목 (cycode.com)
+- 프롬프트 인젝션이 이론적 잭브레이크를 넘어 기업 데이터 유출의 실전 공격 벡터로 진화 (cycode.com)
+- OWASP GenAI 프로젝트가 분기별 'GenAI Exploit Round-up'을 발행하며 AI 관련 실제 익스플로잇을 정례 추적 시작 (genai.owasp.org)
 
-## qa-engineer
-- AI 기반 테스트 자동화가 2026년 QA 핵심 트렌드로 자리잡음 — 요구사항에서 테스트 케이스 자동 생성, 코드 변경 분석 후 실행 우선순위 결정, 셀프힐링 테스트가 표준화 (tricentis.com, testomat.io)
-- Playwright 1.59~1.60이 '에이전틱 테스팅' 중심으로 전환 — 공식 테스트 에이전트, MCP 서버, Screencast API, `browser.bind()` 세션 공유, CLI 트레이스 분석 등 AI 에이전트가 브라우저를 직접 구동하는 워크플로우 지원 (bug0.com, currents.dev)
-- 구식 셀렉터 패턴·런치 옵션이 Playwright 최신 릴리스에서 제거됨 — 기존 테스트 스위트 마이그레이션 시 breaking change 점검 필요 (getdecipher.com)
-- 시프트레프트+시프트라이트 병행이 기본값 — 설계 단계에서 유저스토리·요구사항 갭 검증과 프로덕션 기반 테스트(관측·실사용 데이터)까지 QA 범위 확장 (talent500.com, testfort.com)
-- AI가 생성한 코드에 대한 검증이 QA의 신규 핵심 업무로 부상 — 조직 89%가 AI 기반 리스크 분석을 QA 의사결정의 핵심 요소로 기대 (quashbugs.com, qualityze.com)
-- 클라우드 디바이스 팜·브라우저 그리드(BrowserStack, Sauce Labs, AWS Device Farm)가 병렬 실기기 테스트의 표준 인프라로 정착 (testomat.io)
+## 소프트웨어 공급망 보안
 
-Sources: [tricentis.com](https://www.tricentis.com/blog/qa-trends-ai-agentic-testing) · [testomat.io](https://testomat.io/blog/software-testing-trends/) · [bug0.com](https://bug0.com/blog/whats-new-playwright-1-59) · [currents.dev](https://currents.dev/posts/pw-1.60.0) · [getdecipher.com](https://getdecipher.com/blog/whats-new-with-playwright-in-2026) · [talent500.com](https://talent500.com/blog/smarter-qa-2026-ai-automation-future-of-software-testing/) · [quashbugs.com](https://quashbugs.com/blog/state-of-qa-automation-2026-report)
+- 2025년 한 해 신규 악성 오픈소스 패키지 45.4만 개(전년 대비 75% 증가), 누적 123만 개 돌파 — npm이 레지스트리 악성코드의 99% 이상 차지 (sonatype 인용, shattered.io / reversinglabs 인용, redfoxsec.com)
+- 'Shai-Hulud' 웜이 npm 생태계에서 자기복제형 공급망 공격으로 대규모 패키지 감염 — 웜형 공격이 새 위협 등급으로 부상 (unit42.paloaltonetworks.com)
+- '슬롭스쿼팅(slopsquatting)' 실전화: LLM이 환각한 패키지명을 공격자가 선점 등록 — `unused-imports` 사례는 보안 조치 후에도 주간 233회 다운로드 지속 (cloudsecurityalliance.org)
+- EU 사이버복원력법(CRA): 2026년 9월부터 취약점 보고 의무, 2027년 12월 SBOM 의무화 — 위반 시 최대 1,500만 유로 벌금 (armorcode.com)
+- 방어 기본기: 의존성 설치 전 검증(레지스트리 나이·다운로드 수·저장소 존재), lockfile 고정, 설치 스크립트 차단, 프라이빗 프록시 레지스트리 (splunk.com)
+- AI가 추천한 의존성은 존재 여부·정확한 패키지명을 반드시 교차 확인하는 게이트를 CI에 넣는 것이 신규 베스트프랙티스 (cloudsecurityalliance.org)
 
-## qa-functional
-I have enough for a focused briefing.
+## AI 에이전트·LLM 보안
 
-- **에이전틱 QA(자율 테스트)가 주류화**: 플래너·생성·실행·분석 멀티에이전트가 목표 기반으로 테스트를 스스로 설계·실행·수정 — 기능 QA는 스크립트 작성보다 "에이전트 감독·검수" 역할로 이동 (katalon.com, tricentis.com)
-- **AC/유저스토리 → 테스트케이스 자동 생성**: GenAI가 요구사항·API 스펙에서 정상·부정·경계·회귀 케이스 초안을 개발 이전에 생성, 테스터는 검토·편집·선별하는 human-in-the-loop 워크플로우 정착 (testquality.com, testcollab.com)
-- **자기치유(self-healing) 테스트로 유지보수 급감**: UI 변경 시 로케이터를 자동 복구, Functionize·Mabl 등은 유지보수 공수를 최대 95%까지 절감 (autify.com, devassure.io)
-- **AI 보조 탐색적 테스트**: 에이전트가 사람이 놓치는 엣지케이스(중복 예약, 만료된 할인코드 순서, 동시성 충돌 등)를 제안 — 반복 작업은 AI, 판단·이해관계자 대응은 사람으로 역할 분리 (medium.com, 12thwonder.com)
-- **Jira·GitHub·CI/CD 통합 + 시프트레프트**: 요구사항 변경이 테스트케이스에 자동 반영되는 통합형 플랫폼 선호, 테스트를 SDLC 초기로 당겨 리스크·출시시간 단축 (getxray.app, testomat.io)
-- **AI 생성 테스트 아티팩트 거버넌스 부상**: 자율 테스트의 신뢰성·감사·규제 대응을 위한 검증·통제 프레임워크가 새 과제로 논의됨 (arxiv.org, thinksys.com)
+- OWASP 'Top 10 for Agentic Applications'(2025년 12월 발표)이 새 표준 프레임워크로 — 에이전트 목표 탈취(ASI01), 도구 오용(ASI02), 권한 남용(ASI03), 메모리 포이즈닝(ASI06), 에이전트 간 통신(ASI07) 등 (practical-devsecops.com, giskard.ai)
+- 에이전틱 시스템에서 프롬프트 인젝션은 '잭브레이크'가 아니라 실 자격증명으로 동작하는 에이전트의 의사결정을 탈취하는 수단으로 재정의 (lakera.ai)
+- OWASP MCP Top 10 베타 진행 중 — 악성 MCP 서버가 정상 서비스로 위장해 이메일을 몰래 BCC로 유출하는 류의 공격이 대표 시나리오 (imperva.com)
+- 실 인시던트를 지배하는 항목: 프롬프트 인젝션, 민감정보 노출, 시스템 프롬프트 유출, 부적절한 출력 처리, 무제한 리소스 소비 (imperva.com)
+- 에이전트에 최소권한·단기 자격증명·도구 실행 샌드박스·인간 승인 게이트를 두는 다층 방어가 권고 표준 (giskard.ai)
+- 간접 프롬프트 인젝션(IPI) 대상 레드티밍 도구·프록시 연구가 활발 — 웹 브라우징 에이전트 도입 전 IPI 테스트가 체크리스트화 (arxiv.org)
 
-Sources: [katalon](https://katalon.com/resources-center/blog/what-is-agentic-qa-the-complete-guide-for-2026), [Tricentis](https://www.tricentis.com/blog/qa-trends-ai-agentic-testing), [TestQuality](https://testquality.com/how-ai-is-transforming-test-case-generation-in-2026/), [TestCollab](https://testcollab.com/blog/ai-test-case-generation-tools), [Autify](https://autify.com/blog/ai-agent-testing), [DevAssure](https://www.devassure.io/blog/autonomous-qa-agentic-ai/), [Xray](https://www.getxray.app/blog/top-5-software-testing-trends-2026), [arXiv](https://arxiv.org/pdf/2606.08806)
+## AI 생성 코드 품질·보안
 
-## qa-lead
-- 에이전틱 AI 테스트가 스크립트 자동화를 대체하는 중 — 코드 변경·사용 패턴·리스크 분석 기반으로 무엇을 테스트할지 스스로 결정하는 자율 테스트 에이전트가 2026년 표준으로 자리잡음 (cloudqa.io, tricentis.com)
-- World Quality Report 2025-26: 조직 89%가 GenAI 기반 QE를 도입 중이나 전사 운영화는 ~15%뿐 — 격차의 원인은 도구가 아니라 거버넌스·전략·비즈니스 정렬로, QA 리더의 핵심 과제로 지목 (qaskills.sh)
-- 커버리지 극대화에서 "리스크 커버리지" 극대화로 전환 — 지능형 테스트 오케스트레이션으로 고위험 영역에 집중해 테스트 시간을 최대 40% 줄이면서 품질 성과는 개선하는 접근이 확산 (testomat.io)
-- 품질게이트는 커밋→통합→스테이징→카나리→프로덕션 모니터링 단계별 자동화가 베스트프랙티스 — 성숙한 CI/CD 게이트 보유 팀이 배포 빈도·리드타임·변경 실패율·복구 시간(DORA 지표) 전반에서 우위 (testomat.io)
-- 품질 엔지니어링이 딜리버리 단계 활동이 아닌 리더십 레벨 의제로 격상 — QE가 제품 스쿼드에 임베드되어 아키텍처·파이프라인·옵저버빌리티·릴리즈 계획 결정에 참여하는 조직 모델이 주류화 (getxray.app)
-- AI 생성 코드의 검증이 새 품질게이트 항목으로 부상 — 릴리즈 준비도(release readiness)를 테스트가 정의하는 "테스트 선행" 체제와 함께, AI 산출 코드 전용 밸리데이션 확대가 2026년 주요 트렌드 (accelq.com, inflectra.com)
+- Veracode 2026 GenAI 코드 보안 리포트: AI 코드 생성 태스크의 약 44%가 보안 취약점을 유발 — AI 코드량은 급증했으나 보안 성능은 수년째 제자리 (veracode.com)
+- Georgia Tech SSLab 'Vibe Security Radar': 2026년 3월 한 달에만 AI 생성 코드가 직접 원인인 CVE 35건 이상 공개 (infosecurity-magazine.com)
+- Fortune 50 실증 연구: AI 보조 개발자는 커밋을 3~4배 빠르게 생산하지만 보안 결함은 10배 유입 — '보안 부채'가 수습 속도를 추월 (cloudsecurityalliance.org)
+- AI 어시스턴트 사용 개발자는 덜 안전한 코드를 쓰면서도 스스로 안전하다고 평가하는 '거짓 안심' 효과가 반복 확인됨 (arxiv.org)
+- 반복 프롬프트로 코드를 개선시킬수록 보안이 오히려 저하되는 '반복 생성 보안 열화' 현상도 보고 — 세대별 재스캔 필요 (arxiv.org)
+- 대응: AI 코드 전용 게이트(SAST+시크릿+의존성 검증)를 머지 전 필수화하고, AI 산출 코드에 리뷰 면제를 주지 않는 정책 명문화 (veracode.com, cycode.com)
 
-Sources: [testomat.io](https://testomat.io/blog/software-testing-trends/), [tricentis.com](https://www.tricentis.com/blog/qa-trends-ai-agentic-testing), [qaskills.sh](https://qaskills.sh/blog/world-quality-report-2026-qa), [getxray.app](https://www.getxray.app/blog/top-5-software-testing-trends-2026), [cloudqa.io](https://cloudqa.io/2026-software-testing-trends-the-shift-from-scripted-to-agentic-ai/), [accelq.com](https://www.accelq.com/blog/software-testing-trends/), [inflectra.com](https://www.inflectra.com/Ideas/Whitepaper/Software-Testing-Trends.aspx)
+## 시크릿·CI/CD·비인간 계정(NHI)
 
-## security-privacy
-- **EU AI Act 2026-08-02 전면 적용 개시** — 고위험 AI 시스템에 리스크 관리·사이버보안·사고보고 의무가 발효되어, 생체·금융 데이터를 다루는 AI 기능은 즉시 컴플라이언스 점검 필요 (whitecase.com, mofo.com)
-- **OWASP GenAI LLM Top 10 2026 발표** — 7,700여 건 실제 사고 분석 기반으로 개편, 프롬프트 인젝션이 여전히 1위이고 '오정보(Misinformation)'가 급상승; 모델 출력도 신뢰하지 말고 권한 검증은 LLM이 아닌 다운스트림 시스템에서 수행하라는 원칙 강조 (genai.owasp.org, invicti.com)
-- **미국 주법, 민감정보 범위 확대** — 코네티컷이 신경 데이터·금융정보·정부 ID를 민감 카테고리에 추가, 콜로라도·오리건도 생체·위치정보 보호 강화; CPRA 벌금은 건당 $7,988로 인상되고 30일 자동 시정기간 폐지 (gunster.com, secureprivacy.ai)
-- **한국 개인정보위 2026 조사방향: 위험 기반 접근** — 생체·영상정보 등 고위험 개인정보, 다크패턴 과잉수집, AI 채용·블록체인 신기술을 6대 중점 조사 분야로 지정 — 생체정보 처리 서비스는 우선 타깃 (kimchang.com, epnc.co.kr)
-- **한국, AI 합성콘텐츠 삭제요구권 신설 및 영상정보처리기기법 제정 추진** — 정보주체의 딥페이크 삭제 요구권과 사업자 조치 의무가 법제화될 예정이므로 생성형 AI 기능이 있는 서비스는 삭제 파이프라인 설계 필요 (kimchang.com)
-- **프라이버시 강화 기술(PET) 표준화 흐름** — 컴플라이언스 담당자 79%가 2028년까지 프라이버시 보존 연산이 규제 표준이 될 것으로 전망; 건강·금융·생체 데이터 처리 조직은 지금부터 PET(동형암호·차분 프라이버시 등) 도입 평가 권고 (secureprivacy.ai)
+- GitGuardian 2026: 공개 GitHub에서 시크릿 2,900만 건 탐지, AI 서비스 키 유출은 전년 대비 81% 급증 (gitguardian.com)
+- 내부 저장소가 공개 저장소보다 하드코딩 시크릿 포함 확률 6배 — '내부라 안전' 가정이 최대 함정 (gitguardian.com)
+- 비인간 계정(NHI)이 인간 사용자 대비 80:1로 폭증 — CI/CD·K8s·클라우드에 흩어진 서비스 계정 관리가 2026년 최우선 리스크 (nhimg.org, gitguardian.com)
+- 조직 79%가 시크릿 유출 경험, 그중 77%는 실제 피해로 이어짐 (deepstrike.io)
+- 장수명 API 키 대신 OIDC 기반 단기·최소권한 토큰으로 전환하는 것이 CI/CD 시크릿 스프롤의 표준 해법 (kineticskunk.io, gitguardian.com)
+- DevSecOps 보호 범위가 코드에서 의존성·빌드 시스템·아티팩트·레지스트리·배포 경로 전체로 확장 (helpnetsecurity.com)
 
-Sources: [White & Case](https://www.whitecase.com/insight-alert/privacy-and-cybersecurity-2025-2026-insights-challenges-and-trends-ahead), [Morrison Foerster](https://www.mofo.com/resources/insights/251218-data-cyber-privacy-predictions-for-2026), [OWASP GenAI](https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/), [Invicti](https://www.invicti.com/blog/web-security/owasp-llm-top-10-2026-whats-new), [Gunster](https://www.gunster.com/newsroom/publications/2026-data-privacy-laws-state-changes-universal-opt-out-compliance), [Secure Privacy](https://secureprivacy.ai/blog/data-privacy-trends-2026), [김앤장](https://www.kimchang.com/ko/insights/detail.kc?sch_section=4&idx=33978), [테크월드](https://www.epnc.co.kr/news/articleView.html?idxno=326050)
+## 개인정보·규제
 
-## security-reviewer
-- OWASP Top 10 2025 최종판 발표(2026-01): '소프트웨어 공급망 실패'·'예외 상황 처리 미흡' 2개 신규 항목 추가, SSRF는 Broken Access Control에 흡수, Security Misconfiguration이 2위로 상승 — 리뷰 체크리스트를 2021판에서 갱신 필요 (owasp.org, gitlab.com)
-- Broken Access Control이 여전히 1위(테스트된 앱의 평균 3.73%에서 발견) — 인증/인가 리뷰가 계속 최우선 점검 영역 (owasp.org)
-- 프롬프트 인젝션이 에이전틱 AI 시대 1순위 위협으로 부상(전년 대비 공격 340% 급증 보고), 완전 차단 불가 전제 하에 입력 필터링·샌드박싱·검색 콘텐츠 시맨틱 필터 등 심층방어가 표준 — LLM/MCP 연동 코드 리뷰 시 필수 점검 (securityjourney.com, eccu.edu)
-- 비인간 계정(NHI)이 사람 대비 10:1로 급증하며 시크릿 스캐닝이 NHI 수명주기 관리(소유자 매핑·자동 로테이션·ISPM)로 확장 — GitGuardian·Oasis·Entro·Akeyless 등이 대표 도구 (gitguardian.com, akeyless.io)
-- EU AI Act 고위험 시스템 규정이 2026-08-02부로 전면 시행, 미국 20개 주 신규 프라이버시법과 겹치는 '컴플라이언스 컨버전스' — 동의 메커니즘·벤더 감독·자동화된 의사결정이 집중 단속 대상 (onetrust.com, insideprivacy.com)
-- 규제·OWASP 모두 프라이버시를 문서 작업이 아닌 설계·인프라 문제로 취급하는 방향(EU Data Act, 호주 ADM 투명성 규칙 등) — 리뷰 시 데이터 최소수집·자동 의사결정 투명성을 코드 레벨에서 확인 (secureprivacy.ai)
+- EU AI Act가 2026년 8월 2일부로 전면 적용(일부 고위험 제품은 2027년까지 유예) — 7월 27일 발효된 AI 옴니버스가 고위험 AI 준수 기한을 일부 연장 (kasowitz.com, insideprivacy.com)
+- EDPB 2026년 공동 집행 액션은 GDPR 12~14조 투명성·정보제공 의무에 집중 — 투명성 위반이 올해 최우선 단속 대상 (tjc-group.com, onetrust.com)
+- 미국 20개 주 신규 프라이버시법 + 자동화 의사결정·동의 메커니즘·벤더 감독을 겨냥한 규제 수렴이 진행 (secureprivacy.ai, onetrust.com)
+- 한국 개인정보보호위원회는 2026년 4월 개인정보 처리방침 작성지침 개정 — 생성형 AI 서비스 부록 신설, 온디바이스 처리 기준 명확화 (lawtimes.co.kr, kimchang.com)
+- 개보위는 공익 목적 AI 개발 시 맞춤 안전조치를 전제로 원본데이터 활용을 허용하는 'AI 원본활용 특례' 도입 추진 중 (kimchang.com)
+- 생성형 AI 개발·활용을 위한 개인정보 처리 안내서가 공개·배포됨 — 국내 AI 서비스는 이 기준 정합성 점검이 필수 (privacy.go.kr, shinkim.com)
+- 헬스케어·고용·법집행 등 민감 영역 AI는 정기 감사·투명성·데이터 처리 문서화가 의무화 흐름 (cookie-script.com)
 
-Sources: [OWASP Top 10:2025](https://owasp.org/Top10/2025/), [GitLab — 2025 OWASP Top 10 변경점](https://about.gitlab.com/blog/2025-owasp-top-10-whats-changed-and-why-it-matters/), [Security Journey — Prompt Injection 2026](https://www.securityjourney.com/post/prompt-injection-attacks-in-llms-what-developers-need-to-know-in-2026), [ECCU — Prompt Injection Threat](https://www.eccu.edu/blog/prompt-injection-ai-cybersecurity-threat/), [GitGuardian — NHI Security Tools 2026](https://blog.gitguardian.com/nhi-security-tools/), [Akeyless — NHI Management Tools 2026](https://www.akeyless.io/blog/top-5-non-human-identity-management-tools-for-2026/), [OneTrust — 2026 프라이버시 트렌드](https://www.onetrust.com/blog/the-5-trends-shaping-global-privacy-and-enforcement-in-2026/), [Inside Privacy — 2026 EU 전망](https://www.insideprivacy.com/european-union-2/what-to-watch-in-2026-key-eu-privacy-cybersecurity-developments/), [Secure Privacy — Privacy Laws 2026](https://secureprivacy.ai/blog/privacy-laws-2026)
+Sources: [Tricentis](https://www.tricentis.com/blog/qa-trends-ai-agentic-testing) · [Parasoft](https://www.parasoft.com/blog/annual-software-testing-trends/) · [QASkills](https://qaskills.sh/blog/playwright-test-agents-planner-generator-healer) · [TestDino](https://testdino.com/blog/playwright-ai-ecosystem) · [Awesome Code Reviews](https://www.awesomecodereviews.com/tools/ai-code-review-tools/) · [collinwilkins.com](https://collinwilkins.com/articles/ai-code-review-best-practices-approaches-tools) · [Patrowl](https://patrowl.io/en/blog/owasp-top-10-2025-what-s-changed-and-the-2026-data) · [Cycode](https://cycode.com/blog/application-security-vulnerabilities/) · [OWASP GenAI](https://genai.owasp.org/2026/04/14/owasp-genai-exploit-round-up-report-q1-2026/) · [Unit42](https://unit42.paloaltonetworks.com/npm-supply-chain-attack/) · [CSA — Slopsquatting](https://labs.cloudsecurityalliance.org/research/csa-research-note-slopsquatting-ai-supply-chain-20260419-csa/) · [Splunk](https://www.splunk.com/en_us/blog/security/npm-supply-chain-attack-detection-analysis.html) · [Practical DevSecOps](https://www.practical-devsecops.com/owasp-top-10-agentic-applications/) · [Imperva](https://www.imperva.com/blog/owasp-llm-top-10-what-comes-next-agentic-mcp/) · [Lakera](https://www.lakera.ai/blog/the-progressive-breach-model-behind-the-owasp-top-10-for-agentic-applications) · [Veracode](https://www.veracode.com/blog/2026-genai-code-security-report-ai-risk/) · [Infosecurity Magazine](https://www.infosecurity-magazine.com/news/ai-generated-code-vulnerabilities/) · [CSA — AI CVE Surge](https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-generated-code-vulnerability-surge-2026/) · [GitGuardian](https://blog.gitguardian.com/the-state-of-secrets-sprawl-2026/) · [Help Net Security](https://www.helpnetsecurity.com/2026/05/20/hard-truths-from-2026-devops-threats-report/) · [Inside Privacy](https://www.insideprivacy.com/european-union-2/what-to-watch-in-2026-key-eu-privacy-cybersecurity-developments/) · [Kasowitz](https://www.kasowitz.com/media/viewpoints/data-privacy-ai-regulatory-and-compliance-update-july-2026/) · [김앤장](https://www.kimchang.com/ko/insights/detail.kc?sch_section=4&idx=33715) · [법률신문](https://www.lawtimes.co.kr/news/articleView.html?idxno=220711) · [개인정보보호위원회](https://www.privacy.go.kr/front/bbs/bbsView.do?bbsNo=BBSMSTR_000000000049&bbscttNo=20836)
