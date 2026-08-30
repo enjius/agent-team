@@ -1,84 +1,69 @@
 ---
 name: knowledge-quality-security
-description: QA·코드리뷰·보안 최신 지식 — 테스트 자동화, 취약점, 개인정보. 검증 게이트 역할이 작업 전 참고 (갱신: 2026-08-29)
+description: QA·코드리뷰·보안 최신 지식 — 테스트 자동화, 취약점, 개인정보. 검증 게이트 역할이 작업 전 참고 (갱신: 2026-08-30)
 ---
 
-# quality-security 도메인 지식 (2026-08-29)
+# quality-security 도메인 지식 (2026-08-30)
 
 > `agent-team learn` 이 도메인 단위로 갱신하는 지식 베이스. 이 도메인 역할의 에이전트는 작업 전 참고.
 
 ## 테스트 자동화·QA
-
-- 2026년은 '에이전틱 테스팅' 실전 도입 원년으로, 자율 에이전트가 앱을 탐색·리스크 추론·테스트 작성·실행·학습까지 수행하는 흐름이 주류화 (tricentis.com, parasoft.com)
-- Playwright v1.56+가 planner(탐색)·generator(코드 작성)·healer(로케이터 복구) 3-에이전트 아키텍처를 공식 내장 — 플래키 로케이터 수리 시간이 시간 단위에서 분 단위로 단축 (qaskills.sh, testdino.com)
-- Playwright MCP + 접근성 트리 우선 실행으로 AI가 구조화된 방식으로 앱을 탐색·테스트 생성·자가치유하는 패턴이 표준화 (anhtu.dev, testleaf.com)
-- 올해 5대 테스팅 트렌드: 자율 에이전트, 컴플라이언스 테스팅, AI 생성 코드 검증, 신뢰수준(confidence-level) 테스팅, 자가치유 테스트 (parasoft.com)
-- QA 역할이 '스크립트 작성자'에서 품질 목표 정의·AI 산출물 감독·자동 판단의 비즈니스 정합성 검증자로 이동 (tricentis.com, testomat.io)
-- 에코시스템 도구: TestDino(플래키 감지·AI 리포팅), Octomind(자율 테스트 플로우), ZeroStep(자연어 실행), TestSprite(MCP 기반) 등이 부상 (testdino.com)
-- 핵심 운영 모델은 '폐쇄 루프 AI + 인간 거버넌스' — 에이전트가 작성·실행·분석하되 인간이 게이트를 유지하는 구조 (getxray.app)
+- Playwright가 QA 채택률 45.1%로 압도적 1위, Cypress 14.4%·Selenium 22.1%(하락세)로 사실상 표준 지위 확보 (elionavarrete.com)
+- 2026년 테스트 생성의 핵심 도약은 MCP 브라우저 에이전트 — AI가 navigate/click/snapshot 툴로 실제 브라우저를 직접 구동하며 테스트를 만들어냄 (testquality.com)
+- QA 엔지니어 역할이 "테스트 작성자"에서 파이프라인 설계·AI 산출물 리뷰를 맡는 "테스트 아키텍트"로 이동 중 (elionavarrete.com)
+- AI 테스트 생성은 로케이터 정확도 80~90% 수준으로, 3~4시간짜리 테스트 작성이 15~20분으로 압축되지만 리뷰 공수는 필수 (qaskills.sh)
+- 자연어 플로우 기술 → 테스트 생성 → CI에서 플래키 테스트 셀프힐링까지 전 계층에 AI가 내장되는 추세 (blog.buildbetter.ai)
+- 비용 감각: 녹화→코드 변환 $0.02~0.08/테스트, 프롬프트 기반 생성 $0.10~0.30, 자율 에이전트 탐색은 $0.50~2.00/플로우로 가장 비쌈 (qaskills.sh)
 
 ## AI 코드리뷰
+- 2026년 주요 도구: CodeRabbit(PR 요약 최속), Greptile(멀티서비스 아키텍처 심층), SonarQube(규제산업 컴플라이언스), CodeAnt(리뷰+보안스캔+펜테스트 통합), Bugbot, Claude Code Review (sourcegraph.com, codeant.ai)
+- 상위 AI 리뷰 에이전트는 정밀도 98% 수준까지 도달 — 초기 세대의 과도한 오탐(노이즈 코멘트) 문제가 크게 개선됨 (deepsource.com)
+- 도구 비교 시 벤더 주장 대신 OpenSSF CVE Benchmark(유일한 독립 공개 벤치마크) 기준 정확도를 확인하는 것이 베스트프랙티스 (codeant.ai)
+- 실무 표준은 하이브리드: 정적분석은 고신뢰 머지 게이트로, AI 리뷰는 머지 전 맥락적 조기 피드백으로 병행 (sourcegraph.com)
+- AI 리뷰의 강점은 diff 요약·시맨틱 이슈 감지·레포 전체 맥락 추론으로, 룰 기반 정적분석과 역할이 분화됨 (aikido.dev)
 
-- 상위 도구 지형: Claude Code 리뷰(9개 병렬 서브에이전트 다차원 리뷰), CodeRabbit, Greptile, Qodo(2026년 멀티에이전트 아키텍처 도입), SonarQube (techsy.io, awesomecodereviews.com)
-- Sonar가 2026년 5월 Gitar 인수 — '알고리즘 정적분석 + 에이전틱 추론' 결합이 업계 방향으로 굳어짐 (awesomecodereviews.com)
-- AI 리뷰의 승부처는 검출량이 아니라 '고신호 코멘트' — 코드베이스 이해·팀 컨벤션 존중·거짓양성 최소화가 도입 성패를 가름 (collinwilkins.com)
-- AI 생성 코드는 '유능하지만 주니어인 개발자의 코드'로 취급: 동작은 하나 엣지케이스·보안·아키텍처 정합성 리뷰 필수 (collinwilkins.com)
-- 자율성이 높은 코딩 도구일수록 리뷰 규율도 비례해 강화해야 한다는 '고자율=고리뷰' 원칙이 베스트프랙티스로 정착 (internative.net)
-- 권장 리뷰 프로토콜: 보안 → 로직 오류 → 성능 → 스타일 순으로 스캔하고 심각도별로 findings 정리 (agensi.io)
+## 공급망 보안 (핫이슈)
+- 2026-08-04 'ChainDrop' 공격: 주간 1.27억 다운로드 keyv 메인테이너의 GitHub 계정이 탈취돼 444개 패키지·1,381개 버전(월 20억+ 설치)에 크리덴셜 탈취 웜(Mini Shai-Hulud) 주입 (securityweek.com, datadoghq.com)
+- 웜은 훔친 npm/GitHub 크리덴셜로 다른 메인테이너 패키지에 변조 릴리스를 발행하며 자가 전파 — 레지스트리 전반의 연쇄 감염 구조 (cybersecuritynews.com)
+- 공격 벡터는 install-time 스크립트(setup.mjs) — npm install만 해도 코드 실행 전 감염되므로, npm v12는 설치 스크립트를 기본 비활성화하는 파괴적 변경을 도입 중 (github.blog)
+- npm 대응책: staged publishing(발행 전 추가 승인·2FA 강제), 신뢰 발행(trusted publishing) 확산 — 팀 CI에서 lockfile 고정·설치 스크립트 차단(--ignore-scripts) 점검 필요 (github.blog, mondoo.com)
+- SBOM·아티팩트 서명(Sigstore)·의존성 스캔(Trivy)이 이론에서 법적 의무 수준으로 격상, SLSA 프레임워크가 표준 참조 (ainformat.com, practical-devsecops.com)
 
-## 애플리케이션 보안·취약점 동향
+## LLM·에이전틱 AI 보안
+- OWASP LLM Top 10 2026 발표: 프롬프트 인젝션이 3년 연속 1위 — "SQL 인젝션과 달리 근본적 엔지니어링 해법이 없다"는 것이 공식 입장 (sdtimes.com)
+- 가장 큰 순위 변동은 Excessive Agency(과잉 에이전시)의 3위 급상승 — 웹 탐색·툴 호출·자율 행동하는 에이전트에 과도한 권한을 주는 리스크 (reversinglabs.com)
+- 2026 개정판의 설계 철학 전환: "모든 모델은 결국 속는다"를 전제로, 속아도 피해가 제한되는 시스템(권한 최소화·격리·확인 게이트)을 설계하라는 접근 (checkpoint.com)
+- OWASP가 약 1만 건의 실제 AI 보안 인시던트 DB를 구축 — 이론적 위협이 아닌 실제 발생 리스크 기반으로 순위 재편 (checkpoint.com)
+- AI 코딩 도구 자체도 간접 프롬프트 인젝션에 취약하다는 연구 발표 — 레포 내 악성 파일/이슈 텍스트가 에이전트를 조종하는 시나리오 검증 필요 (arxiv.org)
+- 브라우징 에이전트 대상 간접 인젝션 레드팀 도구(IPI-proxy)·SaaS 연동 에이전트 레드팀 벤치마크(AgentRedBench) 등 공격·방어 연구 활발 (arxiv.org)
 
-- OWASP Top 10 2025 기준 Broken Access Control 1위(평가 대상 앱 100% 발견), Security Misconfiguration 2위 — 접근제어 결함이 고심각도 발견의 32%로 40% 급증 (patrowl.io, cycode.com)
-- CVE 발행량 지속 폭증: 2025년 상반기에만 23,667건으로 전년 대비 16% 증가 — 우선순위화(KEV·EPSS 기반)가 필수 역량 (cycode.com)
-- 공급망 CVE가 OWASP Top 10 전체에서 평균 익스플로잇·임팩트 점수 최고 — 취약점 스캐너 Trivy 자체가 하이재킹돼 CI/CD 수천 개에 자격증명 탈취를 배포한 사건(CVE-2026-33634)이 상징적 (cycode.com)
-- 조직 92%+가 AI 코딩 어시스턴트 사용 중이나, AI 생성 코드가 AppSec 팀의 1순위 사각지대로 지목 (cycode.com)
-- 프롬프트 인젝션이 이론적 잭브레이크를 넘어 기업 데이터 유출의 실전 공격 벡터로 진화 (cycode.com)
-- OWASP GenAI 프로젝트가 분기별 'GenAI Exploit Round-up'을 발행하며 AI 관련 실제 익스플로잇을 정례 추적 시작 (genai.owasp.org)
+## AI 생성 코드 보안
+- AI 코드 생성 태스크의 55%만 보안 안전 — 2년간의 모델 세대교체에도 보안 통과율은 제자리(문법 정확도는 95%+와 대조) (veracode.com)
+- AI 생성 코드의 62%가 설계 결함 또는 알려진 취약점 포함 — "생성됐다=검증됐다"가 아님을 리뷰 게이트에서 전제해야 함 (cloudsecurityalliance.org)
+- 빈발 취약점 패턴: 문자열 연결 SQL 인젝션, 미소독 출력 XSS, 구식 암호화 알고리즘 재생산, OS 커맨드 인젝션, 하드코딩 크리덴셜, 약한 난수 (veracode.com, securityjourney.com)
+- 반복 수정(iterative generation)을 거칠수록 보안이 오히려 저하되는 역설이 체계적으로 확인됨 — 리라이트 루프 후 재스캔 필수 (arxiv.org)
+- '바이브 코딩'으로 비개발자 앱 제작이 확산되며 보안 검증 없는 코드의 프로덕션 유입이 새 리스크 축으로 부상 (sqmagazine.co.uk)
+- LLM/에이전트가 만든 자동 패치(APR)도 보안 리스크를 새로 유입할 수 있다는 대규모 연구 — 자동 수정도 리뷰 대상 (arxiv.org)
 
-## 소프트웨어 공급망 보안
+## 취약점 관리
+- 2025년 CVE 48,244건(전년 대비 +20%), 2026년은 사상 최대 59,000건 전망 — 9분당 1건꼴이라 수동 트리아지는 불가능 (hackerstorm.com)
+- CVSS 단독 우선순위화 탈피가 대세: CVSS 7+ 중 실제 악용 관측은 2.3%뿐 — CISA KEV(악용 확인) → EPSS(악용 확률) → CVSS 순의 계층적 트리아지가 표준 (nhimg.org, ismalicious.com)
+- KEV+EPSS 조합 시 패치 워크로드 95% 감소하면서 악용 가능성 높은 취약점의 63% 커버 가능 (stingrai.io)
+- 공격자들은 엣지 장비를 넘어 "시스템을 관리하는 시스템"(관리 콘솔·통신 플랫폼·인프라 어플라이언스)을 집중 공략하는 추세 (mondoo.com)
+- 단발성 스캔에서 CTEM(지속 위협 노출 관리) 사이클로 전환 — 자산 가시성·악용 증거 기반 자동화가 핵심 (deepstrike.io)
 
-- 2025년 한 해 신규 악성 오픈소스 패키지 45.4만 개(전년 대비 75% 증가), 누적 123만 개 돌파 — npm이 레지스트리 악성코드의 99% 이상 차지 (sonatype 인용, shattered.io / reversinglabs 인용, redfoxsec.com)
-- 'Shai-Hulud' 웜이 npm 생태계에서 자기복제형 공급망 공격으로 대규모 패키지 감염 — 웜형 공격이 새 위협 등급으로 부상 (unit42.paloaltonetworks.com)
-- '슬롭스쿼팅(slopsquatting)' 실전화: LLM이 환각한 패키지명을 공격자가 선점 등록 — `unused-imports` 사례는 보안 조치 후에도 주간 233회 다운로드 지속 (cloudsecurityalliance.org)
-- EU 사이버복원력법(CRA): 2026년 9월부터 취약점 보고 의무, 2027년 12월 SBOM 의무화 — 위반 시 최대 1,500만 유로 벌금 (armorcode.com)
-- 방어 기본기: 의존성 설치 전 검증(레지스트리 나이·다운로드 수·저장소 존재), lockfile 고정, 설치 스크립트 차단, 프라이빗 프록시 레지스트리 (splunk.com)
-- AI가 추천한 의존성은 존재 여부·정확한 패키지명을 반드시 교차 확인하는 게이트를 CI에 넣는 것이 신규 베스트프랙티스 (cloudsecurityalliance.org)
-
-## AI 에이전트·LLM 보안
-
-- OWASP 'Top 10 for Agentic Applications'(2025년 12월 발표)이 새 표준 프레임워크로 — 에이전트 목표 탈취(ASI01), 도구 오용(ASI02), 권한 남용(ASI03), 메모리 포이즈닝(ASI06), 에이전트 간 통신(ASI07) 등 (practical-devsecops.com, giskard.ai)
-- 에이전틱 시스템에서 프롬프트 인젝션은 '잭브레이크'가 아니라 실 자격증명으로 동작하는 에이전트의 의사결정을 탈취하는 수단으로 재정의 (lakera.ai)
-- OWASP MCP Top 10 베타 진행 중 — 악성 MCP 서버가 정상 서비스로 위장해 이메일을 몰래 BCC로 유출하는 류의 공격이 대표 시나리오 (imperva.com)
-- 실 인시던트를 지배하는 항목: 프롬프트 인젝션, 민감정보 노출, 시스템 프롬프트 유출, 부적절한 출력 처리, 무제한 리소스 소비 (imperva.com)
-- 에이전트에 최소권한·단기 자격증명·도구 실행 샌드박스·인간 승인 게이트를 두는 다층 방어가 권고 표준 (giskard.ai)
-- 간접 프롬프트 인젝션(IPI) 대상 레드티밍 도구·프록시 연구가 활발 — 웹 브라우징 에이전트 도입 전 IPI 테스트가 체크리스트화 (arxiv.org)
-
-## AI 생성 코드 품질·보안
-
-- Veracode 2026 GenAI 코드 보안 리포트: AI 코드 생성 태스크의 약 44%가 보안 취약점을 유발 — AI 코드량은 급증했으나 보안 성능은 수년째 제자리 (veracode.com)
-- Georgia Tech SSLab 'Vibe Security Radar': 2026년 3월 한 달에만 AI 생성 코드가 직접 원인인 CVE 35건 이상 공개 (infosecurity-magazine.com)
-- Fortune 50 실증 연구: AI 보조 개발자는 커밋을 3~4배 빠르게 생산하지만 보안 결함은 10배 유입 — '보안 부채'가 수습 속도를 추월 (cloudsecurityalliance.org)
-- AI 어시스턴트 사용 개발자는 덜 안전한 코드를 쓰면서도 스스로 안전하다고 평가하는 '거짓 안심' 효과가 반복 확인됨 (arxiv.org)
-- 반복 프롬프트로 코드를 개선시킬수록 보안이 오히려 저하되는 '반복 생성 보안 열화' 현상도 보고 — 세대별 재스캔 필요 (arxiv.org)
-- 대응: AI 코드 전용 게이트(SAST+시크릿+의존성 검증)를 머지 전 필수화하고, AI 산출 코드에 리뷰 면제를 주지 않는 정책 명문화 (veracode.com, cycode.com)
-
-## 시크릿·CI/CD·비인간 계정(NHI)
-
-- GitGuardian 2026: 공개 GitHub에서 시크릿 2,900만 건 탐지, AI 서비스 키 유출은 전년 대비 81% 급증 (gitguardian.com)
-- 내부 저장소가 공개 저장소보다 하드코딩 시크릿 포함 확률 6배 — '내부라 안전' 가정이 최대 함정 (gitguardian.com)
-- 비인간 계정(NHI)이 인간 사용자 대비 80:1로 폭증 — CI/CD·K8s·클라우드에 흩어진 서비스 계정 관리가 2026년 최우선 리스크 (nhimg.org, gitguardian.com)
-- 조직 79%가 시크릿 유출 경험, 그중 77%는 실제 피해로 이어짐 (deepstrike.io)
-- 장수명 API 키 대신 OIDC 기반 단기·최소권한 토큰으로 전환하는 것이 CI/CD 시크릿 스프롤의 표준 해법 (kineticskunk.io, gitguardian.com)
-- DevSecOps 보호 범위가 코드에서 의존성·빌드 시스템·아티팩트·레지스트리·배포 경로 전체로 확장 (helpnetsecurity.com)
+## DevSecOps·CI/CD 보안
+- 비인간 신원(NHI: 서비스 계정·AI 에이전트·CI/CD 시크릿)이 1위 공격 벡터로 부상 — 머신 신원에 제로트러스트·권한 관리(Entitlement Management for AI) 적용이 2026 화두 (deepstrike.io)
+- 'Shift-left'에서 'Shift-smart'로: 저영향 알림 홍수 대신 개발자 워크스페이스 안에서 맥락적·실행 가능한 보안 피드백만 전달 (ox.security)
+- CI/CD 파이프라인 하드닝이 생존 요건화 — 가변 참조(mutable ref)와 암묵적 신뢰 지점 하나하나가 공격면 (yoursky.blue)
+- 표준 도구 스택 수렴: OPA(policy-as-code), Sigstore(서명), Trivy(스캔), Vault(시크릿) (requirementguide.com, practical-devsecops.com)
+- 코파일럿 보조를 넘어 자율 보안 에이전트 + 강제 가능한 신뢰(enforceable trust) 체계로 DevSecOps가 재편되는 중 (yoursky.blue)
 
 ## 개인정보·규제
+- 한국 개정 PIPA 2026-09-11 시행 임박(D-12): 과징금 상한이 '관련 매출 기준'에서 전체 매출의 10%로 상향 — 국내 서비스는 즉시 점검 필요 (kiteworks.com, chambers.com)
+- 2026-02-12 국회 통과·03-10 공포된 PIPA 추가 개정은 AI 학습 데이터 활용 규칙을 재정립 — 접근권·보안 요구·해외 사업자 국내대리인 의무 구체화 (blog.pebblous.ai, dataguidance.com)
+- 한국 AI기본법(AI Framework Act)이 2026년 1월 발효 — AI 서비스는 PIPA와 이중 컴플라이언스 체계 (kasowitz.com)
+- EU AI Act 고위험 시스템 규정이 2026년 8월 전면 시행 — 최대 €3,500만 또는 매출 7% 과징금이 GDPR 위에 중첩 (secureprivacy.ai)
+- 전 세계 144개국에 개인정보보호법 발효, 50개 이상 관할권이 집행 체계 보유 — "고지 중심"에서 기술적 설계·검증된 사용자 통제 중심의 "인프라로서의 프라이버시"로 패러다임 이동 (onetrust.com, kiteworks.com)
 
-- EU AI Act가 2026년 8월 2일부로 전면 적용(일부 고위험 제품은 2027년까지 유예) — 7월 27일 발효된 AI 옴니버스가 고위험 AI 준수 기한을 일부 연장 (kasowitz.com, insideprivacy.com)
-- EDPB 2026년 공동 집행 액션은 GDPR 12~14조 투명성·정보제공 의무에 집중 — 투명성 위반이 올해 최우선 단속 대상 (tjc-group.com, onetrust.com)
-- 미국 20개 주 신규 프라이버시법 + 자동화 의사결정·동의 메커니즘·벤더 감독을 겨냥한 규제 수렴이 진행 (secureprivacy.ai, onetrust.com)
-- 한국 개인정보보호위원회는 2026년 4월 개인정보 처리방침 작성지침 개정 — 생성형 AI 서비스 부록 신설, 온디바이스 처리 기준 명확화 (lawtimes.co.kr, kimchang.com)
-- 개보위는 공익 목적 AI 개발 시 맞춤 안전조치를 전제로 원본데이터 활용을 허용하는 'AI 원본활용 특례' 도입 추진 중 (kimchang.com)
-- 생성형 AI 개발·활용을 위한 개인정보 처리 안내서가 공개·배포됨 — 국내 AI 서비스는 이 기준 정합성 점검이 필수 (privacy.go.kr, shinkim.com)
-- 헬스케어·고용·법집행 등 민감 영역 AI는 정기 감사·투명성·데이터 처리 문서화가 의무화 흐름 (cookie-script.com)
-
-Sources: [Tricentis](https://www.tricentis.com/blog/qa-trends-ai-agentic-testing) · [Parasoft](https://www.parasoft.com/blog/annual-software-testing-trends/) · [QASkills](https://qaskills.sh/blog/playwright-test-agents-planner-generator-healer) · [TestDino](https://testdino.com/blog/playwright-ai-ecosystem) · [Awesome Code Reviews](https://www.awesomecodereviews.com/tools/ai-code-review-tools/) · [collinwilkins.com](https://collinwilkins.com/articles/ai-code-review-best-practices-approaches-tools) · [Patrowl](https://patrowl.io/en/blog/owasp-top-10-2025-what-s-changed-and-the-2026-data) · [Cycode](https://cycode.com/blog/application-security-vulnerabilities/) · [OWASP GenAI](https://genai.owasp.org/2026/04/14/owasp-genai-exploit-round-up-report-q1-2026/) · [Unit42](https://unit42.paloaltonetworks.com/npm-supply-chain-attack/) · [CSA — Slopsquatting](https://labs.cloudsecurityalliance.org/research/csa-research-note-slopsquatting-ai-supply-chain-20260419-csa/) · [Splunk](https://www.splunk.com/en_us/blog/security/npm-supply-chain-attack-detection-analysis.html) · [Practical DevSecOps](https://www.practical-devsecops.com/owasp-top-10-agentic-applications/) · [Imperva](https://www.imperva.com/blog/owasp-llm-top-10-what-comes-next-agentic-mcp/) · [Lakera](https://www.lakera.ai/blog/the-progressive-breach-model-behind-the-owasp-top-10-for-agentic-applications) · [Veracode](https://www.veracode.com/blog/2026-genai-code-security-report-ai-risk/) · [Infosecurity Magazine](https://www.infosecurity-magazine.com/news/ai-generated-code-vulnerabilities/) · [CSA — AI CVE Surge](https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-generated-code-vulnerability-surge-2026/) · [GitGuardian](https://blog.gitguardian.com/the-state-of-secrets-sprawl-2026/) · [Help Net Security](https://www.helpnetsecurity.com/2026/05/20/hard-truths-from-2026-devops-threats-report/) · [Inside Privacy](https://www.insideprivacy.com/european-union-2/what-to-watch-in-2026-key-eu-privacy-cybersecurity-developments/) · [Kasowitz](https://www.kasowitz.com/media/viewpoints/data-privacy-ai-regulatory-and-compliance-update-july-2026/) · [김앤장](https://www.kimchang.com/ko/insights/detail.kc?sch_section=4&idx=33715) · [법률신문](https://www.lawtimes.co.kr/news/articleView.html?idxno=220711) · [개인정보보호위원회](https://www.privacy.go.kr/front/bbs/bbsView.do?bbsNo=BBSMSTR_000000000049&bbscttNo=20836)
+Sources: [elionavarrete.com](https://elionavarrete.com/blog/state-test-automation-2026), [testquality.com](https://testquality.com/playwright-test-agents-mcp-architecture-2026/), [qaskills.sh](https://qaskills.sh/blog/ai-test-automation-tools-2026), [sourcegraph.com](https://sourcegraph.com/blog/automated-code-review-tools), [codeant.ai](https://codeant.ai/blogs/best-ai-code-review-tools), [deepsource.com](https://deepsource.com/resources/ai-code-review-tools), [securityweek.com](https://www.securityweek.com/over-400-npm-packages-infected-in-chaindrop-supply-chain-attack/), [datadoghq.com](https://securitylabs.datadoghq.com/articles/npm-worm-compromises-popular-npm-packages/), [github.blog](https://github.blog/security/supply-chain-security/disrupting-supply-chain-attacks-on-npm-and-github-actions/), [sdtimes.com](https://sdtimes.com/security/prompt-injection-tops-2026-owasp-genai-llm-top-ten-vulnerabilities/), [reversinglabs.com](https://www.reversinglabs.com/blog/owasp-top-10-for-llm-apps-excessive-agency), [checkpoint.com](https://blog.checkpoint.com/ai-security/reading-the-signals-in-the-owasp-llm-top-10-2026/amp/), [veracode.com](https://www.veracode.com/blog/spring-2026-genai-code-security/), [stingrai.io](https://www.stingrai.io/blog/vulnerability-statistics-2026), [hackerstorm.com](https://www.hackerstorm.com/articles/our-blog/vulnerabililty-intelligence/50k-cves-2026-vulnerability-management-strategy), [ox.security](https://www.ox.security/blog/application-security-trends-in-2026/), [chambers.com](https://practiceguides.chambers.com/practice-guides/data-protection-privacy-2026/south-korea/trends-and-developments), [blog.pebblous.ai](https://blog.pebblous.ai/report/korea-pipa-amendment-2026-ai-data/en/), [onetrust.com](https://www.onetrust.com/blog/the-5-trends-shaping-global-privacy-and-enforcement-in-2026/), [secureprivacy.ai](https://secureprivacy.ai/blog/privacy-laws-2026)

@@ -1,79 +1,79 @@
 ---
 name: knowledge-backend-infra
-description: 백엔드·아키텍처·인프라 최신 지식 — 서버, DB, DevOps, 기술전략. 개발 총괄·백엔드 역할이 작업 전 참고 (갱신: 2026-08-29)
+description: 백엔드·아키텍처·인프라 최신 지식 — 서버, DB, DevOps, 기술전략. 개발 총괄·백엔드 역할이 작업 전 참고 (갱신: 2026-08-30)
 ---
 
-# backend-infra 도메인 지식 (2026-08-29)
+# backend-infra 도메인 지식 (2026-08-30)
 
 > `agent-team learn` 이 도메인 단위로 갱신하는 지식 베이스. 이 도메인 역할의 에이전트는 작업 전 참고.
 
-## 서버·백엔드 프레임워크 & API
-- API-first 설계가 기본값이 됐고, 프레임워크 선택 기준이 처리량·확장성에 더해 "AI 연동 준비도(AI readiness)"로 확대됨 (digitalapi.ai, zibtek.com)
-- Hono가 초경량·엣지 친화 API 프레임워크로 급부상 — 내장 스키마 검증, 미들웨어 체이닝, 멀티 런타임(Node/Bun/Workers) 지원 (quartzdevs.com)
-- FastAPI는 비동기·의존성 주입·보안 중심으로 Python 백엔드 표준 지위를 유지, Express는 여전히 Node 생태계 최다 사용 (vaadin.com, hyperlinkinfosystem.com)
-- Rust 진영은 Actix Web이 성능·성숙도 면에서 프로덕션 채택 1순위로 자리잡음 (eleorex.com)
-- GraphQL은 오버페칭 해소용 선택지로 정착했고, 서버리스 함수(Lambda/Azure Functions) 기반 API 배포가 계속 확산 (digitalapi.ai)
-- 백엔드가 ML 모델·데이터 파이프라인과 직접 통합되는 "AI 기능의 계산 백본" 역할로 재정의되는 중 (zibtek.com)
+## 서버·언어·프레임워크
+- FastAPI가 Django·Flask를 제치고 2026년 가장 인기 있는 Python 웹 프레임워크로 자리잡음 (boot.dev)
+- Node.js 22+ 라인이 HTTP/3·QUIC 네이티브 지원을 추진하며 백엔드 표준 지위 유지, 엔터프라이즈 점유율 약 85% (coderio.com, codercops.com)
+- Rust는 7년 연속 '가장 사랑받는 언어'로 성능 민감 백엔드(프록시·런타임·인프라 도구)에서 채택 확산 (talent500.com)
+- Bun이 110K req/s급 성능으로 API 서버·웹훅 핸들러 등 경량 백엔드에서 실전 채택 단계 진입, "Bun으로 개발 → Workers로 배포" 워크플로가 실무 가능 수준 (pickuma.com)
+- 2026 백엔드 5대 트렌드: 백엔드 내 AI 통합, 서버리스/클라우드 네이티브, 이벤트 드리븐 마이크로서비스 성숙, API-first, 제로트러스트 보안 (asappstudio.com)
+- Kafka·RabbitMQ·EventBridge 기반 비동기 아키텍처가 마이크로서비스의 기본 결합 패턴으로 정착 (asappstudio.com)
 
 ## 데이터베이스
-- PostgreSQL 19가 2026년 9~10월 정식 릴리스 예정(6월 베타1) — SQL/PGQ 그래프 쿼리, 무중단 REPACK CONCURRENTLY, 병렬 autovacuum, 시퀀스 논리복제가 핵심 (postgresql.org, bytebase.com)
-- 벡터 DB 시장이 통합기에 진입 — 50M 벡터 이하 워크로드는 pgvector가 흡수하며 전용 벡터 DB 대비 TCO 40~60% 절감 보고 (refontelearning.com, actian.com)
-- 관계형 데이터와 벡터를 같은 트랜잭션에서 다루는 "Postgres 단일 시스템" 전략이 승자 구도 — ChromaDB 등 전용 벡터 DB 점유율 하락 (suparbase.com)
-- 서버리스 Postgres가 주류화 — Databricks의 Neon 인수(~$1B), Snowflake의 Crunchy Data 인수(~$250M) 모두 벡터 DB가 아닌 Postgres 인프라를 선택 (mastra.ai)
-- 벡터 DB 시장 자체는 2026년 $3.7B → 2032년 $10.6B 성장 전망(CAGR 23.5%)이나, 대규모·초저지연 특화 영역으로 좁혀지는 중 (marktechpost.com)
-- 쿠버네티스 위 Postgres 운영은 CloudNativePG 오퍼레이터가 사실상 표준 궤도 (cloudnative-pg.io)
+- PostgreSQL 18 출시 — 신규 비동기 I/O 서브시스템으로 스토리지 읽기 최대 3배 성능 개선, 인덱스 활용 쿼리 범위 확대 (postgresql.org)
+- PostgreSQL 18에 HNSW·IVFFlat 등 벡터 인덱싱이 코어 코드베이스에 내장되며 별도 벡터 DB 필요성 축소 (opensourcenews.net)
+- 벡터는 이제 'DB 카테고리'가 아니라 '데이터 타입' — Postgres·Oracle·MongoDB 등 기존 DB가 네이티브 벡터를 흡수, 전용 벡터 DB 시장 재편 (dev.to, venturebeat.com)
+- 2025년 한 해에만 Snowflake·Databricks가 Postgres-first 기업 인수에 약 12.5억 달러 투입 — Postgres 중심 통합이 업계 방향 (refontelearning.com)
+- 2026년은 벡터-네이티브 DB 추가 열풍에서 벗어나 확장된 관계형 DB로의 회귀와 엣지 배포 갭 해소가 화두 (dev.to)
+- AI 워크로드가 안정적·예측 가능한 데이터 경계를 요구하면서 DB 스키마·경계 설계의 중요성 재부상 (javacodegeeks.com)
 
-## DevOps & 플랫폼 엔지니어링
-- Gartner 예측대로 2026년 대형 조직 80%가 플랫폼 엔지니어링을 도입 — DevOps 팀 모델을 내부 개발자 플랫폼(IDP) 모델이 대체하는 흐름 (gartsolutions.com)
-- IDP 도입 기업은 배포 사이클 30~50% 단축을 보고 — 개발자가 매니페스트·Helm을 몰라도 셀프서비스로 배포하는 구조가 목표 (geekssolutions.io)
-- GitOps(Argo CD/Flux)는 클라우드 네이티브 운영의 기본기로 정착 — Git이 배포의 단일 진실 원천 (refontelearning.com)
-- 서비스 메시는 사이드카리스(ambient) 설계로 이동 중이며, Ingress 대신 Gateway API 통합이 표준화 (gartsolutions.com)
-- K8s 클러스터 수는 계속 증가(응답자 48%가 연 50%+ 성장 전망) — AI/ML 워크로드가 주요 동력 (loginline.com)
-- AI 기반 자가치유(self-healing) 클러스터·자동 리소스 튜닝이 2026년 K8s 운영의 핵심 화두 (fairwinds.com)
+## DevOps·플랫폼 엔지니어링
+- 중대형 조직 대부분이 전담 플랫폼 팀을 두고 내부 개발자 플랫폼(IDP)으로 매니페스트·Helm 없이 배포 가능한 경험 제공이 표준화 (medium.com, alekseialeinikov.com)
+- 2026 플랫폼 팀 표준 스택은 CNCF-네이티브: Backstage(포털) + Crossplane(인프라 API화) + Argo CD(GitOps) + Kyverno/OPA Gatekeeper(정책) (alekseialeinikov.com)
+- Kubernetes 자동화가 IaC + 정책 강제 + AI 오케스트레이션 결합 단계로 진화, 'YAML 너머'의 자동화 시대 (pulumi.com)
+- 서비스 메시 2.0 — ambient/사이드카리스 설계와 Gateway API 통합으로 운영 부담 축소가 방향 (alekseialeinikov.com)
+- AI 기반 자가치유(self-healing) 클러스터와 장애 예측·자동 스케일링이 2026 쿠버네티스 운영 플레이북의 핵심 (fairwinds.com)
+- 멀티클라우드(AWS·Azure·GCP·온프렘) 배포가 보편화되며 쿠버네티스가 일관 실행 계층 역할 강화 (refontelearning.com)
 
-## 클라우드 & 인프라
-- AWS-Google이 멀티클라우드 배포 간소화를 위해 이례적으로 협력 — 하이퍼스케일러 간 상호운용성이 새 경쟁축 (ciodive.com, networkworld.com)
-- 3사 모두 AI 수직통합(칩→인프라→모델→앱) 풀스택 경쟁 중 — 인프라 선택이 곧 AI 스택 선택이 되는 구도 (constellationr.com)
-- IT 리더 52%가 하이브리드 클라우드 전략 채택 — Google Distributed Cloud 등 에어갭/온프렘 AI 실행 옵션 확대 (cloud.google.com)
-- Azure Arc가 하이브리드 관리 최강자로 평가 — AWS/GCP 리소스까지 Azure 정책·K8s 관리 확장, Defender for Cloud도 8월에 타사 클라우드 리소스 ~90종 추가 커버 (tech-insider.org)
-- 엣지 컴퓨팅이 주요 아키텍처 선택지로 — Cloudflare Workers·Vercel Edge 등으로 sub-100ms 응답·지역 컴플라이언스 요구를 해결 (decipherzone.com)
+## 클라우드 인프라
+- Synergy 2026 Q1 기준 글로벌 클라우드 점유율: AWS 28%, Azure 21%, Google Cloud 14% (tech-insider.org)
+- AWS·Google Cloud가 멀티클라우드 네트워킹 공동 제품 출시 — 2026년 내 Azure까지 포함 예정, 크로스클라우드 연결 장벽 하락 (ciodive.com)
+- 하이퍼스케일러 경쟁 축은 'AI 수직 통합' — AWS Connect 제품군·Amazon Quick, Google Cloud Next 2026 발표 모두 같은 방향 (constellationr.com)
+- Microsoft가 8월 18일 Defender for Cloud에 AWS·GCP 리소스 타입 약 90종을 추가하며 크로스클라우드 보안 모니터링 확장 (ciodive.com)
+- 8월 발표 Cloud Security Index: 제공사별 노출 격차 76% vs 8% — AWS는 S3 HTTPS 미강제·과도한 보안그룹, Azure는 퍼블릭 스토리지·MFA, GCP는 IAM·서비스계정 키 관리가 취약점 (technologychecker.io)
 
-## 관측성(Observability) & SRE
-- 화두가 "더 많은 텔레메트리"에서 "실행 가능한 답(어느 배포가 지연을 유발했나)"으로 이동 — 예측 분석·자율 복구(autonomous remediation)가 핵심 트렌드 (rootly.com)
-- 조직 85%가 관측성에 GenAI 활용 중, 2년 내 98% 전망 — AI 근본원인 분석이 플랫폼 기본 기능화 (elastic.co)
-- OpenTelemetry eBPF Instrumentation(OBI)이 2026년 1.0 안정판 목표 — 제로코드 커널 계측의 프로덕션 준비 단계 진입 (opentelemetry.io)
-- 제로코드 eBPF + 수동 OTel SDK 계측을 결합하는 하이브리드 계측이 권장 패턴으로 정착 (opentelemetry.io)
-- LLM/AI 워크로드 전용 관측성(토큰·비용·품질 추적)이 새 필수 영역으로 부상 (rootly.com)
-- 통합(unified) 관측성 플랫폼으로의 수렴 — 로그·메트릭·트레이스 사일로 해체가 진행 중 (elastic.co)
+## 관측성·SRE
+- OpenTelemetry가 티핑포인트 통과 — 신규 클라우드 네이티브 계측의 ~95%가 OTel 채택 전망, "쓸까"가 아니라 "왜 아직 안 썼나"의 단계 (apmdigest.com, grafana.com)
+- 사후 트러블슈팅에서 예측형 운영으로 전환 — AI가 장애 예측, 안전한 자동 복구, 파편화된 텔레메트리 통합 담당 (rootly.com)
+- GenAI 스택 자체를 관측하는 'AI 옵저버빌리티'(토큰 비용·프롬프트·에이전트 추적)가 신규 필수 영역 (elastic.co)
+- AI 코파일럿 기반 인시던트 대응·자동 커뮤니케이션이 SRE 워크플로에 편입 (motadata.com)
+- 옵저버빌리티가 엔지니어링 사일로를 벗어나 비즈니스 의사결정 도구로 확장 (grafana.com)
 
-## 아키텍처 전략
-- 마이크로서비스 도입 조직의 약 42%가 일부 서비스를 모듈러 모놀리스로 재통합 중(CNCF 조사) — 운영 복잡도 축소가 이유 (kitrum.com)
-- 모듈러 모놀리스가 실용적 중간지대로 정착 — 단일 배포 단위 안에 도메인별 엄격한 모듈 경계를 강제하는 설계 (enqcode.com)
-- 마이크로서비스는 독립 스케일링·장애 격리·대규모 분산 팀이 필요한 경우로 용도가 좁혀짐 — "도그마 탈피, 요구사항 기반 결정"이 2026년 기조 (coderush.montsoftware.com)
-- 엣지 퍼스트 아키텍처가 최대 변화 — 개인화 캐싱·엣지 사이드 렌더링 같은 신규 패턴 등장 (decipherzone.com)
-- 초기 스타트업 기본 권장은 "모듈러 모놀리스로 시작, 필요 시 경계 따라 분리" — 마이크로서비스 선제 도입 비용이 재평가됨 (hustletoai.com)
+## AI 에이전트 인프라
+- 공개 MCP 서버 1만 개 돌파(2026.5), SDK 월 다운로드 9,700만 — MCP가 에이전트-도구 연결의 사실상 표준 (requesty.ai)
+- Gartner: 2026년 말까지 엔터프라이즈 앱의 40%가 태스크 특화 AI 에이전트 통합 전망(현재 5% 미만에서 급증) (dev.to)
+- 에이전트 하네스가 프로덕션 AI의 핵심 인프라 계층으로 부상 — 모놀리식 에이전트는 프로토타입엔 쉽지만 프로덕션에선 취약, 능력 단위 분리 배포가 권장 패턴 (mlflow.org)
+- MCP 도구 스키마만으로 컨텍스트 창의 72%가 소모되는 벤치마크 보고 — 도구 스키마 다이어트·지연 로딩이 실무 과제 (requesty.ai)
+- MCP의 stateful 세션이 로드밸런서·서버리스·K8s 뒤 수평 확장을 어렵게 만드는 문제가 2026 로드맵의 핵심 이슈 (tedt.org)
+- 멀티 에이전트 간 통신은 A2A 프로토콜, 도구 연결은 MCP로 역할 분화 진행 (mlflow.org)
 
-## AI 에이전트 인프라 (백엔드 관점)
-- MCP가 Linux Foundation 산하 Agentic AI Foundation에 기증(2025.12)되며 업계 표준화 — 월 SDK 다운로드 9,700만+, 공식 레지스트리 등록 서버 6,400+ (dev.to)
-- OpenAI가 자체 Assistants API를 폐기하고 MCP 채택 — LangGraph·CrewAI·Google ADK·MS Agent Framework 전부 MCP 지원으로 수렴 (alicelabs.ai)
-- MCP 게이트웨이(인증·감사·레이트리밋 중앙화)가 새 인프라 계층으로 부상 — 에이전트별 개별 연동 플러밍을 대체 (dev.to)
-- AI 코딩이 자동완성에서 "위임형 에이전트 워크플로"로 전환 — 컨텍스트 관리·권한·샌드박스·감사로그·비용통제가 모델 품질만큼 중요해짐 (codepick.dev)
-- 프로덕션 패턴: MCP 서버를 상주 프로세스로 클라우드 개발환경에 띄우고 에이전트가 세션 시작 시 접속하는 구조가 표준화 (dev.to)
-- 에이전트 프레임워크 선택은 Anthropic 네이티브면 Claude Agent SDK(계층형 서브에이전트 3단계 지원)가 권장 기본값 (langchain.com)
+## 서버리스·엣지
+- 2026년 기본 패턴은 하이브리드: 엣지(인증·리다이렉트) + 컨테이너(비즈니스 로직) + 서버리스(백그라운드 작업) (mintec.co)
+- 엣지 함수 콜드스타트가 서브밀리초 수준 — Lambda 기본 설정(200~500ms) 대비 압도적, 콜드스타트 9배·실행 2배 개선 (codercops.com)
+- Cloudflare Workers·Vercel Edge·Deno Deploy가 300+ 데이터센터에서 프로덕션 구동, AI 추론의 80%를 로컬 엣지에서 처리 (zylos.ai)
+- 플랫폼 통합 심화 — Netlify·Supabase 엣지 함수는 Deno Deploy 위에서 구동되는 등 런타임 레이어 통합 진행 (daily.dev)
+- Deno는 보안·웹 표준·TypeScript-first로 엣지 개발 환경의 유력 후보로 포지셔닝 (coddykit.com)
 
-## 공급망 보안 & DevSecOps
-- 2026년 들어 공급망 공격 급증 — 3월 axios(주간 1억 다운로드) 메인테이너 계정 탈취로 수 시간 멀웨어 배포, 60+ npm 패키지 연쇄 공격 발생 (redfoxsec.com)
-- 2025년 한 해 신규 악성 오픈소스 패키지 45.4만 개(+75% YoY), 누적 123만 개 돌파 — npm·PyPI·Hugging Face까지 확산 (rapidfort.com)
-- EU Cyber Resilience Act 전면 시행 — SBOM 유지, 라이프사이클 보안 관리, 악용 취약점 24시간 내 신고 의무화 (ainformat.com)
-- SBOM(CycloneDX 중심) + DevSecOps 파이프라인 통합이 "최소 생존 보안 태세"로 규정 — 사고 시 노출 파악을 분 단위로 단축 (ox.security, signisys.com)
-- 보안 도구 자체(Trivy 등)와 AI 라이브러리(LiteLLM)까지 공격 대상 — 의존성 핀 고정·프로비넌스 검증(SLSA)이 필수 관행화 (redfoxsec.com)
+## 공급망 보안·DevSecOps
+- 자가 전파 웜 'Shai-Hulud'가 npm 패키지 1,280개+(월 20억 다운로드 상당) 감염 — npm install 시 GitHub·npm·AWS·K8s 시크릿 탈취 후 웜처럼 확산 (devops.com)
+- Microsoft가 8월 4일 자가 전파형 'ChainDrop' 공급망 침해 해부 보고서 공개 — 공급망 웜이 2026년의 반복 패턴 (microsoft.com)
+- 2026년 1분기에만 Axios(npm)·LiteLLM(PyPI)·Trivy·Telnyx 등 주요 패키지 연쇄 침해 — 계정 탈취·불완전한 자격증명 로테이션이 진입점 (zscaler.com, redfoxsec.com)
+- nx npm 공급망 공격에서 위협그룹 UNC6426이 72시간 내 AWS 관리자 권한 획득 — 패키지 침해→클라우드 장악 속도가 극도로 빨라짐 (thehackernews.com)
+- 타이포스쿼팅 npm 패키지로 클라우드·CI/CD 시크릿 탈취 캠페인 지속 — lockfile 고정·설치 스크립트 차단·시크릿 스캐닝이 기본 방어 (microsoft.com)
+- 공격자들이 DevSecOps·AI 인프라 파이프라인 도구를 의도적으로 표적화 — CI/CD·클라우드 자격증명·모델 인프라 접근 극대화 전략 (rapidfort.com)
 
-## FinOps & 비용 최적화
-- GPU 지출이 사상 처음 일반 클라우드 비용을 제치고 FinOps 1순위 관심사로 등극(FinOps Foundation 2026 보고서) (spheron.network)
-- AI 비용의 80~90%는 학습이 아닌 추론에서 발생하는데, 운영 중 GPU 활용률은 15~30%에 그침 — 활용률 개선이 최대 레버 (cloudmagazin.com)
-- GPU 라이트사이징 + 전략적 스팟 인스턴스 두 가지만으로 GPU 비용 25~35% 회수가 일반적 (cloudmagazin.com)
-- 모델 캐스케이드(일상 쿼리 80%는 소형 자체호스팅 모델, 복잡한 추론만 프론티어 모델로 라우팅)로 추론 비용 최대 90% 절감 사례 (cloudmagazin.com)
-- 라우팅·캐싱·라이트사이징 적용 시 답변당 비용 $0.41 → $0.07(-83%) 실측 보고 — AI 전용 FinOps 프로그램이 표준화되는 중 (wetheflywheel.com)
-- AI 워크로드의 클라우드 예산 비중이 2023년 4% → 18%로 급증, 조직당 월평균 AI 클라우드 지출 $85K(+36% YoY) (cloudmagazin.com)
+## 아키텍처·기술전략
+- CNCF 조사: 마이크로서비스 도입 조직의 42%가 더 큰 배포 단위로 재통합 중 — 기술 한계가 아니라 비용·운영 오버헤드가 원인 (byteiota.com)
+- 2026년 아키텍처 제약의 1순위는 확장성이 아니라 '비용' — Prime Video VQA 팀의 모놀리스 회귀로 인프라 비용 90% 절감 사례가 상징 (enqcode.com)
+- 권장 경로: 모듈러 모놀리스로 시작해 입증된 필요에 따라 서비스만 선별 추출 — 조기 복잡성 회피 + 명확한 마이그레이션 경로 (javacodegeeks.com)
+- 고채택 조직에서 AI 코딩 도구가 커밋 코드의 30~70% 생성, 생산성 1.5~2배 — 단 CI/CD·테스트 자동화·플랫폼 엔지니어링 기반이 없으면 "혼란만 더 빨리 생성" (techtarget.com, cio.com)
+- 빠르게 적응하는 팀은 2~4인 결과 중심 포드로 재편, 개발자당 PR 머지 79% 증가 등 조직 구조 자체가 에이전트 중심으로 변화 (dev.to)
+- AI 도구 확산 시 속도뿐 아니라 결함률·인시던트 빈도·개발자 만족도를 포함한 균형 스코어카드로 측정하는 것이 권장 프랙티스 (cio.com)
 
-Sources: [vaadin.com](https://vaadin.com/blog/enterprise-backend-frameworks), [digitalapi.ai](https://www.digitalapi.ai/blogs/top-backend-frameworks-your-guide-to-choosing-the-best), [quartzdevs.com](https://quartzdevs.com/resources/best-backend-frameworks-2026-top-server-side-tools), [postgresql.org](https://www.postgresql.org/about/news/postgresql-19-beta-1-released-3313/), [bytebase.com](https://www.bytebase.com/blog/postgres-19-features-im-excited-about/), [mastra.ai](https://mastra.ai/articles/best-serverless-postgres-databases), [refontelearning.com](https://www.refontelearning.com/blog/vector-database-shakeout-postgres), [actian.com](https://www.actian.com/blog/developer/state-of-vector-databases-q2-2026/), [marktechpost.com](https://www.marktechpost.com/2026/05/10/best-vector-databases-in-2026-pricing-scale-limits-and-architecture-tradeoffs-across-nine-leading-systems/), [gartsolutions.com](https://gartsolutions.com/kubernetes-and-containerization-trends/), [fairwinds.com](https://www.fairwinds.com/blog/2026-kubernetes-playbook-ai-self-healing-clusters-growth), [geekssolutions.io](https://geekssolutions.io/platform-engineering-future-devops-2026/), [ciodive.com](https://www.ciodive.com/news/aws-google-link-cloud-products/806705/), [constellationr.com](https://www.constellationr.com/insights/news/google-cloud-aws-microsoft-azure-ai-vertical-integration-race), [cloud.google.com](https://cloud.google.com/blog/topics/inside-google-cloud/whats-new-google-cloud), [elastic.co](https://www.elastic.co/blog/2026-observability-trends-generative-ai-opentelemetry), [opentelemetry.io](https://opentelemetry.io/blog/2026/obi-goals/), [rootly.com](https://rootly.com/sre/predictive-ai-observability-trends-shaping-2026-ops), [kitrum.com](https://kitrum.com/blog/is-microservice-architecture-still-a-trend/), [decipherzone.com](https://www.decipherzone.com/blog-detail/cloud-native-architecture-trends), [dev.to (MCP Gateway)](https://dev.to/instatunnel/ai-infrastructure-2026-the-rise-of-the-mcp-gateway-and-agentic-tunneling-59ca), [dev.to (MCP Ecosystem)](https://dev.to/sahil_kat/the-mcp-server-ecosystem-in-2026-integration-layer-for-ai-agents-2mln), [langchain.com](https://www.langchain.com/resources/ai-agent-frameworks), [codepick.dev](https://codepick.dev/en/guides/ai-coding-agents-2026-roadmap/), [redfoxsec.com](https://www.redfoxsec.com/blog/software-supply-chain-attacks-2026-latest-incidents-analysis-and-how-to-protect-your-pipeline), [rapidfort.com](https://www.rapidfort.com/blog/pypi-npm-and-the-new-frontline-of-software-supply-chain-attacks), [ox.security](https://www.ox.security/blog/sbom-tools/), [spheron.network](https://www.spheron.network/blog/gpu-cloud-finops-ai-teams-cost-allocation-chargeback-budgeting/), [cloudmagazin.com](https://www.cloudmagazin.com/en/2026/05/16/finops-ai-inference-gpu-cost-playbook-2026/), [wetheflywheel.com](https://wetheflywheel.com/en/guides/ai-finops-gpu-cost-management-2026/)
+Sources: [postgresql.org](https://www.postgresql.org/about/news/postgresql-18-released-3142/), [venturebeat.com](https://venturebeat.com/data/six-data-shifts-that-will-shape-enterprise-ai-in-2026), [dev.to (vector DB)](https://dev.to/actiandev/whats-changing-in-vector-databases-in-2026-3pbo), [refontelearning.com](https://www.refontelearning.com/blog/vector-database-shakeout-postgres), [opensourcenews.net](https://opensourcenews.net/2026/02/postgresql-18-native-vector-search.html), [boot.dev](https://www.boot.dev/blog/backend/top-backend-technologies), [asappstudio.com](https://asappstudio.com/top-5-backend-trends-2026/), [coderio.com](https://www.coderio.com/blog/software-development/best-backend-frameworks-2026/), [talent500.com](https://talent500.com/blog/best-backend-programming-languages-2026/), [pulumi.com](https://www.pulumi.com/blog/beyond-yaml-kubernetes-2026-automation-era/), [fairwinds.com](https://www.fairwinds.com/blog/2026-kubernetes-playbook-ai-self-healing-clusters-growth), [alekseialeinikov.com](https://www.alekseialeinikov.com/en/blog/topics/devops/platform-engineering-on-kubernetes-2026), [ciodive.com](https://www.ciodive.com/news/aws-google-link-cloud-products/806705/), [constellationr.com](https://www.constellationr.com/insights/news/google-cloud-aws-microsoft-azure-ai-vertical-integration-race), [technologychecker.io](https://technologychecker.io/blog/cloud-provider-traffic-share), [tech-insider.org](https://tech-insider.org/aws-vs-azure-vs-google-cloud-2026/), [grafana.com](https://grafana.com/blog/2026-observability-trends-predictions-from-grafana-labs-unified-intelligent-and-open/), [elastic.co](https://www.elastic.co/blog/2026-observability-trends-generative-ai-opentelemetry), [apmdigest.com](https://www.apmdigest.com/2026-observability-predictions-6), [rootly.com](https://rootly.com/sre/2026-ai-observability-trends-boost-incident-response-speed), [motadata.com](https://www.motadata.com/blog/observability-trends), [requesty.ai](https://www.requesty.ai/blog/mcp-ecosystem-2026-building-agent-tool-infrastructure-that-scales), [mlflow.org](https://mlflow.org/articles/building-production-ready-ai-agents-in-2026/), [tedt.org](https://tedt.org/MCPs-2026-Roadmap/), [dev.to (MCP)](https://dev.to/sahil_kat/the-mcp-server-ecosystem-in-2026-integration-layer-for-ai-agents-2mln), [codercops.com](https://www.codercops.com/blog/edge-functions-vs-serverless-2026), [zylos.ai](https://zylos.ai/research/2026-01-23-edge-functions-serverless-computing/), [mintec.co](https://mintec.co/blog/edge-computing-serverless-architecture-2026/), [daily.dev](https://daily.dev/blog/edge-computing-frontend-developers-cloudflare-workers-deno-deploy-vercel/), [coddykit.com](https://www.coddykit.com/pages/blog-detail?id=512426&slug=the-future-is-edge-exploring-trends-with-cloudflare-workers-deno), [pickuma.com](http://pickuma.com/for-dev/cloudflare-workers-bun-2026/), [devops.com](https://devops.com/fast-moving-shai-hulud-attack-infects-npm-packages-with-2-billion-monthly-downloads/), [microsoft.com (ChainDrop)](https://www.microsoft.com/en-us/security/blog/2026/08/04/chaindrop-supply-chain-compromise-anatomy-self-propagating-worm/), [microsoft.com (typosquat)](https://www.microsoft.com/en-us/security/blog/2026/05/28/typosquatted-npm-packages-used-steal-cloud-ci-cd-secrets/), [zscaler.com](https://www.zscaler.com/blogs/security-research/supply-chain-attacks-surge-march-2026), [thehackernews.com](https://thehackernews.com/2026/03/unc6426-exploits-nx-npm-supply-chain.html), [redfoxsec.com](https://www.redfoxsec.com/blog/software-supply-chain-attacks-2026-latest-incidents-analysis-and-how-to-protect-your-pipeline), [rapidfort.com](https://www.rapidfort.com/blog/pypi-npm-and-the-new-frontline-of-software-supply-chain-attacks), [byteiota.com](https://byteiota.com/modular-monolith-42-ditch-microservices-in-2026/), [enqcode.com](https://enqcode.com/blog/rethinking-microservices-in-2026-when-modular-monolith-architecture-actually-win), [javacodegeeks.com](https://www.javacodegeeks.com/2025/12/microservices-vs-monoliths-in-2026-when-each-architecture-wins.html), [cio.com](https://www.cio.com/article/4134741/how-agentic-ai-will-reshape-engineering-workflows-in-2026.html), [techtarget.com](https://www.techtarget.com/searchapparchitecture/opinion/A-hands-on-look-at-AI-agents), [dev.to (agentic)](https://dev.to/ailoitte_sk/agentic-coding-in-2026-how-top-engineering-teams-are-restructuring-around-ai-agents-3ne1)
