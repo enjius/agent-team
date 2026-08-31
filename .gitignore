@@ -8,3 +8,7 @@ knowledge/*
 !knowledge/.gitkeep
 !knowledge/README.md
 !knowledge/agent-team
+
+# 생성 산출물 (agent-team board/serve)
+dashboard.html
+hq/

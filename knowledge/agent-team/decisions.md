@@ -33,3 +33,18 @@
   돌리는 구조다. 비개발 직군도 실사용 중.
 - 대안과 기각 사유: rakwan-core(9명) 축소 운영안은 비개발 작업 때마다 재배치가
   필요해져 기각. 라우팅 부담은 총괄→분야 리더→실무자 계층 구조로 이미 완화됨.
+
+## 2026-08-29 재편(적은 에이전트×풍부한 스킬)을 실제 배치에도 적용 완료
+- 날짜: 2026-08-31
+- 결정: 재편 커밋(b8ebc30)이 선언만 하고 미적용이던 부분을 실제 반영했다.
+  ① 전역 ~/.claude/agents 22명(7/21자 구성) → core.team 10명으로 교체
+     (구 22명은 ~/.claude/agents_backup_2026-08-31/ 보관).
+  ② Egypt 22→10(core 자동감지), pat 24→16(mobile 11 + 전용 4명
+     avatar-artist/pet-designer/vet-advisor/monetization-lead + supabase-backend),
+  ③ ~/Documents 루트의 잘못 provision된 16명 제거(백업).
+  tradinview_app 15명은 mobile+타당한 추가라 유지, rakwan 29명은 기존 결정대로 유지.
+- 이유: 편성표(core.team)만 바꾸고 기존 배치를 안 바꾸면 재편 효과가 없다.
+  제거는 전부 각 위치의 백업 폴더로 이동(삭제 아님), 특수 역할은 필요 시
+  provision --need 로 재투입하는 것이 재편 설계 의도.
+- 참고: "9개"는 에이전트 수가 아니라 knowledge-* 도메인 지식 스킬 9개다.
+  프로젝트 전용 커스텀 에이전트(라이브러리에 없는 것)는 prune 시 복원해 유지한다.
