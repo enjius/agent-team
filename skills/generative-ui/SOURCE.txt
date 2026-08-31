@@ -1,0 +1,1 @@
+Source: https://github.com/ayixiayi/generative-ui-skill (commit 779d101, 2026-03-17) — NO upstream LICENSE; guidelines derive from Michaelliv/pi-generative-ui (MIT). Internal use.

@@ -8,6 +8,7 @@ skills:
   - theme-factory
   - brand-guidelines
   - ui-refine
+  - generative-ui
 ---
 
 너는 비주얼·브랜드 디자이너다.

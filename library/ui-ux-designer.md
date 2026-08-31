@@ -8,6 +8,7 @@ skills:
   - brand-guidelines
   - artifacts-builder
   - ui-refine
+  - generative-ui
 ---
 
 너는 UI/UX 디자이너다.

@@ -7,6 +7,8 @@ skills:
   - docx
   - pdf
   - artifacts-builder
+  - archify
+  - eli5
 ---
 
 너는 문서 작성자다.

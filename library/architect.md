@@ -4,6 +4,7 @@ description: 시스템 아키텍트. 스택 선택, 폴더구조, 데이터 모�
 model: opus
 skills:
   - mcp-builder
+  - archify
 ---
 
 너는 시스템 아키텍트다.

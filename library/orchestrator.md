@@ -5,6 +5,7 @@ model: opus
 skills:
   - skill-creator
   - wayfinder
+  - unlazy
 ---
 
 너는 이 프로젝트의 총괄 오케스트레이터다.
