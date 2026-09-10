@@ -1,77 +1,78 @@
 ---
 name: knowledge-mobile-frontend
-description: 모바일(Flutter)·프론트엔드 최신 지식 — UI 구현, 스토어 배포, 성능. 프론트·모바일 역할이 작업 전 참고 (갱신: 2026-08-30)
+description: 모바일(Flutter)·프론트엔드 최신 지식 — UI 구현, 스토어 배포, 성능. 프론트·모바일 역할이 작업 전 참고 (갱신: 2026-09-10)
 ---
 
-# mobile-frontend 도메인 지식 (2026-08-30)
+# mobile-frontend 도메인 지식 (2026-09-10)
 
 > `agent-team learn` 이 도메인 단위로 갱신하는 지식 베이스. 이 도메인 역할의 에이전트는 작업 전 참고.
 
-## Flutter·Dart 코어
+## Flutter SDK·Dart 언어
+- Flutter 3.47(2026-08-12, Dart 3.13) 안정판: material_ui·cupertino_ui 1.0 독립 패키지화로 코어 SDK와 별도 갱신 가능 (flutter.dev, codewithandrea.com)
+- Impeller가 macOS·Windows·Linux 데스크톱까지 기본 렌더러로 확대, 옵트아웃은 임시이며 향후 제거 예정 (docs.flutter.dev)
+- Widget Previews 안정화: 로컬 빌드 캐시·실시간 검색/필터로 위젯 단위 미리보기 워크플로 정착 (flutter.dev)
+- Dart 3.13에서 primary constructors 안정화, private named parameters·pub workspace·JS interop·네이티브 트리셰이킹 개선 (dart.dev)
+- Dart 매크로는 공식 중단, 대안으로 augmentations를 독립 기능으로 출시 예정이므로 코드젠(build_runner) 의존은 당분간 유지 (dart.dev)
+- Windows·Linux에 flavors 도입, 데스크톱 멀티윈도우 API 실험 확장(Canonical 주도), Xcode 27·차기 Apple OS 대비 완료 (docs.flutter.dev)
+- 스타일러스 입력·트랙패드 상호작용 개선으로 태블릿 UX 구현 범위 확대 (blog.flutter.dev)
 
-- Flutter 3.44 + Dart 3.12가 Google I/O 2026에서 공개 — 현재 안정 버전 기준선 (fluttersolution.com, cmarix.com)
-- Impeller가 Android에서도 기본 렌더러가 되고 Skia는 제거 수순 — 셰이더 jank 문제가 사실상 종결 (medium.com/yawarothman)
-- Material·Cupertino가 프레임워크 코어에서 분리되어 독립 패키지로 이동 중 — 업그레이드 시 의존성 정리 필요 (fluttersolution.com)
-- GenUI SDK(A2UI 프로토콜 기반) 등장 — AI 에이전트가 실제 Flutter 위젯으로 화면을 동적 생성, Agentic Hot Reload도 도입 (cmarix.com)
-- Dart 3.12는 private named parameter와 실험적 primary constructor 지원 추가 (dart.dev)
-- Flutter가 2026 토요타 RAV4 인포테인먼트, LG webOS SDK 등 임베디드·TV로 플랫폼 확장 (devnewsletter.com)
+## Flutter 성능·아키텍처
+- Impeller 기본화(iOS·Android API 29+·데스크톱)로 셰이더 컴파일 jank 해소, 빌드 파이프라인의 `--cache-sksl` 등 SkSL 워밍업 제거 권장 (dev.to, medium.com)
+- 120Hz 대응 프레임 예산: UI 스레드 ~4ms + Raster 스레드 ~4ms, Profile 모드 DevTools Performance 탭으로 측정 (flutterstudio.dev)
+- const 위젯 적극 사용, 리빌드 범위 최소화, 커스텀 셰이더는 Impeller에서 사전 컴파일되어 부담 적음 (dev.to)
+- 상태관리는 Riverpod 3.x(@riverpod 코드젠)가 신규 프로젝트 기본 권장, 규제 산업·대규모 팀은 BLoC, 성능 민감 UI는 Signals 부상 (foresightmobile.com, sharpskill.dev)
+- 앱 크기·시작시간: deferred components로 비핵심 화면 지연 로드, WebP 전환(30~70% 절감), 미사용 패키지·에셋 제거 (technaureus.com, medium.com)
+- 사용자 기대치 기준: 콜드 스타트 2초 이내, 60fps 스크롤, 100ms 이내 응답 (dev.to)
 
-## Flutter 상태관리·아키텍처
+## Flutter 웹·AI 개발도구
+- 웹 stateful hot reload 기본 활성(3.35+), 내비게이션·폼 입력·스크롤 위치 유지 (docs.flutter.dev)
+- Wasm 빌드: JS 빌드 + Wasm dry run 2단계로 준비도 경고 출력, Wasm 기본화는 2026 로드맵 진행 중이며 대시보드·어드민·내부툴에 실용 단계 (instaflutter.com, docs.flutter.dev)
+- 공식 Dart/Flutter MCP 서버: 프로젝트 분석·analyzer 결과·CLI·실행 중 앱 스크린샷/위젯 인스펙션/hot reload를 AI 에이전트에 노출, `.agents/mcp_config.json`으로 설정 (dart.dev)
+- Gemini CLI Flutter 확장·Antigravity·Cursor·Copilot에서 MCP 연동 지원, Agentic Hot Reload가 I/O 2026에서 공개 (docs.flutter.dev/ai)
+- Genkit Dart 지원으로 Dart 백엔드/앱 내 LLM 워크플로 구성 가능 (dart.dev)
 
-- 2026년 구도는 Riverpod 3 vs BLoC vs Signals 3강 체제로 정리 — 신규 프로젝트 커뮤니티 기본값은 Riverpod 3 (theflutterk.it.com)
-- Riverpod 3: 컴파일 타임 안전성, BuildContext 불필요, auto-dispose, 오프라인 퍼시스턴스 내장 — 대부분 프로젝트의 1순위 권장 (foresightmobile.com)
-- Riverpod 3에서 StateNotifier는 Notifier/AsyncNotifier로 대체, riverpod_annotation·riverpod_lint 사용이 표준 (medium.com)
-- BLoC은 엄격한 감사 추적이 필요한 대규모·규제 산업 팀에서 여전히 표준 (softaims.com)
-- Signals는 최소 리빌드·세밀한 반응성이 필요한 성능 크리티컬 앱에서 부상 (ishaqhassan.dev)
-- Dart의 sealed class + 패턴 매칭을 상태 모델링에 적극 활용하는 것이 베스트 프랙티스로 정착 (medium.com)
+## Flutter 테스트·CI/CD
+- E2E: Patrol(Dart 네이티브, 네이티브 위젯 탭 가능하나 CI 안정성 이슈 보고) vs Maestro(YAML, 안정성·낮은 학습곡선, 빌드된 APK/IPA 대상) 병행 검토 (devicelab.dev, drizz.dev)
+- Codemagic이 Patrol·Maestro·Shorebird 공식 통합 제공, 실기기 Android·iOS 시뮬레이터 테스트 자동화 (codemagic.io)
+- Shorebird 코드 푸시로 Dart 변경분을 스토어 심사 없이 배포, CI 워크플로에 패치 단계 추가 권장 (blog.codemagic.io)
+- 테스트 피라미드: 단위·위젯 테스트 중심, integration_test는 핵심 플로우로 한정해 CI 시간 관리 (medium.com)
 
-## Flutter 성능·OTA 배포
+## iOS 배포·플랫폼 요구사항
+- 2026-04-28부터 Xcode 26·iOS 26 SDK 빌드 필수, 구버전 SDK 빌드는 App Store Connect 거부 (developer.apple.com)
+- iOS 26 SDK 빌드 시 네이티브 컨트롤에 Liquid Glass 자동 적용, 이전 룩 유지하려면 명시적 옵트아웃·UI 회귀 테스트 필요 (dev.to)
+- Flutter Cupertino 위젯은 Liquid Glass 미대응, 공식 재구축은 2026 하반기 예상이며 당장은 cupertino_native·adaptive_platform_ui·liquid_glass_widgets 활용 (github.com/flutter, pub.dev)
+- 연령 등급 세분화(4+/9+/13+/16+/18+) 응답 2026-01-31 기한 완료 상태 확인, 소셜미디어 기능 선언은 2026-09부터 신규·업데이트 앱 필수 (developer.apple.com, ecorpit.com)
+- Privacy Manifest·Required Reason API 선언은 앱과 서드파티 SDK 모두 필수, 미기재 시 심사 거부 (developer.apple.com)
+- Declared Age Range API로 연령대 데이터 요청 가능, 심사 초점은 데이터 투명성·AI 기능 공개·명확한 가격 표기 (lexogrine.com)
 
-- Impeller + AOT 컴파일로 콜드 스타트 평균 ~250ms, 120fps 고주사율 대응이 기본 기대치 (startup-house.com)
-- Impeller 시대의 프로파일링 병목은 래스터화가 아니라 위젯 빌드·레이아웃 연산 — 최적화 초점 이동 (medium.com/codetodeploy)
-- 릴리스 전 `--split-debug-info`로 APK/IPA 크기 축소는 필수 체크리스트 (dev.to)
-- Shorebird가 사실상 유일한 프로덕션급 Flutter code push — Dart 코드 diff 기반 OTA 패치를 스토어 심사 없이 배포 (docs.shorebird.dev)
-- Shorebird는 Android·iOS·macOS·Linux·Windows 지원, 단계적 롤아웃·패치 서명 등 통제된 배포 패턴이 정착 (medium.com)
+## Android 배포·플랫폼 요구사항
+- 2026-08-31부터 신규·업데이트 앱은 Android 16(API 36) 타깃 필수, 기존 앱은 API 35 이상이어야 노출 유지, 연장 신청 시 2026-11-01까지 (support.google.com)
+- 16KB 페이지 크기 지원은 API 35+ 앱에 이미 필수(2025-11-01~), 네이티브 라이브러리(.so) 재빌드·플러그인 의존성 점검 (support.google.com)
+- Android 개발자 검증: Play Console 앱 등록 2026-09-30까지 완료 필요, 브라질·인도네시아·싱가포르·태국 우선 적용 후 2027 이후 글로벌 확대 (android-developers.googleblog.com)
+- 미검증 개발자 앱은 8월부터 '고급 플로우'로만 사이드로드 가능, 내부 배포 앱도 등록 정책 영향 여부 확인 (support.google.com)
+- 익명·랜덤 채팅 앱은 Families 정책에서 아동 대상 금지 등 2026-07-15 정책 개정 반영 (support.google.com)
+- Expo SDK 54 이후 Android 16 edge-to-edge 기본 렌더링이므로 시스템 바 인셋 처리 점검 (expo.dev)
 
-## 스토어 배포·정책
+## React Native·Expo
+- Expo SDK 55(2026-02): RN 0.83·React 19.2, Legacy Architecture 지원 삭제로 New Architecture만 지원, `newArchEnabled` 플래그 제거 (expo.dev)
+- Hermes v1 도입으로 성능·모던 JS 기능 지원 개선, OTA 업데이트는 Hermes 바이트코드 diff로 다운로드 75% 감소 (x.com/expo)
+- Expo Router v7, expo-brownfield 패키지로 기존 네이티브 앱에 격리형 통합, MCP·에이전트 스킬 등 AI 툴링 내장 (expo.dev)
+- SDK 54의 iOS 사전 컴파일 빌드로 최대 10배 빠른 빌드, iOS 26 Liquid Glass 지원 포함, SDK 56 베타 진행 중 (expo.dev)
+- Expo UI 라이브러리 1.0 안정판 2026 중반 목표, 네이티브 컴포넌트 기반 UI 채택 검토 (medium.com)
 
-- 2026-04-28부터 App Store 제출은 Xcode 26 빌드 + iOS 26 계열 SDK 타겟 필수 (appbot.co)
-- UIWebView 완전 퇴출(WKWebView 필수), 레거시 APNs API 종료 — APNs HTTP/2 서버 필수 (toslawyer.com)
-- Google Play 수수료 인하: 신규 인앱결제 20%, 구독 10% + 제3자 결제·외부 결제 링크 허용 확대 (appbot.co)
-- Play Store 타겟 API 레벨 최소 35(Android 15)로 상향 — 미충족 시 게시·업데이트 불가 (theandroidnews.com)
-- 2026-03-01부터 과도한 partial wake lock 등 배터리 남용 앱은 노출 저하 + 경고 라벨 부착 (saastostore.com)
-- Data Safety 섹션 단속 강화 — 민감 데이터 접근은 강한 정당화 필요, 미국 주별 App Store Accountability 법 대응도 요구됨 (appsonair.com)
+## 웹 프론트엔드 프레임워크·툴링
+- Next.js 16: Turbopack 기본 번들러, `use cache` 기반 Cache Components, 네이티브 View Transitions, 클라이언트 라우팅 전면 개편, MCP 기반 DevTools (nextjs.org)
+- React 19.2: `<Activity>`, useEffectEvent, cacheSignal, Partial Pre-rendering, Performance Tracks, Suspense 일괄 공개 (nextjs.org, dev.to)
+- Vite 8: Rust 기반 Rolldown이 esbuild·Rollup을 단일 대체, 프로덕션 빌드 1.6~7.7배 고속화 (vite.dev)
+- TypeScript 7 Go 네이티브 컴파일러로 10배 이상 속도 향상, Oxlint(ESLint 대비 50~100배)·Oxfmt(Prettier 대비 30배) 채택 확산 (theregister.com, cpojer.net)
+- Tailwind v4: CSS-first `@theme` 설정, Lightning CSS 엔진으로 빌드 5배 고속화, `bg-linear-to-*`·`shrink-0` 등 클래스명 변경 마이그레이션 필요 (blog.logrocket.com)
+- 모던 CSS 실전 도입 단계: 컨테이너 쿼리·`:has()`·`@scope`·`@starting-style`·스크롤 기반 애니메이션은 안전, anchor positioning·`if()`·Grid Lanes는 브라우저 지원 확인 후 사용 (nerdy.dev, polgubau.com)
 
-## React·웹 프레임워크
-
-- Next.js 16.3: App Router Instant Navigations 도입, dev 서버 RAM 최대 90% 절감 (nextjs.org)
-- 2026-08-25 Next.js 보안 릴리스(16.3.3 / 15.5.24)로 크리티컬 취약점 2건 패치 — 즉시 업그레이드 대상 (nextjs.org)
-- React Compiler 네이티브 롤아웃 진행 중, React 19.3 임박 (thisweekinreact.com)
-- React Native 0.87 출시, v1.0 준비 단계 — 0.83부터 레거시 아키텍처(브리지)는 deprecated가 아니라 완전 삭제 (thisweekinreact.com, medium.com)
-- RN 신아키텍처(JSI+Fabric+TurboModules) 벤치마크: 리스트 렌더 43% 개선, 스크롤 프레임 드랍 95% 감소, 메모리 33% 절감 (bolderapps.com)
-- Hermes v1이 RN 기본 엔진으로 전환 중, Reanimated·Nitro 모듈 등 생태계가 신아키텍처 전제로 재편 (callstack.com)
-- TypeScript 7.0 GA(2026-07-08): Go 네이티브 컴파일러로 풀 빌드 8~12배 가속, VS Code 프로젝트 로드 1분→10초 (devblogs.microsoft.com, infoq.com)
-
-## CSS·웹 플랫폼
-
-- Container style query(부모 커스텀 프로퍼티 기반 스타일 분기)가 2026-05 Firefox 151로 Baseline Newly Available 달성 (web.dev)
-- `:has()` 셀렉터가 2026-06 Baseline Widely Available 도달 — 폴리필 없이 프로덕션 사용 가능 (buildmvpfast.com)
-- 컨테이너 크기 쿼리·CSS 네스팅은 이미 Widely Available — 미디어쿼리 대신 컴포넌트 단위 반응형이 기본기로 정착 (blog.logrocket.com)
-- `:open` 의사클래스, `contrast-color()`, Custom Highlight API 등이 2026년 Baseline 합류 (web.dev)
-- Interop 2026 기준 주요 신기능이 Chrome·Firefox·Safari·Edge 전부에서 동작 — "Safari 때문에 못 쓴다"는 전제 재점검 필요 (dualmedia.com)
-
-## 웹 성능 (Core Web Vitals)
-
-- 2026년 기준 지표는 LCP ≤2.5s, INP ≤200ms, CLS ≤0.1 — 실사용자 75퍼센타일 측정, 3개 동일 가중 (nitropack.io)
-- INP가 가장 많이 실패하는 지표 — 사이트 43%가 200ms 기준 미달, 50ms 초과 long task 분해가 핵심 (digitalapplied.com)
-- LCP 개선 4대 수단: 이미지 preload, 크리티컬 CSS 인라인, 폰트 preload+swap, SSR (codeminer.co)
-- CLS는 이미지·비디오·iframe·광고 슬롯에 명시적 width/height 지정이 기본 (technovapartners.com)
-- 3개 지표 모두 통과한 사이트는 이탈률 24% 낮음 — 성능이 곧 전환율이라는 근거 데이터 축적 (solidappmaker.com)
-
-## AI 개발 워크플로
-
-- 2026년 표준 흐름: v0/Lovable/Figma Make로 프로토타입 → Cursor/Windsurf에서 정제 → Claude Code/Codex에 반복 작업 위임 후 출시 (eesel.ai)
-- v0는 React+Next.js+Tailwind+shadcn/ui 스택 특화 프롬프트-투-컴포넌트 생성기 — 누적 사용자 400만+ (banani.co)
-- Anima·Locofy.ai·Builder.io Visual Copilot 등 design-to-code 도구로 Figma 프레임을 1차 컴포넌트로 변환하는 패턴 보편화 (ssojet.com)
-- AI 생성 코드는 소유권 유지·리뷰 후 기존 도구로 이어 개발하는 것이 권장 워크플로 — 통짜 생성 의존은 지양 (dev.to)
-- Flutter 쪽도 GenUI·Agentic Hot Reload로 AI 네이티브 개발 루프가 프레임워크 차원에 편입되는 추세 (cmarix.com)
+## 웹 성능·접근성
+- Core Web Vitals 기준 유지: LCP 2.5s·INP 200ms·CLS 0.1 이하(CrUX 28일 p75), INP가 가장 많이 실패(43%)하는 지표 (corewebvitals.io, dev.to)
+- LCP 개선 4대 축: 히어로 이미지 preload, critical CSS 인라인, 폰트 preload + display swap, SSR (dev.to)
+- INP 개선: 불필요 스크립트 제거, 긴 태스크 분할, 서드파티 스크립트 지연 로드 (senorit.de)
+- CLS 예방: 이미지·비디오·iframe·광고 슬롯 명시적 크기 지정, 동적 콘텐츠 영역 예약 (innovisionbiz.com)
+- EAA(유럽 접근성법) 2025-06-28 시행, 민간 서비스도 EN 301 549(WCAG 2.1 AA 포함) 준수 대상 (levelaccess.com)
+- WCAG 3.0은 2026-03 워킹드래프트로 아직 미확정, 현행 의무는 WCAG 2.2 AA 기준으로 대응 (w3.org, levelaccess.com)
+- 자동 검사 도구만으로 부족, 키보드 내비게이션·스크린리더 수동 검증 필수이며 접근성 오버레이는 법적 방어력 낮음 (internet-pros.com)

@@ -1,64 +1,51 @@
 ---
 name: knowledge-trading-quant
-description: 트레이딩·퀀트·투자 최신 지식 — 시장동향, 전략, 리스크, 핀테크. 금융 역할이 작업 전 참고 (갱신: 2026-08-30)
+description: 트레이딩·퀀트·투자 최신 지식 — 시장동향, 전략, 리스크, 핀테크. 금융 역할이 작업 전 참고 (갱신: 2026-09-10)
 ---
 
-# trading-quant 도메인 지식 (2026-08-30)
+# trading-quant 도메인 지식 (2026-09-10)
 
 > `agent-team learn` 이 도메인 단위로 갱신하는 지식 베이스. 이 도메인 역할의 에이전트는 작업 전 참고.
 
-## 시장동향·매크로
-- 연준(Warsh 의장)이 인플레 재점화·고용 강세로 매파 전환 — 9월 인하 확률 32.6%까지 하락, 오히려 금리 인상 가능성이 논의되는 국면 (cnbc.com)
-- S&P 500은 7,700선 안팎에서 등락 중이며, JP모건은 2026년 목표 7,500(연준 인하 지속 시 8,000+) 제시 (finance.yahoo.com)
-- 미 국채 40조 달러 돌파 속 장기물 매도세 — 재무부가 10~30년물 유동성 지원 바이백을 2배 이상 확대해 금리 상단 방어 (cnbc.com)
-- 금은 8월 한 달 +15%로 1999년 이후 최대 월간 상승, $4,500 돌파 후 $4,450대 조정 — 부채 우려·약달러가 수요 견인 (tradingeconomics.com, dailyforex.com)
-- 달러 인덱스는 8월 -0.8%로 약세, 금·비달러 자산의 상대 매력 상승 (cnbc.com)
-- 2분기 실적 호조와 AI 관련 디레버리징 마무리 기대가 하반기 증시의 핵심 지지 요인 (forbes.com)
+## 거시·시장 동향
+- 9/15~16 FOMC는 인하가 아닌 '인상 vs 동결' 논쟁 중. 7월 고용 -2.3만 명 쇼크 후 8월 고용이 예상 상회하며 인상 확률 재상승, JPM은 25bp 인상·골드만은 연내 동결 전망 (cnbc.com, kalshi.com)
+- 2월 발발한 미·이란 분쟁이 9월 초 재격화. 브렌트 $94.65, WTI $90 재돌파, 글로벌 국채 투매로 장기금리 수십 년래 최고 수준 (cnn.com, cnbc.com)
+- 미 헤지펀드는 8월 미국 주식 순매도 후 9월 초에도 관망, 레버리지 비율 8월 초·말 두 차례 급감. 과거 20년 9월 절반 가까이 마이너스 수익 (itiger.com, hedgeweek.com)
+- HFR 기준 헤지펀드 8월 +0.83%, YTD +8.56%, 매크로 전략 8월 급등. SS&C 집계 유입액은 12개월 최고 (institutionalassetmanager.co.uk, hedgeweek.com)
+- 코스피 7,000 근접. 외국인 1~8월 170조 순매도 후 9월 1조 순매수 전환. 키움 9월 밴드 6,300~7,600, 7,000~7,500 구간 개인 매물 약 20조·8,000 부근 72조가 상단 저항 (mt.co.kr, daum.net)
+- 골드만은 코스피 목표 9,000~12,000 유지. GPT-6 공개로 반도체 슈퍼사이클 심리 재확인, 다만 FOMC·BOJ 이벤트가 외국인 리스크오프 변수 (mt.co.kr)
+- AI 밸류에이션 논쟁 지속. BofA는 2026 반도체 시장 전망을 $1.0조에서 $1.3조로 상향, 반면 대만 집중·NVIDIA 고PER을 조정 트리거로 지목 (thehill.com, intellectia.ai)
 
-## 퀀트 전략·AI/ML
-- 정적(static) 팩터 모델에서 벗어나 시장 레짐 변화에 실시간 적응하는 '다이나믹 퀀트'가 업계 표준으로 이동 (rebellionresearch.com)
-- 뉴스·공시·어닝콜·소셜 등 비정형 데이터에서 ML로 시그널·팩터를 생성하는 방식이 알파 발굴의 중심 (jagadishwrites.com)
-- HFT가 미국 주식 거래량의 약 72~78%를 차지하고 주요 금융기관의 75%가 AI 시스템을 배치 — ML은 실험이 아닌 시장 인프라화 (aisuperior.com)
-- LLM 기반 '알파 마이닝' 연구가 급증 — AlphaAgent(KDD), AlphaCrafter, QRAFTI 등 팩터 생성→레짐 인식 선택→적응적 트레이딩을 묶은 멀티에이전트 프레임워크 등장 (arxiv.org, dl.acm.org)
-- 오픈소스 TradingAgents가 v0.3.1(2026-07)로 갱신, Claude Sonnet 5 등 멀티 LLM 프로바이더 지원 (github.com/TauricResearch)
-- 학계·업계 공통 결론: LLM 에이전트는 아직 '감독하의 리서치 어시스턴트'이며 완전 자율 매매 주체로 보기 어려움 (arxiv.org)
-- 최고 성과 조합은 금융 이론+엄격한 리스크 통제+인간 전문성에 AI 패턴인식을 얹는 하이브리드 접근 (rebellionresearch.com)
+## 전략·퀀트 리서치
+- SG Trend Index 8월 진입 시점 YTD +7.9%, 단기 CTA는 +3.2%. 에너지·통화·주식의 지속적 추세로 중장기 모델이 단기 모델 압도 (thehedgefundjournal.com)
+- 네트워크 모멘텀(Network Momentum)으로 추세추종 개선, 베이지안 그래프 기반 CTA 복제에서 단기·장기 추세팩터 재평가 논문 주목 (arxiv.org)
+- 퀀트 픽스드인컴이 성장 영역. 복잡한 채권시장 알파 발굴에 자금 유입 확대 (quantt.co.uk)
+- 대형 퀀트(Two Sigma, Citadel, RenTech)는 LLM으로 실적콜·뉴스·공시 해석을 프로덕션 적용, 선형모델 의존 업체와 격차 확대 (quantt.co.uk, hunterbond.com)
+- BlackRock·컬럼비아 공동 연구: Bull·Bear·Risk Supervisor 3계층 멀티에이전트가 단일 LLM보다 일관되게 우수 (pinggy.io)
+- AI-Trader 라이브 벤치마크: 미국·A주·크립토 실거래에서 범용 LLM 능력이 트레이딩 능력으로 직결되지 않음 확인 (dl.acm.org)
+- QRAFTI 등 에이전트 기반 실증연구 프레임워크, FundaPod 지식그래프 메모리 펀더멘털 리서치 플랫폼 발표 (arxiv.org)
 
-## 헤지펀드·리스크 관리
-- 3월 변동성 장에서 Big4(시타델·밀레니엄·포인트72·발야스니)가 동시 드로다운(BAM -4.3%, ExodusPoint -4.5%) — 포드샵 포지션 쏠림(crowding) 리스크 노출 (hedgeco.net)
-- 4월 랠리에서 멀티스트랫 대형사가 급반등, 스톡피킹 펀드는 2016년 이후 최고 월간 성과 (hedgeco.net)
-- 멀티스트랫 평균 총 레버리지 444%(2025-11) — 비용과 레버리지가 이 모델의 핵심 리스크로 지목 (longangle.com)
-- 밀레니엄식 하드 리밋(약 7.5% 드로다운 시 포드 자동 청산) 등 중앙집중 리스크 통제+분산 운용팀 구조가 업계 지배적 모델 (hedgefundinterview.com)
-- 5년(~2025) 기준 멀티스트랫 샤프 2.83 vs 주식 0.53 — 자금이 계속 플랫폼형으로 집중되는 근거 (longangle.com)
-- 성과 기반 실시간 포드 간 자본 재배분과 15~20% 포드 성과보수 구조가 표준화 (hedgefundinterview.com)
+## 리스크 관리
+- 현재 핵심 리스크는 높은 레버리지, 인기 트레이드 쏠림(crowding), 스트레스 시 급속 디레버리징의 손실 증폭 (am.jpmorgan.com, am.gs.com)
+- 유가발 인플레이션과 금리 인상 가능성 동시 노출. 채권·주식 동반 하락 시나리오를 상관관계 가정에 반드시 포함 (schwab.com, morganstanley.com)
+- LLM 백테스트의 룩어헤드 편향 측정을 위한 Look-Ahead-Bench 등장. 시점(point-in-time) 데이터 검증이 필수 절차로 부상 (arxiv.org)
+- LLM 에이전트가 압박 상황에서 내부정보 이용 등 비윤리적 행동을 보인 연구 결과. 자동매매 시 규제·컴플라이언스 가드레일 설계 필요 (dl.acm.org)
+- BTC 현물 ETF 8월 $35.2억 유입에도 펀딩비 낮고 옵션은 헤지 성향. 레버리지 과열보다 기관 매수 주도 구조로 해석 (yahoo.com, coincall.com)
+- 코스피 개인 매물벽(90조 원)이 지수 상단 제한 요인. 국내 롱 포지션은 구간별 매물대 기준 분할 익절 규칙 권장 (daum.net)
 
-## 디지털자산·규제
-- GENIUS법(2025-07 제정) 시행 규칙 마감이 2026-07-18 — Fed·FDIC·OCC·FinCEN·OFAC 동시 룰메이킹으로 스테이블코인이 제도권 결제 인프라로 편입 중 (brookings.edu)
-- CLARITY법이 디지털 상품 현물시장을 CFTC 전속 관할로 정리 — SEC/CFTC 경계 확정 시 글로벌 규제 경쟁 촉발 전망 (elliptic.co)
-- 비트코인 ETF 주간 순유입 $8.5억(4월 중순 이후 최대), BlackRock IBIT 독주 — 반면 소형·니치 ETF는 청산 진행(해시덱스 DEFI 8/17 상장폐지) (cryptonomist.ch, coincall.com)
-- 비트코인 변동성이 사이클 저점 — '고변동 투기자산'에서 기관 포트폴리오 자산으로 성격 전환 (coincall.com)
-- 토큰화 자산 시장 $250억 규모(2020 대비 245배) — 국채·PE·부동산 펀드의 토큰화가 SEC 면제 신청 등 실무 단계 진입 (investing.com, paulhastings.com)
-- Grayscale 등은 2026년을 '기관 시대의 개막'으로 규정 — 어드바이저 채널·기관 자금의 구조적 유입 전망 (research.grayscale.com)
+## 핀테크·시장구조
+- 금융위 9/4 「토큰증권 정책방향」 발표. 하위법규 9월 말 입법예고, 2027년 2월 4일 개정법 시행, 장외거래소 인가단위 신설·거래한도 규정 예정 (lawtimes.co.kr)
+- 원화 스테이블코인은 9월 법안 발의 예고에도 지연. 한은은 달러 스테이블코인과 외환시장 연계 리스크 분석 보고서 발표 (kndaily.co.kr, blockmedia.co.kr)
+- SEC, 특정 스테이블코인에 2% 헤어컷만 적용해 98%를 규제자본으로 인정. 브로커딜러 결제 인프라로 실용화 신호 (crowdfundinsider.com, lw.com)
+- 예측시장 급성장: 7월 글로벌 월 거래량 약 $506억, Kalshi 30일 거래량 $141억. CFTC 프레임워크 백악관 검토 중, 하원 조사·일부 주 금지 병행 (defirate.com, rotowire.com)
+- 크립토 ETF 2단계 진입: 레버리지 BTC·ETH 구조 및 스테이킹·파생 결합 수익형 상품 심사, 솔라나·XRP 등 다각화 ETF 출시 (bitcoinfoundation.org)
+- 은행·핀테크의 예금 토큰화가 2026년 실행 단계. 송금·B2B·카드 정산용 스테이블코인 공급 확대, AI가 컴플라이언스·유동성 모니터링 계층 담당 (yahoo.com, wolterskluwer.com)
+- Stablecon USA(9/9~11, 워싱턴 DC)와 Global Fintech Fest(9/9~11, 뭄바이) 동시 개최, 규제·기관 통합 경로가 핵심 의제 (crossmint.com)
 
-## 프리딕션 마켓·신흥 자산군
-- 프리딕션 마켓 월간 거래량이 2025-09 $50억 미만에서 2026-04 약 $240억으로 급성장, 연간 $3,250억 페이스 (trmlabs.com, falconx.io)
-- Kalshi가 월 거래량 $95억으로 Polymarket($33억)을 앞서나 오픈이자는 양사 약 $4억으로 백중세 (insights4.vc)
-- ICE/NYSE가 Polymarket에 최대 $20억 전략 투자($80억 밸류) — 제도권 편입 신호 (trmlabs.com)
-- CFTC가 Polymarket의 미국 내 브로커리지·고객 직접 온보딩 승인(2025-11), Robinhood는 Kalshi 연동으로 2,700만 계좌에 프리딕션 허브 제공 (falconx.io)
-- 2026 월드컵이 스포츠 이벤트 기반 거래량의 대형 촉매로 작동 — 스포츠·매크로 이벤트가 주력 카테고리 (sportico.com)
-
-## 핀테크·자산관리
-- AI 증강 어드바이저 모델 확산 — AI가 프로스펙팅·포트폴리오 설계·리밸런싱을 맡고 인간은 고관여 의사결정에 집중 (vestmark.com)
-- 금융기관 52%가 생성형 AI 사용 중, 웰스매니지먼트사 95%가 AI 투자 확대 계획 (nextmsc.com)
-- 로보어드바이저가 리테일을 넘어 기관 데스크의 리밸런싱·세금손실수확(tax-loss harvesting) 자동화로 확장 (bdo.com)
-- Coinbase가 수수료 무료 주식거래+로보어드바이저를 붙여 '에브리싱 익스체인지'로 확장 — 브로커리지·거래소·크립토 경계 붕괴 (investing.com)
-- 부동산 등 대체자산의 토큰화 소액분할($1,000 단위)로 리테일 접근성 확대 (innreg.com)
-- 은행의 'Wealth-management-as-a-Service' 상품화가 새 수익모델로 부상 (vestmark.com)
-
-## 퀀트 도구·인프라
-- awesome-quant(wilsonfreitas)가 여전히 퀀트 라이브러리 탐색의 표준 큐레이션 리스트 (github.com)
-- QuantConnect Lean 엔진이 로컬 배포 가능한 오픈소스 풀 파이프라인으로 클라우드 비종속 퀀트에게 선호됨 (backtrex.com)
-- Backtrader의 cloudQuant 포크가 AI 지원 전략 툴링을 얹어 활발히 유지보수 중 — 원본 정체의 대안 (backtrex.com)
-- zipline-reloaded는 주식 전략용으로 건재, Blankly는 백테스트→페이퍼→라이브 배포 통합형으로 주목 (github.com)
-- LLM 에이전트 기반 리서치 프레임워크(TradingAgents, FundaPod 등)가 백테스팅 스택 위의 새 레이어로 편입되는 추세 (github.com, arxiv.org)
-- 옵션 전용 리서치·백테스트 라이브러리 등 자산군 특화 도구의 세분화 진행 (github.com)
+## 도구·인프라
+- 오픈소스 AI 트레이딩 프레임워크 중 TradingAgents(TauricResearch)가 GitHub 8만 스타로 최다. ai-hedge-fund, FinRL, FinRobot이 뒤따름 (pinggy.io, dev.to)
+- 백테스트 엔진 선택 기준: 파라미터 스윕·연구는 VectorBT(NumPy+Numba 벡터화), 프로덕션·체결 정합성은 NautilusTrader(이벤트 드리븐) (python.financial, bullalert.ai)
+- QuantLib 1.42.1(4월 릴리스)로 옵션가격·그릭스 계산 후 Nautilus·VectorBT 피처로 전달하는 파이프라인이 표준 패턴 (wikipedia.org, python.financial)
+- LEAN(QuantConnect) 로컬 배포로 클라우드 의존 없이 전체 파이프라인 통제, Zipline-Reloaded·QSTrader는 주식·ETF 롱숏 연구용으로 유지 (quantconnect.com, quantstart.com)
+- 옵션 리서치 전용 백테스트 라이브러리 6/30 업데이트, 파생 전략 연구 도구 다양화 (github.com)
+- 저지연 트레이딩은 여전히 C++ 우위, 리서치는 Python 지배. 채용은 프로덕션 코드와 전략 이해를 겸비한 인재에 프리미엄 (hunterbond.com)

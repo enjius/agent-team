@@ -1,59 +1,67 @@
 ---
 name: knowledge-marketing-biz
-description: 마케팅·사업전략 최신 지식 — 그로스, 브랜드, BD, IR, 리서치. 마케팅·사업 역할이 작업 전 참고 (갱신: 2026-08-30)
+description: 마케팅·사업전략 최신 지식 — 그로스, 브랜드, BD, IR, 리서치. 마케팅·사업 역할이 작업 전 참고 (갱신: 2026-09-10)
 ---
 
-# marketing-biz 도메인 지식 (2026-08-30)
+# marketing-biz 도메인 지식 (2026-09-10)
 
 > `agent-team learn` 이 도메인 단위로 갱신하는 지식 베이스. 이 도메인 역할의 에이전트는 작업 전 참고.
 
 ## 그로스·퍼포먼스 마케팅
-- 에이전틱 AI가 캠페인을 채널 단위가 아닌 자율 여정 단위로 운영하는 전환이 본격화 — 마케터 역할은 실행자에서 '지능형 시스템 감독자'로 이동 (gartner.com, bcg.com)
-- 에이전틱 AI 실사용 기업은 아직 13% 수준이지만, 도입·계획 기업의 82%가 큰 ROI 개선을 기대 — 2026년 말 기업 앱의 40%에 태스크 에이전트 내장 전망 (omnibound.ai)
-- Google AI Max가 베타 종료 수순, 풀 기능 사용 시 유사 CPA/ROAS에서 전환 약 7% 증가 — 9월부터 DSA·ACA·브로드매치 캠페인이 AI Max로 자동 업그레이드 (blog.google, benly.ai)
-- Meta Advantage+는 이미지 내 헤드라인 자동 재작성, 외부 AI 툴에서 캠페인을 관리하는 AI Connectors, 원클릭 Conversions API 등 8월 업데이트 다수 (admakeai.com)
-- 양대 광고 플랫폼 모두 자동화·블랙박스화가 심화되며, 서버사이드 태깅·옵트인 리스트 등 퍼스트파티 데이터가 성과 격차의 핵심 자산으로 부상 (webhooters.com)
-- 자율 콘텐츠 운영(레벨 3) 체계를 갖춘 팀은 5~10배 콘텐츠 생산량을 75~85% 낮은 건당 비용으로 달성한다는 벤치마크 보고 (averi.ai)
+- ChatGPT 광고: 2026-02 미국 무료·Go 티어 노출 시작, 05-05 셀프서브 Ads Manager 개방, 5월 말 CPA 입찰 도입으로 실질 퍼포먼스 채널화 (segwise.ai, adventuremedia.ai)
+- 구글 AI Mode 광고 포맷이 Google Marketing Live 2026에서 공개, AI 생성 결과의 약 25%에 광고 삽입. Search·PMax 예산이 AI 지면으로 자동 흡수되며 분리 측정 불가 (digitalapplied.com)
+- 메타는 URL·제품 이미지만으로 크리에이티브·타겟·게재·예산까지 완전 자동화가 2026 목표. Advantage+ 캠페인 평균 ROAS +22% 보고 (pixis.ai, hawky.ai)
+- 국내: 네이버가 9월 PC 통합검색·쇼핑 지면에 실시간 성과 최적화 도입, 구글·MS는 검색 캠페인에 AI Max 확대 적용 (industryjournal.co.kr)
+- 네이버 1분기 광고 매출 성장분의 50% 이상이 AI 기여. AI 브리핑 인용 창작자에게 직접 자금 지원하는 '네이버 메이트' 시작 (daum.net, vizensoft.com)
+- CAC는 경쟁 시장에서 5년간 +60% 상승. 라이프사이클 이메일·광고 카피·SEO에 AI 에이전트를 배치한 기업은 CAC 회수 기간 중앙값 3~5개월 단축 (digitalapplied.com)
+- 핵심 지표는 NRR로 이동, 상위 기업 120~130% 유지. 실시간 행동 기반 개인화·리텐션 메시징에 투자 집중 (thesaaslibrary.com, blog.mean.ceo)
+- 대화형 AI가 지원 챗봇을 넘어 리드 자격심사·구매여정 개인화·next-best-action 트리거까지 풀퍼널 매출 에이전트로 확장 (gartner.com)
 
-## AI 검색·GEO(생성엔진 최적화)
-- ChatGPT·Gemini·Copilot이 인용하는 출처 중 구글 상위 10위 문서는 10% 미만 — 기존 SEO만으로는 AI 가시성 확보 불가 (llmrefs.com)
-- AI 답변 내 브랜드 언급의 약 85%가 자사 사이트가 아닌 서드파티 페이지에서 발생 — 리뷰·비교글·커뮤니티 등 생태계 존재감 관리가 핵심 (omnibound.ai)
-- AI 요약이 노출되면 기존 검색결과 클릭률이 약 8%까지 급락 — 트래픽 지표 대신 'AI 인용 점유율' 등 새 GEO 지표 추적 필요 (searchengineland.com, emarketer.com)
-- 통계 수치 포함 시 AI 가시성 최대 40%, 인용·출처 명시 시 최대 41% 상승 — 구조화된 근거 중심 콘텐츠가 유리 (techtimes.com)
-- GEO는 기술 20%·전략 80%(포지셔닝, 서드파티 권위, 브랜드 어소리티) — 미국 GEO 시장은 2026년 3.65억 달러, CAGR 42.9% 전망 (gigawattgroup.com)
+## 브랜드·콘텐츠·AI 가시성
+- 구매 리서치 출발점이 ChatGPT·Gemini·Perplexity로 이동, 디지털 리더 32%가 GEO(생성엔진최적화)를 2026 최우선 과제로 지목 (martech.org, prnewswire.com)
+- GEO는 키워드 볼륨·발행 빈도보다 권위 있는 근거 기반 콘텐츠와 인용 정확성을 우선. PR·콘텐츠·SEO·프로덕트 마케팅의 융합 필요 (onclusive.com)
+- 메타 생성형 크리에이티브 스위트가 400만+ 광고주에 확대: 이미지→비디오(제품 사진 20장으로 멀티씬 영상), AI 더빙, 가상 착용, 브랜드 라이브러리 학습형 Brand Memory (digitalapplied.com, adtaxi.com)
+- 첫 제품 접점이 검색창이 아닌 릴스·쇼츠·틱톡 숏폼으로 이동, 영상 하나가 스토리텔링·브랜딩·퍼포먼스를 동시 담당 (highoutputclub.com)
+- 검색 쿼리가 길고 개방형 질문으로 변화, 콘텐츠는 조회 목적을 넘어 직접 전환을 만드는 구조로 설계해야 함 (business.google.com/kr/think)
+- 마케팅이 '캠페인' 단위에서 '시스템 설계'로 전환, 퍼스트파티 데이터 확보·플랫폼 내 커머스 내재화·프라이버시 규제 강화가 맞물림 (batcrew.co.kr)
+- AI 자동화 확대 속에서도 브랜드 스튜어드십·창의성·인간 감독이 성과 차이를 결정한다는 100인 광고 리더 예측 (tritondigital.com)
+- 카카오는 카카오스토리 업데이트 중단·티스토리 영상 업로드 제거 등 콘텐츠 플랫폼 축소, 국내 채널 포트폴리오 재점검 필요 (sedaily.com)
 
-## 브랜드·크리에이터·콘텐츠
-- 크리에이터 이코노미가 2023년 2,500억 → 2026년 5,000억 달러+ 규모로 성숙 — 크리에이터 콘텐츠의 '운영 체계화'가 브랜드 표준 실무로 정착 (archive.com)
-- 고광택 TV형 광고 대신 UGC 느낌의 크리에이터 주도 영상을 주당 수십 편 제작하는 모델이 2026년 표준 관행화 (visla.us, opus.pro)
-- 틱톡·인스타·릴스가 제품 리서치의 첫 관문(소셜 서치)이 되면서 숏폼이 인지→구매결정 전 여정을 커버 (influenceflow.io)
-- 크리에이터는 기획·촬영에 집중하고 AI가 플랫폼별 클립 변환을 처리하는 AI 보조 워크플로가 일반화 (uscreen.tv)
-- 콘텐츠 전략은 '대량 발행'에서 '적지만 고품질' 중심으로 재편 — AI 생성 콘텐츠 범람 속 진정성이 차별화 요소 (thoughtleaders.io)
+## BD·파트너십·에이전틱 커머스
+- 2026은 Ecosystem-Led Growth의 해: 아웃바운드 퍼널 대신 전략적 파트너십·API 통합·공동 마케팅이 주 매출 엔진 (journeybee.io, dfeelings.com)
+- Gartner: 2026년 말까지 기업 앱 40%가 태스크 특화 에이전트 내장(2025년 5% 미만). 에이전트 마켓플레이스·통합 파트너십이 신규 BD 축 (zylo.com)
+- 기업 평균 305개 앱 운영, 라이선스 46% 낭비로 SaaS 통합·정리 국면. 버티컬 SaaS는 도메인 데이터 해자로 M&A 프리미엄 41% (modall.ca)
+- 구글·OpenAI·MS·Shopify가 에이전틱 커머스 프로토콜 출시. AI 쇼핑 에이전트가 ChatGPT·Gemini·Copilot·Perplexity에서 실제 구매 수행 중 (fastcompany.com, fintechfutures.com)
+- OpenAI가 Target·Instacart·DoorDash와 ChatGPT 내 직접 구매 제휴. 아마존 'Buy For Me'는 타 브랜드 사이트 구매를 앱 안에서 처리 (modernretail.co)
+- AI 플랫폼 경유 리테일 지출 2026년 209억 달러(전년 대비 약 4배), AI 유입 쇼퍼 전환율 42% 높음(Adobe Analytics 1Q26) (emarketer.com)
+- 9/7 Azoma 등 '에이전틱 커머스 최적화(ACO)' 플랫폼 등장: ChatGPT·Gemini·Amazon Rufus·Walmart Sparky 추천 노출을 관리 (globenewswire.com)
+- 에이전트 유입 매출 측정 체계 미비가 새 과제. 리퍼러·어트리뷰션 재설계를 파트너 계약 조건에 반영 필요 (marketingtechnews.net)
 
-## 마테크·데이터·측정
-- CRM+CDP+분석의 통합 플랫폼으로 스택 통폐합 가속 — 비용·복잡도·저활용 문제로 다기능 네이티브 플랫폼 선호 (improvado.io)
-- CDP는 '수동 세그먼트 정의'에서 'AI가 동의·브랜드 가드레일 안에서 next-best-action 추천'으로 진화 (leads-technologies.com)
-- 유저 단위 신호 제약으로 광고 구매자 64%가 크로스플랫폼 측정, 56%가 MMM(미디어 믹스 모델링) 강화 — 실험·집계 분석 중심 스택이 유리 (martech.org)
-- 미국 리테일 미디어 광고비 620억 달러 돌파 흐름 — 쇼핑 경험에 내장되는 '네이티브 커머스 미디어'와 클로즈드루프 측정이 2026년 핵심 (martechseries.com)
-
-## BD·B2B 세일즈
-- Gartner 전망: 2026년 말 B2B 영업조직의 75%가 AI 기반 세일즈 개발 도입(2024년 말 28%에서 급증) — B2B 상호작용의 80%는 이미 디지털 (salesforce.com, mirakl.com)
-- McKinsey 2026년 1월 연구: AI 세일즈 에이전트+인간 SDR 병행 팀이 단독 운영 대비 파이프라인 41% 증가 (getsalesclaw.com)
-- 구매측 조달팀도 에이전트로 '수백 개 공급사 동시 협상'을 시작 — 정적 가격 페이지가 동적 협상 인터페이스로 전환 중 (commercetools.com)
-- 파트너십은 개별 채널·얼라이언스 구분이 사라지고 MSP·ISV·전문가가 동시 협업하는 '스웜(swarm)' 생태계 모델로 수렴 (achieveunite.com)
-- GTM 모션은 ACV 기준 매칭이 정석 — $5K 미만 PLG, $5K~50K 하이브리드, $50K+ 세일즈 주도 (designrevision.com)
-- 'Headless PLG': AI 에이전트가 1차 사용자가 되는 흐름 — Netlify 신규 가입의 80%가 인간이 아닌 AI 에이전트 (growthunhinged.com)
-
-## IR·펀드레이징
-- AI 스타트업 VC 투자 1,315억 달러(+52% YoY)이나 소수 선도기업에 집중 — 엘리트 대형 라운드 vs 나머지의 조달 난항으로 시장 양극화 (eqvista.com, qubit.capital)
-- 시드 AI 스타트업 밸류에이션은 비AI 대비 약 42% 프리미엄 — 단, 과도한 초기 밸류에이션은 후속 라운드 리스크이므로 트랙션·마진 기준 벤치마킹 권장 (eqvista.com)
-- 투자자들은 범용 AI 소프트웨어보다 인프라·에너지 효율·특화 실리콘 등 '차세대 경제성' 영역으로 이동 — 'AI 프리미엄'만으로는 조달 불가 (seedscope.ai, capmaven.co)
-- 피치덱 대부분이 AI로 제작되는 시대라 템플릿형 덱은 즉시 할인 평가 — 투자자 1차 검토는 평균 2분, 15장 초과 시 인게이지먼트 급락 (v7labs.com)
-- AI 생성 수치(시장규모·ARR)는 그럴듯하게 틀리는 경우가 흔해 전수 검증 필수 — 실사에서 걸린 허위 수치 하나가 라운드를 무산시킴 (capmaven.co)
-- 덱은 관계의 시작일 뿐, 승부처는 데이터룸 — 시리즈 A부터는 정돈된 상시 접근 가능한 데이터룸이 클로징 전제조건 (projectsupply.in)
+## IR·자금조달
+- IR 워크플로우에 에이전틱 AI 확산: AEO 최적화 IR 웹사이트, 실시간 참여 신호 기반 예측 타겟팅, 어닝콜 준비용 디지털 트윈, 상시 감성분석 (q4inc.com)
+- IR 팀 36%가 AI 도입 적극 탐색, 57%는 데이터 보안 우려로 보류. 분기 주기가 상시 피드백 루프로 대체되는 중 (weconvene.com)
+- 글로벌 IPO 회복: AI·인프라 수요와 실적 개선이 견인, 산업·방산·자동화 섹터로 확산. 투자자는 검증된 AI 가치창출 서사만 인정 (ey.com, finance.yahoo.com)
+- 홍콩 IPO 1~7월 104건·약 420억 달러로 전년 대비 2배 이상, 그러나 항셍지수는 연초 대비 약 1% 하락 (fticommunications.com)
+- 주주행동주의 2026 상반기 글로벌 캠페인 +20%. FTSE Russell은 비영국 기업 최소 유동주식 요건 25%→10%로 완화 (fticommunications.com)
+- VC 시장 양극화: 프론티어 AI에는 2021년급 대형 라운드, 나머지는 증빙된 고객 수요·데이터/IP 해자 있어야 조달 가능 (blog.mean.ceo, qubit.capital)
+- 시드 포스트머니 중앙값 약 2,400만 달러로 사상 최고, AI 시드 밸류는 일반 대비 40%+ 프리미엄. 시리즈A 중앙값 AI 파운데이션 ~3억 달러 vs 비AI ~5,500만 달러 (flowjam.com, eqvista.com)
+- 투자자 첫 질문이 데이터 해자·추론 비용·"파운데이션 모델이 기능을 네이티브로 내면 살아남는가"로 바뀜. 피치덱에 선제 답변 필요 (eqvista.com)
 
 ## 리서치·인사이트
-- 합성 응답자(synthetic respondents)가 실무 정착 — 인하우스 팀은 프로젝트 초반 80%를 합성 패널로 탐색 후 마지막 20%를 실제 응답자로 검증하는 하이브리드가 표준 (symar.ai, prnewswire.com)
-- Stanford HAI 생성 에이전트 연구: AI 에이전트가 실제 응답자의 설문 답변을 85% 정확도로 재현(2주 후 본인 재응답 일관성과 유사 수준) (pymc-labs.com)
-- 도구 지형: 합성 응답자(Sampl·Ditto·Evidenza), AI 보조 리서치(Quantilope·Outset), AI 분석(Qualtrics·SurveyMonkey)으로 3계층 분화 (rework.com)
-- 업계 수용도는 아직 갈림 — 리서처 42.75%가 합성 응답자 활용에 '기대 없음'이라 답해, 검증 설계와 한계 공지가 신뢰 확보의 관건 (prnewswire.com)
-- 정합성 요구가 높은 의사결정(규제·가격)은 합성 탐색 → AI 보조 검증 → 전통 조사 최종 확인의 3단 결합이 모범 사례 (sampl.space)
+- 리서치 소프트웨어 내장 AI 사용 62%→66% 증가, 범용 AI 도구 의존은 75%→67% 감소. 전문 리서치 플랫폼으로 이동 (prnewswire.com/Rival Group)
+- 합성 응답자(synthetic respondents) 정확도: Stanford HAI 85%, Harvard 계열 88%. 단 세그먼트 간 차이 재현에 취약 (skimle.com, symar.ai)
+- 적정 용도는 설문 사전 테스트·컨셉 스크리닝·소규모 데이터 보완. HBR은 인간 리서치의 보완재로 규정, 고위험 의사결정 단독 사용 금지 (deeto.com)
+- GRIT: 데이터 품질 우려 전년 대비 +40%, 합성 응답자와 젊은층 설문 피로가 주원인. 리서처 42.75%는 합성 응답자에 "기대 안 함" (prnewswire.com)
+- 에이전틱 AI가 설계→필드→분석→리포트 전 과정을 실행하는 사례 등장, 산출물에 생성형 AI 직접 내장 (segwise.ai, rework.com)
+- 미국 주 단위 프라이버시 규제 강화로 패널 모집·데이터 보관 요건 점검 필요 (deeto.com)
+- 마케팅 애널리틱스는 대시보드에서 에이전트 기반 이상탐지·예산 재배분 자동화로 이동, 퍼스트파티 데이터 통합이 전제 (improvado.io)
+
+## 마테크·운영 도구
+- Salesforce Agentforce 360: 리드 자격심사·콘텐츠 생성·캠페인 런칭·채널 최적화 에이전트, Slack 연동. Agentforce Operations 및 통신업 특화 에이전트 출시 (martech.org)
+- HubSpot Breeze·Agent Hub가 Marketing/Sales/Service 허브 내장 에이전트로 미드마켓 선점 (mastra.ai, bakedwith.com)
+- 'Agent Hub'가 RevOps의 새 컨트롤 플레인으로 부상, 컴포저블 스택과 에이전트 오케스트레이션이 마테크 선정 기준 (logarithmic.com, emarketer.com)
+- Salesforce·HubSpot 모두 파트너 프로그램 요건 강화, 에이전시 전문화 압박 (martech.org)
+- Jasper는 카피 도구에서 Grid·Studio 기반 워크플로우 자동화 플랫폼으로 확장, ChatGPT는 아이디어·리서치·초안 범용 도구로 정착 (pushwoosh.com)
+- 스타트업 자동화 우선순위: AI 어시스턴트, 퍼스트파티 데이터, 옴니채널 여정, 빠른 캠페인 테스트 (blog.mean.ceo)
+
+Sources: [blog.mean.ceo](https://blog.mean.ceo/marketing-automation-trends-september-2026/), [digitalapplied.com](https://www.digitalapplied.com/blog/saas-marketing-statistics-2026-data-points-trends), [gartner.com](https://www.gartner.com/en/articles/future-of-marketing), [thesaaslibrary.com](https://thesaaslibrary.com/b2b-saas-trends-in-2026whats-actually-changing-and-what-isnt/), [martech.org](https://martech.org/the-competition-for-brand-visibility-has-moved-to-ai-search/), [prnewswire.com](https://www.prnewswire.com/news-releases/brandi-ai-unveils-2026-trends-for-generative-engine-optimization-geo-and-ai-visibility-302681653.html), [onclusive.com](https://onclusive.com/resources/blog/marketing-trends-2026-what-professionals-say-about-the-year-ahead/), [tritondigital.com](https://tritondigital.com/news-item/January-05-2026/100-ad-leaders-predict-2026-marketing-trends-what-s-next-for-ai-agencies-creativity-media-and-more), [journeybee.io](https://journeybee.io/resources/saas-10-trends-that-will-make-or-break-your-business), [zylo.com](https://zylo.com/blog/saas-trends), [modall.ca](https://modall.ca/blog/saas-trends), [q4inc.com](https://www.q4inc.com/resource-center/blog/the-future-of-ir-latest-trends-in-ai-for-investor-relations-2026), [ey.com](https://www.ey.com/en_gl/insights/ipo/trends), [fticommunications.com](https://fticommunications.com/ir-monitor-09-september-2026/), [weconvene.com](https://weconvene.com/ir-trends-2025-2026-data-backed-shifts-in-investor-relations/), [Rival Group](https://www.prnewswire.com/news-releases/rival-groups-2026-market-research-trends-report-covers-ai-in-insights-synthetic-respondents-evolving-qualitative-research-and-more-302633126.html), [skimle.com](https://skimle.com/blog/synthetic-respondents-in-research-promise-pitfalls-and-when-to-use-in-2026), [symar.ai](https://www.symar.ai/blog/best-synthetic-market-research-solutions-2026/), [deeto.com](https://www.deeto.com/blog-post/market-research-trends-2026), [improvado.io](https://improvado.io/blog/top-marketing-analytics-trends), [martech.org Salesforce](https://martech.org/salesforce-pushes-agentic-marketing-from-planning-to-pipeline/), [emarketer.com](https://www.emarketer.com/content/faq-on-martech--how-ai-agents-composable-stacks-reshaping-marketing-technology-2026), [logarithmic.com](https://www.logarithmic.com/perspectives/agent-hubs-are-the-new-control-plane-for-revenue-operations), [segwise.ai](https://segwise.ai/blog/chatgpt-ads-2026-guide), [adventuremedia.ai](https://adventuremedia.ai/blog/chatgpt-ads-launch-2026-everything-us-businesses-need-to-know), [digitalapplied.com AI ads](https://www.digitalapplied.com/blog/ai-search-advertising-chatgpt-google-perplexity-2026), [pixis.ai](https://pixis.ai/blog/metas-fully-automated-ads-by-2026-what-performance-teams-should-prepare-for/), [hawky.ai](https://hawky.ai/blog/meta-ads-updates-2026), [adtaxi.com](https://www.adtaxi.com/blog/metas-ai-advertising-plans-what-to-expect-in-2026-and-how-to-prepare/), [modernretail.co](https://www.modernretail.co/technology/why-the-ai-shopping-agent-wars-will-heat-up-in-2026/), [fastcompany.com](https://www.fastcompany.com/91533534/shop-til-you-bot-google-openai-and-the-race-to-build-agentic-commerce), [globenewswire.com](https://www.globenewswire.com/news-release/2026/09/07/3357031/0/en/agentic-commerce-optimisation-azoma-on-which-platforms-help-brands-get-recommended-by-ai-shopping-agents.html), [marketingtechnews.net](https://www.marketingtechnews.net/news/ai-agents-are-changing-commerce-now-measurement-must-catch-up/), [emarketer.com commerce](https://www.emarketer.com/content/how-agentic-ai-will-reshape-shopping-2026), [eqvista.com](https://eqvista.com/ai-startup-fundraising-trends/), [flowjam.com](https://www.flowjam.com/blog/seed-round-valuation-2025-complete-founders-guide), [qubit.capital](https://qubit.capital/blog/ai-startup-fundraising-trends), [industryjournal.co.kr](https://industryjournal.co.kr/news/247350), [daum.net](https://v.daum.net/v/20260430102205162?f=p), [vizensoft.com](https://www.vizensoft.com/about/itinsight/read?no=714), [sedaily.com](https://www.sedaily.com/article/20066578), [highoutputclub.com](https://blog.highoutputclub.com/meta-business-trends-2026/), [batcrew.co.kr](https://batcrew.co.kr/ko/blog-insight-2026-marketing-checklist/), [business.google.com/kr](https://business.google.com/kr/think/search-and-video/search-trends-marketing-takeaways/), [pushwoosh.com](https://www.pushwoosh.com/ko/blog/ai-marketing-tools/)
